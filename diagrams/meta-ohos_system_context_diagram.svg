@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="553px" preserveAspectRatio="none" style="width:267px;height:553px;" version="1.1" viewBox="0 0 267 553" width="267px" zoomAndPan="magnify"><defs/><g><!--entity dev--><rect fill="#08427B" height="101.4844" style="stroke: #073B6F; stroke-width: 1.5;" width="203" x="13" y="8"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="57" x="86" y="29.1387">«person»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="90" x="69.5" y="46.8203">Developer</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="116.5" y="63.5889"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="179" x="23" y="79.8857">Anyone willing to build the</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="134" x="47.5" y="96.1826">OHOS based image</text><!--entity meta_ohos--><rect fill="#1168BD" height="101.4844" style="stroke: #3C7FC0; stroke-width: 1.5;" width="217" x="6" y="441"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="57" x="86" y="462.1387">«system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="95" x="67" y="479.8203">meta-ohos</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="116.5" y="496.5889"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="193" x="16" y="512.8857">meta-ohos umbrella bitbake</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="32" x="98.5" y="529.1826">layer</text><!--entity yocto--><rect fill="#999999" height="117.7813" style="stroke: #8A8A8A; stroke-width: 1.5;" width="177" x="26" y="246"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="115" x="57" y="267.1387">«external_system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="100" x="64.5" y="284.8203">yocto-poky</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="116.5" y="301.5889"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="122" x="51.5" y="317.8857">distro scaffolding:</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="153" x="36" y="334.1826">predefined meta-data,</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="142" x="43.5" y="350.4795">bitbake build system</text><!--link dev to yocto--><path d="M114.5,109.27 C114.5,147.09 114.5,199.39 114.5,240.26 " fill="none" id="dev-yocto" style="stroke: #666666; stroke-width: 1.0;"/><polygon fill="#666666" points="114.5,245.7,118.5,236.7,114.5,240.7,110.5,236.7,114.5,245.7" style="stroke: #666666; stroke-width: 1.0;"/><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="52" x="157" y="152.0669">selects</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="103" x="131.5" y="167.1997">configuration,</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="135" x="115.5" y="182.3325">initiates the build,</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="129" x="118.5" y="197.4653">deploys image to</text><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="75" x="148" y="212.5981">the target</text><!--link yocto to meta_ohos--><path d="M114.5,364.12 C114.5,387 114.5,413.15 114.5,435.69 " fill="none" id="yocto-meta_ohos" style="stroke: #666666; stroke-width: 1.0;"/><polygon fill="#666666" points="114.5,440.74,118.5,431.74,114.5,435.74,110.5,431.74,114.5,440.74" style="stroke: #666666; stroke-width: 1.0;"/><text fill="#666666" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="93" x="115.5" y="407.0669">incorporates</text><!--
+@startuml meta-ohos_system_context_diagram
+
+
+
+
+
+skinparam defaultTextAlignment center
+
+skinparam wrapWidth 200
+skinparam maxMessageSize 150
+
+skinparam rectangle {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam database {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam Arrow {
+    Color #666666
+    FontColor #666666
+    FontSize 12
+}
+
+skinparam rectangle<<boundary>> {
+    Shadowing false
+    StereotypeFontSize 0
+    FontColor #444444
+    BorderColor #444444
+    BorderStyle dashed
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam rectangle<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+
+skinparam rectangle<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+
+skinparam rectangle<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+
+skinparam rectangle<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+
+skinparam database<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+
+skinparam database<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+
+
+
+
+
+
+
+
+
+
+
+
+rectangle "==Developer\n\n Anyone willing to build the OHOS based image" <<person>> as dev
+rectangle "==meta-ohos\n\n meta-ohos umbrella bitbake layer" <<system>> as meta_ohos
+rectangle "==yocto-poky\n\n distro scaffolding: predefined meta-data, bitbake build system" <<external_system>> as yocto
+
+dev - -> yocto : "===selects configuration, initiates the build, deploys image to the target"
+yocto - -> meta_ohos : "===incorporates"
+
+@enduml
+
+PlantUML version 1.2018.13(Mon Nov 26 18:11:51 CET 2018)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.9.1+1-Ubuntu-0ubuntu1.20.04
+Operating System: Linux
+OS Version: 5.4.0-53-generic
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
