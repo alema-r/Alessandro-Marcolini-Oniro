@@ -1,9 +1,8 @@
 Architectural Decision Records
 ==============================
 
-Here we keep all Architectural Decision Records.
-Each decision shall be in a separate file with name following convention:
+[All decisions for architecturally significant requirements](adr-list.md) are documented
+using [adr-tools](https://github.com/npryce/adr-tools).
 
-NNNN-title-with-dashes.md
+Decisions are to be discussed within MR of a given decision md file.
 
-where the NNNN is a decision number.
