@@ -117,5 +117,26 @@ Decisions are discussed within MR of a given decision md file.
 
 ## meta-ohos overview
 
-![meta-ohos system context diagram](./diagrams/meta-ohos_system_context_diagram.svg)
+**OpenHarmony** is a distributed OS that is designed to run atop variety of OS kernels 
+ranging from RTOSs to Linux.
+
+**meta-ohos** is a _umbrella_ meta layer containing all layers required to build
+**OpenHarmony** Image basing on existing kernel meta-layers.
+
+```plantuml
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Context.puml
+
+Person(dev, "Developer", "Anyone willing to build the OHOS based image")
+System(meta_ohos, "meta-ohos", "Open Harmony OS umbrella bitbake meta-layer")
+System_Ext(yocto, "yocto-poky", "distro scaffolding: predefined meta-data, bitbake build system")
+System_Ext(meta_zephyr, "meta-zephyr", "ZephyrOS meta-layer")
+System_Ext(meta_freertos, "meta-freertos", "FreeRTOS meta-layer")
+
+Rel(dev, yocto, "selects configuration, initiates the build, deploys image to the target")
+Rel(yocto, meta_ohos, "incorporates meta-layers relevant for selected kernel / configuration")
+Rel(yocto, yocto, "Using meta-poky for OHOS on Poky build")
+Rel(yocto, meta_zephyr, "incorporates for OHOS on Zephyr build")
+Rel(yocto, meta_freertos, "incorporates for OHOS on FreeRTOS build")
+
+```
 
