@@ -128,15 +128,22 @@ ranging from RTOSs to Linux.
 
 Person(dev, "Developer", "Anyone willing to build the OHOS based image")
 System(meta_ohos, "meta-ohos", "Open Harmony OS umbrella bitbake meta-layer")
-System_Ext(yocto, "yocto-poky", "distro scaffolding: predefined meta-data, bitbake build system")
+Boundary(poky, "poky") {
+    System_Ext(bitbake, "bitbake", "build process orchestrator")
+    System_Ext(linux_yocto, "linux-yocto", "Yocto Project LTS linux kernel")
+    System_Ext(meta_external_toolchain, "meta-external-toolchain", "Yocto Project LTS GNU GCC and LLVM toolchains")
+}
 System_Ext(meta_zephyr, "meta-zephyr", "ZephyrOS meta-layer")
 System_Ext(meta_freertos, "meta-freertos", "FreeRTOS meta-layer")
+System_Ext(meta_freertos, "meta-freertos", "FreeRTOS meta-layer")
+System_Ext(linux_yocto, "linux-yocto", "Yocto Project LTS linux kernel")
+System_Ext(meta_external_toolchain, "meta-external-toolchain", "Yocto Project LTS GNU GCC and LLVM toolchains")
 
-Rel(dev, yocto, "selects configuration, initiates the build, deploys image to the target")
-Rel(yocto, meta_ohos, "incorporates meta-layers relevant for selected kernel / configuration")
-Rel(yocto, yocto, "Using meta-poky for OHOS on Poky build")
-Rel(yocto, meta_zephyr, "incorporates for OHOS on Zephyr build")
-Rel(yocto, meta_freertos, "incorporates for OHOS on FreeRTOS build")
-
+Rel(dev, bitbake, "selects configuration, initiates the build, deploys image to the target")
+Rel(bitbake, meta_ohos, "incorporates meta-layers relevant for selected kernel / configuration")
+Rel(bitbake, linux_yocto, "incorporates Yocto Project LTS linux kernel reference")
+Rel(bitbake, meta_external_toolchain, "incorporates Yocto Project LTS toolchains")
+Rel(bitbake, meta_zephyr, "incorporates for OHOS on Zephyr build")
+Rel(bitbake, meta_freertos, "incorporates for OHOS on FreeRTOS build")
 ```
 
