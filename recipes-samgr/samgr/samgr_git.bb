@@ -18,8 +18,17 @@ S = "${WORKDIR}/git"
 CFLAGS_SAMGR = "${CFLAGS} -I${S}/samgr/adapter -I${S}/samgr -I${S}/samgr/source -I${S}/samgr/registry -fPIC -shared"
 LDFLAGS_SAMGR = "${LDFLAGS} -lsec -pthread -L${B} -Wl,-soname,lib${PN}.so.${PVMAJOR}"
 
-# Note: modify this when adapting to LiteOS
-TARGET_ADAPTER = '${@ "posix" if "linux" in d.getVar("TARGET_OS", False) else "cmsis"}'
+def get_target_adapter(d):
+    targetOs = d.getVar('TARGET_OS', True)
+    if targetOs == "linux" or targetOs == "liteos_a":
+        targetAdapter = "posix"
+    elif targetOs == "liteos_m":
+        targetAdapter = "cmsis"
+    else:
+        raise bb.parse.SkipPackage("OS '%s' is not supported by ohos-foundation" % targetOs)
+    return targetAdapter
+
+TARGET_ADAPTER = "${@get_target_adapter(d)}"
 
 do_compile () {
 	${CC} ${CFLAGS_SAMGR} ${LDFLAGS_SAMGR}			\
