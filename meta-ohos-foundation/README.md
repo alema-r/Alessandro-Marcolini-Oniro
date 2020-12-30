@@ -2,16 +2,6 @@ This README file contains information on the contents of the meta-ohos-foundatio
 
 Please see the corresponding sections below for details.
 
-Dependencies
-============
-
-  URI: https://git.ostc-eu.org/incubate/meta-ohos/meta-common.git  
-  branch: develop  
-
-  URI: https://git.ostc-eu.org/incubate/meta-ohos/meta-thirdparty.git  
-  branch: develop
-
-
 Table of Contents
 =================
 
@@ -22,7 +12,7 @@ Table of Contents
 I. Adding the meta-foundation layer to your build
 =================================================
 
-Run 'bitbake-layers add-layer meta-foundation'
+Run 'bitbake-layers add-layer meta-ohos-foundation'
 
 II. Misc
 ========
@@ -33,4 +23,7 @@ the OHOS.
 ## Layer layout:
  - recipes 
    - samgr - Distritbuted Services Manager 
-   - safwk - Main foundation application (initialization routines) 
+   - safwk - Main foundation application (initialization routines)
+   - frameworks - various OHOS frameworks libraries
+   - interfaces - OHOS interfaces headers
+   - utils      - various OHOS utilities
