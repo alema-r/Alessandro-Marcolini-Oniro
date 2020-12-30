@@ -21,9 +21,12 @@ This layer provides recipes for the core elements (foundation) of
 the OHOS.
 
 ## Layer layout:
- - recipes 
+ - recipes
    - samgr - Distritbuted Services Manager 
    - safwk - Main foundation application (initialization routines)
    - frameworks - various OHOS frameworks libraries
    - interfaces - OHOS interfaces headers
    - utils      - various OHOS utilities
+   - recipes-libs
+     - cjson - Ultralightweight JSON parser in ANSI C
+     - libsec - library implementing Annex K of C11, Bounds-checking interfaces
