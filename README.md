@@ -84,7 +84,7 @@ After successful bootup, you should see following:
     root@qemux86:~#
 
     # For FreeRTOS
-    ###### - FreeRTOS sample application -######
+    ###### - FreeRTOS sample application - ######
     
     A text may be entered using a keyboard.
     It will be displayed when 'Enter' is pressed.
