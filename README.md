@@ -110,7 +110,7 @@ or close qemu using key combination:
 # meta-ohos architecture
 
 All decisions for architecturally significant requirements are documented using 
-[adr-tools](https://github.com/npryce/adr-tools) and stored in [adr](./adr) subdirectory.
+[adr-tools](https://github.com/npryce/adr-tools) and stored in [docs/adr](./docs/adr) subdirectory.
 Decisions are discussed within MR of a given decision md file.
 
 **meta-ohos** architecture is documented using [c4 model](https://c4model.com/).
