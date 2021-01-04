@@ -3,7 +3,7 @@ DESCRIPTION = "OHOS foundation main application"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=98c2e72b17fae6c40fb14fd5e43b29ec"
 
-DEPENDS += "utils-native-lite libsec hiviewdfx-innerkits-hilog hiviewdfx-hilog samgr samgr-kits"
+DEPENDS += "utils-native-lite libsec hiviewdfx-innerkits-hilog hiviewdfx-hilog samgr samgr-kits softbus"
 
 SRC_URI = "git://gitee.com/openharmony/distributedschedule_services_safwk_lite.git;protocol=https"
 
@@ -17,7 +17,7 @@ CFLAGS += "-DDEBUG_SERVICES_SAFWK_LITE"
 LDFLAGS += "-lrt"
 
 do_compile () {
-	${CC} ${CFLAGS} ${LDFLAGS} src/*.c -o ${B}/foundation -lsamgr -lsec -lhiviewdfx-hilog
+	${CC} ${CFLAGS} ${LDFLAGS} src/*.c -o ${B}/foundation -lsamgr -lsec -lhiviewdfx-hilog -lsoftbus
 }
 
 do_install () {

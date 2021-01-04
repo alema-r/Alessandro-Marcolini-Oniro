@@ -1,0 +1,42 @@
+From d1b564ce1c294be4752204bad8261316b8e56ba1 Mon Sep 17 00:00:00 2001
+From: Zbigniew Bodek <zbigniew.bodek@huawei.com>
+Date: Thu, 31 Dec 2020 16:24:24 +0000
+Subject: [PATCH] Fix incorrect number of arguments to mq_open()
+
+Related issue:
+https://gitee.com/openharmony/communication_services_softbus_lite/issues/I2BBKX
+
+According to man:
+If O_CREAT is specified in oflag, then two additional arguments
+must be supplied.
+
+os_adapter.c is missing "mode" parameter in mq_open(). It will compile
+for MUSL, which does not check the number of arguments passed through
+variadic argument but it doesn't mean it works as designed.
+
+Fix this issue as well as build for other libraries with built-in
+checks by introducing missing "mode" argument.
+
+File mode has been selected to 0600 (RW for owner) but is a subject
+to change if needed.
+
+Signed-off-by: Zbigniew Bodek <zbigniew.bodek@huawei.com>
+---
+ os_adapter/source/L1/os_adapter.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/os_adapter/source/L1/os_adapter.c b/os_adapter/source/L1/os_adapter.c
+index 98f91c9..9eb693a 100755
+--- a/os_adapter/source/L1/os_adapter.c
++++ b/os_adapter/source/L1/os_adapter.c
+@@ -79,7 +79,9 @@ int CreateMsgQue(const char *queueName,
+     newAttr.mq_flags = flags;
+     newAttr.mq_maxmsg = len;
+     newAttr.mq_msgsize = maxMsgSize;
+-    int mqd = mq_open(queueName, O_RDWR | O_CREAT, &newAttr);
++    /* Owner read and write permission - 0600 */
++    mode_t mode = (S_IRUSR | S_IWUSR);
++    int mqd = mq_open(queueName, O_RDWR | O_CREAT, mode, &newAttr);
+     if (mqd < 0) {
+         return -1;
+     }
