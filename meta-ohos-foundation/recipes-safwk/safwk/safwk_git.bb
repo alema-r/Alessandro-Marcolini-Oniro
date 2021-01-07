@@ -28,3 +28,4 @@ do_install () {
 FILES_${PN} += "${base_bindir}/foundation"
 
 PROVIDES = "foundation"
+RPROVIDES_${PN} = "foundation"
