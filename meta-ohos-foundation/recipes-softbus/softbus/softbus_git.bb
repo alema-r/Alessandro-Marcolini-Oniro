@@ -5,15 +5,13 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=98c2e72b17fae6c40fb14fd5e43b29ec"
 
 DEPENDS += "cjson libsec samgr softbus-kits iam-kits hichainsdk hichainsdk-innerkits mbedtls"
 
-SRC_URI = "git://gitee.com/openharmony/communication_services_softbus_lite.git;protocol=https \
-           file://0001-Fix-incorrect-number-of-arguments-to-mq_open.patch \
-           "
+SRC_URI = "git://gitee.com/openharmony/communication_services_softbus_lite.git;protocol=https"
 
 PV = "1.0+git${SRCPV}"
 PVSHORT = '${@d.getVar("PV", False).split("+")[0]}'
 PVMAJOR = '${@d.getVar("PV", False).split(".")[0]}'
 
-SRCREV = "b3f7261e31d0be165979446fef4a6c415cc03f65"
+SRCREV = "d110d2cd61806efc89d7eaa651d2c36fce66df97"
 
 S = "${WORKDIR}/git"
 
