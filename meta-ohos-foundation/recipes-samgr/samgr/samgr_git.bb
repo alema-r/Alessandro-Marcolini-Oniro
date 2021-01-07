@@ -20,6 +20,10 @@ LDFLAGS_SAMGR = "${LDFLAGS} -lsec -pthread -L${B} -Wl,-soname,lib${PN}.so.${PVMA
 
 def get_target_adapter(d):
     targetOs = d.getVar('TARGET_OS', True)
+    # generalize targetOs variable for all Linux build variants
+    if "linux" in targetOs:
+        targetOs = "linux"
+
     if targetOs == "linux" or targetOs == "liteos_a":
         targetAdapter = "posix"
     elif targetOs == "liteos_m":
