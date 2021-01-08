@@ -21,7 +21,7 @@ To start working with **meta-ohos** first install git repo:
 Once git repo has been installed we can use it to clone the necessary repositories:
 
     $ mkdir ohos; cd ohos
-    $ repo init -u https://git.ostc-eu.org/incubate/meta-ohos/manifest.git
+    $ repo init -u https://git.ostc-eu.org/OSTC/manifest.git
     $ repo sync
     $ cd poky
     poky$ . oe-init-build-env
