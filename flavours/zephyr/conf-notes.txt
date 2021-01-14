@@ -1,0 +1,18 @@
+
+### Shell environment set up for builds. ###
+
+You can now run 'bitbake zephyr-philosophers'
+
+Supported machines:
+- qemu-cortex-m3
+- qemu-x86 (default)
+
+MACHINE variable can be set up in conf/local.conf file under build directory
+or via command line, e.g.:
+
+    $ MACHINE=<supported_machine> bitbake <target>
+
+You can also run generated qemu images with a command:
+
+    $ DEPLOY_DIR_IMAGE=tmp-newlib/deploy/images/qemu-x86 runqemu qemux86
+

@@ -1,0 +1,13 @@
+
+### Shell environment set up for builds. ###
+
+#####################################
+# FreeRTOS support is experimental! #
+#####################################
+
+You can now run 'bitbake freertos-demo'
+
+You can also run generated qemu images with a command:
+
+    $ runqemu qemuarmv5
+

@@ -23,53 +23,98 @@ Once git repo has been installed we can use it to clone the necessary repositori
     $ mkdir ohos; cd ohos
     $ repo init -u https://git.ostc-eu.org/OSTC/manifest.git
     $ repo sync
-    $ cd poky
-    poky$ . oe-init-build-env
 
-Working directory will automatically change to ./poky/build. Add layers for
-other kernels. Layers for poky were added automatically by sourcing
-`oe-init-build-env`.
+Above commands should result in the following directory structure:
 
-    build$ bitbake-layers add-layer ../meta-openembedded/meta-oe
-    build$ bitbake-layers add-layer ../meta-openembedded/meta-python
-    build$ bitbake-layers add-layer ../meta-zephyr
-    build$ bitbake-layers add-layer ../meta-freertos
+    ./ohos/
+    └── sources
+        ├── meta-freertos
+        ├── meta-ohos
+        ├── meta-openembedded
+        ├── meta-zephyr
+        ├── <various yocto layers>
+        └── poky
 
-Build distro of your choice:
+### OHOS flavours
 
-For Poky-tiny you can choose any of the following machines:
-qemux86, qemux86-64, qemuarm, qemuarmv5
+OpenHarmony can be hosted on top of variety of kernels.
+Currently supported kernels (a.k.a. OHOS flavours) are Linux, Zephyr
+and FreeRTOS (experimental).
 
-    build$ DISTRO=poky-tiny MACHINE=qemux86 bitbake core-image-minimal
+To build OHOS flavour issue following commands:
 
+    $ TEMPLATECONF=../sources/meta-ohos/flavours/<lower_case_flavour> . ./sources/poky/oe-init-build-env build-<flavour>-<target_machine>
+    $ bitbake <image-name>
 
-For Zephyr you can choose any of the following machines:
-acrn, arduino-101-ble, arduino-101, arduino-101-sss, qemu-cortex-m3, qemu-nios2, qemu-x86
+MACHINE variable can be set up in conf/local.conf file under build directory
+or via command line, e.g.:
 
-    build$ DISTRO=zephyr MACHINE=qemu-x86 bitbake zephyr-philosophers
+    $ MACHINE=<target_machine> bitbake <image-name>
 
-For FreeRTOS you can choose any of the following machines: qemuarmv5.
+#### OHOS Linux flavour
 
-    build$ DISTRO=freertos MACHINE=qemuarmv5 bitbake freertos-demo
+OHOS Linux flavour is based on _poky_ distribution.
 
-For Zephyr, `zephyr-philosophers` is the one of sample applications available
-in meta-zephyr layer by Yocto project. It's easy to build other samples using
-recipes available in `meta-zephyr/recipes-kernel/zephyr-kernel/` directory.
+Supported images:
+- core-image-minimal
+- core-image-full-cmdline
 
-## Running OpenHarmony image
+Supported machines:
+- qemux86-64 (default)
+- qemux86
+- qemuarm
+- qemuarm64
 
-When the build is finished, you can run the image by issuing:
+Example:
 
-    # For poky
-    build$ runqemu qemux86 ramfs qemuparams="-nographic"
-    # For Zephyr
-    build$ DEPLOY_DIR_IMAGE=tmp-newlib/deploy/images/qemu-x86 runqemu qemu-x86
-    # For FreeRTOS
-    build$ runqemu qemuarmv5
+    $ TEMPLATECONF=../sources/meta-ohos/flavours/linux . ./sources/poky/oe-init-build-env build-ohos-linux-qemux86-64
+    $ bitbake core-image-minimal
+
+You can test the image built for the qemux86-64 target by issuing:
+
+    $ runqemu qemux86-64 qemuparams="-nographic"
 
 After successful bootup, you should see following:
 
-    # For Zephyr
+    Poky (Yocto Project Reference Distro) 3.1.4 qemux86-64 /dev/ttyS0
+
+    qemux86-64 login:
+    
+Default login is _root_ without a password.
+After login you should see prompt:
+
+    root@qemux86-64:~#
+
+To exit qemu, you can either shut down the system:
+
+    root@qemux86:~# poweroff -f
+
+or close qemu using key combination:
+
+    Ctrl-a followed by 'x'
+
+#### OHOS Zephyr flavour
+
+OHOS Zephyr flavour is based on _zephyr_ distribution and supports following images / machines:
+
+Supported images:
+- zephyr-philosophers
+
+Supported machines:
+- qemu-cortex-m3
+- qemu-x86 (default)
+
+Example:
+
+    $ TEMPLATECONF=../sources/meta-ohos/flavours/zephyr . ./sources/poky/oe-init-build-env build-ohos-zephyr-qemu-x86
+    $ bitbake zephyr-philosophers
+
+You can test the image built for the qemu-x86 target by issuing:
+
+    $ DEPLOY_DIR_IMAGE=tmp-newlib/deploy/images/qemu-x86 runqemu qemu-x86
+
+After successful bootup, you should see following:
+
     Booting from ROM..*** Booting Zephyr OS build zephyr-v2.4.0  ***
     Philosopher 0 [P: 3]  THINKING [  300 ms ]
     Philosopher 1 [P: 2]   EATING  [  575 ms ]
@@ -77,13 +122,31 @@ After successful bootup, you should see following:
     Philosopher 3 [P: 0]   EATING  [  525 ms ]
     Philosopher 4 [C: -1]  THINKING [  475 ms ]
 
-    # For poky
-    qemux86 login:
-    # Default login is _root_ without a password.
-    # After login you should see prompt:
-    root@qemux86:~#
+To exit qemu, use key combination:
 
-    # For FreeRTOS
+    Ctrl-a followed by 'x'
+
+#### OHOS FreeRTOS flavour
+
+OHOS FreeRTOS flavour is based on _freertos_ distribution and supports following images / machines:
+
+Supported images:
+- freertos-demo
+
+Supported machines:
+- qemuarmv5
+
+Example:
+
+    $ TEMPLATECONF=../sources/meta-ohos/flavours/freertos . ./sources/poky/oe-init-build-env build-ohos-freertos-qemuarmv5
+    $ bitbake freertos-demo
+
+You can test the image built for the qemuarmv5 target by issuing:
+
+    $ runqemu qemuarmv5
+
+After successful bootup, you should see following:
+
     ###### - FreeRTOS sample application - ######
     
     A text may be entered using a keyboard.
@@ -98,14 +161,9 @@ After successful bootup, you should see following:
     Notification Received
     Waiting For Notification - Blocked...
 
-To exit qemu, you can either shut down the system:
-
-    root@qemux86:~# poweroff -f
-
-or close qemu using key combination:
+To exit qemu, use key combination:
 
     Ctrl-a followed by 'x'
-
 
 # meta-ohos architecture
 
