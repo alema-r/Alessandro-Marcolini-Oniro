@@ -12,4 +12,9 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-ohos/meta-ohos-foundation \
   ##OEROOT##/../meta-intel \
   ##OEROOT##/../meta-seco-intel \
+  ##OEROOT##/../meta-openembedded/meta-oe \
+  ##OEROOT##/../meta-openembedded/meta-python \
+  ##OEROOT##/../meta-st-stm32mp \
+  ##OEROOT##/../meta-st-stm32mp-addons \
+  ##OEROOT##/../meta-av96 \
   "

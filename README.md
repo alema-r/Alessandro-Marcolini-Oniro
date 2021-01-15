@@ -65,6 +65,7 @@ Supported machines:
 - qemuarm
 - qemuarm64
 - seco-intel-b68 (SECO intel B68)
+- stm32mp1-av96 (96Boards Avenger96)
 
 Example:
 

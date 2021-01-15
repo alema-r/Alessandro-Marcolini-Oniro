@@ -6,12 +6,14 @@ You can now run 'bitbake <target>'
 Supported targets:
 - core-image-minimal
 - core-image-full-cmdline
+- core-image-base
 
 Supported machines:
 - qemux86-64 (default)
 - qemux86
 - qemuarm
 - qemuarm64
+- stm32mp1-av96 (96Boards Avenger96)
 
 MACHINE variable can be set up in conf/local.conf file under build directory
 or via command line, e.g.:
