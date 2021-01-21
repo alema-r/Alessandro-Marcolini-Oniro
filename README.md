@@ -64,6 +64,7 @@ Supported machines:
 - qemux86
 - qemuarm
 - qemuarm64
+- seco-intel-b68 (SECO intel B68)
 
 Example:
 
