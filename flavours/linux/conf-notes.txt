@@ -4,8 +4,6 @@
 You can now run 'bitbake <target>'
 
 Supported targets:
-- core-image-minimal
-- core-image-full-cmdline
 - core-image-base
 
 Supported machines:
