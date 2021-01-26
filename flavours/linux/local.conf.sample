@@ -258,6 +258,5 @@ PACKAGECONFIG_append_pn-qemu-system-native = " sdl"
 # this doesn't mean anything to you.
 CONF_VERSION = "1"
 
-IMAGE_INSTALL_appned = "dhcp-client dropbear packagegroup-base-wifi iw bluez5 obexftp"
-IMAGE_INSTALL_append_stm32mp1-av96 += "av96-root-files"
-
+IMAGE_INSTALL_append = " dhcp-client dropbear packagegroup-base-wifi iw bluez5 obexftp"
+IMAGE_INSTALL_append_stm32mp1-av96 = " av96-root-files"
