@@ -21,10 +21,12 @@ To start working with **meta-ohos** first install git repo:
 Once git repo has been installed we can use it to clone the necessary repositories:
 
     $ mkdir ohos; cd ohos
-    $ repo init -u https://git.ostc-eu.org/OSTC/OHOS/manifest.git
+    $ repo init -u https://git.ostc-eu.org/OSTC/OHOS/manifest.git -b stable
     $ repo sync
 
-Above commands should result in the following directory structure:
+You can checkout latest development source code by using `develop` branch instead of `stable` with the above `repo init` command.
+
+`repo sync` command should result in the following directory structure:
 
     ./ohos/
     └── sources
