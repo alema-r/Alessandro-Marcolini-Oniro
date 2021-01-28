@@ -1,0 +1,32 @@
+From 592605f1f1d3b8bf1cbe9371b1e80b7521794dc1 Mon Sep 17 00:00:00 2001
+From: Stefan Schmidt <stefan.schmidt@huawei.com>
+Date: Sat, 6 Feb 2021 12:37:57 +0100
+Subject: [PATCH] build: drop -Werror to avoid compilation breaks.
+
+We had a warning turning into an error and breaking the compilation:
+ error: #warning _FORTIFY_SOURCE requires compiling with optimization (-O) [-Werror=cpp]
+ 397 | #  warning _FORTIFY_SOURCE requires compiling with optimization (-O)
+
+This patch works around this for now. A better way to avoid the warning
+in the first place is needed.
+
+Upstream-Status: Inappropriate [other]
+
+Signed-off-by: Stefan Schmidt <stefan.schmidt@huawei.com>
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 8bbde8c0..2fe251ce 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -59,7 +59,7 @@ if (OTBR_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+     target_link_libraries(otbr-config INTERFACE --coverage)
+ endif()
+ 
+-add_compile_options(-Wall -Wextra -Werror -Wfatal-errors -Wno-missing-braces)
++add_compile_options(-Wall -Wextra -Wfatal-errors -Wno-missing-braces)
+ 
+ 
+ execute_process(

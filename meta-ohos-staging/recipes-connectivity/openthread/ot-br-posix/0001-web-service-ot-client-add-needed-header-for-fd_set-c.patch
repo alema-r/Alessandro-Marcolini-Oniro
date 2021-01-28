@@ -1,0 +1,27 @@
+From 596eb2b582609794d87f2dbefa4b2e839faf52c8 Mon Sep 17 00:00:00 2001
+From: Stefan Schmidt <stefan.schmidt@huawei.com>
+Date: Fri, 28 May 2021 14:19:53 +0200
+Subject: [PATCH] web-service/ot-client: add needed header for fd_set() call
+
+The select.h header file is needed for fd_set(). Depending on the
+compiler and settings this will result in an error when not included.
+
+Upstream-Status: Pending
+
+Signed-off-by: Stefan Schmidt <stefan.schmidt@huawei.com>
+---
+ src/web/web-service/ot_client.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/web/web-service/ot_client.cpp b/src/web/web-service/ot_client.cpp
+index f151a0126..173cc48e1 100644
+--- a/src/web/web-service/ot_client.cpp
++++ b/src/web/web-service/ot_client.cpp
+@@ -39,6 +39,7 @@
+ #include <string.h>
+ #include <sys/socket.h>
+ #include <sys/un.h>
++#include <sys/select.h>
+ #include <unistd.h>
+ 
+ #include "common/code_utils.hpp"
