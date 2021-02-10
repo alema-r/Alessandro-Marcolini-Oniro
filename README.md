@@ -101,11 +101,14 @@ or close qemu using key combination:
 OHOS Zephyr flavour is based on _zephyr_ distribution and supports following images / machines:
 
 Supported images:
-- zephyr-philosophers
+- Zephyr comes with multiple sample applications. Take a look into `sources/meta-zephyr/recipes-kernel/zephyr-kernel/` to see available recipes.
+Nothing prevents you to add your own recipes to [use sample applications provided with Zephyr](https://github.com/zephyrproject-rtos/zephyr/tree/master/samples) or to add your own applications.
 
 Supported machines:
-- qemu-cortex-m3
 - qemu-x86 (default)
+- qemu-cortex-m3
+- 96b-nitrogen (96Boards Nitrogen)
+- 96b-avenger96 (96Boards Avenger96)
 
 Example:
 
