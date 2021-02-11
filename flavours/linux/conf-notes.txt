@@ -4,7 +4,8 @@
 You can now run 'bitbake <target>'
 
 Supported targets:
-- core-image-base
+- openharmony-image-base
+- openharmony-image-extra
 
 Supported machines:
 - qemux86-64 (default)

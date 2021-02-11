@@ -58,7 +58,8 @@ or via command line, e.g.:
 OHOS Linux flavour is based on _poky_ distribution.
 
 Supported images:
-- core-image-base
+- openharmony-image-base
+- openharmony-image-extra
 
 Supported machines:
 - qemux86-64 (default)
@@ -71,7 +72,7 @@ Supported machines:
 Example:
 
     $ TEMPLATECONF=../sources/meta-ohos/flavours/linux . ./sources/poky/oe-init-build-env build-ohos-linux-qemux86-64
-    $ bitbake core-image-base
+    $ bitbake openharmony-image-base
 
 You can test the image built for the qemux86-64 target by issuing:
 
