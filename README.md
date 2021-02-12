@@ -80,8 +80,6 @@ You can test the image built for the qemux86-64 target by issuing:
 
 After successful bootup, you should see following:
 
-    Poky (Yocto Project Reference Distro) 3.1.4 qemux86-64 /dev/ttyS0
-
     qemux86-64 login:
     
 Default login is _root_ without a password.
