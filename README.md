@@ -61,8 +61,8 @@ Supported images:
 - openharmony-image-base
 - openharmony-image-extra
 
-Supported machines:
-- qemux86-64 (default)
+Supported machines (default in **bold**):
+- **qemux86-64**
 - qemux86
 - qemuarm
 - qemuarm64
@@ -103,8 +103,8 @@ Supported images:
 - Zephyr comes with multiple sample applications. Take a look into `sources/meta-zephyr/recipes-kernel/zephyr-kernel/` to see available recipes.
 Nothing prevents you to add your own recipes to [use sample applications provided with Zephyr](https://github.com/zephyrproject-rtos/zephyr/tree/master/samples) or to add your own applications.
 
-Supported machines:
-- qemu-x86 (default)
+Supported machines (default in **bold**):
+- **qemu-x86**
 - qemu-cortex-m3
 - 96b-nitrogen (96Boards Nitrogen)
 - 96b-avenger96 (96Boards Avenger96)
@@ -138,8 +138,8 @@ OHOS FreeRTOS flavour is based on _freertos_ distribution and supports following
 Supported images:
 - freertos-demo
 
-Supported machines:
-- qemuarmv5
+Supported machines (default in **bold**):
+- **qemuarmv5**
 
 Example:
 

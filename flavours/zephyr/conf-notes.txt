@@ -3,8 +3,8 @@
 
 You can now run 'bitbake zephyr-philosophers'
 
-Supported machines:
-- qemu-x86 (default)
+Supported machines (first is the default):
+- qemu-x86
 - qemu-cortex-m3
 - 96b-nitrogen (96Boards Nitrogen)
 - 96b-avenger96 (96Boards Avenger96)

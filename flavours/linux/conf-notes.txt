@@ -7,8 +7,8 @@ Supported targets:
 - openharmony-image-base
 - openharmony-image-extra
 
-Supported machines:
-- qemux86-64 (default)
+Supported machines (first is the default):
+- qemux86-64
 - qemux86
 - qemuarm
 - qemuarm64
