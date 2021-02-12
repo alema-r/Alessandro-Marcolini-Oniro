@@ -4,8 +4,10 @@
 You can now run 'bitbake zephyr-philosophers'
 
 Supported machines:
-- qemu-cortex-m3
 - qemu-x86 (default)
+- qemu-cortex-m3
+- 96b-nitrogen (96Boards Nitrogen)
+- 96b-avenger96 (96Boards Avenger96)
 
 MACHINE variable can be set up in conf/local.conf file under build directory
 or via command line, e.g.:
@@ -14,5 +16,5 @@ or via command line, e.g.:
 
 You can also run generated qemu images with a command:
 
-    $ runqemu qemux86
+    $ runqemu qemu-x86
 
