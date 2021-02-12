@@ -14,5 +14,5 @@ or via command line, e.g.:
 
 You can also run generated qemu images with a command:
 
-    $ DEPLOY_DIR_IMAGE=tmp-newlib/deploy/images/qemu-x86 runqemu qemux86
+    $ runqemu qemux86
 

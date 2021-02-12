@@ -118,7 +118,7 @@ Example:
 
 You can test the image built for the qemu-x86 target by issuing:
 
-    $ DEPLOY_DIR_IMAGE=tmp-newlib/deploy/images/qemu-x86 runqemu qemu-x86
+    $ runqemu qemu-x86
 
 After successful bootup, you should see following:
 
