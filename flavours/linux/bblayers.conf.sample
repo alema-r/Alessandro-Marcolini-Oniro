@@ -10,7 +10,7 @@ BBLAYERS ?= " \
   ##OEROOT##/meta-poky \
   ##OEROOT##/meta-yocto-bsp \
   ##OEROOT##/../meta-ohos/meta-ohos-core \
-  ##OEROOT##/../meta-ohos/meta-ohos-foundation \
+  ##OEROOT##/../meta-ohos/meta-ohos-acts \
   ##OEROOT##/../meta-intel \
   ##OEROOT##/../meta-seco-intel \
   ##OEROOT##/../meta-openembedded/meta-oe \
