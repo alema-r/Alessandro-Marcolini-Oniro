@@ -10,5 +10,6 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-openembedded/meta-oe \
   ##OEROOT##/../meta-openembedded/meta-python \
   ##OEROOT##/../meta-zephyr \
+  ##OEROOT##/../meta-ohos/meta-ohos-core \
   ##OEROOT##/../meta-ohos/meta-ohos-foundation \
   "
