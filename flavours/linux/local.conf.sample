@@ -72,17 +72,7 @@ MACHINE ??= "qemux86-64"
 #
 # Default policy config
 #
-# The distribution setting controls which policy settings are used as defaults.
-# The default value is fine for general Yocto project use, at least initially.
-# Ultimately when creating custom policy, people will likely end up subclassing 
-# these defaults.
-#
-DISTRO ?= "poky"
-# As an example of a subclass there is a "bleeding" edge policy configuration
-# where many versions are set to the absolute latest code from the upstream 
-# source control systems. This is just mentioned here as an example, its not
-# useful to most new users.
-# DISTRO ?= "poky-bleeding"
+DISTRO = "openharmony-linux"
 
 #
 # Package Management configuration
