@@ -22,7 +22,7 @@ Table of Contents
 I. Adding the meta-ohos-acts layer to your build
 =================================================
 
-Run 'bitbake-layers add-layer meta-ohos-acts'
+Run 'bitbake-layers add-layer <path to meta-ohos>/meta-ohos-acts'
 
 II. Misc
 ========
