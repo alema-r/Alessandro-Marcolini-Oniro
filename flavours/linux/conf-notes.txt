@@ -5,7 +5,9 @@ You can now run 'bitbake <target>'
 
 Supported targets:
 - openharmony-image-base
+- openharmony-image-base-tests
 - openharmony-image-extra
+- openharmony-image-extra-tests
 
 Supported machines (first is the default):
 - qemux86-64

@@ -55,11 +55,13 @@ or via command line, e.g.:
 
 #### OHOS Linux flavour
 
-OHOS Linux flavour is based on _poky_ distribution.
+OHOS Linux flavour is based on _openharmony-linux_ distribution.
 
 Supported images:
 - openharmony-image-base
+- openharmony-image-base-tests
 - openharmony-image-extra
+- openharmony-image-extra-tests
 
 Supported machines (default in **bold**):
 - **qemux86-64**
