@@ -13,6 +13,8 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-ohos/meta-ohos-acts \
   ##OEROOT##/../meta-intel \
   ##OEROOT##/../meta-seco-intel \
+  ##OEROOT##/../meta-freescale \
+  ##OEROOT##/../meta-seco-imx \
   ##OEROOT##/../meta-openembedded/meta-oe \
   ##OEROOT##/../meta-openembedded/meta-python \
   ##OEROOT##/../meta-st-stm32mp \

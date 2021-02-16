@@ -68,8 +68,9 @@ Supported machines (default in **bold**):
 - qemux86
 - qemuarm
 - qemuarm64
-- seco-intel-b68 (SECO intel B68)
+- seco-intel-b68 (SECO SBC-B68)
 - stm32mp1-av96 (96Boards Avenger96)
+- seco-imx8mm-c61 (SECO SBC-C61)
 
 Example:
 
