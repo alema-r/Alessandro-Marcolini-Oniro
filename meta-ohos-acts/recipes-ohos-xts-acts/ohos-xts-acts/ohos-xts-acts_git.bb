@@ -1,10 +1,8 @@
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=98c2e72b17fae6c40fb14fd5e43b29ec"
 
-SRC_URI = "git://git.ostc-eu.org/OSTC/OHOS/components/staging/xts_acts.git;protocol=https \
-           file://0001-Add-makefile-based-on-zmk.patch \
-           "
-SRCREV = "2a3e429e72f8612e74a7d1e32567be11ef1541c4"
+SRC_URI = "git://git.ostc-eu.org/OSTC/OHOS/components/staging/xts_acts.git;protocol=https;branch=ostc"
+SRCREV = "8a797c4ee9bf451e030430bbd73293ee8e0fe54d"
 S = "${WORKDIR}/git"
 PV = "0.0+git${SRCPV}"
 
