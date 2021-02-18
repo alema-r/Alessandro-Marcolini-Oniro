@@ -4,10 +4,8 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=cbbd27594afd089daa160d3a16dd515a \
                     file://googlemock/scripts/generator/LICENSE;md5=2c0b90db7465231447cf2dd2e8163333 \
                     file://googletest/LICENSE;md5=cbbd27594afd089daa160d3a16dd515a"
 
-SRC_URI = "git://git.ostc-eu.org/OSTC/OHOS/components/staging/third_party_googletest.git;protocol=https \
-           file://0001-Add-makefile-based-on-zmk.patch \
-           "
-SRCREV = "f99de7cafdc7cd5374c1c7ef5252252a57aff04d"
+SRC_URI = "git://git.ostc-eu.org/OSTC/OHOS/components/staging/third_party_googletest.git;protocol=https;branch=ostc"
+SRCREV = "4aac960639cd965749f56028f0d12e90d58ebe01"
 S = "${WORKDIR}/git"
 PV = "0.0+git${SRCPV}"
 
