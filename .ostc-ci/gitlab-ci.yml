@@ -1,0 +1,222 @@
+# SPDX-License-Identifier: Apache-2.0
+#
+# Copyright 2020-2021 Huawei Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Abuse stages as a visual construct to make the pipeline more comprehensive.
+stages:
+ - Linux
+ - Zephyr
+ - FreeRTOS
+
+# This is a pipeline job that is used via the "extends" mechanism below.
+# For reference see https://docs.gitlab.com/ee/ci/yaml/README.html
+.workspace:
+  # This pipeline relies on a container with additional pre-installed software:
+  # - git and git-repo program to process the manifest
+  # - all of the dependencies of bitbake (basic toolchain, python, many tools)
+  # Precise, machine readable description of this container can be found
+  # in https://git.ostc-eu.org/OSTC/containers/-/blob/master/ostc-builder/Dockerfile
+  image:
+    name: registry.ostc-eu.org/ostc/containers/ostc-builder:latest
+  # The pipeline relies on being scheduled to a GitLab worker with the
+  # following properties:
+  # - sufficient amount of disk space (~ 100GB will do).
+  # - non-ephemeral disk mounted at /var/shared with even more space (~500GB)
+  #   that is shared between runs of this pipeline. This is where the bitbake
+  #   download directory and sstate-cache are configured below.
+  # - additional CPU cores as the build process is very long.
+  tags: [large-disk]
+  # Conservative timeout in case the build machine is busy and the cache is cold.
+  timeout: 3 hours
+  variables:
+    # The location of the manifest repository.
+    OSTC_MANIFEST_URL: https://git.ostc-eu.org/OSTC/manifest
+    # The develop manifest follows corresponding HEAD branches of all the
+    # repositories managed in OSTC, making it more practical for
+    # component-level CI.
+    OSTC_MANIFEST: develop.xml
+    # This variable needs to be defined by the job.
+    OHOS_BUILD_FLAVOUR: ""
+  before_script: &workspace-before
+    # Bitbake requires a non-root user to operate.
+    # The container should have a non-root user by default.
+    - test "$(id -u)" -ne 0 || ( echo "precondition failed - this job cannot run as root" && exit 1 )
+
+    # Check if the job is configured properly.
+    - test -n "$OHOS_BUILD_FLAVOUR" || ( echo "precondition failed - set OHOS_BUILD_FLAVOUR to \"flavour\" of the build to use (e.g. linux)" && exit 1 )
+
+    # Bitbake is configured to use /var/shared/bitbake directory
+    # for both the download directory and the sstate-cache.
+    - test -w /var/shared/bitbake || ( echo "precondition failed - expected /var/shared/bitbake to be writable" && exit 1 )
+
+    # Log available disk space on the persistent shared disk.
+    - df -h /var/shared/bitbake
+
+    # Create scratch space, being careful not to pollute the working directory.
+    - SCRATCH_DIR="$(mktemp -d)"
+    - echo "$SCRATCH_DIR" > "$CI_PROJECT_DIR"/.scratch-dir-name
+
+    # Create a git-repo workspace with all the files checked out.
+    #
+    # The checkout uses a mirror that is maintained in a separate pipeline
+    # https://git.ostc-eu.org/OSTC/infrastructure/ostc-manifest-mirror
+    # Even if the mirror is out-of-date, the sync command succeeds and
+    # downloads any delta required. This lowers the load on community servers
+    # and our traffic bill.
+    - mkdir "$SCRATCH_DIR"/workspace
+    - ( cd "$SCRATCH_DIR"/workspace && repo init --reference /var/shared/git-repo-mirrors/ostc-develop --manifest-url "$OSTC_MANIFEST_URL" --manifest-name "$OSTC_MANIFEST" )
+    - ( cd "$SCRATCH_DIR"/workspace && time repo sync --no-clone-bundle )
+    - du -sh "$SCRATCH_DIR"/workspace
+
+    # We subsequently rely on the sources/ directory that must be described by
+    # the manifest file.
+    - test -d "$SCRATCH_DIR"/workspace/sources || ( echo "assumption violated - expected the workspace to contain the sources directory" && ls "$SCRATCH_DIR"/workspace && exit 1 )
+
+    # Initialize bitbake build environment by sourcing the oe-init-build-env
+    # into the running bash process. This has the side-effect of changing the
+    # current working directory and populating the $SCRATCH_DIR/workspace/build
+    # sub-directory with default configuration.
+    - ( cd "$SCRATCH_DIR"/workspace && TEMPLATECONF=../sources/meta-ohos/flavours/"$OHOS_BUILD_FLAVOUR" . ./sources/poky/oe-init-build-env build )
+
+    # Point to https://example.net instead of the default https://example.com.
+    # The OSTC cloud provider has misconfigured DNS which resolves the latter incorrectly.
+    - echo 'CONNECTIVITY_CHECK_URIS = "https://example.net/"' >> "$SCRATCH_DIR"/workspace/build/conf/local.conf
+
+    # Re-configure the created build directory to use our shared download cache
+    # and sstate-cache. Those are shared among all CI jobs running on our build
+    # cluster. This is what enables efficient builds and avoids (some) network
+    # problems that may be encountered when downloading third party source
+    # archives.
+    - echo 'DL_DIR = "/var/shared/bitbake/downloads"' >> "$SCRATCH_DIR"/workspace/build/conf/local.conf
+    - echo 'SSTATE_DIR = "/var/shared/bitbake/sstate-cache"' >> "$SCRATCH_DIR"/workspace/build/conf/local.conf
+
+    # Collect stats just before the build.
+    - du -sh "$SCRATCH_DIR"/workspace/build/*
+
+  script: &workspace-do
+    # Reload the value of SCRATCH_DIR set in the before_script phase. Those run
+    # in separate shell processes and do not share environment variables.
+    - SCRATCH_DIR="$(cat "$CI_PROJECT_DIR"/.scratch-dir-name)"
+    - cd "$SCRATCH_DIR"/workspace && . ./sources/poky/oe-init-build-env build
+    # xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    # NOTE: From now on, we are running inside "$SCRATCH_DIR"/workspace/build
+    # with bash modified by oe-init-build-env. We now have access to bitbake,
+    # devtool and other related tools.
+    # xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+  after_script:
+    # If the primary script failed early enough, the scratch dir may not have
+    # been created yet. Check for that to avoid confusing errors.
+    - test -f "$CI_PROJECT_DIR"/.scratch-dir-name || exit 0
+    # Reload the value of SCRATCH_DIR set in the before_script phase.
+    - SCRATCH_DIR="$(cat "$CI_PROJECT_DIR"/.scratch-dir-name)"
+
+    # Collect stats after the build.
+    - du -sh "$SCRATCH_DIR"/workspace/build/* || true
+
+    # Clean up after ourselves.
+    - rm -f "$CI_PROJECT_DIR"/.scratch-dir-name
+    - rm -rf "$SCRATCH_DIR"
+
+# This is a pipeline job that is used via the "extends" mechanism below.
+# For reference see https://docs.gitlab.com/ee/ci/yaml/README.html
+.build:
+  extends: .workspace
+  # Conservative timeout in case the build machine is busy and the cache is cold.
+  timeout: 3 hours
+  # Set needs to an empty list to de-couple this job from anything preceding
+  # it in the set of stages. This is an optimization which removes the
+  # artificially created dependency between elements in different stages.
+  needs: []
+  variables:
+    # Variables that are required by this job.
+    OHOS_RECIPE_NAME: ""
+    OHOS_GIT_REPO_PATH: ""
+  before_script:
+    # Check if the job is configured properly.
+    - test -n "$OHOS_RECIPE_NAME" || ( echo "precondition failed - set OHOS_RECIPE_NAME to the name of the recipe to build" && exit 1 )
+    - test -n "$OHOS_GIT_REPO_PATH" || ( echo "precondition failed - set OHOS_GIT_REPO_PATH to the path of the git repository as described by the manifest" && exit 1 )
+    - *workspace-before
+    # Switch the git repository which is being tested to the revision described
+    # by the CI environment variables. This effectively performs the update
+    # corresponding to the layer landing in either stable manifest or the
+    # development manifest.
+    - ( cd "$SCRATCH_DIR"/workspace/sources/"$OHOS_GIT_REPO_PATH" && git checkout "$CI_COMMIT_REF_NAME" )
+  script:
+    - *workspace-do
+    # Build the desired recipe.
+    - time bitbake "$OHOS_RECIPE_NAME"
+
+.build-linux:
+  extends: .build
+  # Abuse the stage concept to put all Linux builds in one visual column.
+  stage: Linux
+  variables:
+    OHOS_BUILD_FLAVOUR: "linux"
+    OHOS_RECIPE_NAME: "openharmony-image-base"
+    OHOS_GIT_REPO_PATH: "meta-ohos"
+
+"Qemu x86-64 (Linux)":
+  extends: .build-linux
+  variables:
+    MACHINE: "qemux86-64"
+
+"Seco Intel B68 (Linux)":
+  extends: .build-linux
+  variables:
+    MACHINE: seco-intel-b68
+
+"96Boards Avenger96 (Linux)":
+  extends: .build-linux
+  variables:
+    MACHINE: stm32mp1-av96
+
+.build-zephyr:
+  extends: .build
+  # Abuse the stage concept to put all Zephyr builds in one visual column.
+  stage: Zephyr
+  variables:
+    OHOS_BUILD_FLAVOUR: "zephyr"
+    OHOS_RECIPE_NAME: "zephyr-philosophers"
+    OHOS_GIT_REPO_PATH: "meta-ohos"
+
+"Qemu x86 (Zephyr)":
+  extends: .build-zephyr
+  variables:
+    MACHINE: "qemu-x86"
+
+"96Boards Nitrogen (Zephyr)":
+  extends: .build-zephyr
+  variables:
+    MACHINE: "96b-nitrogen"
+
+"96Boards Avenger96 (Zephyr)":
+  extends: .build-zephyr
+  variables:
+    MACHINE: "96b-avenger96"
+
+.build-freertos:
+  extends: .build
+  # Abuse the stage concept to put all FreeRTOS builds in one visual column.
+  stage: FreeRTOS
+  variables:
+    OHOS_BUILD_FLAVOUR: "freertos"
+    OHOS_RECIPE_NAME: "freertos-demo"
+    OHOS_GIT_REPO_PATH: "meta-ohos"
+
+"ARMv5 (FreeRTOS)":
+  extends: .build-freertos
+  variables:
+    MACHINE: "qemuarmv5"
