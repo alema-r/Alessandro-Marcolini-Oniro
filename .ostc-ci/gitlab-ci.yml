@@ -165,7 +165,7 @@ stages:
   stage: Linux
   variables:
     OHOS_BUILD_FLAVOUR: "linux"
-    OHOS_RECIPE_NAME: "openharmony-image-base"
+    OHOS_RECIPE_NAME: "openharmony-image-base-tests"
     OHOS_GIT_REPO_PATH: "meta-ohos"
 
 "Qemu x86-64 (Linux)":
