@@ -84,6 +84,11 @@ stages:
     # the manifest file.
     - test -d "$SCRATCH_DIR"/workspace/sources || ( echo "assumption violated - expected the workspace to contain the sources directory" && ls "$SCRATCH_DIR"/workspace && exit 1 )
 
+  script: &workspace-do
+    # Reload the value of SCRATCH_DIR set in the before_script phase. Those run
+    # in separate shell processes and do not share environment variables.
+    - SCRATCH_DIR="$(cat "$CI_PROJECT_DIR"/.scratch-dir-name)"
+
     # Initialize bitbake build environment by sourcing the oe-init-build-env
     # into the running bash process. This has the side-effect of changing the
     # current working directory and populating the $SCRATCH_DIR/workspace/build
@@ -105,10 +110,6 @@ stages:
     # Collect stats just before the build.
     - du -sh "$SCRATCH_DIR"/workspace/build/*
 
-  script: &workspace-do
-    # Reload the value of SCRATCH_DIR set in the before_script phase. Those run
-    # in separate shell processes and do not share environment variables.
-    - SCRATCH_DIR="$(cat "$CI_PROJECT_DIR"/.scratch-dir-name)"
     - cd "$SCRATCH_DIR"/workspace && . ./sources/poky/oe-init-build-env build
     # xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     # NOTE: From now on, we are running inside "$SCRATCH_DIR"/workspace/build
