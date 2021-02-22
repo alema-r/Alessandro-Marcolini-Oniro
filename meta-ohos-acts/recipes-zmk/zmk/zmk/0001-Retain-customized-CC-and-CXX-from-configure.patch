@@ -1,0 +1,50 @@
+From b058b32e8a8b007e01110b4363ff3bdcdefb3e50 Mon Sep 17 00:00:00 2001
+From: Zygmunt Krynicki <me@zygoon.pl>
+Date: Mon, 22 Feb 2021 07:33:31 +0000
+Subject: [PATCH] Retain customized CC and CXX from configure
+
+When the configure script is invoked with different --build and --host
+and cross compiling mode is enabled, do not clobber CC and CXX that is
+provided by the configure environment.
+
+This effectively only sets the cross-compiling names of CC and CXX if
+they are not already defined.
+
+This matters because poky passes extensive set of flags via CC and CXX,
+so forgetting those can cause compile failures. For example for the
+Avenger 96 development board, poky uses a soft-float compiler but
+switches to hard-float with an argument embedded in CXX:
+
+    CXX=arm-poky-linux-gnueabi-g++  -mthumb -mfpu=neon-vfpv4 -mfloat-abi=hard
+
+Signed-off-by: Zygmunt Krynicki <me@zygoon.pl>
+---
+ zmk/toolchain.GCC.mk | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/zmk/toolchain.GCC.mk b/zmk/toolchain.GCC.mk
+index b39e486..e0e5993 100644
+--- a/zmk/toolchain.GCC.mk
++++ b/zmk/toolchain.GCC.mk
+@@ -11,8 +11,10 @@ ifneq (,$(Toolchain.CC.IsGcc))
+ # autoconf/automake compatibility.
+ ifneq (,$(and $(Configure.Configured),$(Configure.HostArchTriplet),$(Configure.BuildArchTriplet)))
+ ifneq ($(Configure.BuildArchTriplet),$(Configure.HostArchTriplet))
++ifeq ($(origin CC),default)
+ CC = $(Configure.HostArchTriplet)-gcc
+ $(if $(Toolchain.debug),$(info DEBUG: gcc cross-compiler selected CC=$(CC)))
++endif # !default CC
+ endif # !cross-compiling
+ endif # !configured
+ 
+@@ -49,8 +51,10 @@ ifneq (,$(Toolchain.CXX.IsGcc))
+ # autoconf/automake compatibility.
+ ifneq (,$(and $(Configure.Configured),$(Configure.HostArchTriplet),$(Configure.BuildArchTriplet)))
+ ifneq ($(Configure.BuildArchTriplet),$(Configure.HostArchTriplet))
++ifeq ($(origin CXX),default)
+ CXX = $(Configure.HostArchTriplet)-g++
+ $(if $(Toolchain.debug),$(info DEBUG: g++ cross-compiler selected CXX=$(CXX)))
++endif # !default CXX
+ endif # !cross-compiling
+ endif # !configured
+ 
