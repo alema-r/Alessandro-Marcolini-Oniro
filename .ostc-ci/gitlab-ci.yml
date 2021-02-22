@@ -117,6 +117,10 @@ stages:
     # devtool and other related tools.
     # xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
+    # Accept NXP license only for building targets that require proprietary
+    # resources to boot.
+    - test "$ACCEPT_FSL_EULA" -eq 1 && echo 'ACCEPT_FSL_EULA = "1"' >> conf/local.conf 
+
   after_script:
     # If the primary script failed early enough, the scratch dir may not have
     # been created yet. Check for that to avoid confusing errors.
@@ -168,6 +172,7 @@ stages:
     OHOS_BUILD_FLAVOUR: "linux"
     OHOS_RECIPE_NAME: "openharmony-image-base-tests"
     OHOS_GIT_REPO_PATH: "meta-ohos"
+    ACCEPT_FSL_EULA: 0
 
 "Qemu x86-64 (Linux)":
   extends: .build-linux
@@ -183,6 +188,7 @@ stages:
   extends: .build-linux
   variables:
     MACHINE: seco-imx8mm-c61
+    ACCEPT_FSL_EULA: 1
 
 "96Boards Avenger96 (Linux)":
   extends: .build-linux
