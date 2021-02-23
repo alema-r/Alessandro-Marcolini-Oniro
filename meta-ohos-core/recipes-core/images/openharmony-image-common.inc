@@ -5,3 +5,7 @@ IMAGE_INSTALL_append = "\
 			packagegroup-net-tools \
 			packagegroup-ble-essentials \
 			"
+
+# This is a workaround in case the build runs on ZFS with compression on.
+# It also gives us extra runtime space.
+IMAGE_OVERHEAD_FACTOR = "2"
