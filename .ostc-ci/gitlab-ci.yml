@@ -16,9 +16,19 @@
 
 # Abuse stages as a visual construct to make the pipeline more comprehensive.
 stages:
+ - compliance
  - Linux
  - Zephyr
  - FreeRTOS
+
+include:
+ - project: 'OSTC/infrastructure/pipelines'
+   file: 'reuse.yaml'
+
+reuse:
+  extends: .reuse
+  # FIXME: https://git.ostc-eu.org/OSTC/OHOS/meta-ohos/-/issues/19
+  allow_failure: true
 
 # This is a pipeline job that is used via the "extends" mechanism below.
 # For reference see https://docs.gitlab.com/ee/ci/yaml/README.html
@@ -144,6 +154,8 @@ stages:
   # Set needs to an empty list to de-couple this job from anything preceding
   # it in the set of stages. This is an optimization which removes the
   # artificially created dependency between elements in different stages.
+  #
+  # TODO: depend on "reuse" when the allow_failure attribute is removed.
   needs: []
   variables:
     # Variables that are required by this job.
