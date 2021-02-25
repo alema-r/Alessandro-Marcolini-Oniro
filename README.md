@@ -193,7 +193,7 @@ ranging from RTOSs to Linux.
 !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Context.puml
 
 Person(dev, "Developer", "Anyone willing to build the OHOS based image")
-System(meta_ohos, "meta-ohos", "Open Harmony OS umbrella bitbake meta-layer")
+System(meta_ohos, "meta-ohos", "OpenHarmony OS umbrella bitbake meta-layer")
 Boundary(poky, "poky") {
     System_Ext(bitbake, "bitbake", "build process orchestrator")
     System_Ext(linux_yocto, "linux-yocto", "Yocto Project LTS linux kernel")
