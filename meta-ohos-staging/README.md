@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: Huawei Inc.
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 This README file contains information on the contents of the meta-ohos-staging layer.
 
 Table of Contents
