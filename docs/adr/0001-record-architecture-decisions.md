@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: Huawei Inc.
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # 1. Record architecture decisions
 
 Date: 2020-11-30

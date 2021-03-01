@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: Huawei Inc.
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # 2. Use Yocto / bitbake for building OHOS
 
 Date: 2020-12-01

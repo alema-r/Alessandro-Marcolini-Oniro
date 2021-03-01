@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: Huawei Inc.
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # Architecture Decision Records
 
 * [1. Record architecture decisions](0001-record-architecture-decisions.md)
