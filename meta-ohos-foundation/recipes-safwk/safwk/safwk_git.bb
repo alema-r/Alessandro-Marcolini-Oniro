@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 SUMMARY = "OHOS foundation"
 DESCRIPTION = "OHOS foundation main application"
 LICENSE = "Apache-2.0"
