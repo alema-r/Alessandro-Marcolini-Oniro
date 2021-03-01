@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 SUMMARY = "OHOS Hiviewdfx innerkits"
 DESCRIPTION = "OHOS interface innerkits for Hiviewdfx"
 LICENSE = "Apache-2.0"
