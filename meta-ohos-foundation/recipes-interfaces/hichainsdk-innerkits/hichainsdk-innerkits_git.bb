@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 SUMMARY = "HiChain innerkits"
 DESCRIPTION = "Innerkits for trusted interconnection between devices"
 LICENSE = "Apache-2.0"
