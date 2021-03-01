@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 SUMMARY = "Hiviewdfx Hilog"
 DESCRIPTION = "Hiviewdfx Hilog logging module"
 LICENSE = "Apache-2.0"
