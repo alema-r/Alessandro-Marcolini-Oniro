@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 SUMMARY = "wpantund, Userspace WPAN Network Daemon"
 SECTION = "net"
 LICENSE = "Apache-2.0 & MIT & BSL-1.0 & BSD-3-Clause"
