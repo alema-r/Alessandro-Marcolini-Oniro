@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 LICENSE = "MulanPSL-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=2ba4788337b3607f139c2267ed50d32b"
 
