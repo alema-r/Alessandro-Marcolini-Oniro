@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 SUMMARY = "OHOS third-party libraries"
 LICENSE = "MulanPSL-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=bf1e53b0cdc806a88b7a66486dc5e61f"
