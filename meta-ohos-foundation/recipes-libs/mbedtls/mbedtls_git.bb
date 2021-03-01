@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 SUMMARY = "Mbed TLS"
 DESCRIPTION = "C library for X.509 certificate manipulation and the SSL/TLS and DTLS"
 LICENSE = "Apache-2.0"
