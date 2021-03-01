@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 SUMMARY = "OHOS interface kits for IAM lite"
 DESCRIPTION = "Interface kits for the application permission management"
 LICENSE = "Apache-2.0"
