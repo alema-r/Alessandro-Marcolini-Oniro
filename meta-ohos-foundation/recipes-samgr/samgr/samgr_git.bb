@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 SUMMARY = "OHOS SAMGR"
 DESCRIPTION = "OHOS distributed services manager"
 LICENSE = "Apache-2.0"
