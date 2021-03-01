@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 SUMMARY = "OpenThread Daemon (OT Daemon) is an OpenThread POSIX build mode that runs OpenThread as a service."
 SECTION = "net"
 LICENSE = "BSD-3-Clause & Apache-2.0"
