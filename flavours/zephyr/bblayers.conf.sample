@@ -1,15 +1,1 @@
-# POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bblayers.conf
-# changes incompatibly
-POKY_BBLAYERS_CONF_VERSION = "2"
-
-BBPATH = "${TOPDIR}"
-BBFILES ?= ""
-
-BBLAYERS ?= " \
-  ##OEROOT##/meta \
-  ##OEROOT##/../meta-openembedded/meta-oe \
-  ##OEROOT##/../meta-openembedded/meta-python \
-  ##OEROOT##/../meta-zephyr \
-  ##OEROOT##/../meta-ohos/meta-ohos-core \
-  ##OEROOT##/../meta-ohos/meta-ohos-foundation \
-  "
+../linux/bblayers.conf.sample

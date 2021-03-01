@@ -9,6 +9,8 @@ BBLAYERS ?= " \
   ##OEROOT##/meta \
   ##OEROOT##/meta-poky \
   ##OEROOT##/meta-yocto-bsp \
+  ##OEROOT##/../meta-freertos \
+  ##OEROOT##/../meta-zephyr \
   ##OEROOT##/../meta-ohos/meta-ohos-core \
   ##OEROOT##/../meta-ohos/meta-ohos-acts \
   ##OEROOT##/../meta-intel \
