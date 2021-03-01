@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 SUMMARY = "OHOS Softbus"
 DESCRIPTION = "OHOS communication utility for distributed services"
 LICENSE = "Apache-2.0"
