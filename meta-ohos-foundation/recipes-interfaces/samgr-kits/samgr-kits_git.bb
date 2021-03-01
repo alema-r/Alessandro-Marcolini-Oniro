@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 SUMMARY = "OHOS interface kits for SAMGR"
 DESCRIPTION = "Interface kits for OHOS distributed service manager "
 LICENSE = "Apache-2.0"
