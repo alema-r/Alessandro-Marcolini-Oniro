@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 SUMMARY = "IAM lite"
 DESCRIPTION = "Application permission management"
 LICENSE = "Apache-2.0"
