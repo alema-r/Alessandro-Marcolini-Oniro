@@ -4,9 +4,15 @@ SUMMARY = "Dashboard demo image: gateway"
 DESCRIPTION = "Home Assistant based image targeting a gateway device"
 LICENSE = "Apache-2.0"
 
+BROWSER ?= "epiphany"
+
 IMAGE_INSTALL_append = "\
+	${BROWSER} \
 	python3-appdaemon \
 	python3-homeassistant \
+	weston \
+	weston-examples \
+	weston-init \
 	"
 
 # 100 MiB of additional storage for config and runtime data.
