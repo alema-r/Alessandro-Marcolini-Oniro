@@ -17,6 +17,7 @@
 # Abuse stages as a visual construct to make the pipeline more comprehensive.
 stages:
  - compliance
+ - test
  - Linux
  - Zephyr
  - FreeRTOS
