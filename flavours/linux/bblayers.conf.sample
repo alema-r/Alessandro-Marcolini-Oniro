@@ -19,6 +19,5 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-openembedded/meta-python \
   ##OEROOT##/../meta-st-stm32mp \
   ##OEROOT##/../meta-st-stm32mp-addons \
-  ##OEROOT##/../meta-qt5 \
   ##OEROOT##/../meta-av96/meta-av96-core \
   "
