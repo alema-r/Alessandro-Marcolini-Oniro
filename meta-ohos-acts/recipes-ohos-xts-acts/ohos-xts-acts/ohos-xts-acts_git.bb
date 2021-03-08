@@ -13,4 +13,20 @@ FILES_SOLIBSDEV = ""
 
 inherit zmk
 
-DEPENDS += "ohos-googletest ohos-libsec"
+# jffs2 image size defaults to 1MB
+ACTS_JFFS2_IMG_SIZE ?= "0x100000"
+
+do_install_append() {
+    # Prepare jffs2 image to be mounted on the target
+    # mkfs.jffs2 requires a directory to make an image out of
+    mkdir -p ${B}/.jffs-empty-dir
+    mkfs.jffs2 --root=${B}/.jffs-empty-dir --pad=${ACTS_JFFS2_IMG_SIZE} -o ${B}/jffs2.img
+    rm -rf ${B}/.jffs-empty-dir
+    install -d ${D}${datadir}/acts-data
+    install -m 644 ${B}/jffs2.img ${D}${datadir}/acts-data
+}
+
+FILES_${PN} += "${datadir}/acts-data/*"
+
+DEPENDS += "ohos-googletest ohos-libsec mtd-utils-native"
+RRECOMMENDS_${PN} += "kernel-module-block2mtd"
