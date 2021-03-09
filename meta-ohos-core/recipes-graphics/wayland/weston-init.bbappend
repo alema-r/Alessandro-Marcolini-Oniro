@@ -1,3 +1,5 @@
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+
 WESTON_DYNAMIC_INI ?= "0"
 WESTON_INI_PATH ?= "etc/xdg/weston/weston.ini"
 
