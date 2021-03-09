@@ -1,5 +1,7 @@
 # Common settings for all OpenHarmony images
 
+inherit ohos-image
+
 IMAGE_INSTALL_append = "\
 			packagegroup-net-essentials \
 			packagegroup-net-tools \
