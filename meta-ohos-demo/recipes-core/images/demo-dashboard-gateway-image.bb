@@ -4,10 +4,8 @@ SUMMARY = "Dashboard demo image: gateway"
 DESCRIPTION = "Home Assistant based image targeting a gateway device"
 LICENSE = "Apache-2.0"
 
-BROWSER ?= "epiphany"
-
 IMAGE_INSTALL_append = "\
-	${BROWSER} \
+	epiphany-app \
 	python3-appdaemon \
 	python3-homeassistant \
 	weston \
