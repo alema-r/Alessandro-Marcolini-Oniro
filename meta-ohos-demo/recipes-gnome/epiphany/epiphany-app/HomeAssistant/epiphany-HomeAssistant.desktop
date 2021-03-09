@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=HomeAssistant
+Exec=epiphany --application-mode --profile="/home/root/.local/share/epiphany-HomeAssistant" http://localhost:8123
+StartupNotify=true
+Terminal=false
+Type=Application

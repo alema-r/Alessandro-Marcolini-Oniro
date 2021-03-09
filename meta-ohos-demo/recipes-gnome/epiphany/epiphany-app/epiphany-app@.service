@@ -1,0 +1,12 @@
+[Unit]
+Description=Epiphany browser started for %i application
+Requires=weston@root.service
+After=weston@root.service
+
+[Service]
+Environment="WAYLAND_DISPLAY=wayland-0"
+Environment="XDG_RUNTIME_DIR=/run/user/0"
+ExecStart=/usr/bin/epiphany -a --profile /home/root/.local/share/epiphany-@EPIPHANY_APP@ @EPIPHANY_URL@
+
+[Install]
+WantedBy=multi-user.target
