@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2021 Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 do_install_append() {
 	# Install main.conf file and turn on AutoEnable flag
 	# to bring up BLE controller on boot.
