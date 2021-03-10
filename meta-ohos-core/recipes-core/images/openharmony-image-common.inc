@@ -6,6 +6,7 @@ IMAGE_INSTALL_append = "\
 			packagegroup-net-essentials \
 			packagegroup-net-tools \
 			packagegroup-ble-essentials \
+			gdbserver \
 			"
 
 # This is a workaround in case the build runs on ZFS with compression on.
