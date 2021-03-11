@@ -29,4 +29,7 @@ do_install_append() {
 FILES_${PN} += "${datadir}/acts-data/*"
 
 DEPENDS += "ohos-googletest ohos-libsec mtd-utils-native"
-RRECOMMENDS_${PN} += "kernel-module-block2mtd"
+RRECOMMENDS_${PN} += "\
+    kernel-module-block2mtd \
+    ltp \
+"
