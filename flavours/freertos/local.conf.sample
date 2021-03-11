@@ -20,7 +20,7 @@ MACHINE ??= "qemuarmv5"
 #
 # Default policy config
 #
-DISTRO = "freertos"
+DISTRO ?= "freertos"
 
 #
 # Package Management configuration
