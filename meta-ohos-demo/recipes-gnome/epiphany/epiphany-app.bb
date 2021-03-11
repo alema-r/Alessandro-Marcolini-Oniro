@@ -32,9 +32,9 @@ do_install() {
 
     # The systemd service override is optional and app specific (for example it
     # can add dependencies for a local HTTP service).
-    if [ -f "${WORKDIR}/epiphany-${EPIPHANY_APP}/service-override.conf" ]; then
+    if [ -f "${WORKDIR}/${EPIPHANY_APP}/service-override.conf" ]; then
         mkdir -p "${D}${sysconfdir}/systemd/system/epiphany-app@${EPIPHANY_APP}.service.d"
-        cp "${WORKDIR}/epiphany-${EPIPHANY_APP}/service-override.conf" \
+        cp "${WORKDIR}/${EPIPHANY_APP}/service-override.conf" \
             "${D}${sysconfdir}/systemd/system/epiphany-app@${EPIPHANY_APP}.service.d"
     fi
 
