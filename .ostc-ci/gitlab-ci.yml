@@ -25,6 +25,12 @@ include:
     - 'dco.yaml'
     - 'reuse.yaml'
     - 'workspace.yaml'
+ - project: 'OSTC/OHOS/manifest'
+   file:
+    # Include the set of build flavours.
+    - '.ostc-ci/build-flavours.yaml'
+    # Include the set of templates and jobs that use develop.xml.
+    - '.ostc-ci/develop-targets.yaml'
 
 dco:
   extends: .dco
@@ -89,93 +95,3 @@ reuse:
       - artifacts/
   rules:
     - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH
-
-##
-## Templates build jobs for each OpenHarmony flavor.
-##
-
-.build-linux:
-  extends: .build
-  variables:
-    OHOS_BUILD_FLAVOUR: linux
-    OHOS_RECIPE_NAME: openharmony-image-base-tests
-
-.build-zephyr:
-  extends: .build
-  variables:
-    OHOS_BUILD_FLAVOUR: zephyr
-    OHOS_RECIPE_NAME: zephyr-philosophers
-
-.build-freertos:
-  extends: .build
-  variables:
-    OHOS_BUILD_FLAVOUR: freertos
-    OHOS_RECIPE_NAME: freertos-demo
-
-##
-## Template build jobs for develop.xml
-##
-## This manifest is "floating" and follows default branches of OSTC-specific repositories
-## it includes.
-##
-
-.build-develop-linux:
-  extends: .build-linux
-  variables:
-    OHOS_MANIFEST_NAME: develop.xml
-
-.build-develop-zephyr:
-  extends: .build-zephyr
-  variables:
-    OHOS_MANIFEST_NAME: develop.xml
-
-.build-develop-freertos:
-  extends: .build-freertos
-  variables:
-    OHOS_MANIFEST_NAME: develop.xml
-
-##
-## Build jobs for develop.xml
-##
-
-develop-linux-qemu-x86_64:
-  extends: .build-develop-linux
-  variables:
-    MACHINE: qemux86-64
-
-develop-linux-seco-intel-b68:
-  extends: .build-develop-linux
-  variables:
-    MACHINE: seco-intel-b68
-
-develop-linux-seco-imx8mm-c61:
-  extends: .build-develop-linux
-  variables:
-    MACHINE: seco-imx8mm-c61
-    # This platform requires proprietary resources to boot.
-    OHOS_ACCEPT_FSL_EULA: 1
-
-develop-linux-stm32mp1-av96:
-  extends: .build-develop-linux
-  variables:
-    MACHINE: stm32mp1-av96
-
-develop-zephyr-qemu-x86:
-  extends: .build-develop-zephyr
-  variables:
-    MACHINE: qemu-x86
-
-develop-zephyr-96b-nitrogen:
-  extends: .build-develop-zephyr
-  variables:
-    MACHINE: 96b-nitrogen
-
-develop-zephyr-96b-avenger:
-  extends: .build-develop-zephyr
-  variables:
-    MACHINE: 96b-avenger96
-
-develop-freertos-armv5:
-  extends: .build-develop-freertos
-  variables:
-    MACHINE: qemuarmv5
