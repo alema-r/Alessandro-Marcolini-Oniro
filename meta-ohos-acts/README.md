@@ -1,31 +1,28 @@
+# Introduction
+
 This README file contains information on the contents of the meta-ohos-acts layer.
 
 Please see the corresponding sections below for details.
 
-Dependencies
-============
+# Dependencies
 
 This layer has no dependencies outside of poky.
 
-Patches
-=======
+# Patches
 
 Please submit any patches for meta-ohos-acts layer as pull requests against the
 meta-ohos repository at https://git.ostc-eu.org/OSTC/OHOS/meta-ohos/
 
-Table of Contents
-=================
+# Table of Contents
 
-  I. Adding the meta-ohos-acts layer to your build
- II. Misc
+- Adding the meta-ohos-acts layer to your build
+- Misc
 
-I. Adding the meta-ohos-acts layer to your build
-=================================================
+## Adding the meta-ohos-acts layer to your build
 
 Run 'bitbake-layers add-layer <path to meta-ohos>/meta-ohos-acts'
 
-II. Misc
-========
+## Misc
 
 This layer builds a subset of the ACTS (Application Compatibility Test Suite)
 for Open Harmony OS. Some tests are not ported yet. Some tests are excluded
