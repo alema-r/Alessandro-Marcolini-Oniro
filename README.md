@@ -219,3 +219,10 @@ Rel(bitbake, meta_zephyr, "incorporates for OHOS on Zephyr build")
 Rel(bitbake, meta_freertos, "incorporates for OHOS on FreeRTOS build")
 ```
 
+# Contributing
+
+See the `CONTRIBUTING.md` file.
+
+# License
+
+See the `LICENSES` subdirectory.
