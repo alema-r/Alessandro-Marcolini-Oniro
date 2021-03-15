@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:${OHOS_COREBASE}/assets:"
 
 SRC_URI += "${@oe.utils.conditional('WESTON_INI_BACKGROUND_IMAGE', '', '', "file://${WESTON_INI_BACKGROUND_IMAGE_BASENAME}", d)}"
