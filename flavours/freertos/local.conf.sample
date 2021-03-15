@@ -69,3 +69,10 @@ EXTRA_IMAGE_FEATURES ?= "debug-tweaks"
 # track the version of this file when it was generated. This can safely be ignored if
 # this doesn't mean anything to you.
 CONF_VERSION = "1"
+
+# Use OSTC download and sstate-cache by default. You can comment out or remove
+# those lines and use the defaults from Poky. Note that this cache is limited
+# to system configurations that are entirely re-distributable.
+INHERIT += "own-mirrors"
+SOURCE_MIRROR_URL = "https://cache.ostc-eu.org/bitbake/downloads"
+SSTATE_MIRRORS = "file://.* https://cache.ostc-eu.org/bitbake/sstate-cache/PATH;downloadfilename=PATH \n"
