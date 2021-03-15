@@ -12,6 +12,7 @@ BBFILES ?= ""
 BBLAYERS ?= " \
   ##OEROOT##/meta \
   ##OEROOT##/meta-poky \
+  ##OEROOT##/meta-clang \
   ##OEROOT##/meta-yocto-bsp \
   ##OEROOT##/../meta-freertos \
   ##OEROOT##/../meta-zephyr \
