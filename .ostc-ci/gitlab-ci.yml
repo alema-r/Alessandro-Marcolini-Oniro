@@ -24,9 +24,10 @@ include:
    file:
     - 'dco.yaml'
     - 'reuse.yaml'
-    - 'workspace.yaml'
  - project: 'OSTC/OHOS/manifest'
    file:
+    # Include the set of build flavours.
+    - '.ostc-ci/build-generic.yaml'
     # Include the set of build flavours.
     - '.ostc-ci/build-flavours.yaml'
     # Include the set of templates and jobs that use develop.xml.
@@ -41,21 +42,11 @@ reuse:
   allow_failure: true
 
 
+# Customize the generic .build job, included from build-generic.yaml above,
+# with an unique set of rules that enable the job and an override for the
+# OHOS_MANIFEST_BRANCH variable.
 .build:
-  # Extend the workspace job. This effectively gives us an assembled tree and
-  # initialized bitbake. Some essential variables are defined in later jobs,
-  # like .build-linux, which sets OHOS_BUILD_FLAVOUR, which is inherited from
-  # the .workspace job.
-  extends: .workspace
-  stage: build
-  # Conservative timeout in case the build machine is busy and the cache is cold.
-  timeout: 3 hours
   variables:
-    # Name of the bitbake recipe to build. This must be set by specific jobs
-    # which extend the .build job template.
-    OHOS_RECIPE_NAME: ""
-    # Set to non-empty value to accept Freescale EULA.
-    OHOS_ACCEPT_FSL_EULA: ""
     # The path of the git repository to deviate from what the git-repo manifest
     # prepares. This effectively allows testing incoming changes that match the
     # repository holding this CI pipeline.
@@ -63,10 +54,12 @@ reuse:
     # The path is relative to the checked out "sources/" directory.
     OHOS_GIT_REPO_PATH: "meta-ohos"
   before_script:
-    # Check if the job is configured properly.
+    # XXX: This test is repeated from build-generic.yaml .build before_script,
+    # de-duplicate that by moving this logic back to the generic script.
     - test -n "$OHOS_RECIPE_NAME" || (
         echo "precondition failed - set OHOS_RECIPE_NAME to the name of the recipe to build"
         && exit 1 )
+    # Check if the job is configured properly.
     - test -n "$OHOS_GIT_REPO_PATH" || (
         echo "precondition failed - set OHOS_GIT_REPO_PATH to the path of the git repository as described by the manifest"
         && exit 1 )
@@ -76,22 +69,7 @@ reuse:
     # corresponding to the layer landing in either stable manifest or the
     # development manifest.
     - ( cd "$SCRATCH_DIR"/sources/"$OHOS_GIT_REPO_PATH" && git checkout "$CI_COMMIT_SHA" )
-  script:
-    - !reference [.workspace, script]
-    # Accept Freescale EULA if required.
-    - if [ -n "$OHOS_ACCEPT_FSL_EULA" ]; then
-         echo 'ACCEPT_FSL_EULA = "1"' >> conf/local.conf;
-      fi
-    # Build the desired recipe.
-    - time bitbake "$OHOS_RECIPE_NAME"
-    # Move artifacts for recovery, which only considers $CI_PROJECT_DIR and
-    # subdirectories.
-    - mkdir -p "$CI_PROJECT_DIR"/artifacts
-    - mv tmp/deploy/images/ "$CI_PROJECT_DIR"/artifacts || true
-    - mv tmp/deploy/licenses/ "$CI_PROJECT_DIR"/artifacts || true
-    # TODO: copy all build logs as well.
   artifacts:
-    paths:
-      - artifacts/
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH
+    # Disable collection of image artifacts. They are not used here and they
+    # are expensive to upload and store.
+    paths: []
