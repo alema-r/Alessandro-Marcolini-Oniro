@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 [Unit]
 Description=Epiphany browser started for %i application
 Requires=weston@root.service

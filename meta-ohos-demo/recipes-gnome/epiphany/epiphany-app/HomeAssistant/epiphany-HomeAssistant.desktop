@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 [Desktop Entry]
 Name=HomeAssistant
 Exec=epiphany --application-mode --profile="/home/root/.local/share/epiphany-HomeAssistant" http://localhost:8123

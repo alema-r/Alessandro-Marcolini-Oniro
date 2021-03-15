@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
 SUMMARY = "Epiphany app mode support files"
 BUGTRACKER = "https://gitlab.gnome.org/GNOME/epiphany"
 LICENSE = "Apache-2.0"
