@@ -19,6 +19,7 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-ohos/meta-ohos-core \
   ##OEROOT##/../meta-ohos/meta-ohos-acts \
   ##OEROOT##/../meta-ohos/meta-ohos-demo \
+  ##OEROOT##/../meta-ohos/meta-ohos-staging \
   ##OEROOT##/../meta-intel \
   ##OEROOT##/../meta-seco-intel \
   ##OEROOT##/../meta-freescale \
