@@ -13,7 +13,7 @@ SPDX-License-Identifier: CC-BY-4.0
 -   [DCO sign-off](#dco-sign-off)
     -   [Overview](#overview-1)
     -   [Developer Certificate of Origin](#developer-certificate-of-origin)
--   [`%PROJECTNAME%`-specific contributions process and guidelines](#projectname-specific-contributions-process-and-guidelines)
+-   [`meta-ohos`-specific contributions process and guidelines](#meta-ohos-specific-contributions-process-and-guidelines)
 
 # Gitlab contributions
 
@@ -117,6 +117,26 @@ By making a contribution to this project, I certify that:
     this project or the open source license(s) involved.
 ```
 
-# `%PROJECTNAME%`-specific contributions process and guidelines
+# `meta-ohos`-specific contributions process and guidelines
 
-%POPULATE ME%
+The project handles contributions as merge request in the project's
+[GitLab instance](https://git.ostc-eu.org/OSTC/OHOS/meta-ohos). See above for
+more details.
+
+Each contributions must adhere to the [OpenEmbedded Commit Patch Message Guidelines](http://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines).
+This includes (but not limited to) having a well-formatted `git log` subject.
+Whenever you are in doubt of the subject line format, run `git log
+./<filename>` for examples.
+
+The general format is:
+
+```
+component: Subject line
+
+Optional description.
+
+Signed-off-by: Joe Developer <joe.developer@example.com>
+```
+
+Please note that by signing off the commit, you make a **legally binding
+statement** that you certify as in the [DCO sign-off](#dco-sign-off) section.
