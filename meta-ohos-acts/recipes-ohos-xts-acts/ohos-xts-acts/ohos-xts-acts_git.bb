@@ -32,7 +32,7 @@ do_install_append() {
 
 FILES_${PN} += "${datadir}/acts-data/*"
 
-DEPENDS += "ohos-googletest ohos-libsec mtd-utils-native"
+DEPENDS += "ohos-googletest ohos-libsec mtd-utils-native libcap"
 DEPENDS_append_toolchain-clang += "compiler-rt"
 RRECOMMENDS_${PN} += "\
     kernel-module-block2mtd \
