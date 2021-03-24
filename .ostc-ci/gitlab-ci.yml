@@ -41,6 +41,17 @@ reuse:
   # FIXME: https://git.ostc-eu.org/OSTC/OHOS/meta-ohos/-/issues/19
   allow_failure: true
 
+build-docs:
+  image:
+    name: registry.ostc-eu.org/ostc/containers/ostc-docs-builder
+  script:
+    - cd docs && make
+  artifacts:
+    paths:
+      - docs/build
+  rules:
+    # Build the docs when a merge request is created.
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
 # Customize the generic .build job, included from build-generic.yaml above,
 # with settings for testing updates to the meta-ohos git repository.
