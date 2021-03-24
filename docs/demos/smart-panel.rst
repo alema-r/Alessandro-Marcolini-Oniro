@@ -18,7 +18,7 @@ leveraging different kernels for building an end to end solution.
 The setup is composed of an Avenger96 board acting as a gateway an running
 HomeAssistant. The gateway also provides UI as a browser connected to the
 localhost HomeAssistant server. The gateway is connected over Bluetooth to two
-Nitrogen boards exposing sensors and/or emulating device (eg. light bulbs).
+Nitrogen boards exposing sensors and/or emulating device (e.g. light bulbs).
 
 How to build
 ************
