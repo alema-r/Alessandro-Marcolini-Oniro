@@ -54,7 +54,7 @@ build-docs:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       changes:
         # React to changes to the docs directory.
-        - docs/**
+        - docs/**/*
         # Run this job in case the pipeline changes.
         - .ostc-ci/*.yml
 
@@ -77,8 +77,8 @@ build-docs:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       changes:
         # React to changes to meta-layers assets and flavours.
-        - assets/**
-        - flavours/**
-        - meta-*/**
+        - assets/**/*
+        - flavours/**/*
+        - meta-*/**/*
         # Run this job in case the pipeline changes.
         - .ostc-ci/*.yml
