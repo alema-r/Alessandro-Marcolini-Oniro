@@ -11,7 +11,7 @@ Qemu ARM
 Overview
 ********
 
-OpenHarmony supports running the software stack into an virtual invironment using Qemu.
+OpenHarmony supports running the software stack into an virtual environment using Qemu.
 
 Building OHOS image
 ===================
