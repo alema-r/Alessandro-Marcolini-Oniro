@@ -8,7 +8,7 @@ Overview of Build Flavours
 OpenHarmony can be hosted on top of variety of kernels. Currently supported
 kernels are Linux, Zephyr and FreeRTOS (experimental). The build system
 requires build configuration that is specific to each kernel and OpenHarmony
-provides all this configuration as build tamplates. See `Yocto documentation <https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#creating-a-custom-template-configuration-directory>`_
+provides all this configuration as build templates. See `Yocto documentation <https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#creating-a-custom-template-configuration-directory>`_
 for more info about the underlying mechanism.
 
 In essence, a flavour is a build configuration that was used at build
