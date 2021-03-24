@@ -52,8 +52,8 @@ Besides the ``meta-ohos`` collection of layers, the project is also the home
 to a set of other build system layers. Explore them all in our project `GitLab <https://git.ostc-eu.org/OSTC/OHOS>`_
 instance.
 
-Aditional Documentation
-***********************
+Additional Documentation
+************************
 
 `Yocto Project <https://www.yoctoproject.org>`_ provides extensive
 documentation on various aspects of the build system. For the general usage of the build system, it's components, architecture and capabilities consult the following resources:
