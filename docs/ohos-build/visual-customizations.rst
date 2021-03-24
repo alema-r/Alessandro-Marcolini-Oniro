@@ -20,7 +20,7 @@ following variables will be ignored if this variable is not set to ``1``. The
 configuration file path can also be set via a variable: ``WESTON_INI_PATH``.
 The default value of ``WESTON_INI_PATH`` should be fine for most of the cases.
 
-Additional variable to be used in conjuction with ``WESTON_DYNAMIC_INI``:
+Additional variable to be used in conjunction with ``WESTON_DYNAMIC_INI``:
 
 * ``WESTON_INI_NO_TOOLBAR`` - remove the shell panel when set to ``1``
 * Configuration for shell background
