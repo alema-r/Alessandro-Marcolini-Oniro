@@ -29,7 +29,7 @@ Notes:
 
 * The command assumes that the working directory is the root of the repo
   workspace when issuing the above command.
-* The variables marked in ``<>`` are to be replaced accoridngly.
+* The variables marked in ``<>`` are to be replaced accordingly.
 * Mind the ``../`` prefix for ``TEMPLATECONF``. This is because the path
   provided needs to be relative to the build directory.
 
