@@ -52,6 +52,11 @@ build-docs:
   rules:
     # Build the docs when a merge request is created.
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+        # React to changes to the docs directory.
+        - docs/**
+        # Run this job in case the pipeline changes.
+        - .ostc-ci/*.yml
 
 # Customize the generic .build job, included from build-generic.yaml above,
 # with settings for testing updates to the meta-ohos git repository.
@@ -67,3 +72,13 @@ build-docs:
     # Disable collection of image artifacts. They are not used here and they
     # are expensive to upload and store.
     paths: []
+  rules:
+    # Perform bitbake build when a merge request is created.
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+        # React to changes to meta-layers assets and flavours.
+        - assets/**
+        - flavours/**
+        - meta-*/**
+        # Run this job in case the pipeline changes.
+        - .ostc-ci/*.yml
