@@ -33,7 +33,7 @@ Notes:
 * Mind the ``../`` prefix for ``TEMPLATECONF``. This is because the path
   provided needs to be relative to the build directory.
 
-Once the build was initilized, you are dropped in a buid environment where you have access to the ``OE`` tools:
+Once the build was initilized, you are dropped in a build environment where you have access to the ``OE`` tools:
 
 .. code-block:: console
     
