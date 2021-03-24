@@ -56,7 +56,7 @@ Build steps
 
    $ MACHINE=qemuarm bitbake openharmony-image-base
 
-Once the image is done, you can run the Qemu usin the provided script wrapper:
+Once the image is done, you can run the Qemu using the provided script wrapper:
 
 .. code-block:: console
 
