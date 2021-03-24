@@ -6,11 +6,15 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # Documentation for meta-ohos
 
-The documentation for `meta-ohos` is written as reST files and can be generated with `sphinx-build` tool:
+The documentation for `meta-ohos` is written as reST files and can be generated
+by using standard make targets:
 
 ```
-sphinx-build -C -D html_theme=sphinx_rtd_theme -D project='OpenHarmony Build System and meta-ohos' -D copyright='Huawei Inc' . build
+make
+make clean
 ```
+
+Building the documentation requires `sphinx-build` to be available on the host.
 
 # License
 
