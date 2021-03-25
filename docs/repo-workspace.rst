@@ -33,10 +33,12 @@ The Manifests
 *************
 
 The `manifest repository <https://git.ostc-eu.org/OSTC/OHOS/manifest>`_
-provides the manifests available for configuring a workspace. The project provides two kinds of manifests:
+provides the manifest for configuring a workspace. The project provides
+a single ``default.xml`` manifest file in each of the active branches.
 
-* develop manifests (where some projects are following a branch)
-* default manifests (where all projects are pinned to specific revisions)
+Depending on the specific branch of the manifest repository, that manifest may
+either allow some projects to follow changes by selecting git branches or pin
+all projects to a specific git commit revision.
 
 Setting up the Workspace
 ************************
