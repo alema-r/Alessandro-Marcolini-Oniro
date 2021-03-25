@@ -30,8 +30,8 @@ include:
     - '.ostc-ci/build-generic.yaml'
     # Include the set of build flavours.
     - '.ostc-ci/build-flavours.yaml'
-    # Include the set of templates and jobs that use develop.xml.
-    - '.ostc-ci/develop-targets.yaml'
+    # Include the set of jobs using the default manifest.
+    - '.ostc-ci/default-targets.yaml'
 
 dco:
   extends: .dco
