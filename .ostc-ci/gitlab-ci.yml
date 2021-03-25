@@ -44,6 +44,7 @@ reuse:
 build-docs:
   image:
     name: registry.ostc-eu.org/ostc/containers/ostc-docs-builder
+  stage: build
   script:
     - cd docs && make
   artifacts:
