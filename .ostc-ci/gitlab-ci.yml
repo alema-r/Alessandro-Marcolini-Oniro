@@ -18,6 +18,7 @@ stages:
   - compliance
   - build
   - test
+  - deploy
 
 include:
  - project: 'OSTC/infrastructure/pipelines'
@@ -53,6 +54,29 @@ build-docs:
   rules:
     # Build the docs when a merge request is created.
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+        # React to changes to the docs directory.
+        - docs/**/*
+        # Run this job in case the pipeline changes.
+        - .ostc-ci/*.yml
+    # Or when things land.
+    - if: '$CI_BRANCH_NAME == "$CI_DEFAULT_BRANCH"'
+      changes:
+        # React to changes to the docs directory.
+        - docs/**/*
+        # Run this job in case the pipeline changes.
+        - .ostc-ci/*.yml
+
+# When the build-docs pipeline is triggered by documentation change and it
+# succeeds, then trigger the pipeline in the OSTC/OHOS/docs repository, to
+# update the published documentation.
+update-docs:
+  needs: [build-docs] # depend on build-docs to avoid publishing broken things.
+  stage: deploy
+  trigger: OSTC/OHOS/docs
+  rules:
+    # Update the documentation when things land in the default branch.
+    - if: '$CI_BRANCH_NAME == "$CI_DEFAULT_BRANCH"'
       changes:
         # React to changes to the docs directory.
         - docs/**/*
