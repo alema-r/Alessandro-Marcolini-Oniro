@@ -44,7 +44,7 @@ Setting up the Workspace
 ************************
 
 Once the repo tool is installed, you can initialize and populate the workspace.
-This will bring in all the needed sources for building Openharmony:
+This will bring in all the needed sources for building OpenHarmony:
 
 .. code-block:: console
 
