@@ -19,7 +19,7 @@ of OpenHarmony on a real hardware, checkout the :ref:`Avenger96 support page
 Prerequisites
 *************
 
-Have a **Ubuntu 20.04 LTS** host with all the required host packages.
+Install all the required host packages. Here is an example for **Ubuntu**:
 
 .. code-block:: console
 
@@ -28,11 +28,14 @@ Have a **Ubuntu 20.04 LTS** host with all the required host packages.
     xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev \
     pylint3 xterm 
 
+See `official Yocto documentation <https://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#required-packages-for-the-build-host>`_
+for host package requirements on all supported Linux distributions.
 
 Clone build system repositories
 *******************************
 
-Install Google git repo tool:
+Install Google git repo tool. For example, on **Ubuntu 20.04**, you can do this
+by:
 
 .. code-block:: console
 

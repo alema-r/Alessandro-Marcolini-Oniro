@@ -17,11 +17,13 @@ building OpenHarmony and developing on top.
 The Repo Tool
 *************
 
-OpenHarmony provides a patched version of the repo tool published as a
-`launchpad PPA <https://launchpad.net/~openharmony/+archive/ubuntu/tools>`_.
-The patches are also available in the tool's `source repository <https://git.ostc-eu.org/OSTC/packaging/git-repo>`_.
+In order to setup a sources workspace of OpenHarmony, the ``git-repo`` tool is
+required on the host.
 
-Install this tool by following the next steps:
+For ``Ubuntu 20.04``, OpenHarmony provides a patched version of the repo tool
+published as a `launchpad PPA <https://launchpad.net/~openharmony/+archive/ubuntu/tools>`_.
+The patches are also available in the tool's `source repository <https://git.ostc-eu.org/OSTC/packaging/git-repo>`_.
+One can install this tool by following the next steps:
 
 .. code-block:: console
 
