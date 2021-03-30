@@ -20,16 +20,61 @@ The Repo Tool
 In order to setup a sources workspace of OpenHarmony, the ``git-repo`` tool is
 required on the host.
 
-For ``Ubuntu 20.04``, OpenHarmony provides a patched version of the repo tool
-published as a `launchpad PPA <https://launchpad.net/~openharmony/+archive/ubuntu/tools>`_.
+OpenHarmony provides a patched version of the repo tool for ``Ubuntu 20.04``
+at `launchpad PPA <https://launchpad.net/~openharmony/+archive/ubuntu/tools>`_,
+for ``rpm``/``dnf`` based distributions at
+`copr <https://copr.fedorainfracloud.org/coprs/openharmony/tools/>`_, and for
+openSUSE, Arch and a few other distributions at `OBS <https://build.opensuse.org/project/show/home:openharmony:tools>`_.
+
 The patches are also available in the tool's `source repository <https://git.ostc-eu.org/OSTC/packaging/git-repo>`_.
 One can install this tool by following the next steps:
+
+On Ubuntu:
+----------
 
 .. code-block:: console
 
    $ sudo add-apt-repository ppa:openharmony/tools
    $ sudo apt-get update
    $ sudo apt-get install git-repo
+
+On distributions that use ``dnf``:
+----------------------------------
+
+.. code-block:: console
+
+   $ sudo dnf copr enable openharmony/tools
+   $ sudo dnf --refresh install repo
+
+On openSUSE or SUSE Enterprise Linux:
+-------------------------------------
+
+.. code-block:: console
+
+   $ sudo zypper addrepo http://download.opensuse.org/repositories/home:/openharmony:/tools/openSUSE_Tumbleweed/home:openharmony:tools.repo
+   $ sudo zypper in repo
+
+In the `zypper addrepo` line, replace ``openSUSE_Tumbleweed`` with the distribution you're using - a list of distributions
+for which the package is available `here <http://download.opensuse.org/repositories/home:/openharmony:/tools/>`_.
+
+On Arch Linux:
+--------------
+Add our OBS repository to ``/etc/pacman.conf``:
+
+.. code-block:: console
+
+   [openharmony-tools]
+   Server = http://download.opensuse.org/repositories/home:/openharmony:/tools/Arch/$arch/
+
+Optionally, install the repository's `signing key <https://download.opensuse.org/repositories/home:/openharmony:/tools/Arch/x86_64/home_openharmony_tools_Arch.key>`_.
+
+Then install the ``repo`` package with pacman.
+
+On OpenMandriva:
+----------------
+OpenMandriva has already added OpenHarmony's version of ``repo`` to its official
+repositories. If you're on OpenMandriva, simply ``dnf install repo``.
+
 
 The Manifests
 *************
