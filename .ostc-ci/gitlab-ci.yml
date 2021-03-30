@@ -60,7 +60,7 @@ build-docs:
         # Run this job in case the pipeline changes.
         - .ostc-ci/*.yml
     # Or when things land.
-    - if: '$CI_BRANCH_NAME == "$CI_DEFAULT_BRANCH"'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
       changes:
         # React to changes to the docs directory.
         - docs/**/*
