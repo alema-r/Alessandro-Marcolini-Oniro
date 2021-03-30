@@ -2,6 +2,8 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. _SupportedBoardSecoC61:
+
 SBC-C61 SECO
 ############
 

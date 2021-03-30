@@ -2,7 +2,7 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
-.. _nitrogen:
+.. _SupportedBoardNitrogen:
 
 96Boards Nitrogen
 #################

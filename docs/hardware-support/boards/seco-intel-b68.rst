@@ -2,6 +2,8 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. _SupportedBoardSecoB68:
+
 SBC-B68-eNUC SECO
 #################
 

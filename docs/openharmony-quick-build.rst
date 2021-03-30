@@ -2,6 +2,8 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. _OpenHarmonyQuickBuild:
+
 OpenHarmony - Quick Build
 #########################
 
