@@ -15,7 +15,7 @@ The Smart Panel Demo provides support for building a PoC for a home automation
 system with components showing the capabilities of the build infrastructure in
 leveraging different kernels for building an end to end solution.
 
-The setup is composed of an Avenger96 board acting as a gateway an running
+The setup is composed of an Avenger96 board acting as a gateway and running
 HomeAssistant. The gateway also provides UI as a browser connected to the
 localhost HomeAssistant server. The gateway is connected over Bluetooth to two
 Nitrogen boards exposing sensors and/or emulating device (e.g. light bulbs).
