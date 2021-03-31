@@ -26,5 +26,10 @@ How to build
 The Linux Gateway
 -----------------
 
-Set the ``DISTRO`` to ``openharmony-linux-demo-dashboard`` and build the
-``openharmony-linux-demo-dashboard`` image.
+1. Refer to :ref:`Building OHOS image for Avenger96 <SupportedBoardAvenger96>` to learn how to set up a build environment, build and flash a base OpenHarmony Linux image.
+2. Build demo image by invoking following bitbake command
+
+.. code-block:: console
+
+   $ MACHINE=stm32mp1-av96 DISTRO=openharmony-linux-demo-dashboard bitbake demo-dashboard-gateway-image
+

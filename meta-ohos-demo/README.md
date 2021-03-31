@@ -20,27 +20,6 @@ The `meta-ohos-demo` layer depends on the following layers:
 Note that the dependencies of the above layers should also be taken into
 consideration.
 
-# Demos
-
-## Dashboard demo
-
-The dashboard demo is composed out of a set of devices that create a home automation demo environment.
-
-### The Gateway device
-
-* Kernel type: linux
-* Hardware (MACHINE): stm32mp1-av96
-* Distribution configuration (DISTRO): openharmony-linux-demo-dashboard
-* Relevant/supported images:
-  * demo-dashboard-gateway-image
-
-Build steps:
-
-1. initialise a Linux flavour build environment as defined in the [meta-ohos documentation](https://git.ostc-eu.org/OSTC/OHOS/meta-ohos#ohos-linux-flavour)
-2. set MACHINE and DISTRO either in your `local.conf` file or pass them as environemnt variables bellow
-3. build image
-  * eg. `bitbake demo-dashboard-gateway-image`
-
 # Contributing
 
 ## Merge requests
