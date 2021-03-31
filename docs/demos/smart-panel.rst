@@ -33,3 +33,32 @@ The Linux Gateway
 
    $ MACHINE=stm32mp1-av96 DISTRO=openharmony-linux-demo-dashboard bitbake demo-dashboard-gateway-image
 
+
+IOT Endpoints
+-------------
+1. Connect Sensors Mezzanine adapter to each Nitrogen board. Connect I/O devices
+   according to SmartHome Demo app `README <https://git.ostc-eu.org/OSTC/OHOS/components/smart_home_demo_zephyr/-/blob/develop/README.md#connections>`_
+2. Refer to :ref:`Working with the board <SupportedBoardNitrogen>` to learn how to set up a build environment, build and flash a sample Zephyr application.
+3. Connect target board to the PC using USB connector.
+4. Build and flash demo image by invoking one of the following bitbake commands (for each IOT endpoint type respectively)
+
+.. note:: In order to connect multiple and flash selected boards, please refer to
+          `meta-zephyr README <http://git.yoctoproject.org/cgit/cgit.cgi/meta-zephyr/plain/README.txt>`_
+          on how to use PYOCD_FLASH_IDS environment variable.
+
+**For sensors board:**
+
+* Connected I/O: LCD, DHT11, AK9753
+
+.. code-block:: console
+
+   $ MACHINE=96b-nitrogen DISTRO=openharmony-zephyr bitbake zephyr-demo-smarthome-sensors -c flash_usb
+
+**For bulb/LED board:**
+
+* Connected I/O: LED
+
+.. code-block:: console
+
+   $ MACHINE=96b-nitrogen DISTRO=openharmony-zephyr bitbake zephyr-demo-smarthome-led -c flash_usb
+
