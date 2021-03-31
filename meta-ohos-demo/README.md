@@ -16,6 +16,8 @@ The `meta-ohos-demo` layer depends on the following layers:
   * URI: https://git.ostc-eu.org/OSTC/OHOS/meta-ohos.git
 * meta-homeassistant
   * URI: https://github.com/meta-homeassistant/meta-homeassistant.git
+* meta-zephyr
+  * URI: https://git.ostc-eu.org/OSTC/OHOS/meta-zephyr.git
 
 Note that the dependencies of the above layers should also be taken into
 consideration.
