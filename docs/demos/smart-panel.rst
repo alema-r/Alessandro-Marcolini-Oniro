@@ -20,6 +20,8 @@ HomeAssistant. The gateway also provides UI as a browser connected to the
 localhost HomeAssistant server. The gateway is connected over Bluetooth to two
 Nitrogen boards exposing sensors and/or emulating device (e.g. light bulbs).
 
+.. image:: assets/smart-home-demo-arch.png
+
 How to build
 ************
 
