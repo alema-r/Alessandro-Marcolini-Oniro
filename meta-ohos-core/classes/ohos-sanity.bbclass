@@ -8,6 +8,7 @@
 # <REPLACEMENT_COLLECTION> is not provided, the layer was removed without a
 # replacement.
 OHOS_DEPRECATED_COLLECTIONS = " \
+    meta-ohos-demo:meta-ohos-blueprints \
     "
 
 def unpack_deprecation(elem) -> 'Tuple[str, str]':
