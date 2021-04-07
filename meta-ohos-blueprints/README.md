@@ -6,11 +6,12 @@
 
 ## Description
 
-This layer, `meta-ohos-demo`, contains build metadata for OpenHarmony demos.
+This layer, `meta-ohos-blueprints`, contains build metadata for OpenHarmony
+blueprints.
 
 ## Layer dependencies
 
-The `meta-ohos-demo` layer depends on the following layers:
+The `meta-ohos-blueprints` layer depends on the following layers:
 
 * meta-ohos
   * URI: https://git.ostc-eu.org/OSTC/OHOS/meta-ohos.git

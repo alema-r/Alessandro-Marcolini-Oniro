@@ -4,7 +4,7 @@
 
 require recipes-kernel/zephyr-kernel/zephyr-sample.inc
 
-SUMMARY = "SmartHome demo image: IOT endpoint"
+SUMMARY = "SmartHome blueprint image: IOT endpoint"
 DESCRIPTION = "Zephyr based image targeting IOT endpoints"
 LICENSE = "Apache-2.0"
 

@@ -2,9 +2,9 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-require zephyr-demo-smarthome-base.bb
+require zephyr-blueprint-smarthome-base.bb
 
-SUMMARY = "SmartHome demo image: smart LED"
+SUMMARY = "SmartHome blueprint image: smart LED"
 DESCRIPTION = "Zephyr based image targeting smart LED board"
 LICENSE = "Apache-2.0"
 

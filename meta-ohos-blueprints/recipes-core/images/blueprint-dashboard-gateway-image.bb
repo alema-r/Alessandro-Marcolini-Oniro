@@ -4,7 +4,7 @@
 
 require recipes-core/images/openharmony-image-base.bb
 
-SUMMARY = "Dashboard demo image: gateway"
+SUMMARY = "Dashboard blueprint image: gateway"
 DESCRIPTION = "Home Assistant based image targeting a gateway device"
 LICENSE = "Apache-2.0"
 
