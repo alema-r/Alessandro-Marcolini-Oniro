@@ -13,6 +13,7 @@ OHOS_DEPRECATED_COLLECTIONS = " \
 
 # Same format as for OHOS_DEPRECATED_COLLECTIONS but for DISTRO configurations.
 OHOS_DEPRECATED_DISTROS = " \
+    openharmony-linux-demo-dashboard:openharmony-linux-blueprint-dashboard \
     "
 
 def unpack_deprecation(elem) -> 'Tuple[str, str]':
