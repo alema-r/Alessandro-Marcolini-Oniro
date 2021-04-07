@@ -11,6 +11,10 @@ OHOS_DEPRECATED_COLLECTIONS = " \
     meta-ohos-demo:meta-ohos-blueprints \
     "
 
+# Same format as for OHOS_DEPRECATED_COLLECTIONS but for DISTRO configurations.
+OHOS_DEPRECATED_DISTROS = " \
+    "
+
 def unpack_deprecation(elem) -> 'Tuple[str, str]':
     elem_split = elem.split(sep=':', maxsplit=1)
     return (elem_split[0], elem_split[1] if len(elem_split) == 2 else '')
@@ -42,7 +46,21 @@ def ohos_is_valid_config() -> bool:
                 msg = "{0} is a deprecated layer. Adapt your bblayers.conf " \
                       "accordingly.".format(deprecated)
             bb.warn(msg)
-    
+
+    #
+    # DISTRO deprecation
+    #
+    for deprecation in d.getVar('OHOS_DEPRECATED_DISTROS').split():
+        (deprecated, new) = unpack_deprecation(deprecation)
+        if deprecated == d.getVar('DISTRO'):
+            if new:
+                msg = "{0} is a deprecated distro configuration. Use the {1} " \
+                      "replacement.".format(deprecated, new)
+            else:
+                msg = "{0} is a deprecated distro configuration." \
+                       .format(deprecated)
+            bb.warn(msg)
+
     return success
 
 python ohos_sanity_handler() {
