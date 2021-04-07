@@ -13,5 +13,5 @@ Build system documentation
    repo-workspace
    build-flavours/index
    ohos-build/index
-   demos/index
+   blueprints/index
    hardware-support/index
