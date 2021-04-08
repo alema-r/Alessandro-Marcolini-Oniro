@@ -26,13 +26,7 @@ include:
     - 'dco.yaml'
     - 'reuse.yaml'
  - project: 'OSTC/OHOS/manifest'
-   file:
-    # Include the set of generic build rules.
-    - '.ostc-ci/build-generic.yaml'
-    # Include the set of build flavours.
-    - '.ostc-ci/build-flavours.yaml'
-    # Include the set of jobs using the default manifest.
-    - '.ostc-ci/default-targets.yaml'
+   file: '.ostc-ci/build-generic.yaml'
 
 dco:
   extends: .dco
@@ -43,69 +37,28 @@ reuse:
   allow_failure: true
 
 build-docs:
-  image:
-    name: registry.ostc-eu.org/ostc/containers/ostc-docs-builder
-  stage: build
-  script:
-    - cd docs && make
-  artifacts:
-    paths:
-      - docs/build
-  rules:
-    # Build the docs when a merge request is created.
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-      changes:
-        # React to changes to the docs directory.
-        - docs/**/*
-        # Run this job in case the pipeline changes.
-        - .ostc-ci/*.yml
-    # Or when things land.
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-      changes:
-        # React to changes to the docs directory.
-        - docs/**/*
-        # Run this job in case the pipeline changes.
-        - .ostc-ci/*.yml
+  extends: .build-docs
 
-# When the build-docs pipeline is triggered by documentation change and it
-# succeeds, then trigger the pipeline in the OSTC/OHOS/docs repository, to
-# update the published documentation.
-update-docs:
-  needs: [build-docs] # depend on build-docs to avoid publishing broken things.
-  stage: deploy
-  trigger: OSTC/OHOS/docs
-  rules:
-    # Update the documentation when things land in the default branch.
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-      changes:
-        # React to changes to the docs directory.
-        - docs/**/*
-        # Run this job in case the pipeline changes.
-        - .ostc-ci/*.yml
+aggregate-docs:
+  extends: .aggregate-docs
+  needs: [build-docs]
 
-# Customize the generic .build job, included from build-generic.yaml above,
-# with settings for testing updates to the meta-ohos git repository.
-.build:
+# Customize the .workspace job to set the path of the git repository to deviate
+# from what the git-repo manifest prepares. This effectively allows testing
+# incoming changes that match the repository holding this CI pipeline.
+.workspace:
   variables:
-    # The path of the git repository to deviate from what the git-repo manifest
-    # prepares. This effectively allows testing incoming changes that match the
-    # repository holding this CI pipeline.
-    #
-    # The path is relative to the checked out "sources/" directory.
-    OHOS_CI_GIT_REPO_PATH: "meta-ohos"
-  artifacts:
-    # Disable collection of image artifacts. They are not used here and they
-    # are expensive to upload and store.
-    paths: []
+    OHOS_CI_GIT_REPO_PATH: sources/meta-ohos
+
+# Customize the .bitbake-workspace job to set the rules governing when a build
+# is attempted to: modifications (changes) to the pipeline, meta-layers,
+# flavours and assets or to placement of a tag on a commit.
+.bitbake-workspace:
   rules:
-    # Perform bitbake build when a merge request is created.
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       changes:
-        # React to changes to meta-layers assets and flavours.
         - assets/**/*
         - flavours/**/*
         - meta-*/**/*
-        # Run this job in case the pipeline changes.
         - .ostc-ci/*.yml
-    # Run the build when a tag is placed.
     - if: '$CI_COMMIT_TAG'
