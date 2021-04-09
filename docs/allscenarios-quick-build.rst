@@ -62,6 +62,11 @@ build all its components, including the toolchain, from source.
 First of all change directory into the one where the build repositories were
 cloned using the repo tool. See above.
 
+.. Note::
+
+   Depending on the configuration type, a single OpenHarmony build could 
+   use around 100GB of disk space for downloads, temporary files, and build artifacts combined.
+
 Initialize the build directory and run a build:
 
 .. code-block:: console
