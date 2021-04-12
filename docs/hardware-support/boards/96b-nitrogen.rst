@@ -90,7 +90,7 @@ pyOCD is an open source Python package for programming and debugging Arm Cortex-
 
 .. code-block:: console
 
-   $ pyOCD-flashtool -l
+   $ pyocd-flashtool -l
 
 .. note::
 
