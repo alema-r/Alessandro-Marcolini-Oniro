@@ -72,9 +72,7 @@ Initialize the build directory and run a build:
 Booting a Qemu X86-64 target with a All Scenario OS image
 *********************************************************
 
-Once the build is done, you can run a Qemu X86-64 instance as it follows:
-
-Once the image is done, you can run the Qemu usin the provided script wrapper:
+Once the image is built, you can run a Qemu X86-64 instance using the provided script wrapper as follows:
 
 .. code-block:: console
 
