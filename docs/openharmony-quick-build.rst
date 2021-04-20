@@ -2,17 +2,17 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
-.. _OpenHarmonyQuickBuild:
+.. _AllScenariOSQuickBuild:
 
-OpenHarmony - Quick Build
-#########################
+AllScenariOS - Quick Build
+##########################
 
-This section will guide you to building your first OpenHarmony image targeting
+This section will guide you to building your first AllScenariOS image targeting
 a supported reference hardware. It will also provide the steps for flashing and
 booting such an image.
 
 The steps below will focus on a Qemu-based target. If you want to get a feeling
-of OpenHarmony on a real hardware, checkout the :ref:`Avenger96 support page
+of AllScenariOS on a real hardware, checkout the :ref:`Avenger96 support page
 <SupportedBoardAvenger96>`.
 
 .. contents:: 
@@ -69,8 +69,8 @@ Initialize the build directory and run a build:
     $ TEMPLATECONF=../sources/meta-ohos/flavours/linux . ./sources/poky/oe-init-build-env build-ohos-linux
     $ MACHINE=qemux86-64 bitbake openharmony-image-base
 
-Booting a Qemu X86-64 target with a OpenHarmony image
-*****************************************************
+Booting a Qemu X86-64 target with a AllScenariOS image
+******************************************************
 
 Once the build is done, you can run a Qemu X86-64 instance as it follows:
 

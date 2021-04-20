@@ -2,22 +2,22 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
-Adding Hardware Support in OpenHarmony
-######################################
+Adding Hardware Support in AllScenariOS
+#######################################
 
 This section details the addition of new hardware to the supported set in
-OpenHarmony. It is intended as a checklist for adding new boards to OHOS build
+AllScenariOS. It is intended as a checklist for adding new boards to OHOS build
 system.
 
-Before starting get familiar with OpenHarmony Contribution Process.
+Before starting get familiar with AllScenariOS Contribution Process.
 
 .. contents:: 
    :depth: 2
 
-Select OpenHarmony Flavour
-**************************
+Select AllScenariOS Flavour
+***************************
 
-OpenHarmony uses a notion of kernel specific flavours:
+AllScenariOS uses a notion of kernel specific flavours:
 
 - Linux flavour
 - Zephyr flavour
@@ -47,7 +47,7 @@ directory) consist of the following files:
 
   * default flavour build configuration
 
-OpenHarmony build system uses ***repo*** tool for cloning required meta-layers
+AllScenariOS build system uses ***repo*** tool for cloning required meta-layers
 into appropriate build directory structure (see :ref:`Setting up a repo workspace <RepoWorkspace>`).
 To include a new layer, it has to be added in two places:
 

@@ -7,9 +7,9 @@
 Repo Workspace
 ##############
 
-OpenHarmony uses `repo <https://android.googlesource.com/tools/repo>`_ to
+AllScenariOS uses `repo <https://android.googlesource.com/tools/repo>`_ to
 provide full workspace setup that includes all the repositories needed for
-building OpenHarmony and developing on top.
+building AllScenariOS and developing on top.
 
 .. contents:: 
     :depth: 2
@@ -17,10 +17,10 @@ building OpenHarmony and developing on top.
 The Repo Tool
 *************
 
-In order to setup a sources workspace of OpenHarmony, the ``git-repo`` tool is
+In order to setup a sources workspace of AllScenariOS, the ``git-repo`` tool is
 required on the host.
 
-OpenHarmony provides a patched version of the repo tool for ``Ubuntu 20.04``
+AllScenariOS provides a patched version of the repo tool for ``Ubuntu 20.04``
 at `launchpad PPA <https://launchpad.net/~openharmony/+archive/ubuntu/tools>`_,
 for ``rpm``/``dnf`` based distributions at
 `copr <https://copr.fedorainfracloud.org/coprs/openharmony/tools/>`_, and for
@@ -72,7 +72,7 @@ Then install the ``repo`` package with pacman.
 
 On OpenMandriva:
 ----------------
-OpenMandriva has already added OpenHarmony's version of ``repo`` to its official
+OpenMandriva has already added AllScenariOS's version of ``repo`` to its official
 repositories. If you're on OpenMandriva, simply ``dnf install repo``.
 
 
@@ -91,7 +91,7 @@ Setting up the Workspace
 ************************
 
 Once the repo tool is installed, you can initialize and populate the workspace.
-This will bring in all the needed sources for building OpenHarmony:
+This will bring in all the needed sources for building AllScenariOS:
 
 .. code-block:: console
 

@@ -5,7 +5,7 @@
 FreeRTOS Kernel Build Flavour
 #############################
 
-OpenHarmony FreeRTOS build flavour is based on *freertos* distribution (distro configuration).
+AllScenariOS FreeRTOS build flavour is based on *freertos* distribution (distro configuration).
 
 Supported images:
 

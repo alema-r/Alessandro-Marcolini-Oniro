@@ -4,11 +4,11 @@
 
 .. _HardwareSupport:
 
-Hardware support in OpenHarmony
-###############################
+Hardware support in AllScenariOS
+################################
 
 This section details the hardware (including virtualized) supported as part of
-OpenHarmony.
+AllScenariOS.
 
 .. toctree::
    :maxdepth: 2

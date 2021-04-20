@@ -5,7 +5,7 @@
 Supported Boards
 ################
 
-This section details the boards supported as part of OpenHarmony.
+This section details the boards supported as part of AllScenariOS.
 
 .. toctree::
    :maxdepth: 1

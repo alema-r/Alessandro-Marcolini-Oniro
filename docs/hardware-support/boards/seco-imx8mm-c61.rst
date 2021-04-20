@@ -41,7 +41,7 @@ Supported image
     - Description
   * - openharmony-image-base
     - Approximate 100-200 MB
-    - OpenHarmony image including the base OS software stack
+    - AllScenariOS image including the base OS software stack
 
 
 Building OHOS image

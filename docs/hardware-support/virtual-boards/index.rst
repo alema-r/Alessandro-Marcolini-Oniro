@@ -5,7 +5,7 @@
 Supported Virtual Targets
 #########################
 
-This section details the support for virtual targets in OpenHarmony.
+This section details the support for virtual targets in AllScenariOS.
 
 .. toctree::
    :maxdepth: 1

@@ -5,7 +5,7 @@
 Linux Kernel Build Flavour
 ##########################
 
-OpenHarmony Linux build flavour is based on *openharmony-linux* distribution (distro configuration).
+AllScenariOS Linux build flavour is based on *openharmony-linux* distribution (distro configuration).
 
 Supported images:
 

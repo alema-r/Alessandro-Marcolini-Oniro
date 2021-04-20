@@ -2,10 +2,10 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
-OpenHarmony Build Flavours
-##########################
+AllScenariOS Build Flavours
+###########################
 
-OpenHarmony provides default build configuration for each supported type of
+AllScenariOS provides default build configuration for each supported type of
 kernels. Each set of such configuration is called a ``flavour``.
 
 .. toctree::

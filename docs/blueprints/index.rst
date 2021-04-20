@@ -2,11 +2,11 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
-OpenHarmony Blueprints
-######################
+AllScenariOS Blueprints
+#######################
 
 This section details the available blueprints provided as part of the
-OpenHarmony environment.
+AllScenariOS environment.
 
 .. toctree::
    :maxdepth: 1

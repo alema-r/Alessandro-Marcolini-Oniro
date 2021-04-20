@@ -43,10 +43,10 @@ Supported images
     - Description
   * - openharmony-image-base
     - Approximate 100-200 MB
-    - OpenHarmony image including the base OS software stack
+    - AllScenariOS image including the base OS software stack
   * - openharmony-image-extra
     - Approximate 100-200 MB
-    - OpenHarmony Wayland image including the base OS software stack
+    - AllScenariOS Wayland image including the base OS software stack
 
 
 Building OHOS image

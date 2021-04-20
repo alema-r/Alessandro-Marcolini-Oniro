@@ -11,7 +11,7 @@ Qemu X86
 Overview
 ********
 
-OpenHarmony supports running the software stack into an virtual environment using Qemu.
+AllScenariOS supports running the software stack into an virtual environment using Qemu.
 
 Building OHOS image
 ===================
@@ -31,9 +31,9 @@ Supported images
   * - Image  Name
     - Description
   * - openharmony-image-base
-    - OpenHarmony image including the base OS software stack
+    - AllScenariOS image including the base OS software stack
   * - openharmony-image-extra
-    - OpenHarmony Wayland image including the base OS software stack
+    - AllScenariOS Wayland image including the base OS software stack
 
 Build steps
 -----------
