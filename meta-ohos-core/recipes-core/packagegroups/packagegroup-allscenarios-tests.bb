@@ -2,14 +2,14 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-DESCRIPTION = "OpenHarmony tests package group"
+DESCRIPTION = "AllScenariOS tests package group"
 
 inherit packagegroup
 
 PACKAGES = "\
-	packagegroup-openharmony-tests \
+	packagegroup-allscenarios-tests \
 	"
 
-RDEPENDS_packagegroup-openharmony-tests = "\
+RDEPENDS_packagegroup-allscenarios-tests = "\
 	ohos-xts-acts \
 	"

@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-require recipes-core/images/openharmony-image-base.bb
+require recipes-core/images/allscenarios-image-base.bb
 
 SUMMARY = "Dashboard blueprint image: gateway"
 DESCRIPTION = "Home Assistant based image targeting a gateway device"

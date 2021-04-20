@@ -75,7 +75,7 @@ MACHINE ??= "qemux86-64"
 #
 # Default policy config
 #
-DISTRO ?= "openharmony-linux"
+DISTRO ?= "allscenarios-linux"
 
 #
 # Package Management configuration

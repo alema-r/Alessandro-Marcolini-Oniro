@@ -13,7 +13,7 @@ OHOS_DEPRECATED_COLLECTIONS = " \
 
 # Same format as for OHOS_DEPRECATED_COLLECTIONS but for DISTRO configurations.
 OHOS_DEPRECATED_DISTROS = " \
-    openharmony-linux-demo-dashboard:openharmony-linux-blueprint-dashboard \
+    allscenarios-linux-demo-dashboard:allscenarios-linux-blueprint-dashboard \
     "
 
 def unpack_deprecation(elem) -> 'Tuple[str, str]':
@@ -21,7 +21,7 @@ def unpack_deprecation(elem) -> 'Tuple[str, str]':
     return (elem_split[0], elem_split[1] if len(elem_split) == 2 else '')
 
 def ohos_is_valid_config() -> bool:
-    """Handles OpenHarmony build configuration sanity checks."""
+    """Handles AllScenariOS build configuration sanity checks."""
 
     # By default assume no fatal errors
     success = True
@@ -66,10 +66,10 @@ def ohos_is_valid_config() -> bool:
 
 python ohos_sanity_handler() {
     if d.getVar('OHOS_SANITY_SKIP', True) == "1":
-        bb.warn('OpenHarmony-specific sanity checks were skipped.')
+        bb.warn('AllScenariOS-specific sanity checks were skipped.')
         return
     if not ohos_is_valid_config():
-        bb.fatal("OpenHarmony sanity checks included fatal errors. See above.")
+        bb.fatal("AllScenariOS sanity checks included fatal errors. See above.")
 }
 
 addhandler ohos_sanity_handler

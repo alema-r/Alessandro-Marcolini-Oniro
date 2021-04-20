@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# Common settings for all OpenHarmony images
+# Common settings for all AllScenariOS images
 
 inherit ohos-image
 
