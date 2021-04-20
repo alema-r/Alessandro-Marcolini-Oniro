@@ -21,3 +21,9 @@ SRCREV_smarthome = "d45c192aa8a6b25328ab40610d6e78f50afe4150"
 ZEPHYR_SRC_DIR = "${S}/apps/smarthome"
 
 ZEPHYR_MODULES_append = "\;${S}/modules/crypto/tinycrypt"
+
+do_configure_append() {
+	if [ ! -z "${MAC}" ]; then
+		sed -i "s/\(SMART_HOME_BT_MAC_ADDRESS\).*/\1 \"${MAC}\"/" ${ZEPHYR_SRC_DIR}/src/config.h
+	fi
+}
