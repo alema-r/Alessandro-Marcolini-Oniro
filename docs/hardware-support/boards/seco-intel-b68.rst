@@ -38,10 +38,10 @@ Supported images
   * - Image  Name
     - Size
     - Description
-  * - openharmony-image-base
+  * - allscenarios-image-base
     - Approximate 100-200 MB
     - AllScenariOS image including the base OS software stack
-  * - openharmony-image-extra
+  * - allscenarios-image-extra
     - Approximate 100-200 MB
     - AllScenariOS Wayland image including the base OS software stack
 
@@ -60,11 +60,11 @@ Linux image
 
    $ TEMPLATECONF=../sources/meta-ohos/flavours/linux . ./sources/poky/oe-init-build-env build-ohos-linux
 
-2. You will find yourself in the newly created build directory. Call *bitbake* to build the image. For example, if you are using *openharmony-image-base* run the following command:
+2. You will find yourself in the newly created build directory. Call *bitbake* to build the image. For example, if you are using *allscenarios-image-base* run the following command:
 
 .. code-block:: console
 
-   $ MACHINE=seco-intel-b68 bitbake openharmony-image-base
+   $ MACHINE=seco-intel-b68 bitbake allscenarios-image-base
 
 To generate images for SSD Disk, refer to the following flashing OHOS image section.
 
@@ -96,7 +96,7 @@ To flash OHOS using USB storage, perform the following steps:
 
 .. code-block:: console
 
-   $ dd if=tmp/deploy/images/seco-intel-b68/openharmony-image-base-seco-intel-b68.wic of=/dev/sdbX
+   $ dd if=tmp/deploy/images/seco-intel-b68/allscenarios-image-base-seco-intel-b68.wic of=/dev/sdbX
 
 **Run OHOS**
 

@@ -39,7 +39,7 @@ Supported image
   * - Image  Name
     - Size
     - Description
-  * - openharmony-image-base
+  * - allscenarios-image-base
     - Approximate 100-200 MB
     - AllScenariOS image including the base OS software stack
 
@@ -58,11 +58,11 @@ Linux image
 
    $ TEMPLATECONF=../sources/meta-ohos/flavours/linux . ./sources/poky/oe-init-build-env build-ohos-linux
 
-2. You will find yourself in the newly created build directory. Call ``bitbake`` to build the image. The supported image is ``openharmony-image-base``.
+2. You will find yourself in the newly created build directory. Call ``bitbake`` to build the image. The supported image is ``allscenarios-image-base``.
 
 .. code-block:: console
 
-   $ MACHINE=seco-imx8mm-c61 bitbake openharmony-image-base
+   $ MACHINE=seco-imx8mm-c61 bitbake allscenarios-image-base
 
 To generate images for eMMC, refer to the following flashing procedure.
 
@@ -96,13 +96,13 @@ To flash OHOS using USB to OTG adapter, perform the following steps:
 
    .. code-block:: console
 
-      $ gzip -d openharmony-image-base-seco-imx8mm-c61.wic.gz
+      $ gzip -d allscenarios-image-base-seco-imx8mm-c61.wic.gz
 
 #. To write uboot and image(p1:kernel, p2:dtb, rootfs) into c61 mmc via mfgtools:
 
    .. code-block:: console
 
-      $ sudo uuu -b emmc_all imx-boot-seco-imx8mm-c61-emmc.bin-flash_evk openharmony-image-base-seco-imx8mm-c61.wic
+      $ sudo uuu -b emmc_all imx-boot-seco-imx8mm-c61-emmc.bin-flash_evk allscenarios-image-base-seco-imx8mm-c61.wic
 
 #. Power ON SBC-C61
 #. Remove **CN52 short circuit**

@@ -34,7 +34,7 @@ The Linux Gateway
 
 .. code-block:: console
 
-   $ MACHINE=stm32mp1-av96 DISTRO=openharmony-linux-blueprint-dashboard bitbake blueprint-dashboard-gateway-image
+   $ MACHINE=stm32mp1-av96 DISTRO=allscenarios-linux-blueprint-dashboard bitbake blueprint-dashboard-gateway-image
 
 
 IOT Endpoints
@@ -55,7 +55,7 @@ IOT Endpoints
 
 .. code-block:: console
 
-   $ MACHINE=96b-nitrogen DISTRO=openharmony-zephyr bitbake zephyr-blueprint-smarthome-sensors -c flash_usb
+   $ MACHINE=96b-nitrogen DISTRO=allscenarios-zephyr bitbake zephyr-blueprint-smarthome-sensors -c flash_usb
 
 **For bulb/LED board:**
 
@@ -63,5 +63,5 @@ IOT Endpoints
 
 .. code-block:: console
 
-   $ MACHINE=96b-nitrogen DISTRO=openharmony-zephyr bitbake zephyr-blueprint-smarthome-led -c flash_usb
+   $ MACHINE=96b-nitrogen DISTRO=allscenarios-zephyr bitbake zephyr-blueprint-smarthome-led -c flash_usb
 

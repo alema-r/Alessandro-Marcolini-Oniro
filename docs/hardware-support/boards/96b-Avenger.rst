@@ -41,10 +41,10 @@ Supported images
   * - Image  Name
     - Size
     - Description
-  * - openharmony-image-base
+  * - allscenarios-image-base
     - Approximate 100-200 MB
     - AllScenariOS image including the base OS software stack
-  * - openharmony-image-extra
+  * - allscenarios-image-extra
     - Approximate 100-200 MB
     - AllScenariOS Wayland image including the base OS software stack
 
@@ -68,12 +68,12 @@ Linux image
    $ TEMPLATECONF=../sources/meta-ohos/flavours/linux . ./sources/poky/oe-init-build-env build-ohos-linux
 
 2. You will find yourself in the newly created build directory. Call *bitbake*
-   to build the image. For example, if you are using *openharmony-image-base*
+   to build the image. For example, if you are using *allscenarios-image-base*
    run the following command:
 
 .. code-block:: console
 
-   $ MACHINE=stm32mp1-av96 bitbake openharmony-image-base
+   $ MACHINE=stm32mp1-av96 bitbake allscenarios-image-base
 
 To generate images for eMMC on SD card, refer to the :ref:`Flashing OHOS image <Flashing_ohos>`.
 
@@ -128,12 +128,12 @@ For more information on Avenger96 boot options, see `Getting Started with the Av
 
 1. After the image is built, run the following script with flash layout TSV file provided as an argument. From the build directory created
    during the environment source. For example, if you are using
-   openharmony-image-base run the following command:
+   allscenarios-image-base run the following command:
 
 .. code-block:: console
 
    $ cd tmp/deploy/images/stm32mp1-av96
-   $ ./scripts/create_sdcard_from_flashlayout.sh ./flashlayout_openharmony-image-base/extensible/FlashLayout_sdcard_stm32mp157a-av96-extensible.tsv
+   $ ./scripts/create_sdcard_from_flashlayout.sh ./flashlayout_allscenarios-image-base/extensible/FlashLayout_sdcard_stm32mp157a-av96-extensible.tsv
 
 2. The following output is displayed. For the image to be flashed to the card,
    copy and paste the commands to the terminal to flash the image onto the
@@ -142,10 +142,10 @@ For more information on Avenger96 boot options, see `Getting Started with the Av
 ::
 
    [WARNING]: A previous raw image are present on this directory
-   [WARNING]:    ./flashlayout_openharmony-image-base/extensible/../../FlashLayout_sdcard_stm32mp157a-av96-extensible.raw
+   [WARNING]:    ./flashlayout_allscenarios-image-base/extensible/../../FlashLayout_sdcard_stm32mp157a-av96-extensible.raw
    [WARNING]: would you like to erase it: [Y/n]
 
-   Create Raw empty image: ./flashlayout_openharmony-image-base/extensible/../../FlashLayout_sdcard_stm32mp157a-av96-extensible.raw of 2368MB
+   Create Raw empty image: ./flashlayout_allscenarios-image-base/extensible/../../FlashLayout_sdcard_stm32mp157a-av96-extensible.raw of 2368MB
    Create partition table:
    [CREATED] part 1:    fsbl1 [partition size 256.0 KiB]
    [CREATED] part 2:    fsbl2 [partition size 256.0 KiB]
@@ -154,7 +154,7 @@ For more information on Avenger96 boot options, see `Getting Started with the Av
    [CREATED] part 5: vendorfs [partition size 16.0 MiB]
    [CREATED] part 6:   rootfs [partition size 2.2 GiB]
 
-   Partition table from ./flashlayout_openharmony-image-base/extensible/../../FlashLayout_sdcard_stm32mp157a-av96-extensible.raw
+   Partition table from ./flashlayout_allscenarios-image-base/extensible/../../FlashLayout_sdcard_stm32mp157a-av96-extensible.raw
 
    Populate raw image with image content:
    [ FILLED ] part 1:    fsbl1, image: arm-trusted-firmware/tf-a-stm32mp157a-av96-trusted.stm32
@@ -162,19 +162,19 @@ For more information on Avenger96 boot options, see `Getting Started with the Av
    [ FILLED ] part 3:     ssbl, image: bootloader/u-boot-stm32mp157a-av96-trusted.stm32
    [ FILLED ] part 4:     boot, image: st-image-bootfs-poky-stm32mp1-av96.ext4
    [ FILLED ] part 5: vendorfs, image: st-image-vendorfs-poky-stm32mp1-av96.ext4
-   [ FILLED ] part 6:   rootfs, image: openharmony-image-base-stm32mp1-av96.ext4
+   [ FILLED ] part 6:   rootfs, image: allscenarios-image-base-stm32mp1-av96.ext4
 
    ###########################################################################
    ###########################################################################
 
-   RAW IMAGE generated: ./flashlayout_openharmony-image-base/extensible/../../FlashLayout_sdcard_stm32mp157a-av96-extensible.raw
+   RAW IMAGE generated: ./flashlayout_allscenarios-image-base/extensible/../../FlashLayout_sdcard_stm32mp157a-av96-extensible.raw
 
    WARNING: before to use the command dd, please umount all the partitions
            associated to SDCARD.
        sudo umount `lsblk --list | grep mmcblk0 | grep part | gawk '{ print $7 }' | tr '\n' ' '`
 
    To put this raw image on sdcard:
-       sudo dd if=./flashlayout_openharmony-image-base/extensible/../../FlashLayout_sdcard_stm32mp157a-av96-extensible.raw of=/dev/mmcblk0 bs=8M conv=fdatasync status=progress
+       sudo dd if=./flashlayout_allscenarios-image-base/extensible/../../FlashLayout_sdcard_stm32mp157a-av96-extensible.raw of=/dev/mmcblk0 bs=8M conv=fdatasync status=progress
 
    (mmcblk0 can be replaced by:
         sdX if it's a device dedicated to receive the raw image
@@ -196,7 +196,7 @@ STM32 Cube Programmer
 
 After you build the image, follow the instructions in `Avenger96 Image Programming <https://wiki.dh-electronics.com/index.php/Avenger96_Image_Programming>`_,
 pointing the program to the
-*./tmp/deploy/images/stm32mp1-av96/flashlayout_openharmony-image-base/trusted/FlashLayout_emmc_stm32mp157a-av96-trusted.tsv*
+*./tmp/deploy/images/stm32mp1-av96/flashlayout_allscenarios-image-base/trusted/FlashLayout_emmc_stm32mp157a-av96-trusted.tsv*
 flash layout file.
 
 .. _zephyr-image-1:

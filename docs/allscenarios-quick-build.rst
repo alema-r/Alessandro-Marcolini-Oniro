@@ -53,10 +53,10 @@ Initialize a repo workspace and clone all required repositories:
     $ repo init -u https://git.ostc-eu.org/OSTC/OHOS/manifest.git -b develop
     $ repo sync --no-clone-bundle
 
-Build the openharmony-image-base image
-**************************************
+Build the allscenarios-image-base image
+***************************************
 
-The following steps will build a ``openharmony-image-base``. The process will
+The following steps will build a ``allscenarios-image-base``. The process will
 build all its components, including the toolchain, from source.
 
 First of all change directory into the one where the build repositories were
@@ -67,7 +67,7 @@ Initialize the build directory and run a build:
 .. code-block:: console
 
     $ TEMPLATECONF=../sources/meta-ohos/flavours/linux . ./sources/poky/oe-init-build-env build-ohos-linux
-    $ MACHINE=qemux86-64 bitbake openharmony-image-base
+    $ MACHINE=qemux86-64 bitbake allscenarios-image-base
 
 Booting a Qemu X86-64 target with a AllScenariOS image
 ******************************************************

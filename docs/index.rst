@@ -8,7 +8,7 @@ Build system documentation
 .. toctree::
    :maxdepth: 1
       
-   openharmony-quick-build
+   allscenarios-quick-build
    yocto-build-system/index
    repo-workspace
    build-flavours/index

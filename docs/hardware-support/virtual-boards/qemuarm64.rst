@@ -30,9 +30,9 @@ Supported images
 
   * - Image  Name
     - Description
-  * - openharmony-image-base
+  * - allscenarios-image-base
     - AllScenariOS image including the base OS software stack
-  * - openharmony-image-extra
+  * - allscenarios-image-extra
     - AllScenariOS Wayland image including the base OS software stack
 
 Build steps
@@ -49,12 +49,12 @@ Build steps
    $ TEMPLATECONF=../sources/meta-ohos/flavours/linux . ./sources/poky/oe-init-build-env build-ohos-linux
 
 2. You will find yourself in the newly created build directory. Call *bitbake*
-   to build the image. For example, if you are using *openharmony-image-base*
+   to build the image. For example, if you are using *allscenarios-image-base*
    run the following command:
 
 .. code-block:: console
 
-   $ MACHINE=qemuarm64 bitbake openharmony-image-base
+   $ MACHINE=qemuarm64 bitbake allscenarios-image-base
 
 Once the image is done, you can run the Qemu using the provided script wrapper:
 

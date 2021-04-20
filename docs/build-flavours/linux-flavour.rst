@@ -5,14 +5,14 @@
 Linux Kernel Build Flavour
 ##########################
 
-AllScenariOS Linux build flavour is based on *openharmony-linux* distribution (distro configuration).
+AllScenariOS Linux build flavour is based on *allscenarios-linux* distribution (distro configuration).
 
 Supported images:
 
-* openharmony-image-base
-* openharmony-image-base-tests
-* openharmony-image-extra
-* openharmony-image-extra-tests
+* allscenarios-image-base
+* allscenarios-image-base-tests
+* allscenarios-image-extra
+* allscenarios-image-extra-tests
 
 Supported machines (default in **bold**):
 
@@ -29,7 +29,7 @@ Build steps example:
 .. code-block:: console
 
     $ TEMPLATECONF=../sources/meta-ohos/flavours/linux . ./sources/poky/oe-init-build-env build-ohos-linux
-    $ bitbake openharmony-image-base
+    $ bitbake allscenarios-image-base
 
 You can test the image built for the qemux86-64 target by issuing:
 
