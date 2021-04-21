@@ -5,7 +5,7 @@
 Poky/Yocto Project
 ##################
 
-AllScenariOS aims to use standard opensource tools to create a build environment
+All Scenario OS aims to use standard opensource tools to create a build environment
 that is both familiar to users in the domain but also flexible enough for the
 requirements of the project. With this in mind, the project build
 infrastructure is based on the OpenEmbedded build system, more specifically
@@ -29,10 +29,10 @@ in the build system.
 See `terms  for reference <https://www.yoctoproject.org/software-overview/>`_
 for more information.
 
-AllScenariOS Build Layers
--------------------------
+All Scenario OS Build Layers
+----------------------------
 
-AllScenariOS bases its build setup on Poky, the Yocto Project open source
+All Scenario OS bases its build setup on Poky, the Yocto Project open source
 reference embedded distribution. The main hub of layers, is `meta-ohos <https://git.ostc-eu.org/OSTC/meta-ohos/>`_,
 a collection of layers with different scopes for defining the project's
 requirements and capabilities.

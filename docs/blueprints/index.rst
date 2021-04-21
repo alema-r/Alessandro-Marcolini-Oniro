@@ -2,11 +2,11 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
-AllScenariOS Blueprints
-#######################
+All Scenario OS Blueprints
+##########################
 
 This section details the available blueprints provided as part of the
-AllScenariOS environment.
+All Scenario OS environment.
 
 .. toctree::
    :maxdepth: 1

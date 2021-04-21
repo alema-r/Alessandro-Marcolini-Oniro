@@ -2,10 +2,10 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
-AllScenariOS Build Flavours
-###########################
+All Scenario OS Build Flavours
+##############################
 
-AllScenariOS provides default build configuration for each supported type of
+All Scenario OS provides default build configuration for each supported type of
 kernels. Each set of such configuration is called a ``flavour``.
 
 .. toctree::

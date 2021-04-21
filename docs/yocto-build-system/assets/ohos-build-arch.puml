@@ -6,7 +6,7 @@
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
 Person(dev, "Developer", "Anyone willing to build the OHOS based image")
-System(meta_ohos, "meta-ohos", "AllScenariOS OS umbrella bitbake meta-layer")
+System(meta_ohos, "meta-ohos", "All Scenario OS OS umbrella bitbake meta-layer")
 Boundary(poky, "poky") {
     System_Ext(bitbake, "bitbake", "build process orchestrator")
     System_Ext(linux_yocto, "linux-yocto", "Yocto Project LTS linux kernel")

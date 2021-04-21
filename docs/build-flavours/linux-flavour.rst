@@ -5,7 +5,7 @@
 Linux Kernel Build Flavour
 ##########################
 
-AllScenariOS Linux build flavour is based on *allscenarios-linux* distribution (distro configuration).
+All Scenario OS Linux build flavour is based on *allscenarios-linux* distribution (distro configuration).
 
 Supported images:
 

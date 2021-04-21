@@ -5,9 +5,9 @@
 Overview of Build Flavours
 ##########################
 
-AllScenariOS can be hosted on top of variety of kernels. Currently supported
+All Scenario OS can be hosted on top of variety of kernels. Currently supported
 kernels are Linux, Zephyr and FreeRTOS (experimental). The build system
-requires build configuration that is specific to each kernel and AllScenariOS
+requires build configuration that is specific to each kernel and All Scenario OS
 provides all this configuration as build templates. See `Yocto documentation <https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#creating-a-custom-template-configuration-directory>`_
 for more info about the underlying mechanism.
 

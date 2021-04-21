@@ -41,7 +41,7 @@ Supported image
     - Description
   * - allscenarios-image-base
     - Approximate 100-200 MB
-    - AllScenariOS image including the base OS software stack
+    - All Scenario OS image including the base OS software stack
 
 
 Building OHOS image

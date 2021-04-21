@@ -2,22 +2,22 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
-Adding Hardware Support in AllScenariOS
-#######################################
+Adding Hardware Support in All Scenario OS
+##########################################
 
 This section details the addition of new hardware to the supported set in
-AllScenariOS. It is intended as a checklist for adding new boards to OHOS build
+All Scenario OS. It is intended as a checklist for adding new boards to OHOS build
 system.
 
-Before starting get familiar with AllScenariOS Contribution Process.
+Before starting get familiar with All Scenario OS Contribution Process.
 
 .. contents:: 
    :depth: 2
 
-Select AllScenariOS Flavour
-***************************
+Select All Scenario OS Flavour
+******************************
 
-AllScenariOS uses a notion of kernel specific flavours:
+All Scenario OS uses a notion of kernel specific flavours:
 
 - Linux flavour
 - Zephyr flavour
@@ -47,7 +47,7 @@ directory) consist of the following files:
 
   * default flavour build configuration
 
-AllScenariOS build system uses ***repo*** tool for cloning required meta-layers
+All Scenario OS build system uses ***repo*** tool for cloning required meta-layers
 into appropriate build directory structure (see :ref:`Setting up a repo workspace <RepoWorkspace>`).
 To include a new layer, it has to be added in two places:
 

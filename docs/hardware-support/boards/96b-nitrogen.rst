@@ -43,7 +43,7 @@ Supported image
 Building an application
 =======================
 
-AllScenariOS OS Zephyr flavour is based on Zephyr kernel.
+All Scenario OS OS Zephyr flavour is based on Zephyr kernel.
 
 * Source the environment with proper template settings, flavour being zephyr and target machine being 96b-nitrogen:
 

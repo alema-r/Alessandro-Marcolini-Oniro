@@ -6,7 +6,7 @@
 all:
 	sphinx-build -W -C \
 		-D html_theme=sphinx_rtd_theme \
-		-D project='AllScenariOS Build System and meta-ohos' \
+		-D project='All Scenario OS Build System and meta-ohos' \
 		-D copyright='Huawei Inc' \
 		. build
 

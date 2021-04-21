@@ -43,10 +43,10 @@ Supported images
     - Description
   * - allscenarios-image-base
     - Approximate 100-200 MB
-    - AllScenariOS image including the base OS software stack
+    - All Scenario OS image including the base OS software stack
   * - allscenarios-image-extra
     - Approximate 100-200 MB
-    - AllScenariOS Wayland image including the base OS software stack
+    - All Scenario OS Wayland image including the base OS software stack
 
 
 Building OHOS image
