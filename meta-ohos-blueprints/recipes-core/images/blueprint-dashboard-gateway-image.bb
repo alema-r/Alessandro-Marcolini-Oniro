@@ -10,6 +10,7 @@ LICENSE = "Apache-2.0"
 
 IMAGE_INSTALL_append = "\
 	epiphany-app \
+	homeassistant-config-blueprint-dashboard \
 	python3-appdaemon \
 	python3-homeassistant \
 	weston \
