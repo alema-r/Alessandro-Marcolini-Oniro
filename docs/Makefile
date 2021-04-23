@@ -4,11 +4,7 @@
 
 .PHONY: all
 all:
-	sphinx-build -W -C \
-		-D html_theme=sphinx_rtd_theme \
-		-D project='All Scenario OS Build System and meta-ohos' \
-		-D copyright='Huawei Inc' \
-		. build
+	sphinx-build -W . build
 
 clean:
 	rm -rf ./build

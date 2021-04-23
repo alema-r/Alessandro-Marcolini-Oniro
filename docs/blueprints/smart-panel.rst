@@ -5,7 +5,7 @@
 Smart Panel Blueprint
 #####################
 
-.. contents:: 
+.. contents::
    :depth: 3
 
 Overview
@@ -22,6 +22,49 @@ localhost HomeAssistant server. The gateway is connected over Bluetooth to two
 Nitrogen boards exposing sensors and/or emulating device (e.g. light bulbs).
 
 .. image:: assets/smart-home-blueprint-arch.png
+
+.. uml::
+
+    title
+      <b>High level connection diagram
+    end title
+
+    node "Avenger96" #11AAFF {
+      [Linux]
+    }
+
+    node "Nitrogen #1" #116699 {
+      [Zephyr#1]
+    }
+
+    node "Nitrogen #2" #116699 {
+      [Zephyr#2]
+    }
+
+    [LED] #3BB300
+    [LCD] #3BB300
+    [MotionSensor] #3BB300
+    [HumidityTemperature] #3BB300
+    [Display]
+
+    [Linux] --> [Display] : HDMI
+
+    [Zephyr#1] --> Linux : BLE
+    [Zephyr#1] --> LCD : I2C
+    [Zephyr#1] <-- MotionSensor : I2C
+    [Zephyr#1] <-- HumidityTemperature : GPIO
+
+    [Zephyr#2] <-- Linux : BLE
+    [Zephyr#2] --> LED : GPIO
+
+    legend
+    |= Legend: |
+    |<back:#11AAFF>Avenger96:96Boards</back>|
+    |<back:#116699>Nitrogen:96Boards</back>|
+    |<back:#3BB300>Grove sensors</back>|
+    endlegend
+
+    [Human] --> [Display]
 
 How to build
 ************
