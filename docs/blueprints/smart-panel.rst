@@ -72,7 +72,7 @@ How to build
 The Linux Gateway
 -----------------
 
-1. Refer to :ref:`Building OHOS image for Avenger96 <SupportedBoardAvenger96>` to learn how to set up a build environment, build and flash a base All Scenario OS Linux image.
+1. Refer to :ref:`Building an All Scenarios OS image for Avenger96 <SupportedBoardAvenger96>` to learn how to set up a build environment, build and flash a base All Scenarios OS Linux image.
 2. Build blueprint image by invoking following bitbake command
 
 .. code-block:: console
