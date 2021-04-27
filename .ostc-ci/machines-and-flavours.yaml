@@ -1,0 +1,102 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: Huawei Inc.
+
+# NOTE: This file is included from the manifest repository. It is not
+# self-sufficient.  It is here only because the meta-ohos repository also
+# contains all the flavour and machine definitions and having both in one place
+# allows one to add a new MACHINE and the associated build jobs in one go.
+#
+# Please do not include this file directly.
+
+# The following jobs are documented in docs/ci/shared-jobs.rst
+
+linux-qemu-x86:
+  extends: .build-linux
+  variables:
+    MACHINE: qemux86
+    # Set OHOS_BUILD_CACHE to "pub", overriding the value defined in the
+    # .build job. This enables sharing of download and sstate-cache created
+    # during this job.
+    #
+    # This is done assuming that there are no non-redistributable or otherwise
+    # tainted build intermediate files, downloads or published artifacts. All
+    # the non-tainted builds help to populate a cache exposed at
+    # https://cache.ostc-eu.org/bitbake
+    OHOS_BUILD_CACHE: "pub"
+    OHOS_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
+
+linux-qemu-x86_64:
+  extends: .build-linux
+  variables:
+    MACHINE: qemux86-64
+    # See the note on linux-qemu-x86.
+    OHOS_BUILD_CACHE: "pub"
+    OHOS_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
+
+linux-qemu-arm:
+  extends: .build-linux
+  variables:
+    MACHINE: qemuarm
+    # See the note on linux-qemu-x86.
+    OHOS_BUILD_CACHE: "pub"
+    OHOS_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
+
+linux-qemu-arm64:
+  extends: .build-linux
+  variables:
+    MACHINE: qemuarm64
+    # See the note on linux-qemu-x86.
+    OHOS_BUILD_CACHE: "pub"
+    OHOS_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
+
+linux-seco-intel-b68:
+  extends: .build-linux
+  variables:
+    MACHINE: seco-intel-b68
+
+linux-seco-imx8mm-c61:
+  extends: .build-linux
+  variables:
+    MACHINE: seco-imx8mm-c61
+    # This platform requires proprietary resources to boot.
+    # See build-generic.yaml for explanation of OHOS_BB_LOCAL_CONF_ variables.
+    OHOS_BB_LOCAL_CONF_ACCEPT_FSL_EULA: 1
+
+linux-stm32mp1-av96:
+  extends: .build-linux
+  variables:
+    MACHINE: stm32mp1-av96
+
+zephyr-qemu-x86:
+  extends: .build-zephyr
+  variables:
+    MACHINE: qemu-x86
+    # See the note on linux-qemu-x86.
+    OHOS_BUILD_CACHE: "pub"
+    OHOS_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
+
+zephyr-qemu-cortex-m3:
+  extends: .build-zephyr
+  variables:
+    MACHINE: qemu-cortex-m3
+    # See the note on linux-qemu-x86.
+    OHOS_BUILD_CACHE: "pub"
+    OHOS_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
+
+zephyr-96b-nitrogen:
+  extends: .build-zephyr
+  variables:
+    MACHINE: 96b-nitrogen
+
+zephyr-96b-avenger:
+  extends: .build-zephyr
+  variables:
+    MACHINE: 96b-avenger96
+
+freertos-armv5:
+  extends: .build-freertos
+  variables:
+    MACHINE: qemuarmv5
+    # See the note on linux-qemu-x86.
+    OHOS_BUILD_CACHE: "pub"
+    OHOS_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
