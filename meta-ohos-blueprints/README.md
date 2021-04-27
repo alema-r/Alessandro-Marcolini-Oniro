@@ -6,7 +6,7 @@
 
 ## Description
 
-This layer, `meta-ohos-blueprints`, contains build metadata for OpenHarmony
+This layer, `meta-ohos-blueprints`, contains build metadata for All Scenarios OS
 blueprints.
 
 ## Layer dependencies
