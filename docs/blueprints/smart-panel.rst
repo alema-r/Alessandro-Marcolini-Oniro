@@ -6,7 +6,7 @@ Smart Panel Blueprint
 #####################
 
 .. contents::
-   :depth: 3
+   :depth: 4
 
 Overview
 ********
@@ -19,7 +19,7 @@ solution.
 The setup is composed of an Avenger96 board acting as a gateway and running
 HomeAssistant. The gateway also provides UI as a browser connected to the
 localhost HomeAssistant server. The gateway is connected over Bluetooth to two
-Nitrogen boards exposing sensors and/or emulating device (e.g. light bulbs).
+Nitrogen boards exposing sensors and/or actuator (e.g. controlled light source).
 
 .. image:: assets/smart-home-blueprint-arch.png
 
@@ -66,45 +66,372 @@ Nitrogen boards exposing sensors and/or emulating device (e.g. light bulbs).
 
     [Human] --> [Display]
 
-How to build
-************
+Bill of materials
+*****************
 
-The Linux Gateway
------------------
+IoT controller (Avenger96)
+--------------------------
+Equipment
+^^^^^^^^^
+* 1x 96Boards Avenger96
+* 1x Power supply 12 V minimum 2 A,
+* 1x microSD card at least 8 GB,
+* 1x HDMI touch screen,
 
-1. Refer to :ref:`Building an All Scenarios OS image for Avenger96 <SupportedBoardAvenger96>` to learn how to set up a build environment, build and flash a base All Scenarios OS Linux image.
-2. Build blueprint image by invoking following bitbake command
+Cables and connectors
+^^^^^^^^^^^^^^^^^^^^^
+* 1x HDMI-HDMI.
+* 1x microUSB-USB type A cable.
+* 1x Ethernet cable.
 
-.. code-block:: console
+IoT devices (Nitrogens)
+-----------------------
+Equipment
+^^^^^^^^^
+* 2x 96Boards Nitrogen,
+* 2x Grove Mezzanine board,
+* 1x Grove LED module,
+* 1x Grove DHT11 temperature and humidity sensor,
+* 1x Grove AK9753 human presence sensor,
+* 1x Grove LCD RGB Backlight screen,
 
-   $ MACHINE=stm32mp1-av96 DISTRO=allscenarios-linux-blueprint-dashboard bitbake blueprint-dashboard-gateway-image
+Cables and connectors
+^^^^^^^^^^^^^^^^^^^^^
+* 4x Grove connector cables,
+* 2x microUSB cable.
+
+Assembly
+********
+
+IoT controller
+--------------
+#. Connect the screen's display output with the board using HDMI cable.
+#. Connect the screen's touch controller with the board using USB cable.
+#. The board to a network with DHCP server configured using the Ethernet cable.
+#. Do not insert the microSD card into the board's slot. It will be needed for
+   flashing.
+#. Connect power supply to the power jack.
+
+   .. image:: assets/smarthome-blueprint-assembled.jpg
+      :alt: The whole assembled setup with labels
+
+IoT devices
+-----------
+#. Connect Grove Mezzanine boards to both Nitrogen boards. One of them will act
+   as a light switching device, the other as sensors device.
+#. Assemble the light switching device:
+
+   * Connect Grove LED module to GPIO IJ port on the Mezzanine board.
+
+#. Assemble the sensors device:
+
+   * Connect Grove DHT11 module to GPIO GH port on the Mezzanine board,
+   * Connect Grove AK9753 module to GPIO KL port on the Mezzanine board,
+   * Connect Grove LCD module to I2C0 port on the Mezzanine board,
+
+#. Connect Nitrogens to your computer with microUSB cables.
+
+Get sources
+***********
+#. 
+   Get All Scenarios OS sources as described in the :ref:`documentation <AllScenariOSQuickBuild>`.
+
+#. 
+   If you already have sources cloned, update them to the most recent revision
+
+   .. code-block:: bash
+
+      user@pc:~/ohos$ repo sync -d
+
+Prepare IoT devices (Nitrogen/Zephyr flavour)
+*********************************************
+
+Build
+-----
+#. 
+   Create build directory
+
+   .. code-block:: bash
+
+       user@pc:~/ohos$ TEMPLATECONF=../sources/meta-ohos/flavours/zephyr . ./sources/poky/oe-init-build-env build-ohos-zephyr-96b-nitrogen
+
+       user@pc:~/ohos/build-ohos-zephyr-96b-nitrogen
+
+#. 
+   Edit ``conf/local.conf``, and uncomment the following line:
+
+   .. code-block:: bash
+
+      #MACHINE ?= "96b-nitrogen"
+
+#. 
+   Build ``zephyr-blueprint-smarthome-sensors`` image using ``bitbake``,
+   with the following override:
 
 
-IOT Endpoints
--------------
-1. Connect Sensors Mezzanine adapter to each Nitrogen board. Connect I/O devices
-   according to SmartHome Blueprint app `README <https://git.ostc-eu.org/OSTC/OHOS/components/smart_home_demo_zephyr/-/blob/develop/README.md#connections>`_
-2. Refer to :ref:`Working with the board <SupportedBoardNitrogen>` to learn how to set up a build environment, build and flash a sample Zephyr application.
-3. Connect target board to the PC using USB connector.
-4. Build and flash blueprint image by invoking one of the following bitbake commands (for each IOT endpoint type respectively)
+   * ``SMART_HOME_SENSORS_MAC`` set to MAC address of the IoT device. It can
+     be any MAC address, provided it starts with ``C0`` and is unique in your environment.
+   * add board MAC override in the form of:
+     ``BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE SMART_HOME_SENSORS_MAC" SMART_HOME_SENSORS_MAC="<mac>"``
 
-.. note:: In order to connect multiple and flash selected boards, please refer to
-          `meta-zephyr README <http://git.yoctoproject.org/cgit/cgit.cgi/meta-zephyr/plain/README.txt>`_
-          on how to use PYOCD_FLASH_IDS environment variable.
+   .. code-block:: bash
 
-**For sensors board:**
+      user@pc:~/ohos/build-ohos-zephyr-96b-nitrogen$ BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE SMART_HOME_SENSORS_MAC" \
+          SMART_HOME_SENSORS_MAC="C0:BA:DD:06:F0:0D" bitbake zephyr-blueprint-smarthome-sensors
 
-* Connected I/O: LCD, DHT11, AK9753
+#. 
+   Make sure you have at least 3 GB of free space on the partition
+   where the build directory is located.
 
-.. code-block:: console
+#. 
+   Build ``zephyr-blueprint-smarthome-switch`` image using ``bitbake``,
+   with the following override:
 
-   $ MACHINE=96b-nitrogen DISTRO=allscenarios-zephyr bitbake zephyr-blueprint-smarthome-sensors -c flash_usb
 
-**For bulb/LED board:**
+   * ``SMART_HOME_SWITCH_MAC`` set to MAC address of the IoT device.
+     **It must be different than the MAC address used in the previous step**.
 
-* Connected I/O: LED
+     .. code-block:: bash
 
-.. code-block:: console
+        user@pc:~/ohos/build-ohos-zephyr-96b-nitrogen$ BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE SMART_HOME_SWITCH_MAC" \
+            SMART_HOME_SWITCH_MAC="C0:BA:DD:06:F0:0E" bitbake zephyr-blueprint-smarthome-switch
+        #   this byte is different~~~~~~~~~~~~~~~~~^
 
-   $ MACHINE=96b-nitrogen DISTRO=allscenarios-zephyr bitbake zephyr-blueprint-smarthome-led -c flash_usb
 
+Flash
+-----
+
+
+#. 
+   Connect 96Boards Nitrogen boards to your computer.
+
+#. 
+   Assuming both boards are connected simultaneously, retrieve their IDs
+
+   .. code-block:: bash
+
+      user@pc:~/ohos/build-ohos-zephyr-96b-nitrogen$ pyocd list
+        #   Probe              Unique ID
+      ---------------------------------------------------
+        0   Arch BLE [nrf51]   9009022103BB2A02FE6545F3
+        1   Arch BLE [nrf51]   9009022103BB3A2DFE6555DC
+
+   If you do not have PyOCD in your system, follow the guide in the PyOCD section of the
+   :ref:`Nitrogen documentation <SupportedBoardNitrogenPyOCD>`.
+
+#. 
+   Flash the first board with ``zephyr-blueprint-smarthome-sensors`` image. Use the same
+   command you used for build, with the following changes:
+
+
+   * add ``-c flash_usb`` suffix,
+   * remove the MAC address override (it is only effective at build time),
+   * add board ID override in the form of:
+     ``BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE PYOCD_FLASH_IDS" PYOCD_FLASH_IDS="<id>"``
+
+     .. code-block:: bash
+
+        user@pc:~/ohos/build-ohos-zephyr-96b-nitrogen$ BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE PYOCD_FLASH_IDS" \
+            PYOCD_FLASH_IDS="9009022103BB2A02FE6545F3" bitbake zephyr-blueprint-smarthome-sensors -c flash_usb
+
+#. 
+   Flash the other board with ``zephyr-blueprint-smarthome-switch`` image
+
+   .. code-block:: bash
+
+      user@pc:~/ohos/build-ohos-zephyr-96b-nitrogen$ BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE PYOCD_FLASH_IDS" \
+          PYOCD_FLASH_IDS="9009022103BB3A2DFE6555DC" bitbake zephyr-blueprint-smarthome-switch -c flash_usb
+
+Prepare IoT controller (Avenger96/Linux flavour)
+************************************************
+
+Build
+-----
+#. 
+   Create build directory
+
+   .. code-block:: bash
+
+       user@pc:~/ohos$ TEMPLATECONF=../sources/meta-ohos/flavours/linux . ./sources/poky/oe-init-build-env build-ohos-linux-stm32mp1-av96
+
+       user@pc:~/ohos/build-ohos-linux-stm32mp1-av96
+
+#. 
+   Edit ``conf/local.conf``, and uncomment the following line:
+
+   .. code-block:: bash
+
+      #MACHINE ?= "stm32mp1-av96"
+
+#. 
+   Make sure you have at least 25 GB of free space on the partition
+   where the build directory is located.
+
+
+#. Build ``blueprint-dashboard-gateway-image`` image using ``bitbake``,
+   with the following overrides:
+
+   * ``DISTRO`` set to ``allscenarios-linux-blueprint-dashboard`` --
+     this distribution configuration enhances the regular distribution
+     with dependencies necessary for this demonstration scenario,
+   * ``SMART_HOME_SENSORS_MAC`` and ``SMART_HOME_SWITCH_MAC`` set to MAC
+     addresses of IoT devices, as set in the previous section.
+
+     .. code-block:: bash
+
+        user@pc:~/ohos/build-ohos-linux-stm32mp1-av96$ DISTRO=allscenarios-linux-blueprint-dashboard \
+            BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE SMART_HOME_SENSORS_MAC SMART_HOME_SWITCH_MAC" \
+            SMART_HOME_SENSORS_MAC="C0:BA:DD:06:F0:0D" \
+            SMART_HOME_SWITCH_MAC="C0:BA:DD:06:F0:0E" \
+            bitbake blueprint-dashboard-gateway-image
+
+
+Flash
+-----
+#. 
+   Build artifacts are located in ``./tmp/deploy/images/stm32mp1-av96/`` relative
+   to the build directory. Flashing script is located in
+   ``./scripts/create_sdcard_from_flashlayout.sh`` relative to the build artifacts
+   directory. FSD card flash layout used to convert build artifacts to the image is
+   located in ``flashlayout_<image name>/extensible/FlashLayout_sdcard_stm32mp157a-av96-extensible.tsv``
+   relative to the build artifacts directory.
+
+#. 
+   Go to the build artifacts directory and convert flash layout into a build image
+
+   .. code-block:: bash
+
+      user@pc:~/ohos/build-ohos-linux-stm32mp1-av96$ cd tmp/deploy/images/stm32mp1-av96
+
+      user@pc:~/ohos/build-ohos-linux-stm32mp1-av96/tmp/deploy/images/stm32mp1-av96$ ./scripts/create_sdcard_from_flashlayout.sh \
+          flashlayout_blueprint-dashboard-gateway-image/extensible/FlashLayout_sdcard_stm32mp157a-av96-extensible.tsv
+
+#. 
+   Lots of text will appear, but the most important part are the two commands
+
+   .. code-block:: bash
+
+       WARNING: before to use the command dd, please umount all the partitions
+               associated to SDCARD.
+           sudo umount `lsblk --list | grep <sd card name> | grep part | gawk '{ print $7 }' | tr '\n' ' '`
+
+       To put this raw image on sdcard
+           sudo dd if=<image>.raw of=<sd card node> bs=8M conv=fdatasync status=progress
+
+#. Put a microSD card in your card reader. Copy the commands above and paste them
+   into your terminal. Do not remove the microSD card from the reader just yet.
+
+Add Bluetooth firmware
+----------------------
+Due to licensing details, All Scenarios OS cannot provide the firmware file for
+the on-board Bluetooth controller. However, user may download and install it
+manually.
+
+#. Download the `Bluetooth firmware file from GitHub <https://github.com/dh-electronics/meta-av96/raw/9d2a3fdacf49aebc9298a7c444f5a021d3e99e13/recipes-bsp/firmware-files/files/lib/firmware/brcm/BCM4345C0.hcd>`_.
+
+#. Create directory ``lib/firmware/brcm`` on the ``rootfs`` partition of the
+   microSD card and copy the downloaded file into that directory. Assuming your
+   card's mount point is ``/mnt/rootfs``, you may use the example commands to
+   accomplish that:
+
+   .. code-block:: bash
+
+      $ sudo mkdir /mnt/rootfs/lib/firmware/brcm
+      $ sudo cp ~/Downloads/BCM4345C0.hcd /mnt/rootfs/lib/firmware/brcm
+      $ sudo chmod 755 /mnt/rootfs/lib/firmware/brcm
+
+#. Unmount all microSD card partitions, remove them from the reader and put
+   it in Avenger96 card slot. Power up the board.
+
+Home Assistant
+**************
+
+Set up
+------
+#. Put ths SD card into Avenger96 and press power on button.
+#. On start up, Avenger96 will try to contact a DHCP server. Be sure to
+   have one in your network, where you can see the IP address assigned to
+   the board. Alternatively, you can use UART-USB adapter, log in to the
+   system and set IP address manually.
+#. Using a web browser, go to the IP address of Avenger96, port ``8123``.
+   E.g. if you find out the Avenger's IP address is ``192.0.2.137`` , go to
+   ``http://192.0.2.137:8123``.
+#. Create a user account and click your way through the basic settings.
+#. You should find yourself in Home Assistant dashboard. Three circular
+   icons on top show temperature, humidity and human presence.
+
+   .. image:: assets/smarthome-blueprint-dashboard.png
+      :alt: Home Assistant dashboard
+
+Customizing the Dashboard
+-------------------------
+#. Click three vertical dots in the top-right corner of the dashboard
+   and select ``Configure UI``.
+#. Agree to take control over the UI, remove the default widgets and
+   click the yellow ``+`` button in the bottom-right corner of the dashboard.
+#. Choose widgets according to your taste. They are already pre-configured,
+   connected to the existing sensors (temperature, humidity, human presence)
+   and light controls.
+#. Adjust widgets configuration according to your taste. Most notable
+   possibility is that you can combine multiple entities in one widget,
+   e.g. creating a single widget with all the sensors and a light control
+   switch.
+
+   .. image:: assets/smarthome-blueprint-dashboard-config.png
+      :alt: Home Assistant dashboard configuration
+
+
+   .. image:: assets/smarthome-blueprint-dashboard-config-done.png
+      :alt: Home Assistant dashboard finished configuration
+
+Set up automations
+------------------
+Home Assistant can do things for you based on state sensors. This is how
+Home Assistant can be configured to turn the light on/off based on
+user presence nearby the human presence sensor. Imagine it is a kitchen
+light turning on every time it detects you are about to prepare a meal!
+
+
+#. Go to Configuration menu using the cog button located on the left-hand
+   sidebar, then to Automations.
+#. Click the yellow ``+`` button in the bottom-right corner of the screen, then
+   skip the smart automations generator.
+#. Name your automation accordingly, e.g. *Lights on when somebody in the room*.
+#. Set the trigger as follows:
+
+   * Trigger type: ``State``,
+   * Entity: ``sensor.all_scenarios_os_smarthome_device_presence``,
+   * From: ``False`` (*person not detected*).
+   * To: ``True`` (*person detected*)/
+
+     .. image:: assets/smarthome-blueprint-dashboard-automations-trigger.png
+        :alt: Home Assistant dashboard automations trigger
+
+#. 
+   Set the action as follows:
+
+
+   * Action type: ``Call service``,
+   * Service: ``switch.turn_on``,
+   * Name(s) of entities to turn on: ``switch.all_scenarios_os_smarthome_device_light``.
+
+     .. image:: assets/smarthome-blueprint-dashboard-automations-action.png
+        :alt: Home Assistant dashboard automations action
+
+#. 
+   Click the yellow save button in the bottom-right corner of the screen.
+
+#. Repeat steps 2-6 for the opposite automation, i.e. turning the light off,
+   when human presence state switches from ``True`` to ``False``.
+
+Verify operations
+*****************
+#. Temperature and humidity readings should show temperature and humidity
+   in the room where the Nitrogen with sensors is located. Try to blow
+   hot/cold air on the sensor to see values changing
+#. Human presence state should change when you move your hand close to
+   the sensor.
+#. The light switch should control the LED.
+#. The LED should turn on/off automatically when human presence is detected.
+#. The LCD screen should display the current temperature, humidity
+   and the connection state marked with a ``<B>`` symbol.

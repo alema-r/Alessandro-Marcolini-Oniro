@@ -60,6 +60,7 @@ Flashing an application
 
 Installing pyOCD
 ----------------
+.. _SupportedBoardNitrogenPyOCD:
 
 pyOCD is an open source Python package for programming and debugging Arm Cortex-M microcontrollers using multiple supported types of USB debug probes. It is fully cross-platform, with support for Linux.
 
