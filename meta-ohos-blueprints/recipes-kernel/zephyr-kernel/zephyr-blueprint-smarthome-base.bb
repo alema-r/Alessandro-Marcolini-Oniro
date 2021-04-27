@@ -16,7 +16,7 @@ SRC_OPT_BRANCH = "branch=develop"
 SRC_OPTIONS = "${SRC_OPT_PROTO};${SRC_OPT_DEST};${SRC_OPT_NAME};${SRC_OPT_BRANCH}"
 SRC_URI += "git://git.ostc-eu.org/OSTC/OHOS/components/smart_home_blueprint_zephyr.git;${SRC_OPTIONS}"
 
-SRCREV_smarthome = "d45c192aa8a6b25328ab40610d6e78f50afe4150"
+SRCREV_smarthome = "b59f146fcb9c265b57c6466d9c70127de5c7dce2"
 
 ZEPHYR_SRC_DIR = "${S}/apps/smarthome"
 
