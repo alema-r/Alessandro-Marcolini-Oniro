@@ -14,3 +14,4 @@ This section details the boards supported as part of All Scenario OS.
    96b-nitrogen
    seco-intel-b68
    seco-imx8mm-c61
+   raspberrypi4

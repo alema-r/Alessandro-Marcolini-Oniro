@@ -31,4 +31,5 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-st-stm32mp-addons \
   ##OEROOT##/../meta-av96/meta-av96-core \
   ##OEROOT##/../meta-homeassistant \
+  ##OEROOT##/../meta-raspberrypi \
   "
