@@ -60,12 +60,12 @@ Supported images
   * - Image  Name
     - Description
   * - allscenarios-image-base
-    - All Scenario OS image including the base OS software stack
+    - All Scenarios OS image including the base OS software stack
   * - allscenarios-image-extra
-    - All Scenario OS Wayland image including the base OS software stack
+    - All Scenarios OS Wayland image including the base OS software stack
 
-Building All Scenario OS image
-==============================
+Building All Scenarios OS image
+===============================
 
 To clone the source code, perform the procedure in: :ref:`Setting up a repo
 workspace <RepoWorkspace>`.
@@ -98,8 +98,8 @@ Linux image
    The key file which is needed to flash into the SD card is
    "allscenarios-image-base-raspberrypi4-64.wic.bz2"
 
-Flashing All Scenario OS Linux Image
-************************************
+Flashing All Scenarios OS Linux Image
+*************************************
 
 SD card
 =======

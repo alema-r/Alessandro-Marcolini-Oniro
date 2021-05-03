@@ -4,15 +4,15 @@
 
 .. _AllScenariOSQuickBuild:
 
-All Scenario OS - Quick Build
-#############################
+All Scenarios OS - Quick Build
+##############################
 
-This section will guide you to building your first All Scenario OS image targeting
+This section will guide you to building your first All Scenarios OS image targeting
 a supported reference hardware. It will also provide the steps for flashing and
 booting such an image.
 
 The steps below will focus on a Qemu-based target. If you want to get a feeling
-of All Scenario OS on a real hardware, checkout the :ref:`Avenger96 support page
+of All Scenarios OS on a real hardware, checkout the :ref:`Avenger96 support page
 <SupportedBoardAvenger96>`.
 
 .. contents:: 
@@ -74,8 +74,8 @@ Initialize the build directory and run a build:
     $ TEMPLATECONF=../sources/meta-ohos/flavours/linux . ./sources/poky/oe-init-build-env build-ohos-linux
     $ MACHINE=qemux86-64 bitbake allscenarios-image-base
 
-Booting a Qemu X86-64 target with a All Scenario OS image
-*********************************************************
+Booting a Qemu X86-64 target with a All Scenarios OS image
+**********************************************************
 
 Once the image is built, you can run a Qemu X86-64 instance using the provided script wrapper as follows:
 

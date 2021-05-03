@@ -5,7 +5,7 @@
 FreeRTOS Kernel Build Flavour
 #############################
 
-All Scenario OS FreeRTOS build flavour is based on *freertos* distribution (distro configuration).
+All Scenarios OS FreeRTOS build flavour is based on *freertos* distribution (distro configuration).
 
 Supported images:
 

@@ -11,7 +11,7 @@ Qemu X86-64
 Overview
 ********
 
-All Scenario OS supports running the software stack into an virtual environment using Qemu.
+All Scenarios OS supports running the software stack into an virtual environment using Qemu.
 
 Building OHOS image
 ===================
@@ -31,9 +31,9 @@ Supported images
   * - Image  Name
     - Description
   * - allscenarios-image-base
-    - All Scenario OS image including the base OS software stack
+    - All Scenarios OS image including the base OS software stack
   * - allscenarios-image-extra
-    - All Scenario OS Wayland image including the base OS software stack
+    - All Scenarios OS Wayland image including the base OS software stack
 
 Build steps
 -----------
