@@ -1,0 +1,31 @@
+From c3d7321d59e959b357a7d3d69782d9105f3d04aa Mon Sep 17 00:00:00 2001
+From: Bernhard Rosenkraenzer <bernhard.rosenkraenzer.ext@huawei.com>
+Date: Mon, 17 May 2021 18:19:20 +0100
+Subject: [PATCH] ssl_tls: Increase size of padbuf to 64
+
+This fixes a warning (turned to an error with -Werror)
+with gcc 9 (dunfell's default).
+
+Signed-off-by: Bernhard Rosenkraenzer <bernhard.rosenkraenzer.ext@huawei.com>
+Upstream-Status: Pending
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff -up git/CMakeLists.txt.gcc9~ git/CMakeLists.txt
+--- git/CMakeLists.txt.gcc9~	2021-05-05 23:14:42.309742058 +0200
++++ git/CMakeLists.txt	2021-05-05 23:16:00.015038640 +0200
+@@ -197,9 +197,12 @@ if(CMAKE_COMPILER_IS_GNU)
+             set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wformat-signedness")
+         endif()
+     endif()
+-    if (GCC_VERSION VERSION_GREATER 7.0 OR GCC_VERSION VERSION_EQUAL 7.0)
++    if (GCC_VERSION VERSION_GREATER 7.0 OR GCC_VERSION VERSION_EQUAL 7.0 AND GCC_VERSION VERSION_LESS 9.0)
+       set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wformat-overflow=2 -Wformat-truncation=2")
+     endif()
++    if (GCC_VERSION VERSION_GREATER 9.0 OR GCC_VERSION VERSION_EQUAL 9.0)
++      set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wformat-overflow=2 -Wformat-truncation=1")
++    endif()
+     set(CMAKE_C_FLAGS_RELEASE     "-O2")
+     set(CMAKE_C_FLAGS_DEBUG       "-O0 -g3")
+     set(CMAKE_C_FLAGS_COVERAGE    "-O0 -g3 --coverage")
