@@ -21,20 +21,6 @@ To clone the source code, perform the procedure in: :ref:`Setting up a repo work
 Building a Linux image
 ======================
 
-Supported images
-----------------
-
-.. list-table:: Supported images
-  :widths: auto
-  :header-rows: 1
-
-  * - Image  Name
-    - Description
-  * - allscenarios-image-base
-    - All Scenarios OS image including the base OS software stack
-  * - allscenarios-image-extra
-    - All Scenarios OS Wayland image including the base OS software stack
-
 Build steps
 -----------
 

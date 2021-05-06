@@ -2,6 +2,8 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. _Zephyr_Kernel:
+
 Zephyr Kernel Build Flavour
 ###########################
 

@@ -35,11 +35,6 @@ For more details on 96Boards Nitrogen, see `Nitrogen product page <https://www.9
 Working with the board
 **********************
 
-Supported image
-===============
-
-* zephyr-philosophers
-
 Building an application
 =======================
 

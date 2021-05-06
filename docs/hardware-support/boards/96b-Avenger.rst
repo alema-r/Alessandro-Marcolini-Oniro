@@ -31,24 +31,6 @@ For more details on Avenger96 board, see `Avenger96 product page <https://www.96
 Working with the board
 **********************
 
-Supported images
-================
-
-.. list-table:: Supported images
-  :widths: auto
-  :header-rows: 1
-
-  * - Image  Name
-    - Size
-    - Description
-  * - allscenarios-image-base
-    - Approximate 100-200 MB
-    - All Scenarios OS image including the base OS software stack
-  * - allscenarios-image-extra
-    - Approximate 100-200 MB
-    - All Scenarios OS Wayland image including the base OS software stack
-
-
 Building OHOS image
 ===================
 

@@ -2,6 +2,8 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. _Linux_Kernel:
+
 Linux Kernel Build Flavour
 ##########################
 

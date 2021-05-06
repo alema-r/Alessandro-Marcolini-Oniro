@@ -28,24 +28,6 @@ For more detailed specifications of SBC-B68-eNUC SECO board, see `SBC-B68-eNUC S
 Working with the board
 **********************
 
-Supported images
-================
-
-.. list-table:: Supported images
-  :widths: auto
-  :header-rows: 1
-
-  * - Image  Name
-    - Size
-    - Description
-  * - allscenarios-image-base
-    - Approximate 100-200 MB
-    - All Scenarios OS image including the base OS software stack
-  * - allscenarios-image-extra
-    - Approximate 100-200 MB
-    - All Scenarios OS Wayland image including the base OS software stack
-
-
 Building OHOS image
 ===================
 

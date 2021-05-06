@@ -15,4 +15,5 @@ Build system documentation
    ohos-build/index
    ci/index
    blueprints/index
+   supported-images
    hardware-support/index

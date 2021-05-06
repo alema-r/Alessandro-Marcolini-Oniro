@@ -29,21 +29,6 @@ For more detailed specifications of SBC-C61 SECO board, see `SBC-C61 Specificati
 Working with the board
 **********************
 
-Supported image
-===============
-
-.. list-table:: Supported images
-  :widths: auto
-  :header-rows: 1
-
-  * - Image  Name
-    - Size
-    - Description
-  * - allscenarios-image-base
-    - Approximate 100-200 MB
-    - All Scenarios OS image including the base OS software stack
-
-
 Building OHOS image
 ===================
 
