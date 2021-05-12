@@ -4,8 +4,8 @@
 
 require zephyr-blueprint-smarthome-base.bb
 
-SUMMARY = "SmartHome blueprint image: smart LED"
-DESCRIPTION = "Zephyr based image targeting smart LED board"
+SUMMARY = "SmartHome blueprint image: smart LED switch"
+DESCRIPTION = "Zephyr based image targeting smart LED switch board"
 LICENSE = "Apache-2.0"
 
 MAC = "${SMART_HOME_SWITCH_MAC}"
