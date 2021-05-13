@@ -26,9 +26,9 @@ Install all the required host packages. Here is an example for **Ubuntu**:
 .. code-block:: console
 
     $ sudo apt-get install gawk wget git diffstat unzip texinfo gcc-multilib \
-    build-essential chrpath socat cpio python3 python3-pip python3-pexpect \
-    xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev \
-    pylint3 xterm 
+      build-essential chrpath socat cpio python3 python3-pip python3-pexpect \
+      xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev \
+      pylint3 xterm 
 
 See `official Yocto documentation <https://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#required-packages-for-the-build-host>`_
 for host package requirements on all supported Linux distributions.
