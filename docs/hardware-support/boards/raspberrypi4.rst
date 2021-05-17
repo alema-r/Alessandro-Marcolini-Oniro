@@ -13,8 +13,8 @@ Raspberry Pi 4 Model B
 Overview
 ********
 
-Raspberry Pi 4 Model B is powered with "Broadcom BCM2711, quad-core Cortex-A72
-(ARM v8) 64-bit SoC @ 1.5GHz". This product's key features include a
+Raspberry Pi 4 Model B is powered with Broadcom BCM2711, quad-core Cortex-A72
+(ARM v8) 64-bit SoC @ 1.5GHz. This product's key features include a
 high-performance 64-bit quad-core processor, dual-display support at
 resolutions up to 4K via a pair of micro-HDMI ports, hardware video decode at
 up to 4Kp60, and the RAM size various from 2GB, 4GB, or 8GB, dual-band
@@ -67,8 +67,8 @@ Linux image
 
 .. code-block:: console
 
-   $ TEMPLATECONF=../sources/meta-ohos/flavours/linux .
-   ./sources/poky/oe-init-build-env build-ohos-linux-raspberrypi4-64
+   $ TEMPLATECONF=../sources/meta-ohos/flavours/linux . \
+      ./sources/poky/oe-init-build-env build-ohos-linux-raspberrypi4-64
 
 2. You will find yourself in the newly created build directory. Call *bitbake*
    to build the image. For example, if you are using *allscenarios-image-base*
@@ -80,9 +80,9 @@ Linux image
 
 3. After the build completes, the bootloader, kernel, and rootfs image files
    can be found in
-   "build-ohos-linux-raspberrypi4-64/tmp/deploy/images/$MACHINE/".
+   ``build-ohos-linux-raspberrypi4-64/tmp/deploy/images/$MACHINE/``.
    The key file which is needed to flash into the SD card is
-   "allscenarios-image-base-raspberrypi4-64.wic.bz2"
+   ``allscenarios-image-base-raspberrypi4-64.wic.bz2``.
 
 Flashing All Scenarios OS Linux Image
 *************************************
@@ -101,9 +101,9 @@ Download the latest *etcher* tool from `balena-io etcher page
 Unzip and run the application.
 
    * Click "Flash from file" -> Navigate to
-     "build-ohos-linux-raspberrypi/tmp/deploy/images/$MACHINE/allscenarios-image-base-raspberrypi4-64.wic"
+     ``build-ohos-linux-raspberrypi/tmp/deploy/images/$MACHINE/allscenarios-image-base-raspberrypi4-64.wic``
 
-   * Click "Select target" -> Chose the SD Card device name (/dev/sdb).
+   * Click "Select target" -> Chose the SD Card device name (e.g. ``/dev/sdb``).
 
    * Click "Flash!"
 
@@ -116,8 +116,8 @@ Testing the board
 Serial Port
 ===========
 
-"By default, the new GPIO UART is disabled". To enable the serial UART, edit
-the *./sources/meta-ohos/flavours/linux/local.conf.sample* file.
+By default, the new GPIO UART is disabled. To enable the serial UART, edit
+the ``./sources/meta-ohos/flavours/linux/local.conf.sample`` file.
 
 For more details, see `UART configuration
 <https://www.raspberrypi.org/documentation/configuration/uart.md>`__.
@@ -134,7 +134,7 @@ For more details, see `Optional build configuration
 HDMI
 ====
 
-"Two micro HDMI ports(HDMI-0 and HDMI-1) are enabled by default". Simply
+Two micro HDMI ports (HDMI-0 and HDMI-1) are enabled by default. Simply
 plugging your HDMI-equipped monitor into the RPi4 using a standard HDMI
 cable will automatically lead to the Pi using the best resolution
 the monitor supports.
@@ -144,7 +144,7 @@ For more details, see `HDMI ports and configuration
 
 Bluetooth & BLE
 ===============
-"By default, BT and BLE supported".
+By default, BT and BLE are supported.
 
 Ethernet & WiFi
 ===============
@@ -160,13 +160,13 @@ Audio
 =====
 
 To enable the audio over 3.5mm jack, add the following line in
-*./sources/meta-ohos/flavours/linux/local.conf.sample*
+``./sources/meta-ohos/flavours/linux/local.conf.sample``
 
 .. code-block:: console
 
    RPI_EXTRA_CONFIG = "dtparam=audio=on"
 
-To enable the **aplay** support for audio playback, append the following lines:
+To enable the ``aplay`` support for audio playback, append the following lines:
 
 .. code-block:: console
 
@@ -175,12 +175,11 @@ To enable the **aplay** support for audio playback, append the following lines:
    IMAGE_INSTALL_append = " alsa-lib alsa-utils alsa-tools"
 
 To test the audio out on the *3.5mm audio jack*, we need to download the wav
-file and play with *aplay*.
+file and play with ``aplay``.
 
 .. code-block:: console
 
-   # wget \
-   https://file-examples-com.github.io/uploads/2017/11/file_example_WAV_1MG.wav
+   # wget https://file-examples-com.github.io/uploads/2017/11/file_example_WAV_1MG.wav
    # aplay file_example_WAV_1MG.wav
 
 Connect the headset on *3.5mm audio jack* and you should be able to hear the
@@ -190,7 +189,7 @@ I2C
 ===
 
 I2C is disabled by default. To enable I2C, edit the
-*./sources/meta-ohos/flavours/linux/local.conf.sample* file with below line:
+``./sources/meta-ohos/flavours/linux/local.conf.sample`` file with below line:
 
 .. code-block:: console
 
@@ -219,8 +218,7 @@ The following example shows how to test the GPIO-24 (which corresponds to
 physical pin number 18 on the GPIO connector of the Raspberry Pi):
 
 By default, sysfs driver is loaded, you will see the GPIO hardware exposed in
-the file system under
-/sys/class/gpio. It might look something like this:
+the file system under ``/sys/class/gpio``. It might look something like this:
 
 .. code-block:: console
 
@@ -228,7 +226,7 @@ the file system under
    export       gpiochip0    gpiochip504  unexport
 
 We'll look at how to use this interface next. Note that the device names
-starting with "gpiochip" are the GPIO controllers and we won't directly use
+starting with ``gpiochip`` are the GPIO controllers and we won't directly use
 them.
 
 To use a GPIO pin from the sysfs interface, perform the following steps:
@@ -247,19 +245,19 @@ To use a GPIO pin from the sysfs interface, perform the following steps:
 
 3) If an output pin, set the level to low or high.
 
-To validate the gpio24 pin value, connect the LED light with the positive line
-on pin# 18 (GPIO24) and the negative line on pin# 20 (Ground).
+To validate the GPIO24 pin value, connect the LED light with the positive line
+on pin #18 (GPIO24) and the negative line on pin #20 (Ground).
 
 .. code-block:: console
 
-   # echo 0 >/sys/class/gpio/gpio24/value  -> to set it low - LED Turn OFF
-   # echo 1 >/sys/class/gpio/gpio24/value  -> to set it high - LED Turn ON
+   # echo 0 >/sys/class/gpio/gpio24/value  # to set it low - LED Turn OFF
+   # echo 1 >/sys/class/gpio/gpio24/value  # to set it high - LED Turn ON
 
 4) If an input pin, read the pin's level (low or high).
 
 .. code-block:: console
 
-   # cat /sys/class/gpio/gpio24/value  -> 0 is low & 1 is high.
+   # cat /sys/class/gpio/gpio24/value  # 0 is low & 1 is high.
 
 5) When done, unexport the pin.
 
