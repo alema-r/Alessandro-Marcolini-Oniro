@@ -2,8 +2,8 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
-Build system documentation
-##########################
+Build System Guide
+##################
 
 .. toctree::
    :maxdepth: 1

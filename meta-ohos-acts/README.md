@@ -31,6 +31,6 @@ Run 'bitbake-layers add-layer <path to meta-ohos>/meta-ohos-acts'
 ## Misc
 
 This layer builds a subset of the ACTS (Application Compatibility Test Suite)
-for Open Harmony OS. Some tests are not ported yet. Some tests are excluded
+for All Scenarios OS. Some tests are not ported yet. Some tests are excluded
 because they are duplicated in the greater bitbake ecosystem (e.g. LTP). Some
 tests are hardware or kernel specific and are not considered in this phase yet.

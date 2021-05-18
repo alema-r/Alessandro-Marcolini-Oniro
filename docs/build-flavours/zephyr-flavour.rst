@@ -7,7 +7,7 @@
 Zephyr Kernel Build Flavour
 ###########################
 
-OpenHarmony Zephyr build flavour is based on *allscenarios-zephyr* distribution (distro configuration).
+All Scenarios OS Zephyr build flavour is based on *allscenarios-zephyr* distribution (distro configuration).
 
 Supported images:
 
