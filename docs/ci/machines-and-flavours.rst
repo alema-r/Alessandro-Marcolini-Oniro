@@ -93,6 +93,19 @@ architecture.
 The cache for this job is not public, pending legal review of any firmware that
 may be included.
 
+linux-raspberrypi4-64
+.....................
+
+This job extends `.build-linux` job from the manifest repository and builds
+``allscenarios-image-base-tests`` and ``allscenarios-image-extra-tests`` using
+the Linux flavour of All Scenarios OS and ``MACHINE=raspberrypi4-64``. This job
+checks that All Scenarios OS software can be built for the Raspberry Pi 4B
+development board, which contains the BCM2711 SoC, which implements 64bit ARMv8
+architecture.
+
+The cache for this job is not public, pending legal review of any firmware that
+may be included.
+
 zephyr-qemu-x86
 ...............
 

@@ -67,6 +67,11 @@ linux-stm32mp1-av96:
   variables:
     MACHINE: stm32mp1-av96
 
+linux-raspberrypi4-64:
+  extends: .build-linux
+  variables:
+    MACHINE: raspberrypi4-64
+
 zephyr-qemu-x86:
   extends: .build-zephyr
   variables:
