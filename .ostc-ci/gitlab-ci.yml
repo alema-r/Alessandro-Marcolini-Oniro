@@ -27,6 +27,12 @@ include:
     - 'reuse.yaml'
  - project: 'OSTC/OHOS/manifest'
    file: '.ostc-ci/build-generic.yaml'
+# By default, the CI pipeline is invoked using an explicit git ref (branch
+# name) in the manifest. This include is a HACK to allow the CI pipeline to get
+# changes to the machine-and-flavours.yaml picked up directly from the incoming
+# branch in the merge request instead of the explicit branch name in the
+# manifest.
+ - local: '/.ostc-ci/machines-and-flavours.yaml'
 
 dco:
   extends: .dco
