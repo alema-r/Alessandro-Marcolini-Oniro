@@ -111,6 +111,8 @@ You can use standard tools like ``ip``, ``ifconfig`` to configure the connection
              collisions:0 txqueuelen:1000
              RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
 
+For any fault in the hardware device, see :ref:`How to handle faulty hardware device <FallbackSupport>`.
+
 USB Host
 ========
 

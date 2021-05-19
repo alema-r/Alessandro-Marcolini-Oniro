@@ -269,6 +269,8 @@ Wired connection works out of the box. You can use standard tools like ``ip``,
 ``ifconfig`` to configure the connection. The connection seems to have stable
 1Gb/s bandwidth.
 
+For any fault in the hardware device, see :ref:`How to handle faulty hardware device <FallbackSupport>`.
+
 USB Host
 ========
 
@@ -366,6 +368,8 @@ brought up with ``wpa_supplicant -i wlan0 -c ./wpa.conf``:
            key_mgmt=NONE
    }
 
+For any fault in the hardware device, see :ref:`How to handle faulty hardware device <FallbackSupport>`.
+
 Bluetooth
 ---------
 
@@ -394,3 +398,5 @@ enabled as follows:
 
 Pairing and establishing connection is possible with ``pair`` and ``connect``
 commands.
+
+For any fault in the hardware device, see :ref:`How to handle faulty hardware device <FallbackSupport>`.

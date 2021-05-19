@@ -146,6 +146,8 @@ Bluetooth & BLE
 ===============
 By default, BT and BLE are supported.
 
+For any fault in the hardware device, see :ref:`How to handle faulty hardware device <FallbackSupport>`.
+
 Ethernet & WiFi
 ===============
 
@@ -155,6 +157,8 @@ specific configuration is needed to enable drivers for these interfaces.
 Setting a static of dynamic IP for the interface is implementation and
 deployment specific and any network configuration tool can be used to
 configure IPv4 or IPv6 address to RPi.
+
+For any fault in the hardware device, see :ref:`How to handle faulty hardware device <FallbackSupport>`.
 
 Audio
 =====

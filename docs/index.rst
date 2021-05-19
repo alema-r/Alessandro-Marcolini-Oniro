@@ -17,3 +17,4 @@ Build System Guide
    blueprints/index
    supported-images
    hardware-support/index
+   fallback-devices-support

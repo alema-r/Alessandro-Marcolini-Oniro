@@ -101,6 +101,8 @@ Ethernet
 
 Wired connection works out of the box. You can use standard tools like ``ip``, ``ifconfig`` to configure the connection.
 
+For any fault in the hardware device, see :ref:`How to handle faulty hardware device <FallbackSupport>`.
+
 USB Host
 ========
 
