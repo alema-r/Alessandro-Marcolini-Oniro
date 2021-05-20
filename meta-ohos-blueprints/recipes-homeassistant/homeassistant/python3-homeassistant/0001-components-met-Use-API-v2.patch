@@ -1,0 +1,41 @@
+From 115abd1bc0d801528f2d4ef270962a171aed1b22 Mon Sep 17 00:00:00 2001
+From: Andrei Gherzan <andrei@gherzan.com>
+Date: Thu, 20 May 2021 11:38:43 +0100
+Subject: [PATCH] components/met: Use API v2
+
+Signed-off-by: Andrei Gherzan <andrei@gherzan.com>
+Upstream-status: Pending
+---
+ homeassistant/components/met/manifest.json | 2 +-
+ homeassistant/components/met/weather.py    | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/homeassistant/components/met/manifest.json b/homeassistant/components/met/manifest.json
+index 62aeaf2..4e908e3 100644
+--- a/homeassistant/components/met/manifest.json
++++ b/homeassistant/components/met/manifest.json
+@@ -3,7 +3,7 @@
+   "name": "Meteorologisk institutt (Met.no)",
+   "config_flow": true,
+   "documentation": "https://www.home-assistant.io/integrations/met",
+-  "requirements": ["pyMetno==0.4.6"],
++  "requirements": ["pyMetno==0.7.0"],
+   "dependencies": [],
+   "codeowners": ["@danielhiversen"]
+ }
+diff --git a/homeassistant/components/met/weather.py b/homeassistant/components/met/weather.py
+index 1315009..048a0aa 100644
+--- a/homeassistant/components/met/weather.py
++++ b/homeassistant/components/met/weather.py
+@@ -30,7 +30,7 @@ ATTRIBUTION = (
+ )
+ DEFAULT_NAME = "Met.no"
+ 
+-URL = "https://aa015h6buqvih86i1.api.met.no/weatherapi/locationforecast/1.9/"
++URL = "https://aa015h6buqvih86i1.api.met.no/weatherapi/locationforecast/2.0/classic"
+ 
+ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
+     {
+-- 
+2.31.1
+
