@@ -10,6 +10,8 @@ INHIBIT_DEFAULT_DEPS = "1"
 
 inherit allarch
 
+HOMEASSISTANT_TRUSTED_NETWORK ?= "192.168.0.0/24"
+
 do_fetch[noexec] = "1"
 do_unpack[noexec] = "1"
 do_patch[noexec] = "1"
@@ -33,10 +35,53 @@ sensor:
 switch:
   - platform: allscenarios_switch
     mac: "${SMART_HOME_SWITCH_MAC}"
+
+homeassistant:
+  auth_providers:
+    - type: trusted_networks
+      trusted_networks:
+        - "${HOMEASSISTANT_TRUSTED_NETWORK}"
+        - 127.0.0.1
+        - ::1
+      allow_bypass_login: true
+    - type: homeassistant
+
+automation: !include automations.yaml
+EOF
+
+    # Preload automation configuration for the loader
+    # Trigger on/off LED based on the human presence sensor input.
+    cat >> "${D}${HOMEASSISTANT_CONFIG_DIR}/automations.yaml" << EOF
+- id: '1621503053201'
+  alias: Light on
+  description: ''
+  trigger:
+  - entity_id: sensor.all_scenarios_os_smarthome_device_presence
+    from: 'False'
+    platform: state
+    to: 'True'
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.all_scenarios_os_smarthome_device_light
+    service: switch.turn_on
+- id: '1621503121253'
+  alias: Light off
+  description: ''
+  trigger:
+  - entity_id: sensor.all_scenarios_os_smarthome_device_presence
+    from: 'True'
+    platform: state
+    to: 'False'
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.all_scenarios_os_smarthome_device_light
+    service: switch.turn_off
 EOF
 
     chown -R "${HOMEASSISTANT_USER}":homeassistant "${D}${HOMEASSISTANT_CONFIG_DIR}"
 }
 
 RDEPENDS_${PN} = "smart-home-homeassistant-plugin"
-FILES_${PN} += "${HOMEASSISTANT_CONFIG_DIR}/configuration.yaml"
+FILES_${PN} += "${HOMEASSISTANT_CONFIG_DIR}"
