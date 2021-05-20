@@ -18,8 +18,11 @@ IMAGE_INSTALL_append = "\
 	weston-init \
 	"
 
-# 100 MiB of additional storage for config and runtime data.
-IMAGE_ROOTFS_EXTRA_SPACE = "102400"
+# 500 MiB of additional storage for config and runtime data.
+# We need a bit more because Google Safe Browsing database case easily go to
+# around 200MiB.
+# https://gitlab.gnome.org/GNOME/epiphany/-/issues/477
+IMAGE_ROOTFS_EXTRA_SPACE = "524288"
 
 # This is a workaround in case the build runs on ZFS with compression on.
 # It also gives us extra runtime space.
