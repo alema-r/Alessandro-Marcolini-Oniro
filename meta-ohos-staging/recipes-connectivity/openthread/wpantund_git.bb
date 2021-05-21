@@ -16,7 +16,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=e7820bc7f7d1638a6b54fc2e8d7fb103 \
 SRC_URI = "gitsm://github.com/openthread/wpantund.git;protocol=https"
 
 PV = "0.07.01+git${SRCPV}"
-SRCREV = "e62ad0af2f10144886b061d7f1d5cfd2a15db9ae"
+SRCREV = "820468161c87816a3e94366ebbe2a932650416e3"
 
 S = "${WORKDIR}/git"
 
