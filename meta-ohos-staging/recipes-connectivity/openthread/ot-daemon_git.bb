@@ -11,7 +11,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=543b6fe90ec5901a683320a36390c65f \
 # While we have more third_party code with different licenses here we do not use
 # them in the posix daemon build.
 
-SRC_URI = "gitsm://github.com/openthread/openthread.git;protocol=https"
+SRC_URI = "gitsm://github.com/openthread/openthread.git;protocol=https;branch=main"
 
 PV = "0.1+git${SRCPV}"
 SRCREV = "4d50cbadbc3c584c7174f4be41fe65e2016a7ece"
