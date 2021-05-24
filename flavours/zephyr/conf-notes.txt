@@ -8,6 +8,7 @@ Supported machines (first is the default):
 - qemu-cortex-m3
 - 96b-nitrogen (96Boards Nitrogen)
 - 96b-avenger96 (96Boards Avenger96)
+- nrf52840dk-nrf52840 (Nordic Semiconductor nRF 52840 Development Kit)
 
 MACHINE variable can be set up in conf/local.conf file under build directory
 or via command line, e.g.:

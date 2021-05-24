@@ -28,6 +28,7 @@
 #
 #MACHINE ?= "96b-nitrogen"
 #MACHINE ?= "96b-avenger96"
+#MACHINE ?= "nrf52840dk-nrf52840"
 #
 # This sets the default machine to be qemu-x86 if no other machine is selected:
 MACHINE ??= "qemu-x86"
