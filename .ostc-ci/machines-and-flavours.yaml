@@ -93,6 +93,11 @@ zephyr-96b-avenger:
   variables:
     MACHINE: 96b-avenger96
 
+zephyr-nrf52840dk-nrf52840:
+  extends: .build-zephyr
+  variables:
+    MACHINE: nrf52840dk-nrf52840
+
 freertos-armv5:
   extends: .build-freertos
   variables:
