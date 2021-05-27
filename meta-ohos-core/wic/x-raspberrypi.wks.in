@@ -1,0 +1,33 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+# short-description: Disk image for RaspberryPi boards
+# long-description: Creates a MBR partitioned SD image using VFAT for the first
+# partition and common partitions for the rest of the entries.
+# We are using a MBR-based setup as the target doesn't support (as of now)
+# booting a SD card with a GPT partition table. For more info see:
+# https://github.com/raspberrypi/firmware/issues/1465
+# https://www.raspberrypi.org/forums/viewtopic.php?t=281678
+# https://elinux.org/RPi_Easy_SD_Card_Setup
+#
+# Disk layout:
+#  - -------- --------- --------- ------------------------------------------
+# | |        |         |         |                extended                  |
+# | |        |         |         |  ------------ ------------ ------------  |
+# | | x-boot | x-sys-a | x-sys-b | | x-dev-data | x-sys-data | x-app-data | |
+# | |        |         |         |  ------------ ------------ ------------  |
+#  - -------- --------- --------- ------------------------------------------
+# ^ ^
+# | |
+# 0 |
+#   4096KiB
+
+bootloader --ptable msdos
+
+part --source bootimg-partition --fstype=vfat --label x-boot --align 4096 --fixed-size ${BOOT_PARTITION_SIZE} --active --offset 4096
+${WIC_ROOTA_PARTITION}
+${WIC_ROOTB_PARTITION}
+${WIC_DEVICEDATA_PARTITION}
+${WIC_SYSDATA_PARTITION}
+${WIC_APPDATA_PARTITION}
