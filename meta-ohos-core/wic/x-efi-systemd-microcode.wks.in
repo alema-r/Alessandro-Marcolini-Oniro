@@ -1,0 +1,26 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+# short-description: Create an EFI disk image with systemd-boot
+# long-description: Creates a partitioned EFI disk image that the user
+# can directly dd to boot media. The selected bootloader is systemd-boot.
+# It also includes intel-microcode as an initrd for early update support.
+# Based on OE-core's systemd-bootdisk.wks file.
+#
+# Disk layout:
+#  -- -------- --------- --------- ------------ ------------ ------------
+# |  | x-boot | x-sys-a | x-sys-b | x-dev-data | x-sys-data | x-app-data |
+#  -- -------- --------- --------- ------------ ------------ ------------
+# ^  ^
+# |  |
+# 0  4096KiB
+
+bootloader --ptable gpt --timeout=5 --append=" rootfstype=ext4 "
+
+part --source bootimg-efi --sourceparams="loader=systemd-boot,initrd=microcode.cpio" --label x-boot --align 4096 --fixed-size ${BOOT_PARTITION_SIZE} --active --offset 4096
+${WIC_ROOTA_PARTITION}
+${WIC_ROOTB_PARTITION}
+${WIC_DEVICEDATA_PARTITION}
+${WIC_SYSDATA_PARTITION}
+${WIC_APPDATA_PARTITION}
