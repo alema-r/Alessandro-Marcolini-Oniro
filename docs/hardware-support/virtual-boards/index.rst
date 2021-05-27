@@ -12,5 +12,3 @@ This section details the support for virtual targets in All Scenario OS.
   
    qemux86-64
    qemux86
-   qemuarm
-   qemuarm64

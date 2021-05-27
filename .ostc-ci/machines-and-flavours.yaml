@@ -33,22 +33,6 @@ linux-qemu-x86_64:
     OHOS_BUILD_CACHE: "pub"
     OHOS_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
 
-linux-qemu-arm:
-  extends: .build-linux
-  variables:
-    MACHINE: qemuarm
-    # See the note on linux-qemu-x86.
-    OHOS_BUILD_CACHE: "pub"
-    OHOS_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
-
-linux-qemu-arm64:
-  extends: .build-linux
-  variables:
-    MACHINE: qemuarm64
-    # See the note on linux-qemu-x86.
-    OHOS_BUILD_CACHE: "pub"
-    OHOS_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
-
 linux-seco-intel-b68:
   extends: .build-linux
   variables:

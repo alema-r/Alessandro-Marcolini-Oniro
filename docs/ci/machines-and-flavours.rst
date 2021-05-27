@@ -35,26 +35,6 @@ All Scenarios OS software can be built for a basic 64bit x86 virtual machine.
 
 The cache for this job is publicly available.
 
-linux-qemu-arm
-..............
-
-This job extends `.build-linux` job from the manifest repository and builds
-``allscenarios-image-base-tests`` and ``allscenarios-image-extra-tests`` using
-the Linux flavour of All Scenarios OS and ``MACHINE=qemuarm``. This job checks that
-All Scenarios OS software can be built for a basic 32bit ARMv7 virtual machine.
-
-The cache for this job is publicly available.
-
-linux-qemu-arm64
-................
-
-This job extends `.build-linux` job from the manifest repository and builds
-``allscenarios-image-base-tests`` and ``allscenarios-image-extra-tests`` using
-the Linux flavour of All Scenarios OS and ``MACHINE=qemuarm64``. This job checks that
-All Scenarios OS software can be built for a basic 64bit ARMv8 virtual machine.
-
-The cache for this job is publicly available.
-
 linux-seco-intel-b68
 ....................
 
