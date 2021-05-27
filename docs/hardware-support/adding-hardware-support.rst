@@ -2,8 +2,8 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
-Adding Hardware Support in All Scenarios OS
-###########################################
+Adding New Hardware Support in All Scenarios OS
+###############################################
 
 This section details the addition of new hardware to the supported set in
 All Scenarios OS. It is intended as a checklist for adding new boards to OHOS build
@@ -34,18 +34,18 @@ Add Required meta-layers
 OHOS flavours configuration templates (stored in `OHOS/meta-ohos/flavours <https://git.ostc-eu.org/OSTC/OHOS/meta-ohos/-/tree/develop/flavours>`_
 directory) consist of the following files:
 
-* ``bblayers.conf.sample``
+.. list-table:: Configuration Files
+   :header-rows: 1
 
-  * set of meta-layers for the specific flavour (it can be unified across
-    multiple layers where there are no layers incompatibilities)
-
-* ``conf-notes.txt``
-
-  * text snippet to be used as part of build logs
-
-* ``local.conf.sample``
-
-  * default flavour build configuration
+   * - File Name
+     - Description
+   * - ``bblayers.conf.sample``
+     - set of meta-layers for the specific flavour (it can be unified across
+       multiple layers where there are no layers incompatibilities)
+   * - ``conf-notes.txt``
+     - text snippet to be used as part of build logs
+   * - ``local.conf.sample``
+     - default flavour build configuration
 
 All Scenarios OS build system uses ***repo*** tool for cloning required meta-layers
 into appropriate build directory structure (see :ref:`Setting up a repo workspace <RepoWorkspace>`).
