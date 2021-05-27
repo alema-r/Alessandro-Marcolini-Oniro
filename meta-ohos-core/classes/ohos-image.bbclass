@@ -38,3 +38,38 @@ def extlinux_boot_files(d):
     if not boot_files:
         return ''
     return ' '.join(boot_files)
+
+#
+# wic configuration with support for system update partition setup
+#
+
+WKS_FILE_raspberrypi4-64 ?= "x-raspberrypi.wks.in"
+
+WKS_FILE_seco-intel-b68 ?= "x-efi-systemd-microcode.wks.in"
+IMAGE_FSTYPES_append_seco-intel-b68 = " wic wic.bz2 wic.bmap"
+
+WKS_FILE_stm32mp1-av96 ?= "x-avenger96.wks.in"
+IMAGE_BOOT_FILES_stm32mp1-av96 ?= " \
+    kernel/${KERNEL_IMAGETYPE};${KERNEL_IMAGETYPE} \
+    ${@dtb_boot_files(d)} \
+    ${@extlinux_boot_files(d)} \
+    "
+IMAGE_FSTYPES_append_stm32mp1-av96 = " wic wic.bz2 wic.bmap"
+WKS_FILE_DEPENDS_stm32mp1-av96 ?= " \
+    u-boot-stm32mp-extlinux \
+    virtual/bootloader \
+    virtual/trusted-firmware-a \
+    virtual/kernel \
+    "
+# TODO: ST u-boot hardcodes this value. Configure wic as well so it matches the
+# uboot configuration.
+WIC_ROOTA_PARTITION_EXTRA_ARGS_stm32mp1-av96 ?= "--uuid e91c4e10-16e6-4c0e-bd0e-77becf4a3582"
+
+# We avoid any other fstypes (for qemu) by default as the OS depends on a
+# specific partition table provided through the wic configuration.
+IMAGE_FSTYPES_qemux86 ?= "wic"
+WKS_FILE_qemux86 ?= "x-qemux86-directdisk.wks.in"
+IMAGE_FSTYPES_qemux86-64 ?= "wic"
+WKS_FILE_qemux86-64 ?= "x-qemux86-directdisk.wks.in"
+
+WKS_FILE_seco-imx8mm-c61 ?= "x-imx-uboot-bootpart.wks.in"
