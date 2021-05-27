@@ -84,8 +84,9 @@ Zephyr image
 Flashing OHOS image
 *******************
 
-For Linux, STM meta-layer provide a convenient shell script that helps you to
-create an SD card image. You can also use the `STM32 Cube Programmer <https://wiki.dh-electronics.com/index.php/Avenger96_Image_Programming>`__.
+For Linux, `bmaptool <https://github.com/intel/bmap-tools>` is recommended to
+create an SD card image. The images we provide also create wic files (disk
+images) that you can use directly. You can also use the `STM32 Cube Programmer <https://wiki.dh-electronics.com/index.php/Avenger96_Image_Programming>`__.
 
 For Zephyr, there is no automation as for now. To have the ELF file in the filesystem:
 
@@ -108,70 +109,18 @@ circuit board.
 
 For more information on Avenger96 boot options, see `Getting Started with the Avenger96 <https://www.96boards.org/documentation/consumer/avenger96/getting-started/#starting-the-board-for-the-first-time>`__.
 
-1. After the image is built, run the following script with flash layout TSV file provided as an argument. From the build directory created
-   during the environment source. For example, if you are using
-   allscenarios-image-base run the following command:
+1. After the image is built, you are ready to burn the generated image onto the
+   SD card. We recommend using `bmaptool <https://github.com/intel/bmap-tools>`
+   and the instructions below will use it. For example, if you are building
+   allscenarios-image-base run the following command replacing (or defining)
+   ``$DEVNODE`` accordingly:
 
 .. code-block:: console
 
    $ cd tmp/deploy/images/stm32mp1-av96
-   $ ./scripts/create_sdcard_from_flashlayout.sh ./flashlayout_allscenarios-image-base/extensible/FlashLayout_sdcard_stm32mp157a-av96-extensible.tsv
+   $ bmaptool copy allscenarios-image-base-stm32mp1-av96.wic.bz2 $DEVNODE
 
-2. The following output is displayed. For the image to be flashed to the card,
-   copy and paste the commands to the terminal to flash the image onto the
-   card.
-
-::
-
-   [WARNING]: A previous raw image are present on this directory
-   [WARNING]:    ./flashlayout_allscenarios-image-base/extensible/../../FlashLayout_sdcard_stm32mp157a-av96-extensible.raw
-   [WARNING]: would you like to erase it: [Y/n]
-
-   Create Raw empty image: ./flashlayout_allscenarios-image-base/extensible/../../FlashLayout_sdcard_stm32mp157a-av96-extensible.raw of 2368MB
-   Create partition table:
-   [CREATED] part 1:    fsbl1 [partition size 256.0 KiB]
-   [CREATED] part 2:    fsbl2 [partition size 256.0 KiB]
-   [CREATED] part 3:     ssbl [partition size 2.0 MiB]
-   [CREATED] part 4:     boot [partition size 64.0 MiB]
-   [CREATED] part 5: vendorfs [partition size 16.0 MiB]
-   [CREATED] part 6:   rootfs [partition size 2.2 GiB]
-
-   Partition table from ./flashlayout_allscenarios-image-base/extensible/../../FlashLayout_sdcard_stm32mp157a-av96-extensible.raw
-
-   Populate raw image with image content:
-   [ FILLED ] part 1:    fsbl1, image: arm-trusted-firmware/tf-a-stm32mp157a-av96-trusted.stm32
-   [ FILLED ] part 2:    fsbl2, image: arm-trusted-firmware/tf-a-stm32mp157a-av96-trusted.stm32
-   [ FILLED ] part 3:     ssbl, image: bootloader/u-boot-stm32mp157a-av96-trusted.stm32
-   [ FILLED ] part 4:     boot, image: st-image-bootfs-poky-stm32mp1-av96.ext4
-   [ FILLED ] part 5: vendorfs, image: st-image-vendorfs-poky-stm32mp1-av96.ext4
-   [ FILLED ] part 6:   rootfs, image: allscenarios-image-base-stm32mp1-av96.ext4
-
-   ###########################################################################
-   ###########################################################################
-
-   RAW IMAGE generated: ./flashlayout_allscenarios-image-base/extensible/../../FlashLayout_sdcard_stm32mp157a-av96-extensible.raw
-
-   WARNING: before to use the command dd, please umount all the partitions
-           associated to SDCARD.
-       sudo umount `lsblk --list | grep mmcblk0 | grep part | gawk '{ print $7 }' | tr '\n' ' '`
-
-   To put this raw image on sdcard:
-       sudo dd if=./flashlayout_allscenarios-image-base/extensible/../../FlashLayout_sdcard_stm32mp157a-av96-extensible.raw of=/dev/mmcblk0 bs=8M conv=fdatasync status=progress
-
-   (mmcblk0 can be replaced by:
-        sdX if it's a device dedicated to receive the raw image
-             (where X can be a, b, c, d, e)
-
-   ###########################################################################
-   ###########################################################################
-
-3. To unmount the card, call the ``umount`` command printed by the
-   ``create_sdcard_from_flashlayout.sh`` script.
-
-4. To flash the image card, call the ``dd`` command printed by the
-   ``create_sdcard_from_flashlayout.sh`` script.
-
-5. Put the card to the board and turn it on.
+2. Put the card to the board and turn it on.
 
 STM32 Cube Programmer
 ---------------------
