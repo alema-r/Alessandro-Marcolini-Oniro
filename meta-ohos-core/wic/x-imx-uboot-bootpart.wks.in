@@ -1,0 +1,30 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+# short-description: Create SD card image with a boot partition for i.MX boards
+# long-description: Create an image that can be written onto a SD card for use
+# with i.MX SoC family. Configuration based on imx-uboot-bootpart.wks.in but
+# with support for common partitions.
+#
+# Disk layout:
+#  - -------- --------- --------- ------------------------------------------
+# | |        |         |         |                extended                  |
+# | |        |         |         |  ------------ ------------ ------------  |
+# | | x-boot | x-sys-a | x-sys-b | | x-dev-data | x-sys-data | x-app-data | |
+# | |        |         |         |  ------------ ------------ ------------  |
+#  - -------- --------- --------- ------------------------------------------
+# ^ ^
+# | |
+# 0 |
+#   4096KiB
+
+bootloader --ptable msdos
+
+part u-boot --source rawcopy --sourceparams="file=${UBOOT_BINARY}" --no-table --align 1
+part --source bootimg-partition --fstype=vfat --label x-boot --align 4096 --fixed-size ${BOOT_PARTITION_SIZE} --active --offset 4096
+${WIC_ROOTA_PARTITION}
+${WIC_ROOTB_PARTITION}
+${WIC_DEVICEDATA_PARTITION}
+${WIC_SYSDATA_PARTITION}
+${WIC_APPDATA_PARTITION}
