@@ -72,13 +72,20 @@ To flash OHOS using USB storage, perform the following steps:
 
 **Prepare OHOS bootable USB**
 
-#. Connect USB storage to your host PC.
+1. Connect USB storage to your host PC.
 
-#. Run the following command in your local host:
+2. After the image is built, you are ready to burn the generated image onto the
+   USB storage. We recommend using `bmaptool <https://github.com/intel/bmap-tools>`
+   and the instructions below will use it. For example, if you are building
+   allscenarios-image-base run the following command replacing (or defining)
+   ``$DEVNODE`` accordingly:
 
 .. code-block:: console
 
-   $ dd if=tmp/deploy/images/seco-intel-b68/allscenarios-image-base-seco-intel-b68.wic of=/dev/sdbX
+   $ cd tmp/deploy/images/seco-intel-b68
+   $ bmaptool copy allscenarios-image-base-seco-intel-b68.wic.bz2 $DEVNODE
+
+3. Put the card to the board and turn it on.
 
 **Run OHOS**
 
