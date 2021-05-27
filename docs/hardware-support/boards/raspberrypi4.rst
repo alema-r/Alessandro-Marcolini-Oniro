@@ -93,43 +93,21 @@ SD card
 The Raspberry Pi 4 board support multiple boot options. The below section
 describes booting the board with an SD card option.
 
-The following steps describes how to use *etcher* tool flash the image to the
-SD Card.
-
-Download the latest *etcher* tool from `balena-io etcher page
-<https://github.com/balena-io/etcher/releases>`__.
-Unzip and run the application.
-
-   * Click "Flash from file" -> Navigate to
-     ``build-ohos-linux-raspberrypi/tmp/deploy/images/$MACHINE/allscenarios-image-base-raspberrypi4-64.wic``
-
-   * Click "Select target" -> Chose the SD Card device name (e.g. ``/dev/sdb``).
-
-   * Click "Flash!"
-
-"Flash Complete!" message on the *etcher* tool shows flashing completed
-successfully. Now unplug the SD Card and put it into RPi board.
-
-Testing the board
-*****************
-
-Serial Port
-===========
-
-By default, the new GPIO UART is disabled. To enable the serial UART, edit
-the ``./sources/meta-ohos/flavours/linux/local.conf.sample`` file.
-
-For more details, see `UART configuration
-<https://www.raspberrypi.org/documentation/configuration/uart.md>`__.
-
-Add the following line at the end of the file.
+1. After the image is built, you are ready to burn the generated image onto the
+   SD card. We recommend using `bmaptool <https://github.com/intel/bmap-tools>`
+   and the instructions below will use it. For example, if you are building
+   allscenarios-image-base run the following command replacing (or defining)
+   ``$DEVNODE`` accordingly:
 
 .. code-block:: console
 
-   ENABLE_UART = "1"
+   $ cd tmp/deploy/images/raspberrypi4-64
+   $ bmaptool copy allscenarios-image-base-raspberrypi4-64.wic.bz2 $DEVNODE
 
-For more details, see `Optional build configuration
-<https://meta-raspberrypi.readthedocs.io/en/latest/extra-build-config.html?highlight=ENABLE_UART#enable-uart>`__.
+2. Put the card to the board and turn it on.
+
+Testing the board
+*****************
 
 HDMI
 ====
