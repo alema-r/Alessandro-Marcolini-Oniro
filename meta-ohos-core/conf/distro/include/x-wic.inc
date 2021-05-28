@@ -7,6 +7,8 @@
 # and strategies.
 
 BOOT_PARTITION_SIZE ?= "512M"
+# The SECO B68 board pulls in almost half a Gigabyte worth of linux-firmware.
+ROOTA_PARTITION_SIZE_seco-intel-b68 ?= "1536M"
 ROOTA_PARTITION_SIZE ?= "1G"
 ROOTB_PARTITION_SIZE ?= "${ROOTA_PARTITION_SIZE}"
 DEVICEDATA_PARTITION_SIZE ?= "8M"
