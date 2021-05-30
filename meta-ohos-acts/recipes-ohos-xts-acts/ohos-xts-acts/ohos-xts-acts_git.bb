@@ -6,7 +6,7 @@ LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=98c2e72b17fae6c40fb14fd5e43b29ec"
 
 SRC_URI = "git://git.ostc-eu.org/OSTC/OHOS/components/staging/xts_acts.git;protocol=https;branch=ostc-next"
-SRCREV = "9e3ae091a134bfa73de5793a0daf174f8430b1c9"
+SRCREV = "defe7649c4baa33b405785201b9d686722ef66da"
 S = "${WORKDIR}/git"
 PV = "0.0+git${SRCPV}"
 
