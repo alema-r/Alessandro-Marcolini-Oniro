@@ -58,9 +58,15 @@ aggregate-docs:
 
 # Customize the .bitbake-workspace job to set the rules governing when a build
 # is attempted to: modifications (changes) to the pipeline, meta-layers,
-# flavours and assets or to placement of a tag on a commit.
+# flavours and assets OR to placement of a tag on a commit OR when a job is
+# scheduled. In addition, draft merge requests will no longer start the heavy
+# build jobs automatically, giving an option to the developer, to start the
+# desired jobs manually.
 .bitbake-workspace:
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TITLE =~ /^(wip|draft):.*/i'
+      when: manual
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       changes:
         - assets/**/*
