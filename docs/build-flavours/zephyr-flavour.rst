@@ -22,6 +22,7 @@ Supported machines (default in **bold**):
 * qemu-cortex-m3
 * 96b-nitrogen (96Boards Nitrogen)
 * 96b-avenger96 (96Boards Avenger96)
+* arduino-nano-33-ble (Arduino Nano 33 BLE and Arduino Nano 33 BLE Sense)
 
 Build steps example:
 
