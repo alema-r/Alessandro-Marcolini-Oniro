@@ -1,0 +1,101 @@
+.. SPDX-FileCopyrightText: Huawei Inc.
+..
+.. SPDX-License-Identifier: CC-BY-4.0
+
+.. _SupportedBoardnRF52840DK:
+
+nRF52840 DK
+############
+
+.. contents::
+   :depth: 3
+
+Overview
+********
+
+The nRF52840 DK is a low-cost single-board development kit that uses the nRF52840
+multi-protocol SoC to develop Bluetooth® 5, Bluetooth mesh, Thread, Zigbee, ANT, IEEE 802.15.4, and 2.4 GHz
+proprietary applications. It also supports development on the nRF52811 SoC.
+
+Hardware
+********
+
+* For detailed specifications, see nRF52840 DK product page on the `nRF52840 DK website <https://www.nordicsemi.com/Software-and-Tools/Development-Kits/nRF52840-DK>`_.
+* For hardware schematics, see `nRF52840 Development Kit <https://www.nordicsemi.com/Software-and-tools/Development-Kits/nRF52840-DK/Download#infotabs>`_.
+
+Working with the board
+**********************
+
+Building an application
+=======================
+
+All Scenarios OS Zephyr flavour is based on Zephyr kernel.
+
+1. Source the environment with proper template settings, flavour being ``zephyr``
+   and target machine being ``nrf52840dk-nrf52840``:
+
+ .. code-block:: console
+
+   $ TEMPLATECONF=../sources/meta-ohos/flavours/zephyr . ./sources/poky/oe-init-build-env build-ohos-zephyr
+
+2. You will find yourself in the newly created build directory. Call ``bitbake``
+   to build the image. Example below shows how to build ``zephyr-philosophers``.
+
+ .. code-block:: console
+
+   $ MACHINE=nrf52840dk-nrf52840 bitbake zephyr-philosophers
+
+ You can set up ``MACHINE`` variable can be set up in ``conf/local.conf`` file under the build directory, or via the command line.
+
+3. After the build completes, the image file can be found in
+   ``build-ohos-zephyr/tmp-newlib/deploy/images/nrf52840dk-nrf52840/``.
+
+Flashing an application
+=======================
+
+Installing pyOCD
+----------------
+
+pyOCD is an open source Python package for programming and debugging
+Arm Cortex-M microcontrollers using multiple supported types of USB debug probes. 
+It is fully cross-platform, with support for Linux.
+
+* To install the latest stable version of pyOCD via `pip <https://pip.pypa.io/en/stable/>`_ as follows:
+
+ .. code-block:: console
+
+   $ pip install --pre -U pyOCD
+
+* To install the latest pre-release version from the HEAD of the master branch, execute the following command:
+
+ .. code-block:: console
+
+   $ pip install --pre -U git+https://github.com/mbedmicro/pyOCD.git
+
+* To install directly from the source by cloning the git repository, do the following:
+
+ .. code-block:: console
+
+   $ python setup.py install
+
+* Verify that the board is detected by pyOCD by executing the command:
+
+ .. code-block:: console
+
+   $ pyocd-flashtool -l
+
+ .. note::
+
+   When ``ValueError: The device has no langid`` error is displayed due to lack of 
+   permission, perform the `instructions to resolve <https://github.com/pyocd/pyOCD/tree/master/udev>`__.
+
+How to flash
+------------
+
+To flash the image, execute the command used to build the image with ``-c flash_usb`` appended.
+For example, to flash the already built zephyr-philosophers image, execute:
+
+.. code-block:: console
+
+   $ MACHINE=nrf52840dk-nrf52840 bitbake zephyr-philosophers -c flash_usb
+

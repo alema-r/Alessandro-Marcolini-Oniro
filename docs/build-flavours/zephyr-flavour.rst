@@ -23,6 +23,7 @@ Supported machines (default in **bold**):
 * 96b-nitrogen (96Boards Nitrogen)
 * 96b-avenger96 (96Boards Avenger96)
 * arduino-nano-33-ble (Arduino Nano 33 BLE and Arduino Nano 33 BLE Sense)
+* nrf52840dk-nrf52840 (Nordic Semiconductor nRF 52840 Development Kit)
 
 Build steps example:
 

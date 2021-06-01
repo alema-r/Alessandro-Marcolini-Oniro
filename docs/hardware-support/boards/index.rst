@@ -16,3 +16,4 @@ This section details the boards supported as part of All Scenario OS.
    seco-imx8mm-c61
    raspberrypi4
    arduino-nano-33-ble
+   nRF52840-DK
