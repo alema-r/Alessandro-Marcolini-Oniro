@@ -13,6 +13,7 @@ Build System Guide
    repo-workspace
    build-flavours/index
    ohos-build/index
+   os/index
    ci/index
    blueprints/index
    supported-images
