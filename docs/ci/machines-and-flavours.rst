@@ -135,6 +135,19 @@ SoC.
     The cache for this job is not public, pending legal review of any firmware
     that may be included.
 
+zephyr-arduino-nano-33-ble
+..........................
+
+This job extends `.build-zephyr` job from the manifest repository and builds
+``zephyr-philosophers`` using the Zephyr flavour of All Scenarios OS and
+``MACHINE=arduino-nano-33-ble``. This job checks that Zephyr can be built for the
+Arduino Nano 33 BLE development board Cortex-M4 core, embedded into nRF 52840
+SoC.
+
+.. note::
+    The cache for this job is not public, pending legal review of any firmware
+    that may be included.
+
 freertos-armv5
 ..............
 

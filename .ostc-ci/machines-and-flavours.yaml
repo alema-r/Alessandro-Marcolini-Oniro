@@ -87,6 +87,11 @@ zephyr-nrf52840dk-nrf52840:
   variables:
     MACHINE: nrf52840dk-nrf52840
 
+zephyr-arduino-nano-33-ble:
+  extends: .build-zephyr
+  variables:
+    MACHINE: arduino-nano-33-ble
+
 freertos-armv5:
   extends: .build-freertos
   variables:
