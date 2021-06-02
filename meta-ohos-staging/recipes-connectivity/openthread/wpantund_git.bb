@@ -14,11 +14,10 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=e7820bc7f7d1638a6b54fc2e8d7fb103 \
                     "
 
 SRC_URI = "gitsm://github.com/openthread/wpantund.git;protocol=https \
-           file://0001-util-netif-mgmt-only-include-missing-strlcpy-header-.patch \
            "
 
 PV = "0.07.01+git${SRCPV}"
-SRCREV = "820468161c87816a3e94366ebbe2a932650416e3"
+SRCREV = "bf45115f41ba2b8029eda174be2b93dea73b9261"
 
 S = "${WORKDIR}/git"
 
