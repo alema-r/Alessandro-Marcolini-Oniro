@@ -12,3 +12,5 @@ IMAGE_INSTALL_append = "\
 			packagegroup-ble-essentials \
 			gdbserver \
 			"
+
+IMAGE_INSTALL_append = " ${@bb.utils.contains('MACHINE_FEATURES', 'optee', 'optee-client', '', d)} "
