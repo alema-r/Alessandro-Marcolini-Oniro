@@ -25,6 +25,8 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-freescale \
   ##OEROOT##/../meta-seco-imx \
   ##OEROOT##/../meta-openembedded/meta-oe \
+  ##OEROOT##/../meta-openembedded/meta-networking \
+  ##OEROOT##/../meta-openembedded/meta-perl \
   ##OEROOT##/../meta-openembedded/meta-python \
   ##OEROOT##/../meta-python-dunfellplus \
   ##OEROOT##/../meta-st-stm32mp \
@@ -32,4 +34,5 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-av96/meta-av96-core \
   ##OEROOT##/../meta-homeassistant \
   ##OEROOT##/../meta-raspberrypi \
+  ##OEROOT##/../meta-security \
   "
