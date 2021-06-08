@@ -81,7 +81,7 @@ Once the image is built, you can run a Qemu X86-64 instance using the provided s
 
 .. code-block:: console
 
-      $ MACHINE=qemux86-64 runqemu
+      $ MACHINE=qemux86-64 runqemu allscenarios-image-base wic
 
 If the host has a VT-capable CPU, you can pass the ``kvm`` argument for better
 performance. Check ``runqemu``'s help message for all available arguments.
