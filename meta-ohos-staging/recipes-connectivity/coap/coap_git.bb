@@ -13,13 +13,15 @@ PROVIDES = "coap libcoap libcoap.so"
 # WARNING: Code until 2017-06-01 is dual-licensed as GPLv2 and BSD 2-Clause, it is BSD after that
 LICENSE = "GPLv2 | BSD"
 LIC_FILES_CHKSUM = "file://COPYING;md5=faed8f005d476edd3f250599a4bb9a75 \
-                    file://LICENSE;md5=4cba1bd050d08b2154b5c29de3a0e9c2 \
+                    file://LICENSE;md5=649d94043490c8be38f08b781838cddb \
                     file://ext/tinydtls/LICENSE;md5=ffb073dbb36e7ec5e091047332f302c5"
 
-LIBCOAP_VERSION = "4.2.1"
-SRC_URI = "gitsm://github.com/obgm/libcoap.git;protocol=https;branch=release-${LIBCOAP_VERSION}"
+LIBCOAP_VERSION = "4.3.0-rc3"
+SRC_URI = "gitsm://github.com/obgm/libcoap.git;protocol=https;branch=develop"
+# When using a final release:
+#SRC_URI = "gitsm://github.com/obgm/libcoap.git;protocol=https;branch=release-${LIBCOAP_VERSION}"
 PV = "${LIBCOAP_VERSION}+git${SRCPV}"
-SRCREV = "50530704df9a82cd1f12c24e5a8f337b14c98d58"
+SRCREV = "39b75f8240b45da3ab7923b0545001e08da437bf"
 
 S = "${WORKDIR}/git"
 
@@ -29,7 +31,7 @@ DEPENDS = "mbedtls"
 inherit pkgconfig autotools
 
 # Specify any options you want to pass to the configure script using EXTRA_OECONF:
-EXTRA_OECONF = "--disable-doxygen --disable-manpages"
+EXTRA_OECONF = "--disable-doxygen --disable-manpages --with-mbedtls"
 
 BBCLASSEXTEND = "native nativesdk"
 
