@@ -35,4 +35,5 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-homeassistant \
   ##OEROOT##/../meta-raspberrypi \
   ##OEROOT##/../meta-security \
+  ##OEROOT##/../meta-linaro/meta-optee \
   "
