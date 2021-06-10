@@ -62,8 +62,16 @@ All Scenarios OS Zephyr flavour is based on the Zephyr kernel.
 You can set-up MACHINE variable in ``conf/local.conf`` file under the build
 directory, or via the command line.
 
-3. After the build completes, the ``zephyr-philosophers.bin`` file can be found in
-   ``build-ohos-zephyr/tmp-newlib/deploy/images/arduino-nano-33-ble/``.
+Alternatively you might want to build the Arduino's blinking LED
+sample application, *blinky*. In order to do so issue the following:
+
+  .. code-block:: console
+
+   $ MACHINE=arduino-nano-33-ble bitbake zephyr-blinky
+
+3. After the build completes, the ``zephyr-philosophers.bin`` and the ``zephyr-blinky.bin``
+   file can be found in ``build-ohos-zephyr/tmp-newlib/deploy/images/arduino-nano-33-ble/``.
+
 
 Flashing an application
 =======================
