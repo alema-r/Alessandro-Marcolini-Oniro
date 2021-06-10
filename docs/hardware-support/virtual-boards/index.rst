@@ -5,7 +5,7 @@
 Supported Virtual Targets
 #########################
 
-This section details the support for virtual targets in All Scenario OS.
+This section details the support for virtual targets in All Scenarios OS.
 
 .. toctree::
    :maxdepth: 1

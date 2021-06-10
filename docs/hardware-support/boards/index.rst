@@ -5,7 +5,7 @@
 Supported Boards
 ################
 
-This section details the boards supported as part of All Scenario OS.
+This section details the boards supported as part of All Scenarios OS.
 
 .. toctree::
    :maxdepth: 1

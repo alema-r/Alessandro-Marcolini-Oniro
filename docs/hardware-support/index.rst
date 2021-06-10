@@ -4,11 +4,11 @@
 
 .. _HardwareSupport:
 
-Hardware support in All Scenario OS
-###################################
+Hardware support in All Scenarios OS
+####################################
 
 This section details the hardware (including virtualized) supported as part of
-All Scenario OS.
+All Scenarios OS.
 
 .. toctree::
    :maxdepth: 2
