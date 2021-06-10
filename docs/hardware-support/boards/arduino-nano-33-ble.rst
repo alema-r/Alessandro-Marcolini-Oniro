@@ -72,58 +72,62 @@ sample application, *blinky*. In order to do so issue the following:
 3. After the build completes, the ``zephyr-philosophers.bin`` and the ``zephyr-blinky.bin``
    file can be found in ``build-ohos-zephyr/tmp-newlib/deploy/images/arduino-nano-33-ble/``.
 
-
 Flashing an application
 =======================
+Install bossac tool required to flash Arduino Nano 33 BLE.
+
+.. note::
+   You will not be able to flash with the bossac included with the zephyr-sdk or using shumatech’s
+   mainline build.
+
+Installing bossac
+-----------------
+
+You can install the Arduino variant of bossac in one of two ways:
+
+**Option 1:** Build the binary from the Arduino source tree.
+
+**Option 2:** Download the Arduino IDE:
+     1. Install the board support package within the IDE.
+     2. Change your IDE preferences to provide verbose logging.
+     3. Build and flash a sample application and read the logs to figure out
+        where Arduino stored bossac.
+	   
+After successful installation, add the bossac installed path to the PATH
+variable. It is important for the bitbake to find the correct bossac installed path
+to flash.
+
+.. code-block:: console
+ 
+   $ export PATH=<bossac_path>:$PATH
 
 How to flash
 ------------
 
-All Scenarios OS currently supports only the pyOCD and dfu flashing method.
-Hence bossac tool is used for flashing Arduino Nano 33 BLE. 
-
-.. note::
-   This board requires the Arduino variant of bossac. You will not be able to
-   flash with the bossac included with the zephyr-sdk or using shumatech’s
-   mainline build.
-   You can get this variant of bossac in one of two ways:
-
-   1. Building the binary from the Arduino source tree.
-
-   2. Downloading the Arduino IDE:
-
-     * Install the board support package within the IDE.
-     * Change your IDE preferences to provide verbose logging.
-     * Build and flash a sample application and read the logs to figure out
-       where Arduino stored bossac.
-
-1. Connect the board via USB and find the port connected to the the board via
-   dmesg. It would be ``/dev/ttyACMx``.
-
-2. Enable the permissions for board connected port:
+1. Enable the permissions for board connected port:
 
   .. code-block:: console
 	
 	$ sudo usermod -a -G dialout `whoami`
 	$ sudo chmod a+rw /dev/ttyACM0
 
-3. Pass the following arguments to bossac which is identified from the preceding step:
+2. To flash the image, execute the command used to build the image with 
+   -c flash_usb appended. For example, to flash the already built 
+   zephyr-philosophers image, execute:
 
   .. code-block:: console
    
-   $ bossac -p /dev/ttyACM0 -R -e -w -v -b <path to bin folder>/zephyr-philosophers.bin
+   $ MACHINE=arduino-nano-33-ble bitbake zephyr-philosophers -c flash_usb
 
-4. Due to limitation, once flashed USB CDC does not work as expected and thus 
-   board gets disconnected via USB. Connect the board via USB-TTL cable for the
-   serial console as shown:
+3. Connect the board via USB-TTL cable for the serial console.
 
   .. image:: assets/serial-connect.jpg
     :width: 600
 
-5. Once connected, locate the board connected port via dmesg. It would
+4. Once connected, locate the board connected port via dmesg. It would
    be ``/dev/ttyUSBx``.
 
-6. Run your favorite terminal program to listen for output. 
+5. Run your favorite terminal program to listen for output. 
 
   .. code-block:: console
 	
@@ -136,7 +140,7 @@ Hence bossac tool is used for flashing Arduino Nano 33 BLE.
   * Parity: None
   * Stop bits: 1
 
-7. Firmware output can be viewed in minicom with:
+6. Firmware output can be viewed in minicom with:
 
   ::
 
