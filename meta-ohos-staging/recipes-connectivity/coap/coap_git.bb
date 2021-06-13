@@ -3,12 +3,14 @@
 # SPDX-License-Identifier: Apache-2.0
 
 SUMMARY = "A C implementation of IETF Constrained Application Protocol (RFC 7252)"
-DESCRIPTION = "libcoap is a C implementation of a lightweight application-protocol for devices that are constrained their resources such as computing power, RF range, memory, bandwidth, or network packet sizes. This protocol, CoAP, is standardized by the IETF as RFC 7252. For further information related to CoAP, see http://coap.technology."
+DESCRIPTION = "libcoap is a C implementation of a lightweight               \
+application-protocol for devices that are constrained their resources such  \
+as computing power, RF range, memory, bandwidth, or network packet sizes.   \
+This protocol, CoAP, is standardized by the IETF as RFC 7252. For further   \
+information related to CoAP, see http://coap.technology."
 
 HOMEPAGE = "http://libcoap.net/"
 SECTION = "libs/network"
-
-PROVIDES = "coap libcoap libcoap.so"
 
 # WARNING: Code until 2017-06-01 is dual-licensed as GPLv2 and BSD 2-Clause, it is BSD after that
 LICENSE = "GPLv2 | BSD"
@@ -34,4 +36,3 @@ inherit pkgconfig autotools
 EXTRA_OECONF = "--disable-doxygen --disable-manpages --with-mbedtls"
 
 BBCLASSEXTEND = "native nativesdk"
-
