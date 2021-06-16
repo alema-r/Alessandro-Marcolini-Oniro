@@ -18,6 +18,7 @@ stages:
   - compliance
   - build
   - test
+  - report
   - deploy
 
 include:
@@ -27,6 +28,8 @@ include:
     - 'reuse.yaml'
  - project: 'OSTC/OHOS/manifest'
    file: '.ostc-ci/build-generic.yaml'
+ - project: 'OSTC/OHOS/manifest'
+   file: '.ostc-ci/test-generic.yaml'
 # By default, the CI pipeline is invoked using an explicit git ref (branch
 # name) in the manifest. This include is a HACK to allow the CI pipeline to get
 # changes to the machine-and-flavours.yaml picked up directly from the incoming
@@ -74,3 +77,16 @@ aggregate-docs:
         - meta-*/**/*
         - .ostc-ci/*.yml
     - if: '$CI_COMMIT_TAG'
+
+lava-linux-avenger96:
+  needs: [linux-stm32mp1-av96]
+  stage: test
+  extends: .lava-test
+  variables:
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/avenger96-acts.yaml"
+    CI_BUILD_JOB_NAME: linux-stm32mp1-av96
+    CI_REPORT_JOB_NAME: lava-report
+
+lava-report:
+  needs: [lava-linux-avenger96]
+  extends: .lava-report
