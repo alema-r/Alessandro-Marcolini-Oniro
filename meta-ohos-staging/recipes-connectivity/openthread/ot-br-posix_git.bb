@@ -16,7 +16,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=87109e44b2fda96a8991f27684a7349c \
                     file://third_party/openthread/repo/LICENSE;md5=543b6fe90ec5901a683320a36390c65f \
                     "
 
-SRC_URI = "gitsm://github.com/openthread/ot-br-posix.git;protocol=https \
+SRC_URI = "gitsm://github.com/openthread/ot-br-posix.git;protocol=https;branch=main \
            file://0001-build-drop-Werror-to-avoid-compilation-breaks.patch \
            file://0001-web-service-ot-client-add-needed-header-for-fd_set-c.patch \
            "
