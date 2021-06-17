@@ -1,0 +1,23 @@
+#!/bin/sh
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+set -e
+
+# Bring up a OpenThread border router for the given configuration
+ot-ctl thread stop
+ot-ctl ifconfig down
+ot-ctl dataset clear
+ot-ctl dataset init new
+ot-ctl dataset panid 0x1357
+ot-ctl dataset extpanid 11112222deadbeef
+ot-ctl dataset networkname "ASOS\ Thread"
+ot-ctl dataset channel 26
+ot-ctl dataset masterkey 00112233445566778899aabbccddeeff
+ot-ctl dataset commit active
+ot-ctl ifconfig up
+ot-ctl thread start
+#ot-ctl prefix add 2001::/64 paros
+#ot-ctl prefix add fd11:22::/64 pasor
+#ot-ctl dataset meshlocalprefix fdde:00be:ef00:aaaa::
