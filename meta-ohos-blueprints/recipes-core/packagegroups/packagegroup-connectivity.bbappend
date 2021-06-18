@@ -12,6 +12,7 @@ RDEPENDS_packagegroup-thread-br = "\
     ${@bb.utils.contains("DISTRO_FEATURES", "thread-border-router", "wpantund", "", d)} \
     hostapd \
     iptables \
+    tayga \
     "
 
 RDEPENDS_packagegroup-thread-client = "\
