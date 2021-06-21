@@ -148,14 +148,13 @@ Prepare IoT devices (Nitrogen/Zephyr flavour)
 
 Build
 -----
+
 #. 
    Create build directory
 
    .. code-block:: bash
 
-       user@pc:~/ohos$ TEMPLATECONF=../sources/meta-ohos/flavours/zephyr . ./sources/poky/oe-init-build-env build-ohos-zephyr-96b-nitrogen
-
-       user@pc:~/ohos/build-ohos-zephyr-96b-nitrogen
+       $ TEMPLATECONF=../sources/meta-ohos/flavours/zephyr . ./sources/poky/oe-init-build-env build-ohos-zephyr-96b-nitrogen
 
 #. 
    Edit ``conf/local.conf``, and uncomment the following line:
@@ -168,16 +167,20 @@ Build
    Build ``zephyr-blueprint-smarthome-sensors`` image using ``bitbake``,
    with the following override:
 
-
-   * ``SMART_HOME_SENSORS_MAC`` set to MAC address of the IoT device. It can
-     be any MAC address, provided it starts with ``C0`` and is unique in your environment.
-   * add board MAC override in the form of:
-     ``BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE SMART_HOME_SENSORS_MAC" SMART_HOME_SENSORS_MAC="<mac>"``
-
    .. code-block:: bash
 
-      user@pc:~/ohos/build-ohos-zephyr-96b-nitrogen$ BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE SMART_HOME_SENSORS_MAC" \
-          SMART_HOME_SENSORS_MAC="C0:BA:DD:06:F0:0D" bitbake zephyr-blueprint-smarthome-sensors
+      $ DISTRO=allscenarios-zephyr-blueprint-dashboard bitbake zephyr-blueprint-smarthome-sensors
+
+   .. note::
+
+      * The build will configure the MAC address with sane defaults. If you
+        want a custom MAC address, you can prepend to the command above the
+        following:
+        
+        BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE SMART_HOME_SENSORS_MAC" SMART_HOME_SENSORS_MAC="<custom_mac_address>"
+
+      * The MAC address can have any value provided it starts with ``C0`` and
+        is unique in your environment.
 
 #. 
    Make sure you have at least 3 GB of free space on the partition
@@ -193,14 +196,21 @@ Build
 
      .. code-block:: bash
 
-        user@pc:~/ohos/build-ohos-zephyr-96b-nitrogen$ BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE SMART_HOME_SWITCH_MAC" \
-            SMART_HOME_SWITCH_MAC="C0:BA:DD:06:F0:0E" bitbake zephyr-blueprint-smarthome-switch
-        #   this byte is different~~~~~~~~~~~~~~~~~^
+        $ DISTRO=allscenarios-zephyr-blueprint-dashboard bitbake zephyr-blueprint-smarthome-switch
 
+     .. note::
+
+      * The build will configure the MAC address with sane defaults. If you
+        want a custom MAC address, you can prepend to the command above the
+        following:
+        
+        BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE SMART_HOME_SWITCH_MAC" SMART_HOME_SWITCH_MAC="<custom_mac_address>"
+
+      * The MAC address can have any value provided it starts with ``C0`` and
+        is unique in your environment.
 
 Flash
 -----
-
 
 #. 
    Connect 96Boards Nitrogen boards to your computer.
