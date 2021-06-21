@@ -99,3 +99,17 @@ freertos-armv5:
     # See the note on linux-qemu-x86.
     OHOS_BUILD_CACHE: "pub"
     OHOS_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
+
+blueprint-smartpanel-zephyr:
+  extends: .build-zephyr
+  variables:
+    MACHINE: 96b-nitrogen
+    DISTRO: allscenarios-zephyr-blueprint-dashboard
+    OHOS_BITBAKE_TARGETS: "zephyr-blueprint-smarthome-sensors zephyr-blueprint-smarthome-switch"
+
+blueprint-smartpanel-linux:
+  extends: .build-linux
+  variables:
+    MACHINE: stm32mp1-av96
+    DISTRO: allscenarios-linux-blueprint-dashboard
+    OHOS_BITBAKE_TARGETS: "blueprint-dashboard-gateway-image"
