@@ -75,9 +75,12 @@ aggregate-docs:
         - assets/**/*
         - flavours/**/*
         - meta-*/**/*
-        - .ostc-ci/*.yml
+        - .ostc-ci/*
     - if: '$CI_COMMIT_TAG'
 
+##
+## Submit jobs to LAVA
+##
 lava-linux-avenger96:
   needs: [linux-stm32mp1-av96]
   stage: test
@@ -87,6 +90,24 @@ lava-linux-avenger96:
     CI_BUILD_JOB_NAME: linux-stm32mp1-av96
     CI_REPORT_JOB_NAME: lava-report
 
+lava-qemu-x86_64:
+  needs: [linux-qemu-x86_64]
+  stage: test
+  extends: .lava-test
+  variables:
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/qemu-x86_64-acts.yaml"
+    CI_BUILD_JOB_NAME: linux-qemu-x86_64
+    CI_REPORT_JOB_NAME: lava-report
+
+lava-qemu-x86:
+  needs: [linux-qemu-x86]
+  stage: test
+  extends: .lava-test
+  variables:
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/qemu-x86-acts.yaml"
+    CI_BUILD_JOB_NAME: linux-qemu-x86
+    CI_REPORT_JOB_NAME: lava-report
+
 lava-report:
-  needs: [lava-linux-avenger96]
+  needs: [lava-linux-avenger96, lava-qemu-x86_64, lava-qemu-x86]
   extends: .lava-report
