@@ -46,7 +46,7 @@ def extlinux_boot_files(d):
 WKS_FILE_raspberrypi4-64 ?= "x-raspberrypi.wks.in"
 
 WKS_FILE_seco-intel-b68 ?= "x-efi-systemd-microcode.wks.in"
-IMAGE_FSTYPES_append_seco-intel-b68 = " wic wic.bz2 wic.bmap"
+IMAGE_FSTYPES_append_seco-intel-b68 = " wic.bz2 wic.bmap"
 
 WKS_FILE_stm32mp1-av96 ?= "x-avenger96.wks.in"
 IMAGE_BOOT_FILES_stm32mp1-av96 ?= " \
@@ -54,7 +54,7 @@ IMAGE_BOOT_FILES_stm32mp1-av96 ?= " \
     ${@dtb_boot_files(d)} \
     ${@extlinux_boot_files(d)} \
     "
-IMAGE_FSTYPES_append_stm32mp1-av96 = " wic wic.bz2 wic.bmap"
+IMAGE_FSTYPES_append_stm32mp1-av96 = " wic.bz2 wic.bmap"
 WKS_FILE_DEPENDS_stm32mp1-av96 ?= " \
     u-boot-stm32mp-extlinux \
     virtual/bootloader \
@@ -67,9 +67,9 @@ WIC_ROOTA_PARTITION_EXTRA_ARGS_stm32mp1-av96 ?= "--uuid e91c4e10-16e6-4c0e-bd0e-
 
 # We avoid any other fstypes (for qemu) by default as the OS depends on a
 # specific partition table provided through the wic configuration.
-IMAGE_FSTYPES_qemux86 ?= "wic wic.bz2"
+IMAGE_FSTYPES_qemux86 ?= "wic.bz2"
 WKS_FILE_qemux86 ?= "x-qemux86-directdisk.wks.in"
-IMAGE_FSTYPES_qemux86-64 ?= "wic wic.bz2"
+IMAGE_FSTYPES_qemux86-64 ?= "wic.bz2"
 WKS_FILE_qemux86-64 ?= "x-qemux86-directdisk.wks.in"
 
 WKS_FILE_seco-imx8mm-c61 ?= "x-imx-uboot-bootpart.wks.in"
