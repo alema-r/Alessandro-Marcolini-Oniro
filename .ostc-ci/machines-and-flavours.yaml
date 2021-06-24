@@ -63,25 +63,31 @@ linux-raspberrypi4-64:
     MACHINE: raspberrypi4-64
 
 zephyr-qemu-x86:
-  extends: .build-zephyr
+  extends: .build-image
   variables:
     MACHINE: qemu-x86
     # See the note on linux-qemu-x86.
     OHOS_BUILD_CACHE: "pub"
     OHOS_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
+    OHOS_RECIPE_NAME: zephyr-philosophers
+    OHOS_BUILD_FLAVOUR: zephyr
 
 zephyr-qemu-cortex-m3:
-  extends: .build-zephyr
+  extends: .build-image
   variables:
     MACHINE: qemu-cortex-m3
     # See the note on linux-qemu-x86.
     OHOS_BUILD_CACHE: "pub"
     OHOS_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
+    OHOS_RECIPE_NAME: zephyr-philosophers
+    OHOS_BUILD_FLAVOUR: zephyr
 
 zephyr-96b-nitrogen:
-  extends: .build-zephyr
+  extends: .build-image
   variables:
     MACHINE: 96b-nitrogen
+    OHOS_RECIPE_NAME: zephyr-philosophers
+    OHOS_BUILD_FLAVOUR: zephyr
 
 zephyr-96b-avenger:
   extends: .build-zephyr
