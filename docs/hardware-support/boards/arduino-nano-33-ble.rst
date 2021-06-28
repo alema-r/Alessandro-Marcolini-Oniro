@@ -119,19 +119,11 @@ How to flash
    
    $ MACHINE=arduino-nano-33-ble bitbake zephyr-philosophers -c flash_usb
 
-3. Connect the board via USB-TTL cable for the serial console.
-
-  .. image:: assets/serial-connect.jpg
-    :width: 600
-
-4. Once connected, locate the board connected port via dmesg. It would
-   be ``/dev/ttyUSBx``.
-
-5. Run your favorite terminal program to listen for output. 
+3. Run your favorite terminal program to listen for output. 
 
   .. code-block:: console
 	
-	$ minicom -D /dev/ttyUSB0
+	$ minicom -D /dev/ttyACM0
 
   Configure the connection as follows:
 
@@ -140,7 +132,11 @@ How to flash
   * Parity: None
   * Stop bits: 1
 
-6. Firmware output can be viewed in minicom with:
+.. note::
+   If no output is displayed, set the permissions again as mentioned in
+   Step-1 of of this section.
+
+4. Firmware output can be viewed in minicom with:
 
   ::
 
@@ -156,4 +152,3 @@ How to flash
    Philosopher 2 [P: 1]    DROPPED ONE FORK
    Philosopher 2 [P: 1]  THINKING [  725 ms ]
    Philosopher 1 [P: 2]   EATING  [  225 ms ]
-   
