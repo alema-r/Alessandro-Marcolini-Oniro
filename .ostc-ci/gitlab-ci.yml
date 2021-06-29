@@ -78,6 +78,34 @@ aggregate-docs:
         - .ostc-ci/*
     - if: '$CI_COMMIT_TAG'
 
+# Mimic the updated rules for lava-test from the bitbake-workspace.
+.lava-test:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TITLE =~ /^(wip|draft):.*/i'
+      when: manual
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+        - assets/**/*
+        - flavours/**/*
+        - meta-*/**/*
+        - .ostc-ci/*
+    - if: '$CI_COMMIT_TAG'
+
+# Mimic the updated rules for lava-report from the bitbake-workspace.
+.lava-report:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TITLE =~ /^(wip|draft):.*/i'
+      when: manual
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+        - assets/**/*
+        - flavours/**/*
+        - meta-*/**/*
+        - .ostc-ci/*
+    - if: '$CI_COMMIT_TAG'
+
 ##
 ## Submit jobs to LAVA
 ##
