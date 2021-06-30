@@ -1,0 +1,32 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+From bernhard.rosenkraenzer.ext@huawei.com Tue Jun 29 22:01:00 2021
+From: Bernhard Rosenkraenzer <bernhard.rosenkraenzer.ext@huawei.com>
+Date: Tue, 29 Jun 2021 22:01:00 +0100
+Subject: [PATCH] Don't assume libunwind implementation details
+
+lib/isc/backtrace.c currently assumes _Unwind_Backtrace and _Unwind_GetIP are
+implemented as functions.
+This is not always true -- some versions of libunwind (such as the 32-bit ARM
+implementation built into some versions of gcc) implement _Unwind_GetIP as a
+macro, resulting in an undefined reference to _Unwind_GetIP instead of
+expanding the macro.
+
+Signed-off-by: Bernhard Rosenkraenzer <bernhard.rosenkraenzer.ext@huawei.com>
+Upstream-Status: Pending
+
+diff -up bind-9.11.32/lib/isc/backtrace.c.omv~ bind-9.11.32/lib/isc/backtrace.c
+--- bind-9.11.32/lib/isc/backtrace.c.omv~	2021-06-29 21:39:37.700104599 +0200
++++ bind-9.11.32/lib/isc/backtrace.c	2021-06-29 21:39:59.488413798 +0200
+@@ -81,8 +81,7 @@ isc_backtrace_gettrace(void **addrs, int
+ 	return (ISC_R_SUCCESS);
+ }
+ #elif defined(BACKTRACE_GCC)
+-extern int _Unwind_Backtrace(void* fn, void* a);
+-extern void* _Unwind_GetIP(void* ctx);
++#include <unwind.h>
+ 
+ typedef struct {
+ 	void **result;
