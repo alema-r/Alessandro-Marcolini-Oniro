@@ -1,0 +1,59 @@
+From e3b4a102df178281bf755fc7ea7dfa72656a9fea Mon Sep 17 00:00:00 2001
+From: Robert Drab <robert.drab@huawei.com>
+Date: Wed, 4 Aug 2021 13:47:48 +0200
+Subject: [PATCH] projectmatter: use Yocto toolchain and flags
+
+gn.bbclass that enables building GN meta build system based projects in Yocto
+requires patching BUILDCONFIG.gn file:
+- Yocto toolchain has to be set as default toolchain
+- Yocto flags have to be included in the targets' default configs
+
+Upstream-Status: Inappropriate [configuration]
+
+Signed-off-by: Robert Drab <robert.drab@huawei.com>
+---
+ build/config/BUILDCONFIG.gn | 22 ++++++++++++++++------
+ 1 file changed, 16 insertions(+), 6 deletions(-)
+
+diff --git a/build/config/BUILDCONFIG.gn b/build/config/BUILDCONFIG.gn
+index 80da6a986..cc23b7ce6 100644
+--- a/build/config/BUILDCONFIG.gn
++++ b/build/config/BUILDCONFIG.gn
+@@ -92,21 +92,31 @@ if (_chip_defaults.custom_toolchain != "") {
+   assert(false, "No toolchain specified, please specify custom_toolchain")
+ }
+ 
+-set_default_toolchain(_default_toolchain)
++set_default_toolchain("//build/toolchain/yocto/target:yocto_target")
+ 
+ set_defaults("static_library") {
+-  configs = _chip_defaults.default_configs
++  configs =
++    _chip_defaults.default_configs +
++    [ "//build/toolchain/yocto:yocto_flags" ]
+ }
+ set_defaults("source_set") {
+-  configs = _chip_defaults.default_configs
++  configs =
++    _chip_defaults.default_configs +
++    [ "//build/toolchain/yocto:yocto_flags" ]
+ }
+ set_defaults("executable") {
+   configs =
+-      _chip_defaults.default_configs + _chip_defaults.executable_default_configs
++    _chip_defaults.default_configs +
++    _chip_defaults.executable_default_configs +
++    [ "//build/toolchain/yocto:yocto_flags" ]
+ }
+ set_defaults("shared_library") {
+-  configs = _chip_defaults.default_configs
++  configs =
++    _chip_defaults.default_configs +
++    [ "//build/toolchain/yocto:yocto_flags" ]
+ }
+ set_defaults("loadable_module") {
+-  configs = _chip_defaults.default_configs
++  configs =
++    _chip_defaults.default_configs +
++    [ "//build/toolchain/yocto:yocto_flags" ]
+ }

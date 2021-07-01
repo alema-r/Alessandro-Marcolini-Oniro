@@ -1,0 +1,48 @@
+From 9f7c4a4f4d704ed783dc148969fbe40cc9b6bf1d Mon Sep 17 00:00:00 2001
+From: Robert Drab <robert.drab@huawei.com>
+Date: Wed, 4 Aug 2021 14:00:47 +0200
+Subject: [PATCH] mbedtls: disable building integrated library in Yocto
+
+mbedtls version integrated in projectmatter doesn't compile cleanly with GCC
+v11. It is not required by currently used Linux target but in case it's needed
+version provided by the Yocto build system shall be used instead of this
+integrated one and therefore disabling building of the mbedtls completely.
+
+TODO: Yocto-provided mbedtls should be used instead of integrated one
+
+Upstream-Status: Inappropriate [configuration]
+
+Signed-off-by: Robert Drab <robert.drab@huawei.com>
+---
+ third_party/mbedtls/BUILD.gn | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
+
+diff --git a/third_party/mbedtls/BUILD.gn b/third_party/mbedtls/BUILD.gn
+index eba5b9a85..722c4f728 100644
+--- a/third_party/mbedtls/BUILD.gn
++++ b/third_party/mbedtls/BUILD.gn
+@@ -17,13 +17,20 @@ declare_args() {
+   mbedtls_target = ""
+ }
+ 
+-if (mbedtls_target != "") {
++if (current_toolchain == "//build/toolchain/yocto/target:yocto_target") {
+   group("mbedtls") {
+-    public_deps = [ mbedtls_target ]
++    # TODO: mbedtls from the Yocto sysroot should be used here instead of the
++    # one integrated into projectmatter; mbedtls is not used for Linux target
+   }
+ } else {
+-  import("mbedtls.gni")
++  if (mbedtls_target != "") {
++    group("mbedtls") {
++      public_deps = [ mbedtls_target ]
++    }
++  } else {
++    import("mbedtls.gni")
+ 
+-  mbedtls_target("mbedtls") {
++    mbedtls_target("mbedtls") {
++    }
+   }
+ }
