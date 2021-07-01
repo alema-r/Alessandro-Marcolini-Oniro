@@ -89,6 +89,13 @@ zephyr-96b-nitrogen:
     OHOS_RECIPE_NAME: zephyr-philosophers
     OHOS_BUILD_FLAVOUR: zephyr
 
+zephyr-96b-nitrogen-tests:
+  extends: .build-image
+  variables:
+    MACHINE: 96b-nitrogen
+    OHOS_RECIPE_NAME: zephyr-kernel-test-all
+    OHOS_BUILD_FLAVOUR: zephyr
+
 zephyr-96b-avenger:
   extends: .build-zephyr
   variables:
