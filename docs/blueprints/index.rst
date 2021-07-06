@@ -46,3 +46,13 @@ This section details the available blueprints provided as part of the All Scenar
    touchpanel
    transparent-gateway
    vending-machine
+
+Blueprint Hardware
+******************
+
+This section details some of the hardware modules that will be used to create a blueprint.
+
+.. toctree::
+   :maxdepth: 2
+
+   ../hardware-support/blueprint-peripherals/index

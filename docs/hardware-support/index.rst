@@ -16,3 +16,4 @@ All Scenarios OS.
    boards/index
    virtual-boards/index
    adding-hardware-support
+   blueprint-peripherals/index
