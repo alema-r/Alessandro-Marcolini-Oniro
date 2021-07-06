@@ -42,3 +42,7 @@ This section details the available blueprints provided as part of the All Scenar
    :maxdepth: 1
 
    smart-panel
+   doorlock
+   touchpanel
+   transparent-gateway
+   vending-machine
