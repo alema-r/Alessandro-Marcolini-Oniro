@@ -8,7 +8,8 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=cbbd27594afd089daa160d3a16dd515a \
                     file://googlemock/scripts/generator/LICENSE;md5=2c0b90db7465231447cf2dd2e8163333 \
                     file://googletest/LICENSE;md5=cbbd27594afd089daa160d3a16dd515a"
 
-SRC_URI = "git://git.ostc-eu.org/OSTC/OHOS/components/staging/third_party_googletest.git;protocol=https;branch=ostc-next"
+SRC_URI = "git://git.ostc-eu.org/OSTC/OHOS/components/staging/third_party_googletest.git;protocol=https;branch=ostc-next \
+file://googletest-gcc-11.patch"
 SRCREV = "54337710388898ae818bbc2c0e0457c9b86e335e"
 S = "${WORKDIR}/git"
 PV = "0.0+git${SRCPV}"
