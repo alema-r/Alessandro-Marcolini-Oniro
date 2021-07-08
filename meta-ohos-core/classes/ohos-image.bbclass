@@ -67,9 +67,9 @@ WIC_ROOTA_PARTITION_EXTRA_ARGS_stm32mp1-av96 ?= "--uuid e91c4e10-16e6-4c0e-bd0e-
 
 # We avoid any other fstypes (for qemu) by default as the OS depends on a
 # specific partition table provided through the wic configuration.
-IMAGE_FSTYPES_qemux86 ?= "wic.bz2"
+IMAGE_FSTYPES_qemux86 ?= "wic wic.bz2"
 WKS_FILE_qemux86 ?= "x-qemux86-directdisk.wks.in"
-IMAGE_FSTYPES_qemux86-64 ?= "wic.bz2"
+IMAGE_FSTYPES_qemux86-64 ?= "wic wic.bz2"
 WKS_FILE_qemux86-64 ?= "x-qemux86-directdisk.wks.in"
 
 WKS_FILE_seco-imx8mm-c61 ?= "x-imx-uboot-bootpart.wks.in"
