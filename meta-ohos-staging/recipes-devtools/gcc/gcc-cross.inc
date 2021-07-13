@@ -119,6 +119,9 @@ do_install () {
 	cp ${S}/libquadmath/quadmath.h ${D}${libdir}/gcc/${TARGET_SYS}/${BINV}/include/
 	cp ${S}/libquadmath/quadmath_weak.h ${D}${libdir}/gcc/${TARGET_SYS}/${BINV}/include/
 
+	# Fix a plugin header including a nonexistant (and unnecessary) header
+	sed -i -e '/config\/i386\/linux64\.h/d' ${D}${libdir}/gcc/${TARGET_SYS}/${BINV}/plugin/include/tm.h
+
 	find ${D}${libdir}/gcc/${TARGET_SYS}/${BINV}/include-fixed -type f -not -name "README" -not -name limits.h -not -name syslimits.h | xargs rm -f
 
 	# install LTO linker plugins where binutils tools can find it

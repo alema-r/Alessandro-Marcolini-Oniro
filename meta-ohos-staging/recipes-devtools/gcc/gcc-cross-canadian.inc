@@ -139,6 +139,9 @@ do_install () {
 	cp ${S}/libquadmath/quadmath.h ${D}${libdir}/gcc/${TARGET_SYS}/${BINV}/include/
 	cp ${S}/libquadmath/quadmath_weak.h ${D}${libdir}/gcc/${TARGET_SYS}/${BINV}/include/
 
+	# Fix a plugin header including a nonexistant (and unnecessary) header
+	sed -i -e '/config\/i386\/linux64\.h/d' ${D}${libdir}/gcc/${TARGET_SYS}/${BINV}/plugin/include/tm.h
+
 	# install LTO linker plugins where binutils tools can find it
 	install -d ${D}${libdir}/bfd-plugins
 	ln -sf ${LIBRELPATH}/liblto_plugin.so ${D}${libdir}/bfd-plugins/liblto_plugin.so

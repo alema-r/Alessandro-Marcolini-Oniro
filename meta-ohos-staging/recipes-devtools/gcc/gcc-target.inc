@@ -186,6 +186,8 @@ do_install () {
 	# Don't package details about the build host
 	rm -f ${D}${libdir}/gcc/${TARGET_SYS}/${BINV}/plugin/include/auto-build.h
 	rm -f ${D}${libdir}/gcc/${TARGET_SYS}/${BINV}/plugin/include/bconfig.h
+	# Fix a plugin header including a nonexistant (and unnecessary) header
+	sed -i -e '/config\/i386\/linux64\.h/d' ${D}${libdir}/gcc/${TARGET_SYS}/${BINV}/plugin/include/tm.h
 
 	cd ${D}${bindir}
 
