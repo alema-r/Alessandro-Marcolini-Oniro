@@ -4,6 +4,8 @@
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/linux:"
 
+SRC_URI += "file://fix-gcc-plugins-with-gcc-11.patch"
+
 SRC_URI += "file://misc.cfg"
 SRC_URI += "file://hardening_allocator.cfg"
 SRC_URI += "file://hardening_allocator_perf.cfg"

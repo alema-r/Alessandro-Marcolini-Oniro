@@ -1,0 +1,46 @@
+SPDX-FileCopyrightText: Huawei Inc.
+SPDX-License-Identifier: Apache-2.0
+
+From bernhard.rosenkraenzer.ext@huawei.com Tue Jul 13 21:23:14 2021
+From: Bernhard Rosenkraenzer <bernhard.rosenkraenzer.ext@huawei.com>
+Date: Tue, 13 Jul 2021 21:23:14 +0100
+Subject: [PATCH] Fix building kernel gcc plugins with gcc 11.x
+
+Fix building the kernel's gcc plugins with gcc 11.x - gcc 11.x needs
+constexpr (hence -std=gnu++11 or higher), and the check for gcc
+plugin support needs modifications (or simple disabling, given in
+our context, we know gcc has plugin support).
+
+Not for upstreaming because this has already been fixed differently
+in more current kernels - but this minimal patch is far less intrusive
+than backporting upstream's fix.
+
+Signed-off-by: Bernhard Rosenkränzer <bernhard.rosenkraenzer.ext@huawei.com>
+Upstream-Status: Innapropriate [other]
+
+diff -up kernel-source/scripts/gcc-plugins/Makefile.omv~ kernel-source/scripts/gcc-plugins/Makefile
+--- kernel-source/scripts/gcc-plugins/Makefile.omv~	2021-07-13 21:03:04.508075300 +0200
++++ kernel-source/scripts/gcc-plugins/Makefile	2021-07-13 21:03:23.926402492 +0200
+@@ -22,9 +22,9 @@ always-y += $(GCC_PLUGIN)
+ GCC_PLUGINS_DIR = $(shell $(CC) -print-file-name=plugin)
+ 
+ plugin_cxxflags	= -Wp,-MMD,$(depfile) $(KBUILD_HOSTCXXFLAGS) -fPIC \
+-		   -I $(GCC_PLUGINS_DIR)/include -I $(obj) -std=gnu++98 \
++		   -I $(GCC_PLUGINS_DIR)/include -I $(obj) -std=gnu++11 \
+ 		   -fno-rtti -fno-exceptions -fasynchronous-unwind-tables \
+-		   -ggdb -Wno-narrowing -Wno-unused-variable -Wno-c++11-compat \
++		   -ggdb -Wno-narrowing -Wno-unused-variable \
+ 		   -Wno-format-diag
+ 
+ plugin_ldflags	= -shared
+diff -up kernel-source/scripts/gcc-plugins/Kconfig.omv~ kernel-source/scripts/gcc-plugins/Kconfig
+--- kernel-source/scripts/gcc-plugins/Kconfig.omv~	2021-07-13 21:07:23.556620757 +0200
++++ kernel-source/scripts/gcc-plugins/Kconfig	2021-07-13 21:07:58.199253418 +0200
+@@ -9,7 +9,6 @@ menuconfig GCC_PLUGINS
+ 	bool "GCC plugins"
+ 	depends on HAVE_GCC_PLUGINS
+ 	depends on CC_IS_GCC
+-	depends on $(success,$(srctree)/scripts/gcc-plugin.sh $(CC))
+ 	default y
+ 	help
+ 	  GCC plugins are loadable modules that provide extra features to the
