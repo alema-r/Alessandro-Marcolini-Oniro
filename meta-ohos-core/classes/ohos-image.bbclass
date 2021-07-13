@@ -17,6 +17,8 @@ systemd_mask_getty () {
 
 IMAGE_PREPROCESS_COMMAND_append = " ${@ 'systemd_mask_getty;' if bb.utils.contains('DISTRO_FEATURES', 'systemd', True, False, d) and not bb.utils.contains('IMAGE_FEATURES', 'stateless-rootfs', True, False, d) else ''}"
 
+IMAGE_FEATURES_append = " read-only-rootfs"
+
 # Convert all KERNEL_DEVICETREE enties to IMAGE_BOOT_FILES entries
 def dtb_boot_files(d):
     k_dt = d.getVar('KERNEL_DEVICETREE')
