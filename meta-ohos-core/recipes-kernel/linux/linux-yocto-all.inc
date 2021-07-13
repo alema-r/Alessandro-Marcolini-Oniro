@@ -14,6 +14,7 @@ SRC_URI += "file://hardening_dmesg.cfg"
 SRC_URI += "file://hardening_fortify_source.cfg"
 SRC_URI += "file://hardening_memory.cfg"
 # SRC_URI += "file://hardening_oops.cfg"
+SRC_URI += "file://hardening_toolchain.cfg"
 SRC_URI += "file://hardening_usercopy.cfg"
 SRC_URI += "file://hardening_validation_checks.cfg"
 
