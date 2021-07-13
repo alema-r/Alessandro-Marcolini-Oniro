@@ -18,7 +18,7 @@
 # 0 |
 #   4096KiB
 
-bootloader --source bootimg-pcbios --timeout=0 --append="rw oprofile.timer=1 rootfstype=ext4"
+bootloader --source bootimg-pcbios --timeout=0 --append="oprofile.timer=1 rootfstype=${ROOT_FSTYPE}"
 
 part --source bootimg-pcbios --label x-boot --align 4096 --fixed-size ${BOOT_PARTITION_SIZE} --active --offset 4096
 ${WIC_ROOTA_PARTITION}
