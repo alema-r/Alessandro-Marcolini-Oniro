@@ -2,6 +2,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+UBOOT_EXTLINUX_KERNEL_ARGS = "rootwait ro"
+
 inherit deploy
 
 do_deploy[sstate-outputdirs] = "${DEPLOY_DIR_IMAGE}/bootloader/extlinux"
