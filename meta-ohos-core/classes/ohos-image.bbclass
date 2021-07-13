@@ -45,6 +45,8 @@ def extlinux_boot_files(d):
 # wic configuration with support for system update partition setup
 #
 
+IMAGE_FSTYPES_append = " squashfs"
+
 WKS_FILE_raspberrypi4-64 ?= "x-raspberrypi.wks.in"
 
 WKS_FILE_seco-intel-b68 ?= "x-efi-systemd-microcode.wks.in"
