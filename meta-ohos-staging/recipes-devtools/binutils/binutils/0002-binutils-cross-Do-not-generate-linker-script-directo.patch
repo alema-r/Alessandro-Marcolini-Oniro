@@ -17,12 +17,14 @@ Upstream-Status: Inappropriate
 RP 2017/01/30
 
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
+[bernhard.rosenkraenzer.ext@huawei.com: Rebased to 2.37]
+Signed-off-by: Bernhard Rosenkraenzer <bernhard.rosenkraenzer.ext@huawei.com>
 ---
  ld/genscripts.sh | 25 -------------------------
  1 file changed, 25 deletions(-)
 
 diff --git a/ld/genscripts.sh b/ld/genscripts.sh
-index 46a2db7005c..4bb7c33f560 100755
+index 46a2db70..4bb7c33f 100755
 --- a/ld/genscripts.sh
 +++ b/ld/genscripts.sh
 @@ -235,31 +235,6 @@ append_to_lib_path()
@@ -57,3 +59,6 @@ index 46a2db7005c..4bb7c33f560 100755
  if [ "x${LIB_PATH}" = "x" ] && [ "x${USE_LIBPATH}" = xyes ] ; then
    libs=${NATIVE_LIB_DIRS}
    if [ "x${NATIVE}" = "xyes" ] ; then
+-- 
+2.32.0
+

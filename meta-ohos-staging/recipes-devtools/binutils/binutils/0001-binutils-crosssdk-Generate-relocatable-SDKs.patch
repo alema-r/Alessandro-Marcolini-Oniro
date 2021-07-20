@@ -14,6 +14,8 @@ Upstream-Status: Inappropriate [SDK specific]
 
 Signed-off-by: Laurentiu Palcu <laurentiu.palcu@intel.com>
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
+[bernhard.rosenkraenzer.ext@huawei.com: Rebased to 2.37]
+Signed-off-by: Bernhard Rosenkraenzer <bernhard.rosenkraenzer.ext@huawei.com>
 ---
  gold/layout.cc        | 2 +-
  ld/genscripts.sh      | 3 +++
@@ -21,7 +23,7 @@ Signed-off-by: Khem Raj <raj.khem@gmail.com>
  3 files changed, 6 insertions(+), 3 deletions(-)
 
 diff --git a/gold/layout.cc b/gold/layout.cc
-index a27cb071c75..32b52890b39 100644
+index a27cb071..32b52890 100644
 --- a/gold/layout.cc
 +++ b/gold/layout.cc
 @@ -5032,7 +5032,7 @@ Layout::create_interp(const Target* target)
@@ -34,7 +36,7 @@ index a27cb071c75..32b52890b39 100644
    Output_section_data* odata = new Output_data_const(interp, len, 1);
  
 diff --git a/ld/genscripts.sh b/ld/genscripts.sh
-index 088417ef2d5..46a2db7005c 100755
+index 088417ef..46a2db70 100755
 --- a/ld/genscripts.sh
 +++ b/ld/genscripts.sh
 @@ -304,6 +304,7 @@ DATA_ALIGNMENT_u="${DATA_ALIGNMENT_u-${DATA_ALIGNMENT_r}}"
@@ -59,7 +61,7 @@ index 088417ef2d5..46a2db7005c 100755
  DATA_ALIGNMENT=${DATA_ALIGNMENT_}
  RELOCATING=" "
 diff --git a/ld/scripttempl/elf.sc b/ld/scripttempl/elf.sc
-index 29a8f0781d5..75e46f4adaf 100644
+index 29a8f078..75e46f4a 100644
 --- a/ld/scripttempl/elf.sc
 +++ b/ld/scripttempl/elf.sc
 @@ -147,8 +147,8 @@ if test -z "$DATA_SEGMENT_ALIGN"; then
@@ -73,3 +75,6 @@ index 29a8f0781d5..75e46f4adaf 100644
  fi
  if test -z "$PLT"; then
    IPLT=".iplt         ${RELOCATING-0} : { *(.iplt) }"
+-- 
+2.32.0
+

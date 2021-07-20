@@ -9,12 +9,14 @@ Upstream-Status: Submitted
 https://sourceware.org/ml/binutils/2016-08/msg00048.html
 
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
+[bernhard.rosenkraenzer.ext@huawei.com: Rebased to 2.37]
+Signed-off-by: Bernhard Rosenkraenzer <bernhard.rosenkraenzer.ext@huawei.com>
 ---
  gold/configure.tgt | 14 ++++++++++++++
  1 file changed, 14 insertions(+)
 
 diff --git a/gold/configure.tgt b/gold/configure.tgt
-index cac0866e628..24fbf641456 100644
+index cac0866e..24fbf641 100644
 --- a/gold/configure.tgt
 +++ b/gold/configure.tgt
 @@ -153,6 +153,13 @@ aarch64*-*)
@@ -45,3 +47,6 @@ index cac0866e628..24fbf641456 100644
  mips*-*-*)
   targ_obj=mips
   targ_machine=EM_MIPS
+-- 
+2.32.0
+

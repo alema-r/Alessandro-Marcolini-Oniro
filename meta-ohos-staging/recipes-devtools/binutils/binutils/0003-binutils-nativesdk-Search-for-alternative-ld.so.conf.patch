@@ -20,6 +20,8 @@ Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 Upstream-Status: Inappropriate [OE specific tweak]
 
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
+[bernhard.rosenkraenzer.ext@huawei.com: Rebased to 2.37]
+Signed-off-by: Bernhard Rosenkraenzer <bernhard.rosenkraenzer.ext@huawei.com>
 ---
  ld/Makefile.am | 3 ++-
  ld/Makefile.in | 3 ++-
@@ -29,7 +31,7 @@ Signed-off-by: Khem Raj <raj.khem@gmail.com>
  5 files changed, 7 insertions(+), 3 deletions(-)
 
 diff --git a/ld/Makefile.am b/ld/Makefile.am
-index 2c9a487335c..3b01357b651 100644
+index f8e99325..fd196541 100644
 --- a/ld/Makefile.am
 +++ b/ld/Makefile.am
 @@ -42,7 +42,8 @@ ZLIBINC = @zlibinc@
@@ -43,10 +45,10 @@ index 2c9a487335c..3b01357b651 100644
  NO_WERROR = @NO_WERROR@
  AM_CFLAGS = $(WARN_CFLAGS) $(ELF_CLFAGS)
 diff --git a/ld/Makefile.in b/ld/Makefile.in
-index b41941c89e2..a6382bf2a45 100644
+index ef2e99e0..cb8f5bfb 100644
 --- a/ld/Makefile.in
 +++ b/ld/Makefile.in
-@@ -554,7 +554,8 @@ ZLIB = @zlibdir@ -lz
+@@ -555,7 +555,8 @@ ZLIB = @zlibdir@ -lz
  ZLIBINC = @zlibinc@
  ELF_CLFAGS = -DELF_LIST_OPTIONS=@elf_list_options@ \
  	   -DELF_SHLIB_LIST_OPTIONS=@elf_shlib_list_options@ \
@@ -57,7 +59,7 @@ index b41941c89e2..a6382bf2a45 100644
  AM_CFLAGS = $(WARN_CFLAGS) $(ELF_CLFAGS)
  
 diff --git a/ld/ldelf.c b/ld/ldelf.c
-index f7407ab55a7..b25781cc0c4 100644
+index 21e655bb..d1615003 100644
 --- a/ld/ldelf.c
 +++ b/ld/ldelf.c
 @@ -911,7 +911,7 @@ ldelf_check_ld_so_conf (const struct bfd_link_needed_list *l, int force,
@@ -70,7 +72,7 @@ index f7407ab55a7..b25781cc0c4 100644
        if (!ldelf_parse_ld_so_conf (&info, tmppath))
  	{
 diff --git a/ld/ldmain.c b/ld/ldmain.c
-index 863df0293ea..080b1c4c6c2 100644
+index 42660eb9..5a4a4d5d 100644
 --- a/ld/ldmain.c
 +++ b/ld/ldmain.c
 @@ -70,6 +70,7 @@ char *program_name;
@@ -82,7 +84,7 @@ index 863df0293ea..080b1c4c6c2 100644
  /* The canonical representation of ld_sysroot.  */
  char *ld_canon_sysroot;
 diff --git a/ld/ldmain.h b/ld/ldmain.h
-index 38e63922d31..0966914938c 100644
+index 39d08a6c..4c3519e7 100644
 --- a/ld/ldmain.h
 +++ b/ld/ldmain.h
 @@ -23,6 +23,7 @@
@@ -93,3 +95,6 @@ index 38e63922d31..0966914938c 100644
  extern char *ld_canon_sysroot;
  extern int ld_canon_sysroot_len;
  extern FILE *saved_script_handle;
+-- 
+2.32.0
+

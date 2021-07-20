@@ -8,16 +8,18 @@ we change the default emulations to be N64 instead of N32
 Upstream-Status: Inappropriate [ OE configuration Specific]
 
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
+[bernhard.rosenkraenzer.ext@huawei.com: Rebased to 2.37]
+Signed-off-by: Bernhard Rosenkraenzer <bernhard.rosenkraenzer.ext@huawei.com>
 ---
  bfd/config.bfd   | 8 ++++----
  ld/configure.tgt | 8 ++++----
  2 files changed, 8 insertions(+), 8 deletions(-)
 
 diff --git a/bfd/config.bfd b/bfd/config.bfd
-index e7b55b0dd78..2caf492e172 100644
+index 30087e3b..1896e117 100644
 --- a/bfd/config.bfd
 +++ b/bfd/config.bfd
-@@ -896,12 +896,12 @@ case "${targ}" in
+@@ -891,12 +891,12 @@ case "${targ}" in
      targ_selvecs="mips_elf32_le_vec mips_elf64_be_vec mips_elf64_le_vec mips_ecoff_be_vec mips_ecoff_le_vec"
      ;;
    mips64*el-*-linux*)
@@ -35,10 +37,10 @@ index e7b55b0dd78..2caf492e172 100644
    mips*el-*-linux*)
      targ_defvec=mips_elf32_trad_le_vec
 diff --git a/ld/configure.tgt b/ld/configure.tgt
-index 0c780b24d57..47431770a17 100644
+index 6205d7c9..c0853365 100644
 --- a/ld/configure.tgt
 +++ b/ld/configure.tgt
-@@ -531,12 +531,12 @@ mips*-*-vxworks*)	targ_emul=elf32ebmipvxworks
+@@ -530,12 +530,12 @@ mips*-*-vxworks*)	targ_emul=elf32ebmipvxworks
  			;;
  mips*-*-windiss)	targ_emul=elf32mipswindiss
  			;;
@@ -55,3 +57,6 @@ index 0c780b24d57..47431770a17 100644
  			targ_extra_libpath=$targ_extra_emuls
  			;;
  mips*el-*-linux-*)	targ_emul=elf32ltsmip
+-- 
+2.32.0
+

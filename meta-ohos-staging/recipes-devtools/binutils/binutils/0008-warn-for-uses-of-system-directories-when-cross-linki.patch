@@ -50,6 +50,8 @@ Upstream-Status: Pending
 Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
 Signed-off-by: Scott Garman <scott.a.garman@intel.com>
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
+[bernhard.rosenkraenzer.ext@huawei.com: Rebased/ported to 2.37]
+Signed-off-by: Bernhard Rosenkraenzer <bernhard.rosenkraenzer.ext@huawei.com>
 ---
  ld/config.in    |  3 +++
  ld/configure    | 16 ++++++++++++++++
@@ -63,10 +65,10 @@ Signed-off-by: Khem Raj <raj.khem@gmail.com>
  9 files changed, 86 insertions(+)
 
 diff --git a/ld/config.in b/ld/config.in
-index 7b60d778587..37b8e9b6f6c 100644
+index 26d55a00..ffad4647 100644
 --- a/ld/config.in
 +++ b/ld/config.in
-@@ -40,6 +40,9 @@
+@@ -43,6 +43,9 @@
     language is requested. */
  #undef ENABLE_NLS
  
@@ -77,10 +79,10 @@ index 7b60d778587..37b8e9b6f6c 100644
  #undef EXTRA_SHLIB_EXTENSION
  
 diff --git a/ld/configure b/ld/configure
-index b0969791959..50bb04ce6a8 100755
+index c197aaef..58295dec 100755
 --- a/ld/configure
 +++ b/ld/configure
-@@ -828,6 +828,7 @@ with_lib_path
+@@ -829,6 +829,7 @@ with_lib_path
  enable_targets
  enable_64_bit_bfd
  with_sysroot
@@ -88,8 +90,8 @@ index b0969791959..50bb04ce6a8 100755
  enable_gold
  enable_got
  enable_compressed_debug_sections
-@@ -1496,6 +1497,8 @@ Optional Features:
-   --disable-largefile     omit support for large files
+@@ -1498,6 +1499,8 @@ Optional Features:
+   --enable-checking       enable run-time checks
    --enable-targets        alternative target configurations
    --enable-64-bit-bfd     64-bit support (on hosts with narrower word sizes)
 +  --enable-poison-system-directories
@@ -97,7 +99,7 @@ index b0969791959..50bb04ce6a8 100755
    --enable-gold[=ARG]     build gold [ARG={default,yes,no}]
    --enable-got=<type>     GOT handling scheme (target, single, negative,
                            multigot)
-@@ -15820,6 +15823,19 @@ fi
+@@ -15215,6 +15218,19 @@ fi
  
  
  
@@ -118,10 +120,10 @@ index b0969791959..50bb04ce6a8 100755
  if test "${enable_gold+set}" = set; then :
    enableval=$enable_gold; case "${enableval}" in
 diff --git a/ld/configure.ac b/ld/configure.ac
-index c9c69ab9245..59dab0a6ac4 100644
+index 8ea97c43..0f246db6 100644
 --- a/ld/configure.ac
 +++ b/ld/configure.ac
-@@ -94,6 +94,16 @@ AC_SUBST(use_sysroot)
+@@ -106,6 +106,16 @@ AC_SUBST(use_sysroot)
  AC_SUBST(TARGET_SYSTEM_ROOT)
  AC_SUBST(TARGET_SYSTEM_ROOT_DEFINE)
  
@@ -139,29 +141,29 @@ index c9c69ab9245..59dab0a6ac4 100644
  dnl "install_as_default" is set to false if gold is the default linker.
  dnl "installed_linker" is the installed BFD linker name.
 diff --git a/ld/ld.h b/ld/ld.h
-index 93f5af92c7d..ff7f71a7b66 100644
+index 35fafebf..3d559a77 100644
 --- a/ld/ld.h
 +++ b/ld/ld.h
-@@ -166,6 +166,14 @@ typedef struct
+@@ -162,6 +162,14 @@ typedef struct
       in the linker script.  */
-   bfd_boolean force_group_allocation;
+   bool force_group_allocation;
  
-+  /* If TRUE (the default) warn for uses of system directories when
++  /* If true (the default) warn for uses of system directories when
 +     cross linking.  */
-+  bfd_boolean poison_system_directories;
++  bool poison_system_directories;
 +
-+  /* If TRUE (default FALSE) give an error for uses of system
++  /* If true (default false) give an error for uses of system
 +     directories when cross linking instead of a warning.  */
-+  bfd_boolean error_poison_system_directories;
++  bool error_poison_system_directories;
 +
    /* Big or little endian as set on command line.  */
    enum endian_enum endian;
  
 diff --git a/ld/ld.texi b/ld/ld.texi
-index 7a602b9c6ab..cccbfbab3bb 100644
+index dd8f571d..3ab210b4 100644
 --- a/ld/ld.texi
 +++ b/ld/ld.texi
-@@ -2810,6 +2810,18 @@ string identifying the original linked file does not change.
+@@ -2863,6 +2863,18 @@ string identifying the original linked file does not change.
  
  Passing @code{none} for @var{style} disables the setting from any
  @code{--build-id} options earlier on the command line.
@@ -181,10 +183,10 @@ index 7a602b9c6ab..cccbfbab3bb 100644
  
  @c man end
 diff --git a/ld/ldfile.c b/ld/ldfile.c
-index 81cb86d51e2..cd5c2752679 100644
+index 9d0af06f..7cdd3b1c 100644
 --- a/ld/ldfile.c
 +++ b/ld/ldfile.c
-@@ -117,6 +117,23 @@ ldfile_add_library_path (const char *name, bfd_boolean cmdline)
+@@ -117,6 +117,23 @@ ldfile_add_library_path (const char *name, bool cmdline)
      new_dirs->name = concat (ld_sysroot, name + strlen ("$SYSROOT"), (const char *) NULL);
    else
      new_dirs->name = xstrdup (name);
@@ -209,10 +211,10 @@ index 81cb86d51e2..cd5c2752679 100644
  
  /* Try to open a BFD for a lang_input_statement.  */
 diff --git a/ld/ldlex.h b/ld/ldlex.h
-index b0101028321..77f5accb5d9 100644
+index 9e8bf5fb..2f0fadfe 100644
 --- a/ld/ldlex.h
 +++ b/ld/ldlex.h
-@@ -161,6 +161,8 @@ enum option_values
+@@ -163,6 +163,8 @@ enum option_values
    OPTION_CTF_VARIABLES,
    OPTION_NO_CTF_VARIABLES,
    OPTION_CTF_SHARE_TYPES,
@@ -222,23 +224,23 @@ index b0101028321..77f5accb5d9 100644
  
  /* The initial parser states.  */
 diff --git a/ld/ldmain.c b/ld/ldmain.c
-index 080b1c4c6c2..78d8a2df278 100644
+index 5a4a4d5d..07af963e 100644
 --- a/ld/ldmain.c
 +++ b/ld/ldmain.c
-@@ -324,6 +324,8 @@ main (int argc, char **argv)
-   command_line.warn_mismatch = TRUE;
-   command_line.warn_search_mismatch = TRUE;
+@@ -322,6 +322,8 @@ main (int argc, char **argv)
+   command_line.warn_mismatch = true;
+   command_line.warn_search_mismatch = true;
    command_line.check_section_addresses = -1;
-+  command_line.poison_system_directories = TRUE;
-+  command_line.error_poison_system_directories = FALSE;
++  command_line.poison_system_directories = true;
++  command_line.error_poison_system_directories = false;
  
    /* We initialize DEMANGLING based on the environment variable
       COLLECT_NO_DEMANGLE.  The gcc collect2 program will demangle the
 diff --git a/ld/lexsup.c b/ld/lexsup.c
-index f005a58a045..5eb8439fef7 100644
+index 00274c50..dfcd5a4c 100644
 --- a/ld/lexsup.c
 +++ b/ld/lexsup.c
-@@ -591,6 +591,14 @@ static const struct ld_option ld_options[] =
+@@ -595,6 +595,14 @@ static const struct ld_option ld_options[] =
  		   "                                <method> is: share-unconflicted (default),\n"
  		   "                                             share-duplicated"),
      TWO_DASHES },
@@ -253,18 +255,21 @@ index f005a58a045..5eb8439fef7 100644
  };
  
  #define OPTION_COUNT ARRAY_SIZE (ld_options)
-@@ -1676,6 +1684,14 @@ parse_args (unsigned argc, char **argv)
- 	  config.print_map_discarded = TRUE;
+@@ -1686,6 +1694,14 @@ parse_args (unsigned argc, char **argv)
+ 	  config.print_map_discarded = true;
  	  break;
  
 +	case OPTION_NO_POISON_SYSTEM_DIRECTORIES:
-+	  command_line.poison_system_directories = FALSE;
++	  command_line.poison_system_directories = false;
 +	  break;
 +
 +	case OPTION_ERROR_POISON_SYSTEM_DIRECTORIES:
-+	  command_line.error_poison_system_directories = TRUE;
++	  command_line.error_poison_system_directories = true;
 +	  break;
 +
  	case OPTION_DEPENDENCY_FILE:
  	  config.dependency_file = optarg;
  	  break;
+-- 
+2.32.0
+

@@ -8,16 +8,18 @@ gprof needs to know about uclibc
 Upstream-Status: Pending
 
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
+[bernhard.rosenkraenzer.ext@huawei.com: Rebased to 2.37]
+Signed-off-by: Bernhard Rosenkraenzer <bernhard.rosenkraenzer.ext@huawei.com>
 ---
  configure    | 2 +-
  configure.ac | 2 +-
  2 files changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/configure b/configure
-index 68779feb42b..7b369071141 100755
+index 3dd20652..e8ba1a1d 100755
 --- a/configure
 +++ b/configure
-@@ -3887,7 +3887,7 @@ case "${target}" in
+@@ -3892,7 +3892,7 @@ case "${target}" in
    nvptx*-*-*)
      noconfigdirs="$noconfigdirs target-libssp target-libstdc++-v3 target-libobjc"
      ;;
@@ -27,10 +29,10 @@ index 68779feb42b..7b369071141 100755
        sh*-*-elf)
           ;;
 diff --git a/configure.ac b/configure.ac
-index d16a2757689..92f01fb3ed7 100644
+index 48f679b8..1e59a0e2 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -1177,7 +1177,7 @@ case "${target}" in
+@@ -1175,7 +1175,7 @@ case "${target}" in
    nvptx*-*-*)
      noconfigdirs="$noconfigdirs target-libssp target-libstdc++-v3 target-libobjc"
      ;;
@@ -39,3 +41,6 @@ index d16a2757689..92f01fb3ed7 100644
      case "${target}" in
        sh*-*-elf)
           ;;
+-- 
+2.32.0
+

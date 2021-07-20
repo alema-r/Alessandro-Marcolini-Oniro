@@ -14,12 +14,14 @@ Upstream-Status: Inappropriate [embedded specific]
 
 Signed-off-by: Scott Garman <scott.a.garman@intel.com>
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
+[bernhard.rosenkraenzer.ext@huawei.com: Rebased to 2.37]
+Signed-off-by: Bernhard Rosenkraenzer <bernhard.rosenkraenzer.ext@huawei.com>
 ---
  ltmain.sh | 10 ++++++++--
  1 file changed, 8 insertions(+), 2 deletions(-)
 
 diff --git a/ltmain.sh b/ltmain.sh
-index 70e856e0659..11ee684cccf 100644
+index 70e856e0..11ee684c 100644
 --- a/ltmain.sh
 +++ b/ltmain.sh
 @@ -8035,9 +8035,11 @@ EOF
@@ -47,3 +49,6 @@ index 70e856e0659..11ee684cccf 100644
  	  if test -n "$hardcode_libdir_separator"; then
  	    if test -z "$hardcode_libdirs"; then
  	      hardcode_libdirs="$libdir"
+-- 
+2.32.0
+

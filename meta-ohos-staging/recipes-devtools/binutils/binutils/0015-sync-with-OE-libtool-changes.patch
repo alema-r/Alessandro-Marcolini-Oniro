@@ -21,12 +21,14 @@ Upstream-Status: Inappropriate
 
 Signed-off-by: Ross Burton <ross.burton@intel.com>
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
+[bernhard.rosenkraenzer.ext@huawei.com: Rebased to 2.37]
+Signed-off-by: Bernhard Rosenkraenzer <bernhard.rosenkraenzer.ext@huawei.com>
 ---
  ltmain.sh | 34 ++++++++++++++++++++++++++++------
  1 file changed, 28 insertions(+), 6 deletions(-)
 
 diff --git a/ltmain.sh b/ltmain.sh
-index 11ee684cccf..3b19ac15328 100644
+index 11ee684c..3b19ac15 100644
 --- a/ltmain.sh
 +++ b/ltmain.sh
 @@ -8053,8 +8053,16 @@ EOF
@@ -84,3 +86,6 @@ index 11ee684cccf..3b19ac15328 100644
  	  fi
  	elif test -n "$runpath_var"; then
  	  case "$finalize_perm_rpath " in
+-- 
+2.32.0
+
