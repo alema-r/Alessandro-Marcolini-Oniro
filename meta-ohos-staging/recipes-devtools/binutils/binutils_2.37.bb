@@ -54,6 +54,10 @@ do_install_class-native () {
 	rmdir ${D}/${libdir}64 || :
 }
 
+do_install_append_class-target () {
+	chmod o-rx ${D}${prefix}/${TARGET_SYS}/bin/*
+}
+
 # libctf races with libbfd
 PARALLEL_MAKEINST_class-target = ""
 PARALLEL_MAKEINST_class-nativesdk = ""
