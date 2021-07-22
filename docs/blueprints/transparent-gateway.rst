@@ -12,6 +12,7 @@ Overview
 ********
 
 The Transparent Gateway Blueprint provides support for building a PoC gateway that can be the communication hub in a smart home. Some of the features it demonstrates are:
+
 #. Ability to participate in an OpenThread network
 #. Automatic IPv6-to-IPv4 translation between devices and rest of the world
 #. Wifi AP functionality
