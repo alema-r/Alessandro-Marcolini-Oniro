@@ -56,12 +56,16 @@ For more details, the used `OpenThread configuration script <https://git.ostc-eu
 
 Get sources
 ***********
-#. 
-   Get All Scenarios OS sources as described in the :ref:`documentation <AllScenariOSQuickBuild>`.
 
-#. 
-   If you already have sources cloned, update them to the most recent revision.
+#. Get All Scenarios OS sources as described in the :ref:`documentation <AllScenariOSQuickBuild>`.
+#. If you already have sources cloned, update them to the most recent revision.
 
    .. code-block:: bash
 
       user@pc:~/ohos$ repo sync -d
+
+#. To build the image for this blueprint, you need to set the corresponding distro in the conf/local.conf file or on the command-line as seen below.
+
+   .. code-block:: bash
+
+      user@pc:~/ohos$ DISTRO="allscenarios-linux-blueprint-gateway" bitbake blueprint-gateway-image
