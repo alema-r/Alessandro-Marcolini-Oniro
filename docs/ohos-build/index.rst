@@ -5,7 +5,7 @@
 Build Configuration
 ###################
 
-The build system recipes provide various functionalities that expose knobs and
+The build system's recipes provide various functionalities that expose knobs and
 primitives.
 
 .. toctree::
