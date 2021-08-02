@@ -32,7 +32,9 @@ WIC_ROOTA_PARTITION ?= "part / --source rootfs --use-uuid --fstype=${ROOT_FSTYPE
                         ${@bb.utils.contains('ROOT_FSTYPE', 'ext4', '--mkfs-extraopts \'-T default\'', '', d)} \
                         --align 4096 --fixed-size ${ROOTA_PARTITION_SIZE} \
 			${WIC_ROOTA_PARTITION_EXTRA_ARGS}"
-WIC_ROOTB_PARTITION ?= "part --align 4096 --fixed-size ${ROOTB_PARTITION_SIZE} \
+WIC_ROOTB_PARTITION ?= "part / --source rootfs --use-uuid --fstype=${ROOT_FSTYPE} \
+                        ${@bb.utils.contains('ROOT_FSTYPE', 'ext4', '--mkfs-extraopts \'-T default\'', '', d)} \
+                        --align 4096 --fixed-size ${ROOTB_PARTITION_SIZE} \
                         ${WIC_ROOTB_PARTITION_EXTRA_ARGS}"
 WIC_DEVDATA_PARTITION ?= "part --fstype=ext4 --label x-dev-data --mkfs-extraopts '-T default' --align 4096 --fixed-size ${DEVDATA_PARTITION_SIZE} ${WIC_DEVDATA_PARTITION_EXTRA_ARGS}"
 WIC_SYSDATA_PARTITION ?= "part --fstype=ext4 --label x-sys-data --mkfs-extraopts '-T default' --align 4096 --fixed-size ${SYSDATA_PARTITION_SIZE} ${WIC_SYSDATA_PARTITION_EXTRA_ARGS}"
