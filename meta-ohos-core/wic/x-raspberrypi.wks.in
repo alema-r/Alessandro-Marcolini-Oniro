@@ -12,12 +12,12 @@
 # https://elinux.org/RPi_Easy_SD_Card_Setup
 #
 # Disk layout:
-#  - -------- --------- --------- ------------------------------------------
-# | |        |         |         |                extended                  |
-# | |        |         |         |  ------------ ------------ ------------  |
-# | | x-boot | x-sys-a | x-sys-b | | x-dev-data | x-sys-data | x-app-data | |
-# | |        |         |         |  ------------ ------------ ------------  |
-#  - -------- --------- --------- ------------------------------------------
+#  - ------ ------- ------- ---------------------------------
+# | |      |       |       |            extended             |
+# | |      |       |       |  --------- --------- ---------  |
+# | | boot | sys-a | sys-b | | devdata | sysdata | appdata | |
+# | |      |       |       |  --------- --------- ---------  |
+#  - ------ ------- ------- ---------------------------------
 # ^ ^
 # | |
 # 0 |
@@ -25,7 +25,7 @@
 
 bootloader --ptable msdos
 
-part --source bootimg-partition --fstype=vfat --label x-boot --align 4096 --fixed-size ${BOOT_PARTITION_SIZE} --active --offset 4096
+part --source bootimg-partition --fstype=vfat --label boot --align 4096 --fixed-size ${BOOT_PARTITION_SIZE} --active --offset 4096
 ${WIC_ROOTA_PARTITION}
 ${WIC_ROOTB_PARTITION}
 ${WIC_DEVDATA_PARTITION}

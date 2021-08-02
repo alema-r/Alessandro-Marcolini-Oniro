@@ -7,12 +7,12 @@
 # partitions.
 #
 # Disk layout:
-#  - -------- --------- --------- ------------------------------------------
-# | |        |         |         |                extended                  |
-# | |        |         |         |  ------------ ------------ ------------  |
-# | | x-boot | x-sys-a | x-sys-b | | x-dev-data | x-sys-data | x-app-data | |
-# | |        |         |         |  ------------ ------------ ------------  |
-#  - -------- --------- --------- ------------------------------------------
+#  - ------ ------- ------- ---------------------------------
+# | |      |       |       |             extended            |
+# | |      |       |       |  --------- --------- ---------  |
+# | | boot | sys-a | sys-b | | devdata | sysdata | appdata | |
+# | |      |       |       |  --------- --------- ---------  |
+#  - ------ ------- ------- ---------------------------------
 # ^ ^
 # | |
 # 0 |
@@ -20,7 +20,7 @@
 
 bootloader --source bootimg-pcbios --timeout=0 --append="oprofile.timer=1 rootfstype=${ROOT_FSTYPE}"
 
-part --source bootimg-pcbios --label x-boot --align 4096 --fixed-size ${BOOT_PARTITION_SIZE} --active --offset 4096
+part --source bootimg-pcbios --label boot --align 4096 --fixed-size ${BOOT_PARTITION_SIZE} --active --offset 4096
 ${WIC_ROOTA_PARTITION}
 ${WIC_ROOTB_PARTITION}
 ${WIC_DEVDATA_PARTITION}

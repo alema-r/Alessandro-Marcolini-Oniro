@@ -9,16 +9,16 @@
 # Based on OE-core's systemd-bootdisk.wks file.
 #
 # Disk layout:
-#  -- -------- --------- --------- ------------ ------------ ------------
-# |  | x-boot | x-sys-a | x-sys-b | x-dev-data | x-sys-data | x-app-data |
-#  -- -------- --------- --------- ------------ ------------ ------------
+#  -- ------ ------- ------- --------- --------- ---------
+# |  | boot | sys-a | sys-b | devdata | sysdata | appdata |
+#  -- ------ ------- ------- --------- --------- ---------
 # ^  ^
 # |  |
 # 0  4096KiB
 
 bootloader --ptable gpt --timeout=5 --append=" rootfstype=ext4 "
 
-part --source bootimg-efi --sourceparams="loader=systemd-boot,initrd=microcode.cpio" --label x-boot --align 4096 --fixed-size ${BOOT_PARTITION_SIZE} --active --offset 4096
+part --source bootimg-efi --sourceparams="loader=systemd-boot,initrd=microcode.cpio" --label boot --align 4096 --fixed-size ${BOOT_PARTITION_SIZE} --active --offset 4096
 ${WIC_ROOTA_PARTITION}
 ${WIC_ROOTB_PARTITION}
 ${WIC_DEVDATA_PARTITION}
