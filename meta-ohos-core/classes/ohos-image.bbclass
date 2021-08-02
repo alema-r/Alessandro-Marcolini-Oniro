@@ -15,7 +15,12 @@ systemd_mask_getty () {
     fi
 }
 
-IMAGE_PREPROCESS_COMMAND_append = " ${@ 'systemd_mask_getty;' if bb.utils.contains('DISTRO_FEATURES', 'systemd', True, False, d) and not bb.utils.contains('IMAGE_FEATURES', 'stateless-rootfs', True, False, d) else ''}"
+# read_only_rootfs_hook
+revert_volatile_dropear_hostkeys () {
+    sed -i '/DROPBEAR_RSAKEY_DIR/d' ${IMAGE_ROOTFS}/etc/default/dropbear
+}
+
+IMAGE_PREPROCESS_COMMAND_append = " ${@ 'systemd_mask_getty;' if bb.utils.contains('DISTRO_FEATURES', 'systemd', True, False, d) and not bb.utils.contains('IMAGE_FEATURES', 'stateless-rootfs', True, False, d) else ''} revert_volatile_dropear_hostkeys"
 
 IMAGE_FEATURES_append = " read-only-rootfs"
 
