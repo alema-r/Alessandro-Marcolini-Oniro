@@ -13,10 +13,10 @@ All Scenarios OS Build Architecture
 Overview
 ********
 
-All Scenarios OS build infrastructure designed to run atop variety of OS kernels
-ranging from RTOSs to Linux.
+All Scenarios OS build infrastructure is designed to run atop variety of OS kernels
+ranging from RTOSes to Linux.
 
-``meta-ohos`` is a *umbrella* of meta layers containing build meta-data
+``meta-ohos`` is an *umbrella* of meta layers containing build's meta-data
 required for compiling All Scenarios OS images. The architecture supports plugging
 various kernels.
 
