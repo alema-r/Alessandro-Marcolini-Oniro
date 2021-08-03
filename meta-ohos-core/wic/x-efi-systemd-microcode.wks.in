@@ -18,7 +18,7 @@
 
 bootloader --ptable gpt --timeout=5 --append=" rootfstype=ext4 "
 
-part --source bootimg-efi --sourceparams="loader=systemd-boot,initrd=microcode.cpio" --label boot --align 4096 --fixed-size ${BOOT_PARTITION_SIZE} --active --offset 4096
+part --source bootimg-efi --sourceparams="loader=systemd-boot,initrd=microcode.cpio" --label ${BOOT_PARTITION_LABEL} --align 4096 --fixed-size ${BOOT_PARTITION_SIZE} --active --offset 4096
 ${WIC_ROOTA_PARTITION}
 ${WIC_ROOTB_PARTITION}
 ${WIC_DEVDATA_PARTITION}

@@ -25,7 +25,7 @@
 
 bootloader --ptable msdos
 
-part --source bootimg-partition --fstype=vfat --label boot --align 4096 --fixed-size ${BOOT_PARTITION_SIZE} --active --offset 4096
+part --source bootimg-partition --fstype=vfat --label ${BOOT_PARTITION_LABEL} --align 4096 --fixed-size ${BOOT_PARTITION_SIZE} --active --offset 4096
 ${WIC_ROOTA_PARTITION}
 ${WIC_ROOTB_PARTITION}
 ${WIC_DEVDATA_PARTITION}

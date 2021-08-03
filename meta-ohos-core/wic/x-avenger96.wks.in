@@ -20,7 +20,7 @@ bootloader --ptable gpt
 part fsbl1 --source rawcopy --sourceparams="file=arm-trusted-firmware/tf-a-stm32mp157a-av96-sdcard.stm32" --part-name fsbl1 --part-type 8DA63339-0007-60C0-C436-083AC8230908 --offset 17
 part fsbl2 --source rawcopy --sourceparams="file=arm-trusted-firmware/tf-a-stm32mp157a-av96-sdcard.stm32" --part-name fsbl2 --part-type 8DA63339-0007-60C0-C436-083AC8230908 --offset 273
 part fip --source rawcopy --sourceparams="file=fip/fip-stm32mp157a-av96-trusted.bin" --part-name fip --part-type 8DA63339-0007-60C0-C436-083AC8230908  --offset 529
-part --source bootimg-partition --fstype=ext4 --label boot --align 4096 --fixed-size ${BOOT_PARTITION_SIZE} --active --offset 4096
+part --source bootimg-partition --fstype=ext4 --label ${BOOT_PARTITION_LABEL} --align 4096 --fixed-size ${BOOT_PARTITION_SIZE} --active --offset 4096
 ${WIC_ROOTA_PARTITION}
 ${WIC_ROOTB_PARTITION}
 ${WIC_DEVDATA_PARTITION}

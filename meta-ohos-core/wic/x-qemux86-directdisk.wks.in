@@ -20,7 +20,7 @@
 
 bootloader --source bootimg-pcbios-label --timeout=0 --append="oprofile.timer=1 rootfstype=${ROOT_FSTYPE}"
 
-part --source bootimg-pcbios-label --label boot --align 4096 --fixed-size ${BOOT_PARTITION_SIZE} --active --offset 4096
+part --source bootimg-pcbios-label --label ${BOOT_PARTITION_LABEL} --align 4096 --fixed-size ${BOOT_PARTITION_SIZE} --active --offset 4096
 ${WIC_ROOTA_PARTITION}
 ${WIC_ROOTB_PARTITION}
 ${WIC_DEVDATA_PARTITION}
