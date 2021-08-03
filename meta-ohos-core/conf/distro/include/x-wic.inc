@@ -6,21 +6,27 @@
 # supported devices. This configuration is taking into consideration OTA design
 # and strategies.
 
+# Boot partition
 BOOT_PARTITION_LABEL ?= "boot"
 BOOT_PARTITION_SIZE ?= "512M"
 
+# Root partitions
+# No label as default filesystem is squashfs.
 # The SECO B68 board pulls in almost half a Gigabyte worth of linux-firmware.
 ROOT_PARTITION_SIZE_seco-intel-b68 ?= "1536M"
 ROOT_PARTITION_SIZE ?= "1G"
 ROOTA_PARTITION_SIZE = "${ROOT_PARTITION_SIZE}"
 ROOTB_PARTITION_SIZE = "${ROOT_PARTITION_SIZE}"
 
+# Device data partition
 DEVDATA_PARTITION_LABEL ?= "devdata"
 DEVDATA_PARTITION_SIZE ?= "8M"
 
+# System data partition
 SYSDATA_PARTITION_LABEL ?= "sysdata"
 SYSDATA_PARTITION_SIZE ?= "512M"
 
+# Application data partition
 APPDATA_PARTITION_LABEL ?= "appdata"
 APPDATA_PARTITION_SIZE ?= "1G"
 
