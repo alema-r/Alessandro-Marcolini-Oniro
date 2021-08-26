@@ -1,0 +1,59 @@
+From 3f86843b300cd4e351da020b70cedfd9bd9101f6 Mon Sep 17 00:00:00 2001
+From: Andrei Gherzan <andrei.gherzan@huawei.com>
+Date: Thu, 26 Aug 2021 10:56:47 +0100
+Subject: [PATCH] Regenerate xlat headers
+
+Signed-off-by: Andrei Gherzan <andrei.gherzan@huawei.com>
+Upstream-status: Inappropriate [generated with included script]
+---
+ xlat/inet_protocols.h | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
+
+diff --git a/xlat/inet_protocols.h b/xlat/inet_protocols.h
+index 3a32b3c..4659ab4 100644
+--- a/xlat/inet_protocols.h
++++ b/xlat/inet_protocols.h
+@@ -220,6 +220,13 @@ DIAG_POP_IGNORE_TAUTOLOGICAL_COMPARE
+ #else
+ # define IPPROTO_MPLS 137
+ #endif
++#if defined(IPPROTO_ETHERNET) || (defined(HAVE_DECL_IPPROTO_ETHERNET) && HAVE_DECL_IPPROTO_ETHERNET)
++DIAG_PUSH_IGNORE_TAUTOLOGICAL_COMPARE
++static_assert((IPPROTO_ETHERNET) == (143), "IPPROTO_ETHERNET != 143");
++DIAG_POP_IGNORE_TAUTOLOGICAL_COMPARE
++#else
++# define IPPROTO_ETHERNET 143
++#endif
+ #if defined(IPPROTO_RAW) || (defined(HAVE_DECL_IPPROTO_RAW) && HAVE_DECL_IPPROTO_RAW)
+ DIAG_PUSH_IGNORE_TAUTOLOGICAL_COMPARE
+ static_assert((IPPROTO_RAW) == (255), "IPPROTO_RAW != 255");
+@@ -227,12 +234,12 @@ DIAG_POP_IGNORE_TAUTOLOGICAL_COMPARE
+ #else
+ # define IPPROTO_RAW 255
+ #endif
+-#if defined(IPPROTO_MAX) || (defined(HAVE_DECL_IPPROTO_MAX) && HAVE_DECL_IPPROTO_MAX)
++#if defined(IPPROTO_MPTCP) || (defined(HAVE_DECL_IPPROTO_MPTCP) && HAVE_DECL_IPPROTO_MPTCP)
+ DIAG_PUSH_IGNORE_TAUTOLOGICAL_COMPARE
+-static_assert((IPPROTO_MAX) == (256), "IPPROTO_MAX != 256");
++static_assert((IPPROTO_MPTCP) == (262), "IPPROTO_MPTCP != 262");
+ DIAG_POP_IGNORE_TAUTOLOGICAL_COMPARE
+ #else
+-# define IPPROTO_MAX 256
++# define IPPROTO_MPTCP 262
+ #endif
+ 
+ #ifndef XLAT_MACROS_ONLY
+@@ -271,8 +278,9 @@ static const struct xlat_data inet_protocols_xdata[] = {
+  XLAT(IPPROTO_MH),
+  XLAT(IPPROTO_UDPLITE),
+  XLAT(IPPROTO_MPLS),
++ XLAT(IPPROTO_ETHERNET),
+  XLAT(IPPROTO_RAW),
+- XLAT(IPPROTO_MAX),
++ XLAT(IPPROTO_MPTCP),
+ };
+ const struct xlat inet_protocols[1] = { {
+  .data = inet_protocols_xdata,
+-- 
+2.33.0
+
