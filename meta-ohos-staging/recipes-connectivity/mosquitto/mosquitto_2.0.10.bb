@@ -12,7 +12,7 @@ LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=ca9a8f366c6babf593e374d0d7d58749 \
                     file://epl-v20;md5=d9fc0efef5228704e7f5b37f27192723 \
                     file://notice.html;md5=541f8f37af492858dab8d2c1b69ede69 \
 "
-DEPENDS = "uthash cjson dlt-daemon"
+DEPENDS = "uthash cjson"
 
 SRC_URI = "http://mosquitto.org/files/source/mosquitto-${PV}.tar.gz \
            file://mosquitto.init \
