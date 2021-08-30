@@ -37,4 +37,5 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-security \
   ##OEROOT##/../meta-linaro/meta-optee \
   ##OEROOT##/../meta-riscv \
+  ##OEROOT##/../meta-rauc \
   "
