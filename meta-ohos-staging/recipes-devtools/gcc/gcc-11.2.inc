@@ -116,3 +116,13 @@ EXTRA_OECONF_PATHS = "\
     --with-sysroot=/not/exist \
     --with-build-sysroot=${STAGING_DIR_TARGET} \
 "
+
+# gcc triggers some warnings (format string security issues) because of
+# very low-level code. Those warnings are harmless (last checked in 11.2).
+# Let's make sure we don't error out on them so we can enable the extra
+# checks globally in OPTIMIZE_FOR=security mode.
+#
+# Since parts of gcc are built with -Werror, we have to remove even the
+# -W flags, not just -Werror=.
+#
+TARGET_CFLAGS_remove = "-Wformat-security -Werror=format-security -Wformat-nonliteral -Werror=format-nonliteral"
