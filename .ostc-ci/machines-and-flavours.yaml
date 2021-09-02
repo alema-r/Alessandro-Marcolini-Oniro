@@ -132,3 +132,10 @@ blueprint-smartpanel-linux:
     MACHINE: stm32mp1-av96
     DISTRO: allscenarios-linux-blueprint-dashboard
     OHOS_BITBAKE_TARGETS: "blueprint-dashboard-gateway-image"
+
+blueprint-gateway-linux:
+  extends: .build-linux
+  variables:
+    MACHINE: raspberrypi4-64
+    DISTRO: allscenarios-linux-blueprint-gateway
+    OHOS_BITBAKE_TARGETS: "blueprint-gateway-image"
