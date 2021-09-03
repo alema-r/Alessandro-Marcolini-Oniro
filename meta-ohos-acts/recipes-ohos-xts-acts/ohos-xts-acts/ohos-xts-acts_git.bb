@@ -20,6 +20,23 @@ inherit zmk
 # jffs2 image size defaults to 1MB
 ACTS_JFFS2_IMG_SIZE ?= "0x100000"
 
+# FIXME this should be fixed properly instead of adding this workaround.
+# When using modern compilers with -Warray-bounds, they find at least one
+# legitimate issue with the code in xts:
+# | ../git/kernel_lite/mem_posix/src/ActsMemApiTest.cpp:229:25: error: 'void* mempcpy(void*, const void*, size_t)' forming offset [13, 15] is out of the bounds [0, 13] of object 'srcStr' with type 'char [13]' [-Werror=array-bounds]
+# |   229 |     pt = (char *)mempcpy(destStr, srcStr, 16);
+# |       |                  ~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+# | ../git/kernel_lite/mem_posix/src/ActsMemApiTest.cpp:224:10: note: 'srcStr' declared here
+# |   224 |     char srcStr[] = "this is str1";
+# |       |          ^~~~~~
+#
+# (Copying 16 characters from a string of 12)
+#
+# However, making the error non-fatal is no worse than not using
+# -Werror=array-bounds globally (previous situation), so it is an
+# ok workaround until this is fixed properly.
+TARGET_CFLAGS_remove = "-Werror=array-bounds"
+
 do_install_append() {
     # Prepare jffs2 image to be mounted on the target
     # mkfs.jffs2 requires a directory to make an image out of
