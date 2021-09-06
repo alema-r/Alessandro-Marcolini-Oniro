@@ -9,6 +9,12 @@ TouchPanel Blueprint
 
 .. contents::
    :depth: 4
+ 
+.. attention::
+   The `TouchPannel` blueprint is still a work in progress (WIP). For more
+   information, see the :ref:`resources <Resources>` section.
+    
+
 
 Overview
 ********
@@ -30,3 +36,10 @@ Get sources
    .. code-block:: bash
 
       user@pc:~/ohos$ repo sync -d
+
+Resources
+=========
+
+.. _Resources:
+
+- See `Touch Panel's requirement <https://git.ostc-eu.org/OSTC/planning/blueprints/-/issues/19>`_
