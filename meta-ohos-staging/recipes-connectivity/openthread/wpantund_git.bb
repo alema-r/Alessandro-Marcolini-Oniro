@@ -15,6 +15,9 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=e7820bc7f7d1638a6b54fc2e8d7fb103 \
 
 SRC_URI = "gitsm://github.com/openthread/wpantund.git;protocol=https \
            "
+# CVE-2020-8916 has been fixed in commit
+# 3f108441e23e033b936e85be5b6877dd0a1fbf1c which is included in the SRCREV
+CVE_CHECK_WHITELIST = "CVE-2020-8916"
 
 PV = "0.07.01+git${SRCPV}"
 SRCREV = "bf45115f41ba2b8029eda174be2b93dea73b9261"
