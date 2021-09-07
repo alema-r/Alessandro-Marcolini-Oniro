@@ -10,7 +10,7 @@ LICENSE = "EPL-2.0 | EDL-1.0"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=ca9a8f366c6babf593e374d0d7d58749 \
                     file://edl-v10;md5=c09f121939f063aeb5235972be8c722c \
                     file://epl-v20;md5=d9fc0efef5228704e7f5b37f27192723 \
-                    file://notice.html;md5=541f8f37af492858dab8d2c1b69ede69 \
+                    file://NOTICE.md;md5=a7a91b4754c6f7995020d1b49bc829c6 \
 "
 DEPENDS = "uthash cjson"
 
@@ -19,8 +19,8 @@ SRC_URI = "http://mosquitto.org/files/source/mosquitto-${PV}.tar.gz \
            file://1571.patch \
 "
 
-SRC_URI[md5sum] = "3d1c327d8c5881f56983bee1e3c8f068"
-SRC_URI[sha256sum] = "0188f7b21b91d6d80e992b8d6116ba851468b3bd154030e8a003ed28fb6f4a44"
+SRC_URI[md5sum] = "c226d3ae261f5611adbc0d9f10bc7a77"
+SRC_URI[sha256sum] = "31cf0065cb431d6f4e57a5f4d56663e839c9d177362eff89582d7cfde191c933"
 
 inherit systemd update-rc.d useradd cmake
 
