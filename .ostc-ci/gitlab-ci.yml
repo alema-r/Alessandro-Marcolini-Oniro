@@ -117,6 +117,8 @@ lava-linux-avenger96:
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/avenger96-acts.yaml"
     CI_BUILD_JOB_NAME: linux-stm32mp1-av96
     CI_REPORT_JOB_NAME: lava-report
+  rules:
+    - when: never
 
 lava-qemu-x86_64:
   needs: [linux-qemu-x86_64]
@@ -126,6 +128,8 @@ lava-qemu-x86_64:
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/qemu-x86_64-acts.yaml"
     CI_BUILD_JOB_NAME: linux-qemu-x86_64
     CI_REPORT_JOB_NAME: lava-report
+  rules:
+    - when: never
 
 lava-qemu-x86:
   needs: [linux-qemu-x86]
@@ -135,7 +139,11 @@ lava-qemu-x86:
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/qemu-x86-acts.yaml"
     CI_BUILD_JOB_NAME: linux-qemu-x86
     CI_REPORT_JOB_NAME: lava-report
+  rules:
+    - when: never
 
 lava-report:
   needs: [lava-linux-avenger96, lava-qemu-x86_64, lava-qemu-x86]
   extends: .lava-report
+  rules:
+    - when: never
