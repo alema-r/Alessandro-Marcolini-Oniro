@@ -252,9 +252,13 @@ PACKAGECONFIG_append_pn-qemu-system-native = " sdl"
 # this doesn't mean anything to you.
 CONF_VERSION = "1"
 
-# Use OSTC download and sstate-cache by default. You can comment out or remove
-# those lines and use the defaults from Poky. Note that this cache is limited
-# to system configurations that are entirely re-distributable.
+# Use OSTC download cache default.
+# Note that this cache is limited to system configurations that are entirely
+# re-distributable, as determined by the OSTC legal team.
 INHERIT += "own-mirrors"
 SOURCE_MIRROR_URL = "https://cache.ostc-eu.org/bitbake/downloads"
-SSTATE_MIRRORS = "file://.* https://cache.ostc-eu.org/bitbake/sstate-cache/PATH;downloadfilename=PATH \n"
+
+# If you are building on a very slow device but have relatively reliable network access
+# *and* the project you are building has a public sstate cache, you may choose to uncomment
+# this line and use the sstate cache published by OSTC.
+# SSTATE_MIRRORS = "file://.* https://cache.ostc-eu.org/bitbake/sstate-cache/PATH;downloadfilename=PATH \n"
