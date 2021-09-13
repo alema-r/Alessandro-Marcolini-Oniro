@@ -1,0 +1,35 @@
+From e128bab01d6066547efed551e9d4944d5b2a5701 Mon Sep 17 00:00:00 2001
+From: William Woodruff <william@trailofbits.com>
+Date: Fri, 21 May 2021 07:20:12 -0600
+Subject: [PATCH] dwarf/constants: add DW_LNCT_* constants (#362)
+
+These were introduced with DWARFv5 and are documented in S. 6.2.4.1.
+---
+ elftools/dwarf/constants.py | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+Upstream commit e128bab01d6066547efed551e9d4944d5b2a5701
+
+Signed-off-by: Bernhard Rosenkränzer <bernhard.rosenkraenzer.ext@huawei.com>
+Upstream-status: Backport
+
+diff --git a/elftools/dwarf/constants.py b/elftools/dwarf/constants.py
+index 558e8c6..d1a86fc 100644
+--- a/elftools/dwarf/constants.py
++++ b/elftools/dwarf/constants.py
+@@ -160,6 +160,15 @@
+ DW_LNE_lo_user = 0x80
+ DW_LNE_hi_user = 0xff
+ 
++# Line program header content types
++#
++DW_LNCT_path = 0x01
++DW_LNCT_directory_index = 0x02
++DW_LNCT_timestamp = 0x03
++DW_LNCT_size = 0x04
++DW_LNCT_MD5 = 0x05
++DW_LNCT_lo_user = 0x2000
++DW_LNCT_hi_user = 0x3fff
+ 
+ # Call frame instructions
+ #
