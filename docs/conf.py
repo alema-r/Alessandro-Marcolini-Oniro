@@ -25,7 +25,7 @@ project = 'All Scenarios OS Build System and meta-ohos'
 copyright = '2021'
 author = 'OSTC'
 
-version = '1.0.0-alpha'
+version = '1.0.0-beta'
 release = version
 
 # -- General configuration ---------------------------------------------------
