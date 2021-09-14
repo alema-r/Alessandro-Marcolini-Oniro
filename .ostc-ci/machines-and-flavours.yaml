@@ -11,7 +11,7 @@
 # The following jobs are documented in docs/ci/shared-jobs.rst
 
 linux-qemu-x86:
-  extends: .build-recipe
+  extends: .build-image
   variables:
     MACHINE: qemux86
     OHOS_BUILD_FLAVOUR: linux
@@ -28,7 +28,7 @@ linux-qemu-x86:
     OHOS_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
 
 linux-qemu-x86_64:
-  extends: .build-recipe
+  extends: .build-image
   variables:
     MACHINE: qemux86-64
     OHOS_BUILD_FLAVOUR: linux
@@ -51,7 +51,7 @@ linux-seco-imx8mm-c61:
     OHOS_BB_LOCAL_CONF_ACCEPT_FSL_EULA: 1
 
 linux-stm32mp1-av96:
-  extends: .build-recipe
+  extends: .build-image
   variables:
     OHOS_BUILD_FLAVOUR: linux
     OHOS_RECIPE_NAME: allscenarios-image-base-tests
@@ -63,7 +63,7 @@ linux-raspberrypi4-64:
     MACHINE: raspberrypi4-64
 
 zephyr-qemu-x86:
-  extends: .build-recipe
+  extends: .build-image
   variables:
     MACHINE: qemu-x86
     # See the note on linux-qemu-x86.
@@ -73,7 +73,7 @@ zephyr-qemu-x86:
     OHOS_BUILD_FLAVOUR: zephyr
 
 zephyr-qemu-cortex-m3:
-  extends: .build-recipe
+  extends: .build-image
   variables:
     MACHINE: qemu-cortex-m3
     # See the note on linux-qemu-x86.
@@ -83,14 +83,14 @@ zephyr-qemu-cortex-m3:
     OHOS_BUILD_FLAVOUR: zephyr
 
 zephyr-96b-nitrogen:
-  extends: .build-recipe
+  extends: .build-image
   variables:
     MACHINE: 96b-nitrogen
     OHOS_RECIPE_NAME: zephyr-philosophers
     OHOS_BUILD_FLAVOUR: zephyr
 
 zephyr-96b-nitrogen-tests:
-  extends: .build-recipe
+  extends: .build-image
   variables:
     MACHINE: 96b-nitrogen
     OHOS_RECIPE_NAME: zephyr-kernel-test-all
