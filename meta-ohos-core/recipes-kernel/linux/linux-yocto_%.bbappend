@@ -2,4 +2,4 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-require recipes-kernel/linux/linux-yocto-all.inc
+require recipes-kernel/linux/linux-asos-tweaks-all.inc
