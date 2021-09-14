@@ -160,7 +160,7 @@ python deploy_boot_artifacts_to_rootfs() {
         else:
             install_task.append((src, dst))
 
-    for task in install_task:
+    for task in set(install_task):
         src_path, dst_path = task
         bb.debug(1, 'Install %s as %s' % (src_path, dst_path))
         if os.path.exists(os.path.join(rootfs_dir, dst_path)):
