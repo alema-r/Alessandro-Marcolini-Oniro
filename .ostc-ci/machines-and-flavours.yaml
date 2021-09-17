@@ -51,7 +51,7 @@ linux-seco-imx8mm-c61:
     OHOS_BB_LOCAL_CONF_ACCEPT_FSL_EULA: 1
 
 linux-stm32mp1-av96:
-  extends: .build-image
+  extends: .build-recipe
   variables:
     OHOS_BUILD_FLAVOUR: linux
     OHOS_RECIPE_NAME: allscenarios-image-base-tests
