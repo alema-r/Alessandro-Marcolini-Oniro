@@ -5,8 +5,10 @@ You can now run 'bitbake <target>'
 
 Supported targets:
 - allscenarios-image-base
+- allscenarios-image-base-dev
 - allscenarios-image-base-tests
 - allscenarios-image-extra
+- allscenarios-image-extra-dev
 - allscenarios-image-extra-tests
 
 Supported machines (first is the default):

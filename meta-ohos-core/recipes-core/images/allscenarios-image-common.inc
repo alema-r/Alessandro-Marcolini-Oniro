@@ -9,9 +9,7 @@ inherit ohos-image
 IMAGE_INSTALL_append = "\
 			packagegroup-allscenarios-core \
 			packagegroup-net-essentials \
-			packagegroup-net-tools \
 			packagegroup-ble-essentials \
-			gdbserver \
 			"
 
 IMAGE_INSTALL_append = " ${@bb.utils.contains('MACHINE_FEATURES', 'optee', 'optee-client', '', d)} "
