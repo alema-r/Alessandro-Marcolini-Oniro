@@ -255,8 +255,11 @@ CONF_VERSION = "1"
 # Use OSTC download cache default.
 # Note that this cache is limited to system configurations that are entirely
 # re-distributable, as determined by the OSTC legal team.
-INHERIT += "own-mirrors"
-SOURCE_MIRROR_URL = "https://cache.ostc-eu.org/bitbake/downloads"
+#
+# The mirror is temporarily out of service.
+#
+# INHERIT += "own-mirrors"
+# SOURCE_MIRROR_URL = "https://cache.ostc-eu.org/bitbake/downloads"
 
 # If you are building on a very slow device but have relatively reliable network access
 # *and* the project you are building has a public sstate cache, you may choose to uncomment
