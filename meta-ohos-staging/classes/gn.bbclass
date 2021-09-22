@@ -39,7 +39,7 @@ B = "${WORKDIR}/out"
 
 gn_do_configure() {
     cd ${S}
-    gn gen ${GN_OPTIONS} --args='${GN_ARGS}' -C ${B}
+    gn gen ${GN_OPTIONS} --args='${GN_ARGS}' ${B}
 }
 
 gn_do_compile() {
