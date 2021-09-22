@@ -35,6 +35,9 @@ GN_ARGS ?= ' \
             target_cpu="${@gn_target_arch_name(d)}" \
 '
 
+# NINJA_ARGS can be added in the recipe
+NINJA_ARGS ?= ""
+
 B = "${WORKDIR}/out"
 
 gn_do_configure() {
@@ -43,7 +46,7 @@ gn_do_configure() {
 }
 
 gn_do_compile() {
-    ninja -C ${B}
+    ninja ${NINJA_ARGS} -C ${B}
 }
 
 gn_do_install() {
