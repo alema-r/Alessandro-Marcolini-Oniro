@@ -2,12 +2,14 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. include:: ../definitions.rst
+
 .. _Linux_Kernel:
 
 Linux Kernel Build Flavour
 ##########################
 
-All Scenarios OS Linux build flavour is based on *allscenarios-linux* distribution (distro configuration).
+|main_project_name| Linux build flavour is based on *allscenarios-linux* distribution (distro configuration).
 
 Supported images:
 

@@ -2,14 +2,16 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. include:: definitions.rst
+
 .. _RepoWorkspace:
 
 Repo Workspace
 ##############
 
-All Scenarios OS uses `repo <https://android.googlesource.com/tools/repo>`_ to
+|main_project_name| uses `repo <https://android.googlesource.com/tools/repo>`_ to
 provide full workspace setup that includes all the repositories needed for
-building All Scenarios OS and developing on top.
+building |main_project_name| and developing on top.
 
 .. contents:: 
     :depth: 2
@@ -17,10 +19,10 @@ building All Scenarios OS and developing on top.
 The Repo Tool
 *************
 
-In order to setup a sources workspace of All Scenarios OS, the ``git-repo`` tool is
+In order to setup a sources workspace of |main_project_name|, the ``git-repo`` tool is
 required on the host.
 
-All Scenarios OS provides a patched version of the repo tool for ``Ubuntu 20.04``
+|main_project_name| provides a patched version of the repo tool for ``Ubuntu 20.04``
 at `launchpad PPA <https://launchpad.net/~openharmony/+archive/ubuntu/tools>`_,
 for ``rpm``/``dnf`` based distributions at
 `copr <https://copr.fedorainfracloud.org/coprs/openharmony/tools/>`_, and for
@@ -72,7 +74,7 @@ Then install the ``repo`` package with pacman.
 
 On OpenMandriva:
 ----------------
-OpenMandriva has already added All Scenarios OS's version of ``repo`` to its official
+OpenMandriva has already added |main_project_name| version of ``repo`` to its official
 repositories. If you're on OpenMandriva, simply ``dnf install repo``.
 
 
@@ -91,7 +93,7 @@ Setting up the Workspace
 ************************
 
 Once the repo tool is installed, you can initialize and populate the workspace.
-This will bring in all the needed sources for building All Scenarios OS:
+This will bring in all the needed sources for building |main_project_name|:
 
 .. code-block:: console
 

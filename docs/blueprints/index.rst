@@ -2,15 +2,17 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
-All Scenarios OS Blueprints
-###########################
+.. include:: ../definitions.rst
+
+|main_project_name| Blueprints
+##############################
 
 Overview
 ********
 
-All Scenarios OS integrates its various components into a representative use-case called a `Blueprint`. A blueprint shows off the OS capabilities and best practices in building software-based products.
+|main_project_name| integrates its various components into a representative use-case called a `Blueprint`. A blueprint shows off the OS capabilities and best practices in building software-based products.
 
-To this end, blueprints are a way to distill real-world products into a ``minimum viable product`` to demonstrate how partners and users may adopt All Scenarios OS securely in their own products.
+To this end, blueprints are a way to distill real-world products into a ``minimum viable product`` to demonstrate how partners and users may adopt |main_project_name| securely in their own products.
 
 What is a Blueprint?
 --------------------
@@ -25,7 +27,7 @@ What is a Blueprint?
       * Display, e.g., showing useful messages on a display.
       * Autonomous communication between two devices over a wireless link.
 
-#. It is implemented on the closest appropriate reference HW platform from All Scenarios OS.
+#. It is implemented on the closest appropriate reference HW platform from |main_project_name|.
 
 What a Blueprint Isn't?
 -----------------------
@@ -36,7 +38,7 @@ What a Blueprint Isn't?
 Blueprints
 **********
 
-This section details the available blueprints provided as part of the All Scenarios OS environment.
+This section details the available blueprints provided as part of the |main_project_name| environment.
 
 .. toctree::
    :maxdepth: 1

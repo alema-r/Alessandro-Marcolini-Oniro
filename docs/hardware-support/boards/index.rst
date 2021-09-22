@@ -2,10 +2,12 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. include:: ../../definitions.rst
+
 Supported Boards
 ################
 
-This section details the boards supported as part of All Scenarios OS.
+This section details the boards supported as part of |main_project_name|.
 
 .. toctree::
    :maxdepth: 1

@@ -2,13 +2,15 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. include:: ../definitions.rst
+
 .. _HardwareSupport:
 
-Hardware support in All Scenarios OS
-####################################
+Hardware support in |main_project_name|
+#######################################
 
 This section details the hardware (including virtualized) supported as part of
-All Scenarios OS.
+|main_project_name|.
 
 .. toctree::
    :maxdepth: 2

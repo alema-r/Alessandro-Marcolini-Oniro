@@ -2,6 +2,8 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. include:: ../definitions.rst
+
 Smart Panel Blueprint
 #####################
 
@@ -134,7 +136,7 @@ IoT devices
 Get sources
 ***********
 #. 
-   Get All Scenarios OS sources as described in the :ref:`documentation <AllScenariOSQuickBuild>`.
+   Get |main_project_name| sources as described in the :ref:`documentation <AllScenariOSQuickBuild>`.
 
 #. 
    If you already have sources cloned, update them to the most recent revision
@@ -333,7 +335,7 @@ Flash
 
 Add Bluetooth firmware
 ----------------------
-Due to licensing details, All Scenarios OS cannot provide the firmware file for
+Due to licensing details, |main_project_name| cannot provide the firmware file for
 the on-board Bluetooth controller. However, user may download and install it
 manually.
 

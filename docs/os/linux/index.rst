@@ -2,8 +2,10 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
-All Scenarios OS - Linux
-########################
+.. include:: ../../definitions.rst
+
+|main_project_name| - Linux
+###########################
 
 .. toctree::
    :maxdepth: 1

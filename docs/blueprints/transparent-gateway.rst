@@ -2,6 +2,8 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. include:: ../definitions.rst
+
 Transparent Gateway Blueprint
 #############################
 
@@ -39,7 +41,7 @@ WiFi Access Point Configuration
 
 In our default WiFi access point configuration, we create an AP on channel 6 in the 2.4 GHz band with WPA2 pre-shared key configuration::
 
-   SSID: "All Scenarios OS WiFi"
+   SSID: "|main_project_name| WiFi"
    Passphrase: "12345678".
 
 For more details, the used `hostapd configuration file <https://git.ostc-eu.org/OSTC/OHOS/meta-ohos/-/blob/develop/meta-ohos-blueprints/recipes-connectivity/hostapd/files/hostapd.conf>`_ is the best reference.
@@ -57,7 +59,7 @@ For more details, the used `OpenThread configuration script <https://git.ostc-eu
 Get sources
 ***********
 
-#. Get All Scenarios OS sources as described in the :ref:`documentation <AllScenariOSQuickBuild>`.
+#. Get |main_project_name| sources as described in the :ref:`documentation <AllScenariOSQuickBuild>`.
 #. If you already have sources cloned, update them to the most recent revision.
 
    .. code-block:: bash

@@ -2,12 +2,14 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. include:: ../definitions.rst
+
 .. _Zephyr_Kernel:
 
 Zephyr Kernel Build Flavour
 ###########################
 
-All Scenarios OS Zephyr build flavour is based on *allscenarios-zephyr* distribution (distro configuration).
+|main_project_name| Zephyr build flavour is based on *allscenarios-zephyr* distribution (distro configuration).
 
 Supported images:
 

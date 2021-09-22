@@ -2,10 +2,12 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. include:: ../definitions.rst
+
 Operating System
 ################
 
-All Scenarios OS provides support for a set of kernels. This documentation
+|main_project_name| provides support for a set of kernels. This documentation
 details various aspects for each kernel type.
 
 .. toctree::

@@ -2,6 +2,8 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. include:: ../../definitions.rst
+
 .. _raspberrypi:
 
 Raspberry Pi 4 Model B
@@ -50,8 +52,8 @@ For more details on the Raspberry Pi 4 board, see `Raspberry Pi hardware page
 Working with the board
 **********************
 
-Building All Scenarios OS image
-===============================
+Building |main_project_name| image
+==================================
 
 To clone the source code, perform the procedure in: :ref:`Setting up a repo
 workspace <RepoWorkspace>`.
@@ -84,8 +86,8 @@ Linux image
    The key file which is needed to flash into the SD card is
    ``allscenarios-image-base-raspberrypi4-64.wic.bz2``.
 
-Flashing All Scenarios OS Linux Image
-*************************************
+Flashing |main_project_name| Linux Image
+****************************************
 
 SD card
 =======

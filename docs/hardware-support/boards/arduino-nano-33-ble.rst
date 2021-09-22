@@ -2,6 +2,8 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. include:: ../../definitions.rst
+
 .. _SupportedBoardArduinoNano33BLE:
 
 Arduino Nano 33 BLE
@@ -43,7 +45,7 @@ Working with the board
 Building an application
 =======================
 
-All Scenarios OS Zephyr flavour is based on the Zephyr kernel.
+|main_project_name| Zephyr flavour is based on the Zephyr kernel.
 
 1. Source the environment with proper template settings, the flavour being *zephyr* 
    and target machine being *arduino-nano-33-ble*:

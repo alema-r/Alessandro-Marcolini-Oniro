@@ -2,22 +2,24 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
-Adding New Hardware Support in All Scenarios OS
-###############################################
+.. include:: ../definitions.rst
+
+Adding New Hardware Support in |main_project_name|
+##################################################
 
 This section details the addition of new hardware to the supported set in
-All Scenarios OS. It is intended as a checklist for adding new boards to OHOS build
+|main_project_name|. It is intended as a checklist for adding new boards to OHOS build
 system.
 
-Before starting get familiar with All Scenarios OS Contribution Process.
+Before starting get familiar with |main_project_name| Contribution Process.
 
 .. contents:: 
    :depth: 2
 
-Select All Scenarios OS Flavour
-*******************************
+Select |main_project_name| Flavour
+**********************************
 
-All Scenarios OS uses a notion of kernel specific flavours:
+|main_project_name| uses a notion of kernel specific flavours:
 
 - Linux flavour
 - Zephyr flavour
@@ -47,7 +49,7 @@ directory) consist of the following files:
    * - ``local.conf.sample``
      - default flavour build configuration
 
-All Scenarios OS build system uses ***repo*** tool for cloning required meta-layers
+|main_project_name| build system uses ***repo*** tool for cloning required meta-layers
 into appropriate build directory structure (see :ref:`Setting up a repo workspace <RepoWorkspace>`).
 To include a new layer, it has to be added in two places:
 

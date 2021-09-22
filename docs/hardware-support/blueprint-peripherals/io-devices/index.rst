@@ -2,17 +2,19 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. include:: ../../../definitions.rst
+
 Input/Output Peripherals used in blueprints
 ###########################################
 
-This section lists some of the peripherals used for input and output used as part of All Scenarios OS Blueprints.
+This section lists some of the peripherals used for input and output used as part of |main_project_name| Blueprints.
 
 .. toctree::
    :maxdepth: 3
 
 Touch-based input
 *****************
-Smart devices accept a variety of input, typically through different types of touch interfaces. Here are a few that are used to produce All Scenarios OS Blueprints.
+Smart devices accept a variety of input, typically through different types of touch interfaces. Here are a few that are used to produce |main_project_name| Blueprints.
 
 Capacitive Touch Sensor
 -----------------------

@@ -2,17 +2,19 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. include:: definitions.rst
+
 .. _AllScenariOSQuickBuild:
 
-All Scenarios OS - Quick Build
-##############################
+|main_project_name| - Quick Build
+#################################
 
-This section will guide you to building your first All Scenarios OS image targeting
+This section will guide you to building your first |main_project_name| image targeting
 a supported reference hardware. It will also provide the steps for flashing and
 booting such an image.
 
 The steps below will focus on a Qemu-based target. If you want to get a feeling
-of All Scenarios OS on a real hardware, checkout the :ref:`Avenger96 support page
+of |main_project_name| on a real hardware, checkout the :ref:`Avenger96 support page
 <SupportedBoardAvenger96>`.
 
 .. contents:: 
@@ -64,7 +66,7 @@ cloned using the repo tool. See above.
 
 .. Note::
 
-   Depending on the configuration type, a single All Scenarios OS build could 
+   Depending on the configuration type, a single |main_project_name| build could 
    use around 100GB of disk space for downloads, temporary files, and build artifacts combined.
 
 Initialize the build directory and run a build:
@@ -74,8 +76,8 @@ Initialize the build directory and run a build:
     $ TEMPLATECONF=../sources/meta-ohos/flavours/linux . ./sources/poky/oe-init-build-env build-ohos-linux
     $ MACHINE=qemux86-64 bitbake allscenarios-image-base
 
-Booting a Qemu X86-64 target with a All Scenarios OS image
-**********************************************************
+Booting a Qemu X86-64 target with a |main_project_name| image
+*************************************************************
 
 Once the image is built, you can run a Qemu X86-64 instance using the provided script wrapper as follows:
 

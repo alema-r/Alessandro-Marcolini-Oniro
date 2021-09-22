@@ -2,12 +2,14 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. include:: ../definitions.rst
+
 .. _FreeRTOS_Kernel:
 
 FreeRTOS Kernel Build Flavour
 #############################
 
-All Scenarios OS FreeRTOS build flavour is based on *freertos* distribution (distro configuration).
+|main_project_name| FreeRTOS build flavour is based on *freertos* distribution (distro configuration).
 
 Supported images:
 

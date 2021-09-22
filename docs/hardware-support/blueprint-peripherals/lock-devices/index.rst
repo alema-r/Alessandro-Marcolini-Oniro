@@ -2,10 +2,12 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. include:: ../../../definitions.rst
+
 Lock Peripherals used in blueprints
 ###################################
 
-Smart devices might need keyless locking functionality, e.g., a vending machine, a post box, or a smart door lock. Here are a few that are used in All Scenarios OS Blueprints.
+Smart devices might need keyless locking functionality, e.g., a vending machine, a post box, or a smart door lock. Here are a few that are used in |main_project_name| Blueprints.
 
 .. toctree::
    :maxdepth: 3

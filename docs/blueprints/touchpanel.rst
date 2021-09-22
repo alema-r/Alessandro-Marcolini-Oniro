@@ -2,6 +2,8 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. include:: ../definitions.rst
+
 TouchPanel Blueprint
 #####################
 
@@ -20,7 +22,7 @@ The TouchPanel Blueprint provides support for building a PoC smart touch panel t
 Get sources
 ***********
 #. 
-   Get All Scenarios OS sources as described in the :ref:`documentation <AllScenariOSQuickBuild>`.
+   Get |main_project_name| sources as described in the :ref:`documentation <AllScenariOSQuickBuild>`.
 
 #. 
    If you already have sources cloned, update them to the most recent revision

@@ -2,10 +2,12 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
-All Scenarios OS Build Flavours
-###############################
+.. include:: ../definitions.rst
 
-All Scenarios OS provides default build configuration for each supported type of
+|main_project_name| Build Flavours
+##################################
+
+|main_project_name| provides default build configuration for each supported type of
 kernels. Each set of such configuration is called a ``flavour``.
 
 .. toctree::

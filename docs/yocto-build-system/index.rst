@@ -2,12 +2,14 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
-All Scenarios OS, a Yocto-based Build System
-############################################
+.. include:: ../definitions.rst
 
-All Scenarios OS build system, the foundation of the build infrastructure, is based
+|main_project_name|, a Yocto-based Build System
+###############################################
+
+|main_project_name| build system, the foundation of the build infrastructure, is based
 on `Poky, the Yocto Project open source reference embedded distribution <https://www.yoctoproject.org/software-overview/>`_.
-This section details both generic and All Scenarios OS specific aspects of the build system.
+This section details both generic and |main_project_name| specific aspects of the build system.
 
 .. toctree::
    :maxdepth: 1

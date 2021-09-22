@@ -2,6 +2,8 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. include:: ../../definitions.rst
+
 Qemu X86
 ########
 
@@ -11,7 +13,7 @@ Qemu X86
 Overview
 ********
 
-All Scenarios OS supports running the software stack into an virtual environment using Qemu.
+|main_project_name| supports running the software stack into an virtual environment using Qemu.
 
 Building OHOS image
 ===================

@@ -2,11 +2,13 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. include:: definitions.rst
+
 Supported Images
 ################
 
 To create a custom Linux distribution to match the product requirements, 
-All Scenarios OS includes a set of predefined images for developing a product image.
+|main_project_name| includes a set of predefined images for developing a product image.
 
 Linux Kernel
 ************
@@ -14,7 +16,7 @@ Linux Kernel
 The Linux kernel is a free and open-source Unix-like operating system (OS) 
 kernel that serves as the primary interface between the computer's hardware and its processes.
 
-All Scenarios OS supports the following images listed in the table:
+|main_project_name| supports the following images listed in the table:
 
 .. list-table:: Linux supported images
    :header-rows: 1
@@ -23,11 +25,11 @@ All Scenarios OS supports the following images listed in the table:
      - Description
    * - allscenarios-image-base
      - 
-	   * All Scenarios OS image including the base OS software stack.
+	   * |main_project_name| image including the base OS software stack.
 	   * This image also includes middleware and application packages to support a wide range of hardware which includes WiFi, Bluetooth, sound, and serial ports. 
    * - allscenarios-image-extra
      - 
-	   * All Scenarios OS Wayland image including the base OS software stack. This is a Wayland protocol and Weston reference compositor-based image.
+	   * |main_project_name| Wayland image including the base OS software stack. This is a Wayland protocol and Weston reference compositor-based image.
 	   * It uses the Wayland protocol and implementation to exchange data with its clients.
 	   * This image provides the Wayland protocol libraries and the reference Weston compositor and includes a Wayland-capable terminal program.
 
@@ -41,7 +43,7 @@ that is intended for use on resource-constrained and embedded systems.
 
 For more detailed information on Zephyr OS Kernel, see `Zephyr documentation <https://docs.zephyrproject.org/latest/index.html#>`_.
 
-All Scenarios OS supports the following images for the Zephyr OS kernel:
+|main_project_name| supports the following images for the Zephyr OS kernel:
 
 .. list-table:: Zephyr supported images
    :header-rows: 1
@@ -60,7 +62,7 @@ The FreeRTOS kernel is a real-time operating system (RTOS) that runs on a variet
 of platforms which is used to build microcontroller-based embedded applications. 
 
 The standard RTOS kernel binary image ranges from 4000 to 9000 bytes. 
-All Scenarios OS supports the following images for FreeRTOS Kernel:
+|main_project_name| supports the following images for FreeRTOS Kernel:
 
 .. list-table:: FreeRTOS supported images
    :header-rows: 1

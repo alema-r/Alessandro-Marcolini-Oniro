@@ -2,6 +2,8 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. include:: ../../definitions.rst
+
 .. _SupportedBoardNitrogen:
 
 96Boards Nitrogen
@@ -38,7 +40,7 @@ Working with the board
 Building an application
 =======================
 
-All Scenarios OS OS Zephyr flavour is based on Zephyr kernel.
+|main_project_name| OS Zephyr flavour is based on Zephyr kernel.
 
 * Source the environment with proper template settings, flavour being zephyr and target machine being 96b-nitrogen:
 

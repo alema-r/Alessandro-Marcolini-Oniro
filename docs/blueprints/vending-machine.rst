@@ -2,6 +2,8 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
+.. include:: ../definitions.rst
+
 Vending Machine Blueprint
 #########################
 
@@ -12,13 +14,13 @@ Overview
 ********
 
 The Vending Machine Blueprint provides support for building a PoC smart vending machine
-with components showing the capabilities of the All Scenarios OS build infrastructure to easily
+with components showing the capabilities of the |main_project_name| build infrastructure to easily
 build an end-to-end solution using multiple operating systems cooperating inside a product.
 
 Get sources
 ***********
 #. 
-   Get All Scenarios OS sources as described in the :ref:`documentation <AllScenariOSQuickBuild>`.
+   Get |main_project_name| sources as described in the :ref:`documentation <AllScenariOSQuickBuild>`.
 
 #. 
    If you already have sources cloned, update them to the most recent revision
