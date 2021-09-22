@@ -40,6 +40,7 @@ NINJA_ARGS ?= ""
 
 B = "${WORKDIR}/out"
 
+do_configure[cleandirs] = "${B}"
 gn_do_configure() {
     cd ${S}
     gn gen ${GN_OPTIONS} --args='${GN_ARGS}' ${B}
