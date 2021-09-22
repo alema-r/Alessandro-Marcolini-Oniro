@@ -95,9 +95,9 @@ addtask write_gn_toolchain_file after do_patch before do_configure
 do_check_yocto_toolchain_is_used() {
     cd "${S}"
     DEFAULT_TARGET_TOOLCHAIN=$(gn desc ${B} "//build/toolchain/yocto:yocto_flags" | \
-        grep "toolchain: //build/toolchain/yocto:yocto_target")
+        grep "toolchain: //build/toolchain/yocto:yocto_target") || true
     LIST_OF_GN_TARGETS_USING_YOCTO_FLAGS=$(gn refs -q ${B} \
-        "//build/toolchain/yocto:yocto_flags")
+        "//build/toolchain/yocto:yocto_flags") || true
     if test -z "$DEFAULT_TARGET_TOOLCHAIN" || \
         test -z "$LIST_OF_GN_TARGETS_USING_YOCTO_FLAGS"
     then
