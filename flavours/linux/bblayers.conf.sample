@@ -14,12 +14,12 @@ BBLAYERS ?= " \
   ##OEROOT##/meta-poky \
   ##OEROOT##/meta-clang \
   ##OEROOT##/meta-yocto-bsp \
-  ##OEROOT##/../meta-freertos \
   ##OEROOT##/../meta-zephyr \
   ##OEROOT##/../meta-ohos/meta-ohos-core \
   ##OEROOT##/../meta-ohos/meta-ohos-acts \
   ##OEROOT##/../meta-ohos/meta-ohos-blueprints \
   ##OEROOT##/../meta-ohos/meta-ohos-staging \
+  ##OEROOT##/../meta-freertos \
   ##OEROOT##/../meta-intel \
   ##OEROOT##/../meta-seco-intel \
   ##OEROOT##/../meta-freescale \
