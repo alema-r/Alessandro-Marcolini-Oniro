@@ -68,4 +68,4 @@ Get sources
 
    .. code-block:: bash
 
-      user@pc:~/ohos$ DISTRO="allscenarios-linux-blueprint-gateway" bitbake blueprint-gateway-image
+      user@pc:~/ohos$ DISTRO="allscenarios-linux-blueprint-gateway" MACHINE=raspberrypi4-64 bitbake blueprint-gateway-image
