@@ -26,3 +26,11 @@ Get sources
    .. code-block:: bash
 
       user@pc:~/ohos$ repo sync -d
+
+Architecture and Interfaces
+***************************
+
+.. toctree::
+   :maxdepth: 3
+
+   vending-machine-dev.rst
