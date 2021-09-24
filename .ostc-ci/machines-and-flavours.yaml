@@ -130,6 +130,7 @@ blueprint-smartpanel-zephyr:
 
 blueprint-smartpanel-linux:
   extends: .build-linux
+  tags: [large-disk, bitbake-friendly, heavy]
   variables:
     MACHINE: stm32mp1-av96
     DISTRO: allscenarios-linux-blueprint-dashboard
@@ -137,6 +138,7 @@ blueprint-smartpanel-linux:
 
 blueprint-gateway-linux:
   extends: .build-linux
+  tags: [large-disk, bitbake-friendly, heavy]
   variables:
     MACHINE: raspberrypi4-64
     DISTRO: allscenarios-linux-blueprint-gateway
