@@ -38,12 +38,12 @@ linux-qemu-x86_64:
     OHOS_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
 
 linux-seco-intel-b68:
-  extends: .build-linux
+  extends: .build-linux-matrix
   variables:
     MACHINE: seco-intel-b68
 
 linux-seco-imx8mm-c61:
-  extends: .build-linux
+  extends: .build-linux-matrix
   variables:
     MACHINE: seco-imx8mm-c61
     # This platform requires proprietary resources to boot.
@@ -58,7 +58,7 @@ linux-stm32mp1-av96:
     MACHINE: stm32mp1-av96
 
 linux-raspberrypi4-64:
-  extends: .build-linux
+  extends: .build-linux-matrix
   variables:
     MACHINE: raspberrypi4-64
 
