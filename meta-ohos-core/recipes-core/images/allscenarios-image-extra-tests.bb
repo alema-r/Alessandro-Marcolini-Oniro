@@ -10,3 +10,9 @@ software stack and tests"
 IMAGE_INSTALL_append = "\
     packagegroup-allscenarios-tests \
 "
+
+# This adds ptest packages to the image
+EXTRA_IMAGE_FEATURES_append = " ptest-pkgs"
+
+# For testing purposes we want the ability to have a writable filesystem
+IMAGE_FSTYPES_append = " ext4"

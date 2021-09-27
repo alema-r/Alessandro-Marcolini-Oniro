@@ -12,4 +12,5 @@ PACKAGES = "\
 
 RDEPENDS_packagegroup-allscenarios-tests = "\
 	ohos-xts-acts \
-	"
+	ptest-runner \
+        "
