@@ -9,7 +9,11 @@ DoorLock Blueprint
 ##################
 
 .. contents::
+   :depth: 4
 
+.. attention::
+   The `Door Lock` blueprint is still a work in progress (WIP). For more
+   information, see the :ref:`resources <ResourcesDL>` section.
 
 ********
 Overview
@@ -141,3 +145,10 @@ Get sources
 .. code-block:: bash
 
  user@pc:~/ohos$ repo sync -d
+
+Resources
+=========
+
+.. _ResourcesDL:
+
+- See `Door lock's requirement <https://git.ostc-eu.org/OSTC/requirements/-/issues/12>`_

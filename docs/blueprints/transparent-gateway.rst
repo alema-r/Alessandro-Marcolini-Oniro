@@ -10,6 +10,10 @@ Transparent Gateway Blueprint
 .. contents::
    :depth: 4
 
+.. attention::
+   The `Transparent Gateway` blueprint is a still work in progress (WIP). For
+   more information, see the :ref:`resources <ResourcesTG>` section.
+
 Overview
 ********
 
@@ -71,3 +75,10 @@ Get sources
    .. code-block:: bash
 
       user@pc:~/ohos$ DISTRO="allscenarios-linux-blueprint-gateway" MACHINE=raspberrypi4-64 bitbake blueprint-gateway-image
+
+Resources
+*********
+
+.. _ResourcesTG:
+
+- See `Transparent gateway's requirement <https://git.ostc-eu.org/OSTC/requirements/-/issues/13>`_

@@ -10,6 +10,10 @@ Vending Machine Blueprint
 .. contents::
    :depth: 4
 
+.. attention::
+   The `Vending Machine` blueprint is a still work in progress (WIP). For
+   more information, see the :ref:`resources <ResourcesVM>` section.
+
 Overview
 ********
 
@@ -36,3 +40,10 @@ Architecture and Interfaces
    :maxdepth: 3
 
    vending-machine-dev.rst
+
+Resources
+*********
+
+.. _ResourcesVM:
+
+- See `Vending machine's requirement <https://git.ostc-eu.org/OSTC/requirements/-/issues/80>`_
