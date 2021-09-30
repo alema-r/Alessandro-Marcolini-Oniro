@@ -7,6 +7,10 @@ LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSES/Apache-2.0.txt;md5=c846ebb396f8b174b10ded4771514fcc"
 
 SRC_URI = "git://git.ostc-eu.org/OSTC/OHOS/components/sysota.git;protocol=https;branch=main"
+SRC_URI_append = " \
+  file://sysotad.conf \
+  "
+
 SRCREV = "8d2f4fce96a4cf880c329103b2640450857d6423"
 S = "${WORKDIR}/git"
 
@@ -76,12 +80,19 @@ do_compile_append() {
 
 do_install_append() {
     oe_runmake -C ${B}/make-build --warn-undefined-variables install DESTDIR=${D}
+
+    # Install the built-in configuration file.
+    # See below for machine-specific overrides.
+    install -D -m 0644 ${WORKDIR}/sysotad.conf ${D}${libdir}/sysota/sysotad.conf
 }
 
 # Include D-Bus configuration files in the primary package. Those contain bus
 # policy for talking to SystemOTA as well as the D-Bus activation service file
 # (not to be confused with the systemd service unit).
 FILES_${PN} += "${datadir}/dbus-1"
+
+# Include the built-in configuration file.
+FILES_${PN} += "${libdir}/sysota/sysotad.conf"
 
 # SystemOTA depends on RAUC and unsquashfs and mksquashfs (for tests).
 RDEPENDS_${PN} += "squashfs-tools rauc"
@@ -93,3 +104,11 @@ RDEPENDS_${PN}-dev += "bash"
 # systemd services.
 REQUIRED_DISTRO_FEATURES = "systemd"
 SYSTEMD_SERVICE_${PN} = "sysotad.service"
+
+# Specific MACHINE configurations have sysotad.conf which provides the right
+# settings, like the boot loader type.
+FILESEXTRAPATHS_prepend_raspberrypi4-64 := "${THISDIR}/files/raspberrypi4:"
+
+# Make the SystemOTA package machine-specific. This lets us put the specific
+# configuration file, which encodes boot loader type, into it safely.
+PACKAGE_ARCH = "${MACHINE_ARCH}"
