@@ -28,7 +28,7 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-openembedded/meta-networking \
   ##OEROOT##/../meta-openembedded/meta-perl \
   ##OEROOT##/../meta-openembedded/meta-python \
-  ##OEROOT##/../meta-python-dunfellplus \
+  ##OEROOT##/../meta-python-extra \
   ##OEROOT##/../meta-st-stm32mp \
   ##OEROOT##/../meta-st-stm32mp-addons \
   ##OEROOT##/../meta-av96/meta-av96-core \
