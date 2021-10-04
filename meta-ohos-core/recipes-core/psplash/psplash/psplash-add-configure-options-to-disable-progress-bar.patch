@@ -1,0 +1,117 @@
+From: "Pavel Zhukov" <pavel@zhukoff.net>
+Date: Thu, 14 Oct 2021 09:02:17 +0200
+Subject: [yocto] [psplash][PATCH v2] Add configure options to disable progress bar
+
+Progress bar can overlap with products logos, added
+--disable-progress-bar configure option to disable progress
+bar completely without patching the code.
+Default behaviour is to show progress bar
+
+Signed-off-by: Pavel Zhukov <pavel.zhukov@huawei.com>
+
+Upstream-Status: Submitted [https://lists.yoctoproject.org/g/yocto/topic/86307015]
+
+---
+ configure.ac     |  8 ++++++++
+ psplash-config.h |  5 +++++
+ psplash.c        | 14 ++++++++++----
+ 3 files changed, 23 insertions(+), 4 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index 2d836a1..2a7da91 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -37,6 +37,14 @@ AS_IF([test x$disable_startup_msg = xtrue], [
+     EXTRA_GCC_FLAGS="$EXTRA_GCC_FLAGS -DPSPLASH_DISABLE_STARTUP_MSG"
+ ])
+ 
++AC_ARG_ENABLE([progress-bar],
++    AS_HELP_STRING([--disable-progress-bar], [Disable progress bar]),
++    [disable_progress_bar=true],
++    [disable_progress_bar=false])
++AS_IF([test x$disable_progress_bar = xtrue], [
++    EXTRA_GCC_FLAGS="$EXTRA_GCC_FLAGS -DPSPLASH_DISABLE_PROGRESS_BAR"
++])
++
+ AC_ARG_ENABLE([img-fullscreen],
+     AS_HELP_STRING([--enable-img-fullscreen], [Enable the logo image in fullscreen mode)]),
+     [img_fullscreen=true],
+diff --git a/psplash-config.h b/psplash-config.h
+index 0ba8440..eb90ef3 100644
+--- a/psplash-config.h
++++ b/psplash-config.h
+@@ -21,6 +21,11 @@
+ #define PSPLASH_IMG_FULLSCREEN 0
+ #endif
+ 
++/* Bool indicated if the progress bar should be disabled */
++#ifndef PSPLASH_DISABLE_PROGRESS_BAR
++#define PSPLASH_SHOW_PROGRESS_BAR 1
++#endif
++
+ /* Position of the image split from top edge, numerator of fraction */
+ #define PSPLASH_IMG_SPLIT_NUMERATOR 5
+ 
+diff --git a/psplash.c b/psplash.c
+index 1a56629..ee1af6b 100644
+--- a/psplash.c
++++ b/psplash.c
+@@ -61,6 +61,7 @@ psplash_draw_msg (PSplashFB *fb, const char *msg)
+ 			msg);
+ }
+ 
++#ifdef PSPLASH_SHOW_PROGRESS_BAR
+ void
+ psplash_draw_progress (PSplashFB *fb, int value)
+ {
+@@ -95,6 +96,7 @@ psplash_draw_progress (PSplashFB *fb, int value)
+   DBG("value: %i, width: %i, barwidth :%i\n", value, 
+ 		width, barwidth);
+ }
++#endif /* PSPLASH_SHOW_PROGRESS_BAR */
+ 
+ static int 
+ parse_command (PSplashFB *fb, char *string)
+@@ -108,20 +110,22 @@ parse_command (PSplashFB *fb, char *string)
+ 
+   command = strtok(string," ");
+ 
+-  if (!strcmp(command,"PROGRESS")) 
++  if (!strcmp(command,"MSG"))
+     {
+       char *arg = strtok(NULL, "\0");
+ 
+       if (arg)
+-        psplash_draw_progress (fb, atoi(arg));
++        psplash_draw_msg (fb, arg);
+     } 
+-  else if (!strcmp(command,"MSG")) 
++ #ifdef PSPLASH_SHOW_PROGRESS_BAR
++  else  if (!strcmp(command,"PROGRESS"))
+     {
+       char *arg = strtok(NULL, "\0");
+ 
+       if (arg)
+-        psplash_draw_msg (fb, arg);
++        psplash_draw_progress (fb, atoi(arg));
+     } 
++#endif
+   else if (!strcmp(command,"QUIT")) 
+     {
+       return 1;
+@@ -311,6 +315,7 @@ main (int argc, char** argv)
+ 			 POKY_IMG_ROWSTRIDE,
+ 			 POKY_IMG_RLE_PIXEL_DATA);
+ 
++#ifdef PSPLASH_SHOW_PROGRESS_BAR
+   /* Draw progress bar border */
+   psplash_fb_draw_image (fb, 
+ 			 (fb->width  - BAR_IMG_WIDTH)/2, 
+@@ -322,6 +327,7 @@ main (int argc, char** argv)
+ 			 BAR_IMG_RLE_PIXEL_DATA);
+ 
+   psplash_draw_progress (fb, 0);
++#endif
+ 
+ #ifdef PSPLASH_STARTUP_MSG
+   psplash_draw_msg (fb, PSPLASH_STARTUP_MSG);
