@@ -25,10 +25,10 @@ add_openvt_argument() {
 
 ## Add module to --modules argument
 add_weston_module() {
-	if [[ "x${weston_modules}" == "x" ]]; then
+	if [ -z "${weston_modules}" ]; then
 		weston_modules="--modules "
 	fi;
-	weston_modules+="${1},"
+	weston_modules="${weston_modules}${1},"
 }
 
 
@@ -74,7 +74,7 @@ if [ -d "$modules_dir" ]; then
 		# process module
 		. $m
 	done
-	if [[ x"{$weston_modules}" != "x" ]]; then
+	if [ -n "${weston_modules}" ]; then
 		add_weston_argument "${weston_modules}"
 	fi;
 fi
