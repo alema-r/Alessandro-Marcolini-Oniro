@@ -13,7 +13,6 @@ PACKAGES = "\
 	"
 
 RDEPENDS_packagegroup-net-essentials = "\
-	dhcp-client \
 	dropbear \
 	${@bb.utils.contains("COMBINED_FEATURES", "wifi", "packagegroup-base-wifi iw", "", d)} \
 	networkmanager \
