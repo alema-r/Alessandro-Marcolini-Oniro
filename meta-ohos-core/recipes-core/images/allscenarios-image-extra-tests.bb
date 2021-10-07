@@ -14,5 +14,6 @@ IMAGE_INSTALL_append = "\
 # This adds ptest packages to the image
 EXTRA_IMAGE_FEATURES_append = " ptest-pkgs"
 
-# For testing purposes we want the ability to have a writable filesystem
+# For testing purposes, we want to have an extra ext4 format for the root
+# filesystem.
 IMAGE_FSTYPES_append = " ext4"
