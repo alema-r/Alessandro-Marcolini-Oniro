@@ -2,15 +2,15 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-DESCRIPTION = "AllScenariOS tests package group"
+DESCRIPTION = "Oniro Project tests package group"
 
 inherit packagegroup
 
 PACKAGES = "\
-	packagegroup-allscenarios-tests \
+	packagegroup-oniro-tests \
 	"
 
-RDEPENDS_packagegroup-allscenarios-tests = "\
+RDEPENDS_packagegroup-oniro-tests = "\
 	ohos-xts-acts \
 	ptest-runner \
         "

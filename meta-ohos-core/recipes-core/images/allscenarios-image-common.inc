@@ -2,12 +2,12 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# Common settings for all AllScenariOS images
+# Common settings for all Oniro images
 
 inherit ohos-image
 
 IMAGE_INSTALL_append = "\
-			packagegroup-allscenarios-core \
+			packagegroup-oniro-core \
 			packagegroup-net-essentials \
 			packagegroup-ble-essentials \
 			sysota \

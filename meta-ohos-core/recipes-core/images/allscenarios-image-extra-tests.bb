@@ -8,7 +8,7 @@ SUMMARY = "AllScenariOS Wayland image including the base OS \
 software stack and tests"
 
 IMAGE_INSTALL_append = "\
-    packagegroup-allscenarios-tests \
+    packagegroup-oniro-tests \
 "
 
 # This adds ptest packages to the image

@@ -6,8 +6,8 @@ DESCRIPTION = "Core package group groups for OS foundation"
 
 inherit packagegroup
 
-PACKAGES = "packagegroup-allscenarios-core"
+PACKAGES = "packagegroup-oniro-core"
 
-RDEPENDS_packagegroup-allscenarios-core = "\
+RDEPENDS_packagegroup-oniro-core = "\
 	oniro-mounts \
 	"
