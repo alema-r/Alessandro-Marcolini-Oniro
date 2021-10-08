@@ -5,7 +5,7 @@
 SUMMARY = "Epiphany app mode support files"
 BUGTRACKER = "https://gitlab.gnome.org/GNOME/epiphany"
 LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://${OHOS_COREBASE}/LICENSES/Apache-2.0.txt;md5=ef3dabb8f39493f4ea410bebc1d01755"
+LIC_FILES_CHKSUM = "file://${ONIRO_COREBASE}/LICENSES/Apache-2.0.txt;md5=ef3dabb8f39493f4ea410bebc1d01755"
 
 inherit allarch features_check
 
