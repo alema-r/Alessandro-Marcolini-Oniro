@@ -19,7 +19,7 @@ SPDX-License-Identifier: CC-BY-4.0
 
 ## Overview
 
-All Scenarios OS project handles contributions as [merge requests](https://docs.gitlab.com/ee/user/project/merge_requests/) to relevant repositories part of the All Scenarios OS [GitLab instance](https://git.ostc-eu.org/OSTC/OHOS). The flow for handling that is classic: fork-based merge requests. This means that once you have an account, you can fork any repository, create a branch with proposed changes and raise a merge request against the forked repository. More generic information you can find on the Gitlab's documentation as part of ["Merge requests workflow"](https://docs.gitlab.com/ee/development/contributing/merge_request_workflow.html).
+Oniro Project handles contributions as [merge requests](https://docs.gitlab.com/ee/user/project/merge_requests/) to relevant repositories part of the Oniro Project [GitLab instance](https://git.ostc-eu.org/OSTC/OHOS). The flow for handling that is classic: fork-based merge requests. This means that once you have an account, you can fork any repository, create a branch with proposed changes and raise a merge request against the forked repository. More generic information you can find on the Gitlab's documentation as part of ["Merge requests workflow"](https://docs.gitlab.com/ee/development/contributing/merge_request_workflow.html).
 
 # REUSE compliance
 

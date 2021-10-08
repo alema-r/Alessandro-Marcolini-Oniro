@@ -6,7 +6,7 @@
 
 ## Description
 
-This layer, `meta-ohos-blueprints`, contains build metadata for All Scenarios OS
+This layer, `meta-ohos-blueprints`, contains build metadata for Oniro Project
 blueprints.
 
 ## Layer dependencies

@@ -37,4 +37,4 @@ Run 'bitbake-layers add-layer /path/to/meta-ohos-core'
 III. Misc
 =========
 
-This layer provides recipes for the core elements of the All Scenarios OS distribution.
+This layer provides recipes for the core elements of the Oniro Project distribution.
