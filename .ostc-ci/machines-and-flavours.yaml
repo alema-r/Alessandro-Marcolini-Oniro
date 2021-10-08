@@ -125,7 +125,7 @@ blueprint-smartpanel-zephyr:
   extends: .build-zephyr
   variables:
     MACHINE: 96b-nitrogen
-    DISTRO: allscenarios-zephyr-blueprint-dashboard
+    DISTRO: oniro-zephyr-blueprint-dashboard
     OHOS_BITBAKE_TARGETS: "zephyr-blueprint-smarthome-sensors zephyr-blueprint-smarthome-switch"
 
 blueprint-smartpanel-linux:
@@ -133,7 +133,7 @@ blueprint-smartpanel-linux:
   tags: [large-disk, bitbake-friendly, heavy, $OHOS_RUNNER_TAG]
   variables:
     MACHINE: stm32mp1-av96
-    DISTRO: allscenarios-linux-blueprint-dashboard
+    DISTRO: oniro-linux-blueprint-dashboard
     OHOS_BITBAKE_TARGETS: "blueprint-dashboard-gateway-image"
 
 blueprint-gateway-linux:
@@ -141,5 +141,5 @@ blueprint-gateway-linux:
   tags: [large-disk, bitbake-friendly, heavy, $OHOS_RUNNER_TAG]
   variables:
     MACHINE: raspberrypi4-64
-    DISTRO: allscenarios-linux-blueprint-gateway
+    DISTRO: oniro-linux-blueprint-gateway
     OHOS_BITBAKE_TARGETS: "blueprint-gateway-image"
