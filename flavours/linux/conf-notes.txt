@@ -4,12 +4,12 @@
 You can now run 'bitbake <target>'
 
 Supported targets:
-- allscenarios-image-base
-- allscenarios-image-base-dev
-- allscenarios-image-base-tests
-- allscenarios-image-extra
-- allscenarios-image-extra-dev
-- allscenarios-image-extra-tests
+- oniro-image-base
+- oniro-image-base-dev
+- oniro-image-base-tests
+- oniro-image-extra
+- oniro-image-extra-dev
+- oniro-image-extra-tests
 
 Supported machines (first is the default):
 - qemux86-64
@@ -26,5 +26,5 @@ or via command line, e.g.:
 
 You can also run generated qemu images with a command:
 
-    $ runqemu qemux86-64 qemuparams="-nographic" allscenarios-image-base wic
+    $ runqemu qemux86-64 qemuparams="-nographic" oniro-image-base wic
 
