@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+# FIXME RENAME branch name need to change in upstream repo
 KBRANCH ?= "asos/v5.10/base"
 KMETA = "kernel-meta"
 
@@ -17,7 +18,7 @@ SRCREV_meta ?= "3b283fa8d4068ff68457b93e07d321c6c06d37e0"
 SRC_URI = "git://git.ostc-eu.org/OSTC/OHOS/components/kernel/linux.git;protocol=http;name=machine;branch=${KBRANCH}; \
 	    git://git.ostc-eu.org/OSTC/OHOS/components/kernel/linux-meta.git;type=kmeta;protocol=http;name=meta;branch=asos/v5.10;destsuffix=${KMETA}"
 
-require recipes-kernel/linux/linux-asos-tweaks-all.inc
+require recipes-kernel/linux/linux-oniro-tweaks-all.inc
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 LINUX_VERSION ?= "5.10.61"
@@ -26,7 +27,7 @@ DEPENDS += "${@bb.utils.contains('ARCH', 'x86', 'elfutils-native', '', d)}"
 DEPENDS += "openssl-native util-linux-native gmp-native"
 
 PV = "${LINUX_VERSION}+git${SRCPV}"
-PROVIDES="linux-asos virtual/kernel"
+PROVIDES="linux-oniro virtual/kernel"
 
 KCONF_BSP_AUDIT_LEVEL = "1"
 
