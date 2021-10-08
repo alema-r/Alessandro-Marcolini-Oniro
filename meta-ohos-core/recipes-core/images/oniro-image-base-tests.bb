@@ -2,10 +2,9 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-require recipes-core/images/allscenarios-image-extra.bb
+require recipes-core/images/oniro-image-base.bb
 
-SUMMARY = "AllScenariOS Wayland image including the base OS \
-software stack and tests"
+SUMMARY = "Oniro Project image including the base OS software stack and tests"
 
 IMAGE_INSTALL_append = "\
     packagegroup-oniro-tests \

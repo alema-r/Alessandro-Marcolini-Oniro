@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# All Scenarios OS functionality for images
+# Oniro Project functionality for images
 
 # List of tty to mask getty for
 SYSTEMD_MASK_GETTY ?= ""

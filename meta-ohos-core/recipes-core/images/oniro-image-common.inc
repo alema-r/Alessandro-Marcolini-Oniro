@@ -4,7 +4,7 @@
 
 # Common settings for all Oniro images
 
-inherit ohos-image
+inherit oniro-image
 
 IMAGE_INSTALL_append = "\
 			packagegroup-oniro-core \

@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-require recipes-core/images/allscenarios-image-base.bb
+require recipes-core/images/oniro-image-base.bb
 
 SUMMARY = "Gateway blueprint image"
 DESCRIPTION = "Smart home gateway device"
