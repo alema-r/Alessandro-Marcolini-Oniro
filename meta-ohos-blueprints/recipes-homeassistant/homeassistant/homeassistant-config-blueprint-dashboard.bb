@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-SUMMARY = "Home Assistant configuration for All Scenarios OS Smart Panel \
+SUMMARY = "Home Assistant configuration for Oniro Project Smart Panel \
 blueprint"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://${ONIRO_COREBASE}/LICENSES/Apache-2.0.txt;md5=ef3dabb8f39493f4ea410bebc1d01755"
@@ -29,11 +29,11 @@ do_install() {
 default_config:
 
 sensor:
-  - platform: allscenarios_sensors
+  - platform: oniroproject_sensors
     mac: "${SMART_HOME_SENSORS_MAC}"
 
 switch:
-  - platform: allscenarios_switch
+  - platform: oniroproject_switch
     mac: "${SMART_HOME_SWITCH_MAC}"
 
 homeassistant:
@@ -56,27 +56,27 @@ EOF
   alias: Light on
   description: ''
   trigger:
-  - entity_id: sensor.all_scenarios_os_smarthome_device_presence
+  - entity_id: sensor.oniroproject_smarthome_device_presence
     from: 'False'
     platform: state
     to: 'True'
   condition: []
   action:
   - data: {}
-    entity_id: switch.all_scenarios_os_smarthome_device_light
+    entity_id: switch.oniroproject_smarthome_device_light
     service: switch.turn_on
 - id: '1621503121253'
   alias: Light off
   description: ''
   trigger:
-  - entity_id: sensor.all_scenarios_os_smarthome_device_presence
+  - entity_id: sensor.oniroproject_smarthome_device_presence
     from: 'True'
     platform: state
     to: 'False'
   condition: []
   action:
   - data: {}
-    entity_id: switch.all_scenarios_os_smarthome_device_light
+    entity_id: switch.oniroproject_smarthome_device_light
     service: switch.turn_off
 EOF
 

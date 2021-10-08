@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-SUMMARY = "All Scenarios OS SmartHome device interface library"
+SUMMARY = "Oniro Project SmartHome device interface library"
 HOMEPAGE = "https://git.ostc-eu.org/OSTC/OHOS/components/ohsmarthome-py/"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSES/Apache-2.0.txt;md5=c846ebb396f8b174b10ded4771514fcc"

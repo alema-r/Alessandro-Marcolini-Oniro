@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-SUMMARY = "Home Assistant custom component for All Scenarios OS SmartHome device"
+SUMMARY = "Home Assistant custom component for Oniro Project SmartHome device"
 HOMEPAGE = "https://git.ostc-eu.org/OSTC/OHOS/components/smart_home_homeassistant_plugin/"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSES/Apache-2.0.txt;md5=c846ebb396f8b174b10ded4771514fcc"
@@ -15,7 +15,7 @@ SRC_OPT_BRANCH = "branch=master"
 
 SRC_OPTIONS = "${SRC_OPT_PROTO};${SRC_OPT_DEST};${SRC_OPT_NAME};${SRC_OPT_BRANCH}"
 SRC_URI = "git://git.ostc-eu.org/OSTC/OHOS/components/smart_home_homeassistant_plugin.git;${SRC_OPTIONS}"
-SRCREV_smart_home_homeassistant_plugin = "3f3b0aa9b6b5570b01dea26265577871a4bb3ab5"
+SRCREV_smart_home_homeassistant_plugin = "63c39b0eebab086ba793be8e7963c2d3c69cbedc"
 
 S = "${WORKDIR}/${SRC_OPT_CLONE_DIR}"
 
@@ -26,13 +26,13 @@ do_configure[noexec] = "1"
 do_compile[noexec] = "1"
 
 do_install() {
-    install -d ${D}${HOMEASSISTANT_CONFIG_DIR}/custom_components/allscenarios_sensors/
-    install ${S}/custom_components/allscenarios_sensors/*.py \
-        ${D}${HOMEASSISTANT_CONFIG_DIR}/custom_components/allscenarios_sensors/
+    install -d ${D}${HOMEASSISTANT_CONFIG_DIR}/custom_components/oniroproject_sensors/
+    install ${S}/custom_components/oniroproject_sensors/*.py \
+        ${D}${HOMEASSISTANT_CONFIG_DIR}/custom_components/oniroproject_sensors/
 
-    install -d ${D}${HOMEASSISTANT_CONFIG_DIR}/custom_components/allscenarios_switch/
-    install ${S}/custom_components/allscenarios_switch/*.py \
-        ${D}${HOMEASSISTANT_CONFIG_DIR}/custom_components/allscenarios_switch/
+    install -d ${D}${HOMEASSISTANT_CONFIG_DIR}/custom_components/oniroproject_switch/
+    install ${S}/custom_components/oniroproject_switch/*.py \
+        ${D}${HOMEASSISTANT_CONFIG_DIR}/custom_components/oniroproject_switch/
 
     chown -R "${HOMEASSISTANT_USER}":homeassistant "${D}${HOMEASSISTANT_CONFIG_DIR}"
 }
