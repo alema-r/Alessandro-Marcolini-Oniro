@@ -15,7 +15,7 @@ linux-qemu-x86:
   variables:
     MACHINE: qemux86
     OHOS_BUILD_FLAVOUR: linux
-    OHOS_RECIPE_NAME: allscenarios-image-base-tests
+    OHOS_RECIPE_NAME: oniro-image-base-tests
     # Set OHOS_BUILD_CACHE to "pub", overriding the value defined in the
     # .build job. This enables sharing of download and sstate-cache created
     # during this job.
@@ -32,7 +32,7 @@ linux-qemu-x86_64:
   variables:
     MACHINE: qemux86-64
     OHOS_BUILD_FLAVOUR: linux
-    OHOS_RECIPE_NAME: allscenarios-image-base-tests
+    OHOS_RECIPE_NAME: oniro-image-base-tests
     # See the note on linux-qemu-x86.
     OHOS_BUILD_CACHE: "pub"
     OHOS_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
@@ -54,7 +54,7 @@ linux-stm32mp1-av96:
   extends: .build-recipe
   variables:
     OHOS_BUILD_FLAVOUR: linux
-    OHOS_RECIPE_NAME: allscenarios-image-base-tests
+    OHOS_RECIPE_NAME: oniro-image-base-tests
     MACHINE: stm32mp1-av96
 
 linux-raspberrypi4-64:
