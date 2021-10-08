@@ -12,7 +12,7 @@ ot-ctl dataset clear
 ot-ctl dataset init new
 ot-ctl dataset panid 0x1357
 ot-ctl dataset extpanid 11112222deadbeef
-ot-ctl dataset networkname "ASOS\ Thread"
+ot-ctl dataset networkname "Oniro\ Thread"
 ot-ctl dataset channel 26
 ot-ctl dataset masterkey 00112233445566778899aabbccddeeff
 ot-ctl dataset commit active
