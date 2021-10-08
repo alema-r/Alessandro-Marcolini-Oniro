@@ -78,7 +78,7 @@ MACHINE ??= "qemu-x86"
 #
 # Default policy config
 #
-DISTRO ?= "allscenarios-zephyr"
+DISTRO ?= "oniro-zephyr"
 
 #
 # Package Management configuration

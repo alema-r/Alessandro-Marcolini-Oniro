@@ -74,7 +74,7 @@ MACHINE ??= "qemux86-64"
 #
 # Default policy config
 #
-DISTRO ?= "allscenarios-linux"
+DISTRO ?= "oniro-linux"
 
 #
 # Package Management configuration
