@@ -11,7 +11,7 @@ SRC_URI_append = " \
   file://sysotad.conf \
   "
 
-SRCREV = "8d2f4fce96a4cf880c329103b2640450857d6423"
+SRCREV = "0eb9b2d24c744fd341b7ed77bed4b957548bd127"
 S = "${WORKDIR}/git"
 
 # This package is built with go-mod as well as with make.
