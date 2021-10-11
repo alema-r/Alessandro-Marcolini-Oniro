@@ -9,5 +9,5 @@ inherit packagegroup
 PACKAGES = "packagegroup-allscenarios-core"
 
 RDEPENDS_packagegroup-allscenarios-core = "\
-	x-mounts \
+	oniro-mounts \
 	"

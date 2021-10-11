@@ -39,9 +39,9 @@ SYSTEM_STATE_MOUNT_UNIT ??= "run-mount-sysdata.mount"
 
 # The mount units depend on having the system state partition mounted at a
 # known location as described above. The respective system partition mount
-# units are part of the x-mounts package. This provides the
+# units are part of the oniro-mounts package. This provides the
 # SYSTEM_STATE_MOUNT_UNIT systemd mount unit.
-RDEPENDS_${PN} += "x-mounts"
+RDEPENDS_${PN} += "oniro-mounts"
 
 # This is the root filesystem hierarchy used as part of the bind mount units to
 # provide read-write locations.
