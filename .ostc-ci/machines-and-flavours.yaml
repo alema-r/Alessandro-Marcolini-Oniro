@@ -58,9 +58,11 @@ linux-stm32mp1-av96:
     MACHINE: stm32mp1-av96
 
 linux-raspberrypi4-64:
-  extends: .build-linux-matrix
+  extends: .build-wic-image
   variables:
     MACHINE: raspberrypi4-64
+    OHOS_BUILD_FLAVOUR: linux
+    OHOS_RECIPE_NAME: oniro-image-base-tests
 
 zephyr-qemu-x86:
   extends: .build-image
