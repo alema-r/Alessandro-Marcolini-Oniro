@@ -41,6 +41,9 @@ linux-seco-intel-b68:
   extends: .build-linux-matrix
   variables:
     MACHINE: seco-intel-b68
+  parallel:
+    matrix:
+      - OHOS_BITBAKE_TARGETS: ["oniro-image-base-tests", "oniro-image-extra-tests"]
 
 linux-seco-imx8mm-c61:
   extends: .build-linux-matrix
@@ -49,6 +52,9 @@ linux-seco-imx8mm-c61:
     # This platform requires proprietary resources to boot.
     # See build-generic.yaml for explanation of OHOS_BB_LOCAL_CONF_ variables.
     OHOS_BB_LOCAL_CONF_ACCEPT_FSL_EULA: 1
+  parallel:
+    matrix:
+      - OHOS_BITBAKE_TARGETS: ["oniro-image-base-tests", "oniro-image-extra-tests"]
 
 linux-stm32mp1-av96:
   extends: .build-recipe
@@ -61,6 +67,9 @@ linux-raspberrypi4-64:
   extends: .build-linux-matrix
   variables:
     MACHINE: raspberrypi4-64
+  parallel:
+    matrix:
+      - OHOS_BITBAKE_TARGETS: ["oniro-image-base-tests", "oniro-image-extra-tests"]
 
 zephyr-qemu-x86:
   extends: .build-image
