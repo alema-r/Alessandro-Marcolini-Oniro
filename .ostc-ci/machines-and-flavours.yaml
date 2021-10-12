@@ -11,7 +11,7 @@
 # The following jobs are documented in docs/ci/shared-jobs.rst
 
 linux-qemu-x86:
-  extends: .build-image
+  extends: .build-wic-image
   variables:
     MACHINE: qemux86
     OHOS_BUILD_FLAVOUR: linux
@@ -28,7 +28,7 @@ linux-qemu-x86:
     OHOS_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
 
 linux-qemu-x86_64:
-  extends: .build-image
+  extends: .build-wic-image
   variables:
     MACHINE: qemux86-64
     OHOS_BUILD_FLAVOUR: linux
