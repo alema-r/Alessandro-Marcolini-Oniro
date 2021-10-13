@@ -11,6 +11,5 @@ PACKAGES = "\
 	"
 
 RDEPENDS_packagegroup-oniro-tests = "\
-	ohos-xts-acts \
 	ptest-runner \
         "
