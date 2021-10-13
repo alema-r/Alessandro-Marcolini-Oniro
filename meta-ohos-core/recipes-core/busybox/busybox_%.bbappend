@@ -4,7 +4,7 @@
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 SRC_URI += "file://busybox-1.31.1-Wformat-security.patch \
-	file://allscenarios.cfg"
+	file://oniro.cfg"
 
 # busybox implements some of its own string handling that triggers
 # warnings with -Wformat-nonliteral.
