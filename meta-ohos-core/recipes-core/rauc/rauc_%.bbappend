@@ -35,11 +35,11 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 # downstream overrides to define it more strongly and use a different private
 # key. This variable is also set up to append to SRC_URI, so no additional
 # declaration is needed.
-RAUC_KEYRING_FILE ?= "ostc-insecure-cert.pem"
+RAUC_KEYRING_FILE ?= "oniro-insecure-cert.pem"
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
 do_install_append() {
-    if [ -f ${D}${sysconfdir}/rauc/ostc-insecure-cert.pem ]; then
+    if [ -f ${D}${sysconfdir}/rauc/oniro-insecure-cert.pem ]; then
         bbwarn "The image is using a known, insecure test key for verifying RAUC bundles. Do not use this in production systems."
     fi
 }
