@@ -9,7 +9,6 @@ PACKAGES_append = "\
 
 RDEPENDS_packagegroup-thread-br = "\
     ${@bb.utils.contains("DISTRO_FEATURES", "thread-border-router", "ot-br-posix", "", d)} \
-    hostapd \
     iptables \
     tayga \
     "
