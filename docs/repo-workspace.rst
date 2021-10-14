@@ -45,7 +45,7 @@ On distributions that use ``dnf``:
 
 .. code-block:: console
 
-   $ sudo dnf copr enable openharmony/tools
+   $ sudo dnf copr enable oniroproject/tools
    $ sudo dnf --refresh install repo
 
 On openSUSE or SUSE Enterprise Linux:
