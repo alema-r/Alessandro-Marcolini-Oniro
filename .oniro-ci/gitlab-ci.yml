@@ -27,15 +27,15 @@ include:
     - 'dco.yaml'
     - 'reuse.yaml'
  - project: 'OSTC/OHOS/manifest'
-   file: '.ostc-ci/build-generic.yaml'
+   file: '.oniro-ci/build-generic.yaml'
  - project: 'OSTC/OHOS/manifest'
-   file: '.ostc-ci/test-generic.yaml'
+   file: '.oniro-ci/test-generic.yaml'
 # By default, the CI pipeline is invoked using an explicit git ref (branch
 # name) in the manifest. This include is a HACK to allow the CI pipeline to get
 # changes to the machine-and-flavours.yaml picked up directly from the incoming
 # branch in the merge request instead of the explicit branch name in the
 # manifest.
- - local: '/.ostc-ci/machines-and-flavours.yaml'
+ - local: '/.oniro-ci/machines-and-flavours.yaml'
 
 dco:
   extends: .dco
@@ -57,7 +57,7 @@ aggregate-docs:
 # incoming changes that match the repository holding this CI pipeline.
 .workspace:
   variables:
-    OHOS_CI_GIT_REPO_PATH: sources/meta-ohos
+    CI_ONIRO_GIT_REPO_PATH: sources/meta-ohos
 
 # Customize the .bitbake-workspace job to set the rules governing when a build
 # is attempted to: modifications (changes) to the pipeline, meta-layers,

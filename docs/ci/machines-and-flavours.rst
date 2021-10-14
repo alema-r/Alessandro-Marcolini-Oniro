@@ -21,9 +21,10 @@ linux-qemu-x86
 ..............
 
 This job extends `.build-linux` job from the manifest repository and builds
-``allscenarios-image-base-tests`` and ``allscenarios-image-extra-tests`` using
-the Linux flavour of |main_project_name| and ``MACHINE=qemux86``. This job checks that
-|main_project_name| software can be built for a basic 32bit x86 virtual machine.
+``oniro-image-base-tests`` and ``oniro-image-extra-tests`` using the Linux
+flavour of |main_project_name| and ``MACHINE=qemux86``. This job checks that
+|main_project_name| software can be built for a basic 32bit x86 virtual
+machine.
 
 The cache for this job is publicly available.
 
@@ -31,9 +32,10 @@ linux-qemu-x86_64
 .................
 
 This job extends `.build-linux` job from the manifest repository and builds
-``allscenarios-image-base-tests`` and ``allscenarios-image-extra-tests`` using
-the Linux flavour of |main_project_name| and ``MACHINE=qemux86-64``. This job checks that
-|main_project_name| software can be built for a basic 64bit x86 virtual machine.
+``oniro-image-base-tests`` and ``oniro-image-extra-tests`` using the Linux
+flavour of |main_project_name| and ``MACHINE=qemux86-64``. This job checks that
+|main_project_name| software can be built for a basic 64bit x86 virtual
+machine.
 
 The cache for this job is publicly available.
 
@@ -41,9 +43,9 @@ linux-seco-intel-b68
 ....................
 
 This job extends `.build-linux` job from the manifest repository and builds
-``allscenarios-image-base-tests`` and ``allscenarios-image-extra-tests`` using
-the Linux flavour of |main_project_name| and ``MACHINE=seco-intel-b68``. This job
-checks that |main_project_name| software can be built for the SECO B68 development
+``oniro-image-base-tests`` and ``oniro-image-extra-tests`` using the Linux
+flavour of |main_project_name| and ``MACHINE=seco-intel-b68``. This job checks
+that |main_project_name| software can be built for the SECO B68 development
 board, which contains an Intel x86_64 SoC.
 
 .. note::
@@ -54,9 +56,9 @@ linux-seco-imx8mm-c61
 .....................
 
 This job extends `.build-linux` job from the manifest repository and builds
-``allscenarios-image-base-tests`` and ``allscenarios-image-extra-tests`` using
-the Linux flavour of |main_project_name| and ``MACHINE=seco-imx8mm-c61``. This job
-checks that |main_project_name| software can be built for the SECO C61 development
+``oniro-image-base-tests`` and ``oniro-image-extra-tests`` using the Linux
+flavour of |main_project_name| and ``MACHINE=seco-imx8mm-c61``. This job checks
+that |main_project_name| software can be built for the SECO C61 development
 board, which contains the NXP i.MX 8M Mini SoC, which implements 64bit ARMv8
 architecture.
 
@@ -68,11 +70,11 @@ linux-stm32mp1-av96
 ...................
 
 This job extends `.build-linux` job from the manifest repository and builds
-``allscenarios-image-base-tests`` and ``allscenarios-image-extra-tests`` using
-the Linux flavour of |main_project_name| and ``MACHINE=stm32mp1-av96``. This job checks
-that |main_project_name| software can be built for the 96Boards Avenger development
-board, which contains the STM32MP157 SoC, which implements 32bit ARMv7
-architecture.
+``oniro-image-base-tests`` and ``oniro-image-extra-tests`` using the Linux
+flavour of |main_project_name| and ``MACHINE=stm32mp1-av96``. This job checks
+that |main_project_name| software can be built for the 96Boards Avenger
+development board, which contains the STM32MP157 SoC, which implements 32bit
+ARMv7 architecture.
 
 .. note::
     The cache for this job is not public, pending legal review of any firmware
@@ -82,9 +84,9 @@ linux-raspberrypi4-64
 .....................
 
 This job extends `.build-linux` job from the manifest repository and builds
-``allscenarios-image-base-tests`` and ``allscenarios-image-extra-tests`` using
-the Linux flavour of |main_project_name| and ``MACHINE=raspberrypi4-64``. This job
-checks that |main_project_name| software can be built for the Raspberry Pi 4B
+``oniro-image-base-tests`` and ``oniro-image-extra-tests`` using the Linux
+flavour of |main_project_name| and ``MACHINE=raspberrypi4-64``. This job checks
+that |main_project_name| software can be built for the Raspberry Pi 4B
 development board, which contains the BCM2711 SoC, which implements 64bit ARMv8
 architecture.
 
