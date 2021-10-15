@@ -23,7 +23,7 @@
 
 project = 'Oniro Project Build System'
 copyright = '2021'
-author = 'OSTC'
+author = 'Oniro Project'
 
 version = '1.0.0-beta'
 release = version
