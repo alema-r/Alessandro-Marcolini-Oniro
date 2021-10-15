@@ -1,14 +1,10 @@
 # SPDX-License-Identifier: Apache-2.0
 # SPDX-FileCopyrightText: Huawei Inc.
 
-# NOTE: This file is included from the manifest repository. It is not
-# self-sufficient.  It is here only because the meta-ohos repository also
-# contains all the flavour and machine definitions and having both in one place
-# allows one to add a new MACHINE and the associated build jobs in one go.
-#
-# Please do not include this file directly.
+# Please do not include this file directly. It should be included through the
+# build-generic.yaml only.
 
-# The following jobs are documented in docs/ci/shared-jobs.rst
+# The following jobs are documented in docs/ci/machines-and-flavours.rst
 
 linux-qemu-x86:
   extends: .build-wic-image

@@ -9,3 +9,5 @@ Continuous Integration
    :maxdepth: 1
       
    machines-and-flavours
+   special-jobs
+   hidden-jobs/index

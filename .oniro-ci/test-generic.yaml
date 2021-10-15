@@ -1,0 +1,115 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: Huawei Inc.
+
+##
+## Submits a job to LAVA with CI variables
+##
+.lava-test:
+  interruptible: true
+  image:
+    name: registry.ostc-eu.org/ostc/containers/ostc-builder:latest
+  before_script:
+    # Check if the job is configured properly.
+    - test -n "$CI_LAVA_JOB_DEFINITION" || (
+        echo "precondition failed - set CI_LAVA_JOB_DEFINITION to the URL of the LAVA test job definition"
+        && exit 1 )
+    - test -n "$CI_BUILD_JOB_NAME" || (
+        echo "precondition failed - set CI_BUILD_JOB_NAME to the appropriate job name from which LAVA will pick up build artifact"
+        && exit 1 )
+    - test -n "$CI_REPORT_JOB_NAME" || (
+        echo "precondition failed - set CI_REPORT_JOB_NAME to the CI job name which will gather results back from LAVA"
+        && exit 1 )
+  script:
+    # Build callback URL for the "report" job
+    - curl --silent "https://git.ostc-eu.org/api/v4/projects/$CI_PROJECT_ID/pipelines/$CI_PIPELINE_ID/jobs?per_page=100" > jobs-manual.json
+    - job_id="$(jq -r ".[] | select(.name == \"$CI_REPORT_JOB_NAME\") | .id" jobs-manual.json)"
+    - build_job_id="$(jq -r ".[] | select(.name == \"$CI_BUILD_JOB_NAME\") | .id" jobs-manual.json)"
+    - CALLBACK_URL="https://git.ostc-eu.org/api/v4/projects/$CI_PROJECT_ID/jobs/${job_id}/play"
+    # Get the job definition from remote source.
+    - curl --silent "$CI_LAVA_JOB_DEFINITION" > job_def.yaml
+    # Update the job definition with CI data.
+    - sed -i -e 's/$ci_job_id/'"$CI_JOB_ID"'/'
+      -e 's/$ci_project_id/'"$CI_PROJECT_ID"'/'
+      -e 's/$ci_pipeline_id/'"$CI_PIPELINE_ID"'/'
+      -e 's,$ci_pipeline_url,'"$CI_PIPELINE_URL"','
+      -e 's/$build_job_id/'"$build_job_id"'/'
+      -e 's,$callback_url,'"$CALLBACK_URL"',' job_def.yaml
+    # Generate job definitions for zephyr build
+    - |
+      mkdir lava_jobs
+      if echo "${CI_BUILD_JOB_NAME}" | grep -i "zephyr"; then
+        for image in $(find artifacts/ -name "*.elf" -exec basename {} \;); do
+          job_name=$(basename "${image}" ".elf")
+          echo "--- Generating lava job definition ${job_name}.yaml ---"
+          sed "s/\$elf_file/$image/" job_def.yaml | tee lava_jobs/"${job_name}".yaml
+        done
+      else
+        mv job_def.yaml lava_jobs/
+      fi
+    # Submit the job to LAVA.
+    - |
+      for job_def in $(find lava_jobs/ -name "*.yaml"); do
+        lava_job_id=$(curl -X POST -H "Authorization: Token $CI_LAVA_TOKEN" -F "definition=$(<${job_def})" "$CI_LAVA_INSTANCE/api/v0.2/jobs/" | jq ".job_ids" | tr -d "[\n ]")
+        if [ -n "${lava_job_id}" ]; then
+          echo "$CI_LAVA_INSTANCE/scheduler/job/$lava_job_id"
+          echo "$lava_job_id" >> job_ids_"${CI_JOB_NAME}_${lava_job_id}".txt
+        else
+          echo "Failed to submit LAVA job"
+          exit 1
+        fi
+      done
+  artifacts:
+    paths:
+      - job_ids_*.txt
+  rules:
+    # Run the build when it is scheduled.
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+    # Do not run pipelines for draft merge requests unless manually triggered.
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TITLE =~ /^(wip|draft):.*/i'
+      when: manual
+    # Run the build when a merge request is created.
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    # Run the build when a tag is placed.
+    - if: '$CI_COMMIT_TAG'
+
+.lava-report:
+  interruptible: true
+  image:
+    name: registry.ostc-eu.org/ostc/containers/ostc-builder:latest
+  stage: report
+  script:
+    - |
+      for file in $(find ./ -name "job_ids_*.txt"); do
+        echo "Job file: $file"
+        while read -r p; do
+          echo "Job ID: $p"
+          mkdir "$p"
+          # Echo LAVA job health and link.
+          link="$CI_LAVA_INSTANCE/scheduler/job/$p"
+          health="$(curl --silent "$CI_LAVA_INSTANCE/api/v0.2/jobs/$p/" | jq '.health' | tr -d '"')"
+          echo "[$health] $link"
+          # Get the JUnit export from LAVA.
+          curl --silent -o job_$p.xml "$CI_LAVA_INSTANCE/api/v0.2/jobs/$p/junit/"
+          echo "Report file: $(ls job_$p.xml)"
+        done < "$file"
+      done
+  artifacts:
+    when: always
+    paths:
+      - job_*.xml
+    reports:
+      junit:
+        - job_*.xml
+  rules:
+    # Run the build when it is scheduled.
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: manual
+    # Do not run pipelines for draft merge requests unless manually triggered.
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TITLE =~ /^(wip|draft):.*/i'
+      when: manual
+    # Run the build when a merge request is created.
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: manual
+    # Run the build when a tag is placed.
+    - if: '$CI_COMMIT_TAG'
+      when: manual

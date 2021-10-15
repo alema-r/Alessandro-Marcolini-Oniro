@@ -1,0 +1,329 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: Huawei Inc.
+
+# This job is documented in docs/ci/hidden-jobs/workspace.rst
+.workspace:
+  interruptible: true
+  image:
+    name: registry.ostc-eu.org/ostc/containers/ostc-builder:latest
+  tags: [large-disk, $CI_ONIRO_RUNNER_TAG]
+  variables:
+    CI_ONIRO_RUNNER_TAG : ""
+    CI_ONIRO_MANIFEST_URL: https://git.ostc-eu.org/distro/oniro
+    CI_ONIRO_MANIFEST_BRANCH: develop
+    CI_ONIRO_MANIFEST_NAME: default.xml
+    CI_ONIRO_MANIFEST_MIRROR: ostc-develop
+    CI_ONIRO_GIT_REPO_PATH: ""
+  before_script:
+    - test ! -e "$CI_PROJECT_DIR"/.scratch-dir-name || (
+        echo "precondition failed - concurrent modification of $CI_PROJECT_DIR"
+        && env | grep CI_ | sort
+        && ls -l
+        && exit 1 )
+
+    # Create scratch space, being careful not to pollute the working directory.
+    # This is done so that we are not attached to the contents of
+    # $CI_PROJECT_DIR which contains something that GitLab CI prepared for us.
+    - SCRATCH_DIR="$(mktemp -p /tmp -d workspace.XXXXXXXXXX)"
+    - echo "$SCRATCH_DIR" > "$CI_PROJECT_DIR"/.scratch-dir-name
+    - cd "$SCRATCH_DIR"
+
+    - |
+        echo "Building repo workspace with the following properties:"
+        echo "CI_ONIRO_MANIFEST_URL: $CI_ONIRO_MANIFEST_URL"
+        echo "CI_ONIRO_MANIFEST_NAME: $CI_ONIRO_MANIFEST_NAME"
+        echo "CI_ONIRO_MANIFEST_BRANCH: $CI_ONIRO_MANIFEST_BRANCH"
+        repo init --reference \
+           /var/shared/pub/git-repo-mirrors/"$CI_ONIRO_MANIFEST_MIRROR" \
+           --manifest-url "$CI_ONIRO_MANIFEST_URL" \
+           --manifest-name "$CI_ONIRO_MANIFEST_NAME" \
+           --manifest-branch "$CI_ONIRO_MANIFEST_BRANCH"
+    - time repo sync --no-clone-bundle
+
+    # See the documentation of CI_ONIRO_GIT_REPO_PATH
+    - |
+      if [ -n "$CI_ONIRO_GIT_REPO_PATH" ]; then
+        if [ -n "$CI_MERGE_REQUEST_SOURCE_PROJECT_URL" ]; then
+            echo "CI: Bootstrapping '$CI_PROJECT_DIR' as 'incoming-merged' remote in '$CI_ONIRO_GIT_REPO_PATH'";
+            ( cd "$CI_ONIRO_GIT_REPO_PATH" \
+                && git remote add incoming-merged "$CI_PROJECT_DIR" \
+                && git fetch incoming-merged HEAD );
+        fi;
+        echo "CI: Switching $CI_ONIRO_GIT_REPO_PATH to $CI_COMMIT_SHA";
+        ( cd "$CI_ONIRO_GIT_REPO_PATH" && git checkout "$CI_COMMIT_SHA" );
+      fi
+
+  script:
+    # Reload the value of SCRATCH_DIR set in the before_script phase. Those run
+    # in separate shell processes and do not share environment variables.
+    - SCRATCH_DIR="$(cat "$CI_PROJECT_DIR"/.scratch-dir-name)"
+    - cd "$SCRATCH_DIR"
+
+  after_script:
+    # If the primary script failed early enough, the scratch dir may not have
+    # been created yet. Check for that to avoid confusing errors.
+    - test -f "$CI_PROJECT_DIR"/.scratch-dir-name || exit 0
+    # Reload the value of SCRATCH_DIR set in the before_script phase.
+    - SCRATCH_DIR="$(cat "$CI_PROJECT_DIR"/.scratch-dir-name)"
+    # Clean up after ourselves.
+    - rm -f "$CI_PROJECT_DIR"/.scratch-dir-name
+    - rm -rf "$SCRATCH_DIR"
+
+# This job is documented in docs/ci/hidden-jobs/bitbake-workspace.rst
+.bitbake-workspace:
+  extends: .workspace
+  stage: build
+  timeout: 6h
+  variables:
+    CI_ONIRO_BUILD_FLAVOUR: ""
+    CI_ONIRO_BUILD_CACHE: "private"
+    CI_ONIRO_BB_LOCAL_CONF_CONNECTIVITY_CHECK_URIS: "https://example.net/"
+    CI_ONIRO_BB_LOCAL_CONF_DL_DIR: /var/shared/$CI_ONIRO_BUILD_CACHE/bitbake/downloads
+    CI_ONIRO_BB_LOCAL_CONF_SSTATE_DIR: /var/shared/$CI_ONIRO_BUILD_CACHE/bitbake/sstate-cache
+    CI_ONIRO_BB_LOCAL_CONF_IMAGE_VERSION_SUFFIX: ""
+    CI_ONIRO_BB_LOCAL_CONF_CVE_CHECK_DB_DIR: "$${TMPDIR}/CVE_CHECK/"
+    CI_ONIRO_BB_LOCAL_CONF_plus_equals_INHERIT: cve-check
+    CI_ONIRO_BB_LOCAL_CONF_plus_equals_USER_CLASSES: "buildstats buildstats-summary"
+    CI_ONIRO_DEVTOOL_RECIPE_NAME: ""
+    CI_ONIRO_DEVTOOL_LAYER_PATH: ""
+
+  before_script:
+    # Bitbake requires a non-root user to operate.
+    # The container should have a non-root user by default.
+    - test "$(id -u)" -ne 0 || (
+        echo "precondition failed - this job cannot run as root"
+        && exit 1 )
+    # Check if the job is configured properly.
+    - test -n "$CI_ONIRO_BUILD_FLAVOUR" || (
+        echo "precondition failed - set CI_ONIRO_BUILD_FLAVOUR to \"flavour\" of the build to use (e.g. linux)"
+        && exit 1 )
+    # Check devtool operation is enabled and configured properly.
+    - |
+      if { [ -n "$CI_ONIRO_DEVTOOL_RECIPE_NAME" ] && [ -z "$CI_ONIRO_DEVTOOL_LAYER_PATH" ]; } || { [ -z "$CI_ONIRO_DEVTOOL_RECIPE_NAME" ] && [ -n "$CI_ONIRO_DEVTOOL_LAYER_PATH" ]; } then
+        echo "precondition failed - cannot define just one of CI_ONIRO_DEVTOOL_RECIPE_NAME and CI_ONIRO_DEVTOOL_LAYER_PATH"
+        exit 1
+      fi
+    # Bitbake is configured to use /var/shared/$CI_ONIRO_BUILD_CACHE/bitbake
+    # directory for both the download directory and the sstate-cache.
+    - test -w /var/shared/$CI_ONIRO_BUILD_CACHE/bitbake || (
+        echo "precondition failed - expected /var/shared/$CI_ONIRO_BUILD_CACHE/bitbake to be writable"
+        && exit 1 )
+    # Log available disk space on the persistent shared disk.
+    - df -h /var/shared/$CI_ONIRO_BUILD_CACHE/bitbake
+    - !reference [.workspace, before_script]
+
+  script:
+    - !reference [.workspace, script]
+    # Initialize bitbake build environment by sourcing the oe-init-build-env
+    # into the running bash process. This has the side-effect of changing the
+    # current working directory and populating the $SCRATCH_DIR/build
+    # sub-directory with default configuration.
+    - TEMPLATECONF=../oniro/flavours/"$CI_ONIRO_BUILD_FLAVOUR"
+        . ./oe-core/oe-init-build-env build
+    # xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    # NOTE: From now on, we are running inside "$SCRATCH_DIR"/build
+    # with bash modified by oe-init-build-env. We now have access to bitbake,
+    # devtool and other related tools.
+    # xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+    # Generic local.conf customization point. All environment variables with a
+    # given prefix are converted to local.conf variables, with the prefix
+    # dropped. Some extra sed processing is used to quote the variables.
+    # Everything runs in a sub-shell with bash pipefail disabled, as otherwise
+    # lack of variables matching the grep pattern causes the execution to stop.
+    - |
+      ( set +o pipefail;
+        env \
+          | grep -E '^CI_ONIRO_BB_LOCAL_CONF_[A-Z_0-9]+=' \
+          | sed -e 's/^CI_ONIRO_BB_LOCAL_CONF_//g' -e 's/"/\\"/g' -e 's/=/ = "/g' -e 's/$/"/g' \
+          | sort \
+          | tee -a conf/local.conf )
+      ( set +o pipefail;
+        env \
+          | grep -E '^CI_ONIRO_BB_LOCAL_CONF_plus_equals_[A-Z_0-9]+=' \
+          | sed -e 's/^CI_ONIRO_BB_LOCAL_CONF_plus_equals_//g' -e 's/"/\\"/g' -e 's/=/ += "/g' -e 's/$/"/g' \
+          | sort \
+          | tee -a conf/local.conf )
+
+
+    # Sanity check: disallow using public build cache with a specific setting
+    # in local.conf. The list of settings may grow over time.
+    - |
+      if [ "$CI_ONIRO_BUILD_CACHE" != private ]; then
+        if grep -qF 'ACCEPT_FSL_EULA = "1"' conf/local.conf; then
+          echo "cannot use CI_ONIRO_BUILD_CACHE=$CI_ONIRO_BUILD_CACHE with ACCEPT_FSL_EULA = \"1\""
+          exit 1
+        fi
+      fi
+
+    # Update a specific bitbake recipe, which must use git, to point to the
+    # commit that is being tested here.
+    - |
+      if [ -n "$CI_ONIRO_DEVTOOL_RECIPE_NAME" ] && [ -n "$CI_ONIRO_DEVTOOL_LAYER_PATH" ]; then
+        echo "CI: Switching $CI_ONIRO_DEVTOOL_RECIPE_NAME from $CI_ONIRO_DEVTOOL_LAYER_PATH to $CI_COMMIT_SHA";
+        # Upgrade the recipe to point to the sources in the project directory.
+        # Pass --no-patch to skip applying patches that are present in the
+        # recipe.
+        #
+        # NOTE: This requires the git repository specified in the recipe to
+        # have access to the SHA presented here.
+        time devtool upgrade --no-patch --srcrev "$CI_COMMIT_SHA" --srcbranch "$CI_COMMIT_REF_NAME" "$CI_ONIRO_DEVTOOL_RECIPE_NAME";
+        # Switch the detached head created by devtool upgrade above, to a
+        # scratch branch. This is required for the devtool finish to work.
+        ( cd workspace/"$CI_ONIRO_DEVTOOL_RECIPE_NAME" && git checkout -b scratch );
+        # Finish the upgrade process and commit the change back to the layer.
+        # Because our recipe may have had patches, this step is required to
+        # correctly discard them ("devtool upgrade --no-patch" simply skipped
+        # them).
+        time devtool finish --remove-work --force "$CI_ONIRO_DEVTOOL_RECIPE_NAME" "$(basename "$CI_ONIRO_DEVTOOL_LAYER_PATH")";
+      fi
+  rules:
+    # Run the job when a merge request is created.
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    # Run the job when a tag is placed.
+    - if: '$CI_COMMIT_TAG'
+    # Run the build for scheduled pipelines.
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+
+# This job is documented in docs/ci/hidden-jobs/build-linux.rst
+.build-linux:
+  extends: .bitbake-workspace
+  variables:
+    CI_ONIRO_BUILD_FLAVOUR: linux
+    CI_ONIRO_BITBAKE_TARGETS: "oniro-image-base-tests oniro-image-extra-tests"
+    # Linux builds can be extremely large. Use rm_work to remove the temporary
+    # build data as soon as possible to reclaim space.
+    CI_ONIRO_BB_LOCAL_CONF_plus_equals_INHERIT: "rm_work"
+  script:
+    - test -n "$CI_ONIRO_BITBAKE_TARGETS" || (
+        echo "nothing to build - CI_ONIRO_BITBAKE_TARGETS is empty"
+        && exit 1 )
+    - !reference [.bitbake-workspace, script]
+    - |
+      for target in $CI_ONIRO_BITBAKE_TARGETS; do
+        time bitbake "$target"
+        du -sh tmp
+      done
+
+# This job is documented in docs/ci/hidden-jobs/build-linux-marix.rst
+.build-linux-matrix:
+  extends: .build-linux
+  parallel:
+    matrix:
+      - CI_ONIRO_BITBAKE_TARGETS: ["oniro-image-base-tests", "oniro-image-extra-tests"]
+
+# This job is documented in docs/ci/hidden-jobs/build-zephyr.rst
+.build-zephyr:
+  extends: .bitbake-workspace
+  variables:
+    CI_ONIRO_BUILD_FLAVOUR: zephyr
+    CI_ONIRO_BITBAKE_TARGETS: "zephyr-philosophers"
+  script:
+    - test -n "$CI_ONIRO_BITBAKE_TARGETS" || (
+        echo "nothing to build - CI_ONIRO_BITBAKE_TARGETS is empty"
+        && exit 1 )
+    - !reference [.bitbake-workspace, script]
+    - |
+      for target in $CI_ONIRO_BITBAKE_TARGETS; do
+        time bitbake "$target"
+      done
+
+# This job is documented in docs/ci/hidden-jobs/build-freertos.rst
+.build-freertos:
+  extends: .bitbake-workspace
+  variables:
+    CI_ONIRO_BUILD_FLAVOUR: freertos
+  script:
+    - !reference [.bitbake-workspace, script]
+    - time bitbake freertos-demo
+
+# This job is documented in docs/ci/hidden-jobs/build-recipe.rst
+.build-recipe:
+  extends: .bitbake-workspace
+  variables:
+    CI_ONIRO_RECIPE_NAME: ""
+  script:
+    - !reference [.bitbake-workspace, script]
+    - time bitbake "$CI_ONIRO_RECIPE_NAME"
+
+# This job is documented in docs/ci/hidden-jobs/build-image.rst
+.build-image:
+  extends: .build-recipe
+  script:
+    - !reference [.build-recipe, script]
+    # Move artifacts for recovery, which only considers $CI_PROJECT_DIR and
+    # subdirectories.
+    - mkdir -p "$CI_PROJECT_DIR"/artifacts
+    # The name of the build-specific tmp directory may vary. Ask bitbake
+    # instead of hard-coding it. This is currently only relevant for Zephyr,
+    # which uses tmp-newlib.
+    - eval "$(bitbake -e | grep ^TMPDIR= | sed -e 's/^TMPDIR/BITBAKE_TMPDIR/g')"
+    # Uncompressed wic image is not needed in CI. We cannot remove it from
+    # meta-oniro-core/classes/ohos-image.bbclass as runqemu needs it for local
+    # build and boot.
+    - find "$BITBAKE_TMPDIR"/deploy/images/ -name *.wic -exec rm -rf {} \;
+    - mv "$BITBAKE_TMPDIR"/deploy/images/ "$CI_PROJECT_DIR"/artifacts || true
+    - mv "$BITBAKE_TMPDIR"/deploy/licenses/ "$CI_PROJECT_DIR"/artifacts || true
+  artifacts:
+    paths:
+      - artifacts/
+
+.build-wic-image:
+  extends: .build-image
+  script:
+    - !reference [.build-image, script]
+    # Remove everything _except_ for the .wic.* and *.bmap files. Most of the
+    # remaining files are redundant and quite large. Our Linux builds really
+    # only care about the wic files.
+    - echo "Removing non-wic/bmap image files"
+    - find "$CI_PROJECT_DIR"/artifacts/images/ \( -type f -o -type l \) -a ! -name "*.wic.*" -print -delete
+    - echo "Pruning empty directories"
+    - find "$CI_PROJECT_DIR"/artifacts/ -type d -exec rmdir --verbose --ignore-fail-on-non-empty {} \; 2>/dev/null || true
+
+# This job is currently used to customize the behavior in oniro and xts-acts.
+# It will be removed when that is safe to do so. It is not documented.
+.build:
+ extends: .build-recipe
+
+# This job is documented in docs/ci/hidden-jobs/build-docs.rst
+.build-docs:
+  interruptible: true
+  image:
+    name: registry.ostc-eu.org/ostc/containers/ostc-docs-builder
+  stage: build
+  script:
+    - make -C docs
+  artifacts:
+    paths:
+      - docs/build
+  rules:
+    # Build the docs when a merge request is created.
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+        # React to changes to the docs directory.
+        - docs/**/*
+        # Run this job in case the pipeline changes.
+        - .oniro-ci/*.yml
+        - .gitlab-ci.yml
+    # Or when things land.
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      changes:
+        # React to changes to the docs directory.
+        - docs/**/*
+        # Run this job in case the pipeline changes.
+        - .oniro-ci/*.yml
+        - .gitlab-ci.yml
+
+# This job is documented in docs/ci/hidden-jobs/aggregate-docs.rst
+.aggregate-docs:
+  stage: deploy
+  trigger: OSTC/OHOS/docs
+  rules:
+    # Update the documentation when things land in the default branch.
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      changes:
+        # React to changes to the docs directory.
+        - docs/**/*
+        # Run this job in case the pipeline changes.
+        - .oniro-ci/*.yml
+        - .gitlab-ci.yml

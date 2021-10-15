@@ -26,23 +26,16 @@ include:
    file:
     - 'dco.yaml'
     - 'reuse.yaml'
- - project: 'OSTC/OHOS/manifest'
-   file: '.oniro-ci/build-generic.yaml'
- - project: 'OSTC/OHOS/manifest'
-   file: '.oniro-ci/test-generic.yaml'
-# By default, the CI pipeline is invoked using an explicit git ref (branch
-# name) in the manifest. This include is a HACK to allow the CI pipeline to get
-# changes to the machine-and-flavours.yaml picked up directly from the incoming
-# branch in the merge request instead of the explicit branch name in the
-# manifest.
  - local: '/.oniro-ci/machines-and-flavours.yaml'
+ - local: '/.oniro-ci/build-generic.yaml'
+ - local: '/.oniro-ci/test-generic.yaml'
 
 dco:
   extends: .dco
 
 reuse:
   extends: .reuse
-  # FIXME: https://git.ostc-eu.org/OSTC/OHOS/meta-ohos/-/issues/19
+  # FIXME: https://git.ostc-eu.org/distro/oniro/-/issues/19
   allow_failure: true
 
 build-docs:
@@ -53,11 +46,11 @@ aggregate-docs:
   needs: [build-docs]
 
 # Customize the .workspace job to set the path of the git repository to deviate
-# from what the git-repo manifest prepares. This effectively allows testing
-# incoming changes that match the repository holding this CI pipeline.
+# from what the git-repo prepares. This effectively allows testing incoming
+# changes that match the repository holding this CI pipeline.
 .workspace:
   variables:
-    CI_ONIRO_GIT_REPO_PATH: sources/meta-ohos
+    CI_ONIRO_GIT_REPO_PATH: oniro
 
 # Customize the .bitbake-workspace job to set the rules governing when a build
 # is attempted to: modifications (changes) to the pipeline, meta-layers,
@@ -75,7 +68,7 @@ aggregate-docs:
         - assets/**/*
         - flavours/**/*
         - meta-*/**/*
-        - .ostc-ci/*
+        - .oniro-ci/*
     - if: '$CI_COMMIT_TAG'
 
 # Mimic the updated rules for lava-test from the bitbake-workspace.
@@ -89,7 +82,7 @@ aggregate-docs:
         - assets/**/*
         - flavours/**/*
         - meta-*/**/*
-        - .ostc-ci/*
+        - .oniro-ci/*
     - if: '$CI_COMMIT_TAG'
 
 # Mimic the updated rules for lava-report from the bitbake-workspace.
@@ -103,7 +96,7 @@ aggregate-docs:
         - assets/**/*
         - flavours/**/*
         - meta-*/**/*
-        - .ostc-ci/*
+        - .oniro-ci/*
     - if: '$CI_COMMIT_TAG'
 
 ##
