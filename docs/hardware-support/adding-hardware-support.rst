@@ -8,8 +8,8 @@ Adding New Hardware Support in |main_project_name|
 ##################################################
 
 This section details the addition of new hardware to the supported set in
-|main_project_name|. It is intended as a checklist for adding new boards to OHOS build
-system.
+|main_project_name|. It is intended as a checklist for adding new boards to
+|main_project_name| build system.
 
 Before starting get familiar with |main_project_name| Contribution Process.
 
@@ -33,7 +33,7 @@ maintained support** in targeted kernels.
 Add Required meta-layers
 ************************
 
-OHOS flavours configuration templates (stored in `OHOS/meta-ohos/flavours <https://git.ostc-eu.org/OSTC/OHOS/meta-ohos/-/tree/develop/flavours>`_
+Oniro flavours configuration templates (stored in `distro/oniro/flavours <https://git.ostc-eu.org/distro/oniro/-/tree/dunfell/flavours>`_
 directory) consist of the following files:
 
 .. list-table:: Configuration Files
@@ -53,9 +53,8 @@ directory) consist of the following files:
 into appropriate build directory structure (see :ref:`Setting up a repo workspace <RepoWorkspace>`).
 To include a new layer, it has to be added in two places:
 
-- `OHOS/manifest <https://git.ostc-eu.org/OSTC/OHOS/manifest>`_
-- `OHOS/meta-ohos flavours <https://git.ostc-eu.org/OSTC/OHOS/meta-ohos/-/tree/develop/flavours>`_
-  as part of the respective flavour ``bblayers.conf.sample``
+- The manifest file part of the `oniro repository <https://git.ostc-eu.org/distro/oniro/-/tree/dunfell/manifests>`_
+- The flavours ``bblayers.conf.sample`` file part of the `oniro repository <https://git.ostc-eu.org/distro/oniro/-/tree/dunfell/flavours>`_
 
 Test Image Backward Compatibility Of Newly Added Layers
 *******************************************************
@@ -78,9 +77,7 @@ The same machine needs to also be advertised in two places:
 Create Merge Requests
 *********************
 
-Create Merge Requests to ***develop*** branch according to the Contributing Process for repositories:
+Create the Merge Request against the ***dunfell*** branch according to the
+Contributing Process for repositories:
 
-- `OHOS/meta-ohos <https://git.ostc-eu.org/OSTC/OHOS/meta-ohos>`_
-- `OHOS/manifest <https://git.ostc-eu.org/OSTC/OHOS/manifest>`_
-
-After meta-ohos MR is merged, update ``meta-ohos`` revision in manifest MR.
+- `distro/oniro <https://git.ostc-eu.org/distro/oniro>`_

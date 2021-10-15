@@ -69,8 +69,8 @@ Linux image
 
 .. code-block:: console
 
-   $ TEMPLATECONF=../sources/meta-ohos/flavours/linux . \
-      ./sources/poky/oe-init-build-env build-ohos-linux-raspberrypi4-64
+   $ TEMPLATECONF=../oniro/flavours/linux . \
+      ./oe-core/oe-init-build-env build-oniro-linux-raspberrypi4-64
 
 2. You will find yourself in the newly created build directory. Call *bitbake*
    to build the image. For example, if you are using *allscenarios-image-base*
@@ -82,7 +82,7 @@ Linux image
 
 3. After the build completes, the bootloader, kernel, and rootfs image files
    can be found in
-   ``build-ohos-linux-raspberrypi4-64/tmp/deploy/images/$MACHINE/``.
+   ``build-oniro-linux-raspberrypi4-64/tmp/deploy/images/$MACHINE/``.
    The key file which is needed to flash into the SD card is
    ``allscenarios-image-base-raspberrypi4-64.wic.bz2``.
 
@@ -143,8 +143,8 @@ For any fault in the hardware device, see :ref:`How to handle faulty hardware de
 Audio
 =====
 
-To enable the audio over 3.5mm jack, add the following line in
-``./sources/meta-ohos/flavours/linux/local.conf.sample``
+To enable the audio over 3.5mm jack, add the following line in your build's
+``local.conf``:
 
 .. code-block:: console
 
@@ -172,8 +172,8 @@ audio.
 I2C
 ===
 
-I2C is disabled by default. To enable I2C, edit the
-``./sources/meta-ohos/flavours/linux/local.conf.sample`` file with below line:
+I2C is disabled by default. To enable I2C, edit the ``local.conf`` build's
+configuration adding:
 
 .. code-block:: console
 

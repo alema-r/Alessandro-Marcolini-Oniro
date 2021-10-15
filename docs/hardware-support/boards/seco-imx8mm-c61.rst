@@ -41,7 +41,7 @@ Linux image
 
 .. code-block:: console
 
-   $ TEMPLATECONF=../sources/meta-ohos/flavours/linux . ./sources/poky/oe-init-build-env build-ohos-linux
+   $ TEMPLATECONF=../oniro/flavours/linux . ./oe-core/oe-init-build-env build-oniro-linux
 
 2. You will find yourself in the newly created build directory. Call ``bitbake`` to build the image. The supported image is ``allscenarios-image-base``.
 

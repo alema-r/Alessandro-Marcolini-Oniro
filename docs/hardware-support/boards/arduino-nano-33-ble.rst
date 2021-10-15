@@ -52,7 +52,7 @@ Building an application
 
   .. code-block:: console
 
-   $ TEMPLATECONF=../sources/meta-ohos/flavours/zephyr . ./sources/poky/oe-init-build-env build-ohos-zephyr
+   $ TEMPLATECONF=../oniro/flavours/zephyr . ./oe-core/oe-init-build-env build-oniro-zephyr
 
 2. You will find yourself in the newly created build directory. Call *bitbake* 
    to build the image. The supported image name is *zephyr-philosophers*.
@@ -72,7 +72,7 @@ sample application, *blinky*. In order to do so issue the following:
    $ MACHINE=arduino-nano-33-ble bitbake zephyr-blinky
 
 3. After the build completes, the ``zephyr-philosophers.bin`` and the ``zephyr-blinky.bin``
-   file can be found in ``build-ohos-zephyr/tmp-newlib/deploy/images/arduino-nano-33-ble/``.
+   file can be found in ``build-oniro-zephyr/tmp-newlib/deploy/images/arduino-nano-33-ble/``.
 
 Flashing an application
 =======================

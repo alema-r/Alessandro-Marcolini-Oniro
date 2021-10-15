@@ -81,13 +81,13 @@ repositories. If you're on OpenMandriva, simply ``dnf install repo``.
 The Manifests
 *************
 
-The `manifest repository <https://git.ostc-eu.org/OSTC/OHOS/manifest>`_
-provides the manifest for configuring a workspace. The project provides
-a single ``default.xml`` manifest file in each of the active branches.
+The ``repo manifest`` files are part of the main `oniro repository <https://git.ostc-eu.org/distro/oniro>`_
+and are to be used for configuring a workspace. The project provides a single
+``default.xml`` manifest file in each of the active branches.
 
-Depending on the specific branch of the manifest repository, that manifest may
-either allow some projects to follow changes by selecting git branches or pin
-all projects to a specific git commit revision.
+Depending on the specific branch of the above-mentioned repository, that
+manifest may either allow some projects to follow changes by selecting git
+branches or pin all projects to a specific git commit revision.
 
 Setting up the Workspace
 ************************
@@ -97,12 +97,9 @@ This will bring in all the needed sources for building |main_project_name|:
 
 .. code-block:: console
 
-   $ mkdir ohos; cd ohos
-   $ repo init -u https://git.ostc-eu.org/OSTC/OHOS/manifest.git -b stable
+   $ mkdir oniroproject; cd oniroproject
+   $ repo init -u https://git.ostc-eu.org/distro/oniro
    $ repo sync --no-clone-bundle
-
-You can checkout latest development source code by using *develop* branch
-instead of *stable* as part of the above repo init command.
 
 Workspace structure
 *******************
@@ -111,18 +108,20 @@ A fully set workspace, will provide a structure similar to:
 
 .. code-block:: none
 
-   ./ohos/
-   └── sources
-       ├── meta-freertos
-       ├── meta-ohos
-       ├── meta-openembedded
-       ├── meta-zephyr
-       ├── <various yocto layers>
-       └── poky
+   ./oniroproject/
+   ├── bitbake
+   ├── docs
+   ├── ip-policy
+   ├── meta-openembedded
+   ├── meta-raspberrypi
+   ├── meta-zephyr
+   ├── <various bitbake layers>
+   ├── oe-core
+   ├── oniro
+   └── README.md
 
-The *sources* directory will include ``poky`` and  all the build system layers
-that are part of the build process. Any new layers will be included under this
-directory.
+All the bitbake layers are included at the root of the workspace. See for
+example ``meta-openembedded`` above.
 
 It is recommended to use the root of the workspace for the build directories
-using ``build`` as directory name prefix.
+using ``build-`` as directory name prefix.

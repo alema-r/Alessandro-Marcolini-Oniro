@@ -48,7 +48,7 @@ In our default WiFi access point configuration, we create an AP on channel 6 in 
    SSID: "|main_project_name| WiFi"
    Passphrase: "12345678".
 
-For more details, the used `hostapd configuration file <https://git.ostc-eu.org/OSTC/OHOS/meta-ohos/-/blob/develop/meta-ohos-blueprints/recipes-connectivity/hostapd/files/hostapd.conf>`_ is the best reference.
+For more details, the used `hostapd configuration file <https://git.ostc-eu.org/distro/oniro/-/blob/dunfell/meta-oniro-blueprints/recipes-connectivity/hostapd/files/hostapd.conf>`_ is the best reference.
 
 OpenThread Border Router Configuration
 **************************************
@@ -58,7 +58,7 @@ In our default OpenThread Border Router configuration, we create an OpenThread m
    Networkname "ASOS Thread"
    OpenThread masterkey: 00112233445566778899aabbccddeeff
 
-For more details, the used `OpenThread configuration script <https://git.ostc-eu.org/OSTC/OHOS/meta-ohos/-/blob/develop/meta-ohos-blueprints/recipes-connectivity/openthread/ot-br-posix/otbr-configuration>`_ is the best reference.
+For more details, the used `OpenThread configuration script <https://git.ostc-eu.org/distro/oniro/-/blob/dunfell/meta-oniro-blueprints/recipes-connectivity/openthread/ot-br-posix/otbr-configuration>`_ is the best reference.
 
 Get sources
 ***********
@@ -68,13 +68,13 @@ Get sources
 
    .. code-block:: bash
 
-      user@pc:~/ohos$ repo sync -d
+      $ repo sync -d
 
 #. To build the image for this blueprint, you need to set the corresponding distro in the conf/local.conf file or on the command-line as seen below.
 
    .. code-block:: bash
 
-      user@pc:~/ohos$ DISTRO="allscenarios-linux-blueprint-gateway" MACHINE=raspberrypi4-64 bitbake blueprint-gateway-image
+      $ DISTRO="allscenarios-linux-blueprint-gateway" MACHINE=raspberrypi4-64 bitbake blueprint-gateway-image
 
 Resources
 *********

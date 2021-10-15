@@ -39,7 +39,7 @@ Building an application
 
  .. code-block:: console
 
-   $ TEMPLATECONF=../sources/meta-ohos/flavours/zephyr . ./sources/poky/oe-init-build-env build-ohos-zephyr
+   $ TEMPLATECONF=../oniro/flavours/zephyr . ./oe-core/oe-init-build-env build-oniro-zephyr
 
 2. You will find yourself in the newly created build directory. Call ``bitbake``
    to build the image. Example below shows how to build ``zephyr-philosophers``.
@@ -52,7 +52,7 @@ Building an application
  under the build directory, or via the command line.
 
 3. After the build completes, the image file can be found in
-   ``build-ohos-zephyr/tmp-newlib/deploy/images/nrf52840dk-nrf52840/``.
+   ``build-oniro-zephyr/tmp-newlib/deploy/images/nrf52840dk-nrf52840/``.
 
 Flashing an application
 =======================

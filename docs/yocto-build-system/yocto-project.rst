@@ -34,24 +34,24 @@ for more information.
 |main_project_name| Build Layers
 --------------------------------
 
-|main_project_name| bases its build setup on Poky, the Yocto Project open source
-reference embedded distribution. The main hub of layers, is `meta-ohos <https://git.ostc-eu.org/OSTC/meta-ohos/>`_,
-a collection of layers with different scopes for defining the project's
+|main_project_name| bases its build setup on OE-core and bitbake. The main hub
+of layers, is `oniro <https://git.ostc-eu.org/distro/oniro/>`_, a
+collection of layers with different scopes for defining the project's
 requirements and capabilities.
 
-For example, ``meta-ohos-core`` provides build recipes for defining the core
+For example, ``meta-oniro-core`` provides build recipes for defining the core
 policies of the build infrastructure (`distribution` configuration, images,
 core packages customization, etc.).
 
-Another example is ``meta-ohos-staging``, a layer that provides temporary fixes
+Another example is ``meta-oniro-staging``, a layer that provides temporary fixes
 and support for changes that are aimed upstream but have this place until
 upstream catches up.
 
-For more details of each provided layer of ``meta-ohos``, see the relevant
-``README.md`` file at the root of the layer,
+For more details of each provided layer of ``oniro``, see the relevant
+``README.md`` file at the root of the layer.
 
-Besides the ``meta-ohos`` collection of layers, the project is also the home
-to a set of other build system layers. Explore them all in our project `GitLab <https://git.ostc-eu.org/OSTC/OHOS>`_
+Besides the ``oniro`` collection of layers, the project is also the home
+to a set of other build system layers. Explore them all in our project `GitLab <https://git.ostc-eu.org/distro>`_
 instance.
 
 Additional Documentation

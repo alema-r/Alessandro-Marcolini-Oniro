@@ -47,7 +47,7 @@ Linux image
 
 .. code-block:: console
 
-   $ TEMPLATECONF=../sources/meta-ohos/flavours/linux . ./sources/poky/oe-init-build-env build-ohos-linux
+   $ TEMPLATECONF=../oniro/flavours/linux . ./oe-core/oe-init-build-env build-oniro-linux
 
 2. You will find yourself in the newly created build directory. Call *bitbake*
    to build the image. For example, if you are using *allscenarios-image-base*
@@ -67,7 +67,7 @@ Zephyr image
 
 .. code-block:: console
 
-   $ TEMPLATECONF=../sources/meta-ohos/flavours/zephyr . ./sources/poky/oe-init-build-env build-ohos-zephyr
+   $ TEMPLATECONF=../oniro/flavours/zephyr . ./oe-core/oe-init-build-env build-oniro-zephyr
 
 2. You will find yourself in the newly created build directory. Call *bitbake*
    to build the image. The image name is the name of the Zephyr application.

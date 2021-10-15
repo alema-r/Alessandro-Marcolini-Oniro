@@ -143,7 +143,7 @@ Get sources
 
    .. code-block:: bash
 
-      user@pc:~/ohos$ repo sync -d
+      $ repo sync -d
 
 Prepare IoT devices (Nitrogen/Zephyr flavour)
 *********************************************
@@ -156,7 +156,7 @@ Build
 
    .. code-block:: bash
 
-       $ TEMPLATECONF=../sources/meta-ohos/flavours/zephyr . ./sources/poky/oe-init-build-env build-ohos-zephyr-96b-nitrogen
+       $ TEMPLATECONF=../oniro/flavours/zephyr . ./oe-core/oe-init-build-env build-oniro-zephyr-96b-nitrogen
 
 #. 
    Edit ``conf/local.conf``, and uncomment the following line:
@@ -222,7 +222,7 @@ Flash
 
    .. code-block:: bash
 
-      user@pc:~/ohos/build-ohos-zephyr-96b-nitrogen$ pyocd list
+      $ pyocd list
         #   Probe              Unique ID
       ---------------------------------------------------
         0   Arch BLE [nrf51]   9009022103BB2A02FE6545F3
@@ -243,16 +243,16 @@ Flash
 
      .. code-block:: bash
 
-        user@pc:~/ohos/build-ohos-zephyr-96b-nitrogen$ BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE PYOCD_FLASH_IDS" \
-            PYOCD_FLASH_IDS="9009022103BB2A02FE6545F3" bitbake zephyr-blueprint-smarthome-sensors -c flash_usb
+        $ BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE PYOCD_FLASH_IDS" \
+                PYOCD_FLASH_IDS="9009022103BB2A02FE6545F3" bitbake zephyr-blueprint-smarthome-sensors -c flash_usb
 
 #. 
    Flash the other board with ``zephyr-blueprint-smarthome-switch`` image
 
    .. code-block:: bash
 
-      user@pc:~/ohos/build-ohos-zephyr-96b-nitrogen$ BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE PYOCD_FLASH_IDS" \
-          PYOCD_FLASH_IDS="9009022103BB3A2DFE6555DC" bitbake zephyr-blueprint-smarthome-switch -c flash_usb
+      $ BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE PYOCD_FLASH_IDS" \
+                PYOCD_FLASH_IDS="9009022103BB3A2DFE6555DC" bitbake zephyr-blueprint-smarthome-switch -c flash_usb
 
 Prepare IoT controller (Avenger96/Linux flavour)
 ************************************************
@@ -264,9 +264,7 @@ Build
 
    .. code-block:: bash
 
-       user@pc:~/ohos$ TEMPLATECONF=../sources/meta-ohos/flavours/linux . ./sources/poky/oe-init-build-env build-ohos-linux-stm32mp1-av96
-
-       user@pc:~/ohos/build-ohos-linux-stm32mp1-av96
+       $ TEMPLATECONF=../oniro/flavours/linux . ./oe-core/oe-init-build-env build-oniro-linux-stm32mp1-av96
 
 #. 
    Edit ``conf/local.conf``, and uncomment the following line:
@@ -291,7 +289,7 @@ Build
 
      .. code-block:: bash
 
-        user@pc:~/ohos/build-ohos-linux-stm32mp1-av96$ DISTRO=allscenarios-linux-blueprint-dashboard \
+        $ DISTRO=allscenarios-linux-blueprint-dashboard \
             BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE SMART_HOME_SENSORS_MAC SMART_HOME_SWITCH_MAC" \
             SMART_HOME_SENSORS_MAC="C0:BA:DD:06:F0:0D" \
             SMART_HOME_SWITCH_MAC="C0:BA:DD:06:F0:0E" \
@@ -313,9 +311,9 @@ Flash
 
    .. code-block:: bash
 
-      user@pc:~/ohos/build-ohos-linux-stm32mp1-av96$ cd tmp/deploy/images/stm32mp1-av96
+      $ cd tmp/deploy/images/stm32mp1-av96
 
-      user@pc:~/ohos/build-ohos-linux-stm32mp1-av96/tmp/deploy/images/stm32mp1-av96$ ./scripts/create_sdcard_from_flashlayout.sh \
+      $ ./scripts/create_sdcard_from_flashlayout.sh \
           flashlayout_blueprint-dashboard-gateway-image/extensible/FlashLayout_sdcard_stm32mp157a-av96-extensible.tsv
 
 #. 

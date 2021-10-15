@@ -51,8 +51,8 @@ Initialize a repo workspace and clone all required repositories:
 
 .. code-block:: console
 
-    $ mkdir ohos; cd ohos
-    $ repo init -u https://git.ostc-eu.org/OSTC/OHOS/manifest.git -b develop
+    $ mkdir oniroproject; cd oniroproject
+    $ repo init -u https://git.ostc-eu.org/distro/oniro
     $ repo sync --no-clone-bundle
 
 Build the allscenarios-image-base image
@@ -73,7 +73,7 @@ Initialize the build directory and run a build:
 
 .. code-block:: console
 
-    $ TEMPLATECONF=../sources/meta-ohos/flavours/linux . ./sources/poky/oe-init-build-env build-ohos-linux
+    $ TEMPLATECONF=../oniro/flavours/linux . ./oe-core/oe-init-build-env build-oniro-linux
     $ MACHINE=qemux86-64 bitbake allscenarios-image-base
 
 Booting a Qemu X86-64 target with a |main_project_name| image

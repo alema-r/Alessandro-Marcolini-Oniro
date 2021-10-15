@@ -30,8 +30,8 @@ For more detailed specifications of SBC-B68-eNUC SECO board, see `SBC-B68-eNUC S
 Working with the board
 **********************
 
-Building OHOS image
-===================
+Building Oniro image
+====================
 
 To clone the source code, perform the procedure in: :ref:`Setting up a repo workspace <RepoWorkspace>`.
 
@@ -42,7 +42,7 @@ Linux image
 
 .. code-block:: console
 
-   $ TEMPLATECONF=../sources/meta-ohos/flavours/linux . ./sources/poky/oe-init-build-env build-ohos-linux
+   $ TEMPLATECONF=../oniro/flavours/linux . ./oe-core/oe-init-build-env build-oniro-linux
 
 2. You will find yourself in the newly created build directory. Call *bitbake* to build the image. For example, if you are using *allscenarios-image-base* run the following command:
 

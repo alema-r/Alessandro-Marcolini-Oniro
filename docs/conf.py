@@ -21,7 +21,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'All Scenarios OS Build System and meta-ohos'
+project = 'Oniro Project Build System'
 copyright = '2021'
 author = 'OSTC'
 
