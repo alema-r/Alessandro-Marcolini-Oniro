@@ -317,7 +317,7 @@
 # This job is documented in docs/ci/hidden-jobs/aggregate-docs.rst
 .aggregate-docs:
   stage: deploy
-  trigger: OSTC/OHOS/docs
+  trigger: distro/docs
   rules:
     # Update the documentation when things land in the default branch.
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
