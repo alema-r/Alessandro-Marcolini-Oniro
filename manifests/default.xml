@@ -16,8 +16,8 @@ SPDX-FileCopyrightText: Huawei Inc.
 
 	</notice>
 	<remote name="github" fetch="https://github.com" />
-	<remote name="ohos" fetch="https://git.ostc-eu.org/OSTC/OHOS" />
-	<remote name="ohos-governance" fetch="https://git.ostc-eu.org/OSTC/OHOS/governance" />
+	<remote name="ohos" fetch="https://git.ostc-eu.org/distro" />
+	<remote name="ohos-governance" fetch="https://git.ostc-eu.org/distro/governance" />
 	<remote name="yocto" fetch="git://git.yoctoproject.org" />
 	<remote name="openembedded" fetch="git://git.openembedded.org" />
 	<remote name="aehs29" fetch="https://github.com/aehs29" />
@@ -28,7 +28,7 @@ SPDX-FileCopyrightText: Huawei Inc.
 	<remote name="oe" fetch="git://git.openembedded.org" />
 
 	<!--
-		All Scenario OS build system is based on Yocto "dunfell"
+		Oniro Project build system is based on Yocto "dunfell"
 		(3.1 - see https://wiki.yoctoproject.org/wiki/Releases for more information).
 		Hence, the layers setup below uses corresponding "dunfell" layers or "dunfell" compatible revisions.
 	-->
@@ -72,7 +72,7 @@ SPDX-FileCopyrightText: Huawei Inc.
 
 	-->
 
-	<project name="meta-ohos" path="oniro">
+	<project name="oniro" revision="dunfell" path="oniro">
 		<linkfile src="README.md" dest="README.md"/>
 	</project>
 	<project name="meta-clang" revision="main" path="meta-clang" />
