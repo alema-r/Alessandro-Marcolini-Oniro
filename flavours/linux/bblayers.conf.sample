@@ -11,13 +11,11 @@ BBFILES ?= ""
 
 BBLAYERS ?= " \
   ##OEROOT##/meta \
-  ##OEROOT##/meta-poky \
-  ##OEROOT##/meta-clang \
-  ##OEROOT##/meta-yocto-bsp \
+  ##OEROOT##/../meta-clang \
   ##OEROOT##/../meta-zephyr \
-  ##OEROOT##/../meta-ohos/meta-ohos-core \
-  ##OEROOT##/../meta-ohos/meta-ohos-blueprints \
-  ##OEROOT##/../meta-ohos/meta-ohos-staging \
+  ##OEROOT##/../oniro/meta-oniro-core \
+  ##OEROOT##/../oniro/meta-oniro-blueprints \
+  ##OEROOT##/../oniro/meta-oniro-staging \
   ##OEROOT##/../meta-freertos \
   ##OEROOT##/../meta-intel \
   ##OEROOT##/../meta-seco-intel \
