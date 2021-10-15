@@ -6,14 +6,14 @@
 
 ## Description
 
-This layer, `meta-ohos-blueprints`, contains build metadata for Oniro Project
+This layer, `meta-oniro-blueprints`, contains build metadata for Oniro Project
 blueprints.
 
 ## Layer dependencies
 
-The `meta-ohos-blueprints` layer depends on the following layers:
+The `meta-oniro-blueprints` layer depends on the following layers:
 
-* meta-ohos
+* meta-oniro
   * URI: https://git.ostc-eu.org/OSTC/OHOS/meta-ohos.git
 * meta-homeassistant
   * URI: https://github.com/meta-homeassistant/meta-homeassistant.git
