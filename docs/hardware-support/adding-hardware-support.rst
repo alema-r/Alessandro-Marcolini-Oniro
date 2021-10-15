@@ -51,10 +51,10 @@ directory) consist of the following files:
 
 |main_project_name| build system uses ***repo*** tool for cloning required meta-layers
 into appropriate build directory structure (see :ref:`Setting up a repo workspace <RepoWorkspace>`).
-To include a new layer, it has to be added in two places:
+To include a new layer, it has to be added in two places of the `oniro repository <https://git.ostc-eu.org/distro/oniro/-/tree/dunfell/manifests>`_:
 
-- The manifest file part of the `oniro repository <https://git.ostc-eu.org/distro/oniro/-/tree/dunfell/manifests>`_
-- The flavours ``bblayers.conf.sample`` file part of the `oniro repository <https://git.ostc-eu.org/distro/oniro/-/tree/dunfell/flavours>`_
+- The manifest file
+- The flavours ``bblayers.conf.sample`` file
 
 Test Image Backward Compatibility Of Newly Added Layers
 *******************************************************
