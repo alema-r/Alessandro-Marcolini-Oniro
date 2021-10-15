@@ -6,11 +6,11 @@ SPDX-FileCopyrightText: Huawei Inc.
 <manifest>
 	<notice>
 
-		Thank you for building development version of All Scenario OS. This
-		manifest file automatically follows changes in certain layers
-		and is suitable for development of All Scenario OS itself.
+		Thank you for building a development version of Oniro Project.
+		This manifest file automatically follows changes in certain
+		layers and is suitable for development of Oniro Project itself.
 
-		Check out All Scenario OS documentation at https://allscenarios.readthedocs.org/
+		Check out Oniro Project documentation at https://docs.oniroproject.org
 
 		Meet the developers on mattermost at https://chat.ostc-eu.org/
 
