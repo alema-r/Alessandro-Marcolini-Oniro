@@ -34,7 +34,7 @@ Build steps
 
 .. code-block:: console
 
-   $ TEMPLATECONF=../sources/meta-ohos/flavours/linux . ./sources/poky/oe-init-build-env build-ohos-linux
+   $ TEMPLATECONF=../oniro/flavours/linux . ./oe-core/oe-init-build-env build-ohos-linux
 
 2. You will find yourself in the newly created build directory. Call *bitbake*
    to build the image. For example, if you are using *allscenarios-image-base*

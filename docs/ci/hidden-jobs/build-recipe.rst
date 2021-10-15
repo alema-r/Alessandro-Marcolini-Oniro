@@ -39,5 +39,5 @@ Pick the desired ``CI_ONIRO_BUILD_FLAVOUR``, ``CI_ONIRO_RECIPE_NAME`` and
 ``MACHINE``.  For discussion of ``CI_ONIRO_BUILD_FLAVOUR`` refer to the
 :doc:`bitbake-workspace` job.  ``CI_ONIRO_RECIPE_NAME`` is any BitBake recipe
 available in the selected flavour. ``MACHINE`` is desired machine name.
-Supported values are documented alongside each flavour in the *meta-ohos*
+Supported values are documented alongside each flavour in the *oniro*
 repository.

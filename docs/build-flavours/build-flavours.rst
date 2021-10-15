@@ -18,14 +18,14 @@ initialization time for a specific kernel by passing the associated
 ``TEMPLATECONF`` configuration.
 
 All the available ``flavours`` are available as subdirectories of the
-``flavours`` directory in the root of the ``meta-ohos`` repository.
+``flavours`` directory in the root of the ``oniro`` repository.
 
 Generically, when configuring a new build, one should pass the flavour as
 ``TEMPLATECONF`` to the ``oe-init-build-env`` script:
 
 .. code-block:: console
 
-    $ TEMPLATECONF=../sources/meta-ohos/flavours/<FLAVOUR_NAME> . ./sources/poky/oe-init-build-env <BUILD_NAME>
+    $ TEMPLATECONF=../oniro/flavours/<FLAVOUR_NAME> . ./oe-core/oe-init-build-env <BUILD_NAME>
 
 Notes:
 

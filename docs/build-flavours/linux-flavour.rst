@@ -32,7 +32,7 @@ Build steps example:
 
 .. code-block:: console
 
-    $ TEMPLATECONF=../sources/meta-ohos/flavours/linux . ./sources/poky/oe-init-build-env build-ohos-linux
+    $ TEMPLATECONF=../oniro/flavours/linux . ./oe-core/oe-init-build-env build-ohos-linux
     $ bitbake allscenarios-image-base
 
 You can test the image built for the qemux86-64 target by issuing:

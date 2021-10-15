@@ -22,7 +22,7 @@ CI_ONIRO_BUILD_FLAVOUR
 
 The name of the *flavour* of All Scenarios OS, which effectively picks the kernel
 type. This is used to select the initial BitBake configuration template.
-Templates are stored in the **meta-ohos** repository.
+Templates are stored in the **oniro** repository.
 
 Available values are ``linux``, ``zephyr`` and ``freertos``. There is no
 default value. This variable must be set by a derivative job, it is usually set
