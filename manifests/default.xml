@@ -66,7 +66,9 @@ SPDX-FileCopyrightText: Huawei Inc.
 
 	-->
 
-	<project name="meta-ohos" path="meta-ohos" />
+	<project name="meta-ohos" path="meta-ohos">
+		<linkfile src="README.md" dest="README.md"/>
+	</project>
 	<project name="meta-clang" revision="main" path="meta-clang" />
 	<project name="meta-riscv" revision="OSTC/dunfell" path="meta-riscv" />
 	<project name="meta-zephyr" revision="ostc/master" path="meta-zephyr" />
