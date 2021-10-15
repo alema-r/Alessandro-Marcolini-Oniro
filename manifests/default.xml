@@ -17,7 +17,7 @@ SPDX-FileCopyrightText: Huawei Inc.
 	</notice>
 	<remote name="github" fetch="https://github.com" />
 	<remote name="oniro" fetch="https://git.ostc-eu.org/distro" />
-	<remote name="ohos-governance" fetch="https://git.ostc-eu.org/distro/governance" />
+	<remote name="oniro-governance" fetch="https://git.ostc-eu.org/distro/governance" />
 	<remote name="yocto" fetch="git://git.yoctoproject.org" />
 	<remote name="openembedded" fetch="git://git.openembedded.org" />
 	<remote name="aehs29" fetch="https://github.com/aehs29" />
@@ -79,5 +79,5 @@ SPDX-FileCopyrightText: Huawei Inc.
 	<project name="meta-riscv" revision="OSTC/dunfell" path="meta-riscv" />
 	<project name="meta-zephyr" revision="ostc/master" path="meta-zephyr" />
 	<project name="docs" path="docs" revision="main" />
-	<project name="ip-policy" remote="ohos-governance" revision="main" path="ip-policy" />
+	<project name="ip-policy" remote="oniro-governance" revision="main" path="ip-policy" />
 </manifest>
