@@ -12,7 +12,7 @@ SPDX-FileCopyrightText: Huawei Inc.
 	<extend-project name="meta-zephyr" remote="gitee-oniro" />
 	<extend-project name="meta-riscv" remote="gitee-oniro" />
 	<extend-project name="meta-clang" remote="gitee-oniro" />
-	<extend-project name="meta-python-extra" remote="gitee-oniro" />
+	<extend-project name="meta-python-mixin" remote="gitee-oniro" />
 
 	<extend-project name="docs" remote="gitee-oniro" />
 	<extend-project name="ip-policy" remote="gitee-oniro" />
