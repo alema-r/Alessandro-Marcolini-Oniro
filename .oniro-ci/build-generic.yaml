@@ -10,7 +10,7 @@
   variables:
     CI_ONIRO_RUNNER_TAG : ""
     CI_ONIRO_MANIFEST_URL: https://git.ostc-eu.org/distro/oniro
-    CI_ONIRO_MANIFEST_BRANCH: develop
+    CI_ONIRO_MANIFEST_BRANCH: dunfell
     CI_ONIRO_MANIFEST_NAME: default.xml
     CI_ONIRO_MANIFEST_MIRROR: ostc-develop
     CI_ONIRO_GIT_REPO_PATH: ""
