@@ -2,21 +2,20 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# FIXME RENAME branch name need to change in upstream repo
-KBRANCH ?= "asos/v5.10/base"
+KBRANCH ?= "oniro/v5.10/base"
 KMETA = "kernel-meta"
 
 require recipes-kernel/linux/linux-yocto.inc
 
 # board-specific branches
-KBRANCH_qemuarm ?= "asos/v5.10/hw/qemuarm"
+KBRANCH_qemuarm ?= "oniro/v5.10/hw/qemuarm"
 
 SRCREV_machine_qemuarm ?= "b8d9461a3957dba555b1ae82481cf57f3ce9e8b1"
 SRCREV_machine ?= "452ea6a15ed2ac74789b7b3513777cc94ea3b751"
 SRCREV_meta ?= "3b283fa8d4068ff68457b93e07d321c6c06d37e0"
 
 SRC_URI = "git://git.ostc-eu.org/OSTC/OHOS/components/kernel/linux.git;protocol=http;name=machine;branch=${KBRANCH}; \
-	    git://git.ostc-eu.org/OSTC/OHOS/components/kernel/linux-meta.git;type=kmeta;protocol=http;name=meta;branch=asos/v5.10;destsuffix=${KMETA}"
+	    git://git.ostc-eu.org/OSTC/OHOS/components/kernel/linux-meta.git;type=kmeta;protocol=http;name=meta;branch=oniro/v5.10;destsuffix=${KMETA}"
 
 require recipes-kernel/linux/linux-oniro-tweaks-all.inc
 
