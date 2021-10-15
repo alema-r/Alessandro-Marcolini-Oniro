@@ -31,12 +31,24 @@ openSUSE, Arch and a few other distributions at `OBS <https://build.opensuse.org
 The patches are also available in the tool's `source repository <https://git.ostc-eu.org/OSTC/packaging/git-repo>`_.
 One can install this tool by following the next steps:
 
-On Ubuntu:
-----------
+On Ubuntu/Debian:
+-----------------
 
 .. code-block:: console
 
-   $ sudo add-apt-repository ppa:openharmony/tools
+   $ sudo apt-get update
+   $ sudo apt-get install repo
+
+For Debian "contrib" repo should be [enabled](https://wiki.debian.org/SourcesList#Example_sources.list)
+
+The repo package has not been backported to Ubuntu 20.04. PPA repository should be used for this release instead:
+
+On Ubuntu 20.04:
+----------------
+
+.. code-block:: console
+
+   $ sudo add-apt-repository ppa:ostc/ppa
    $ sudo apt-get update
    $ sudo apt-get install git-repo
 
