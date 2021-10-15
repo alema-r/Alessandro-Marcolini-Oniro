@@ -8,7 +8,6 @@
 # <REPLACEMENT_COLLECTION> is not provided, the layer was removed without a
 # replacement.
 ONIRO_DEPRECATED_COLLECTIONS = " \
-    meta-ohos-demo:meta-ohos-blueprints \
     "
 
 # Same format as for ONIRO_DEPRECATED_COLLECTIONS but for DISTRO configurations.
