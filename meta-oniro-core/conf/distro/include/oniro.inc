@@ -9,7 +9,7 @@ INHERIT += "oniro-sanity"
 # into the package in our main distribution. To avoid this we
 # mask out the blueprint layers in the main distro and unmask
 # them only the blueprint distributions.
-BBMASK += "meta-ohos/meta-ohos-blueprints/"
+BBMASK += "oniro/meta-oniro-blueprints/"
 
 # This is the ugliest fix possible but it fixes the build while keeping
 # meta-freertos around. meta-freertos is pulling in a dependency on
