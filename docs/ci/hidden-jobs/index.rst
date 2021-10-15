@@ -6,7 +6,7 @@ Hidden Jobs
 ===========
 
 There's a number of *hidden jobs*, which start with the dot character, that are
-used as foundation for the set of :doc:`shared jobs <../shared-jobs>`. Hidden
+used as foundation for the set of :doc:`../machines-and-flavours`. Hidden
 jobs do not participate in any pipeline directly. They can only be used as
 templates, using the ``extends: ...`` mechanism, to share and reuse
 implementation details.

@@ -14,4 +14,4 @@ Usage Guide
 ===========
 
 This job is not intended for direct use. Instead it serves as a base for all
-the FreeRTOS-specific :doc:`../shared-jobs`.
+the FreeRTOS-specific :doc:`../machines-and-flavours`.

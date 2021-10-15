@@ -14,4 +14,4 @@ Usage Guide
 ===========
 
 This job is not intended for direct use. Instead it serves as a base for all
-the Zephyr-specific :doc:`../shared-jobs`.
+the Zephyr-specific :doc:`../machines-and-flavours`.

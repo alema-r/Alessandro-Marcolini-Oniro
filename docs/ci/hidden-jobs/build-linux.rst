@@ -18,8 +18,9 @@ Usage Guide
 ===========
 
 This job is not intended for direct use. Instead it serves as a base for all
-the Linux-specific :doc:`../shared-jobs`. It may be re-defined in a pipeline to
-alter ``rules`` or ``variables`` in a way that fits a particular purpose.
+the Linux-specific :doc:`../machines-and-flavours`. It may be re-defined in a
+pipeline to alter ``rules`` or ``variables`` in a way that fits a particular
+purpose.
 
 If used directly, it is recommended pick the desired ``MACHINE`` and to
 override the entire script section and refer to the base ``.bitbake-workspace``
