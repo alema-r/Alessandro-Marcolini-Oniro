@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: Huawei Inc.
+-->
+<manifest>
+	<include name="default.xml" />
+
+	<remote name="gitee-oniro" fetch="https://gitee.com/oniroproject/" />
+
+	<extend-project name="meta-ohos" remote="gitee-oniro" />
+	<extend-project name="meta-zephyr" remote="gitee-oniro" />
+	<extend-project name="meta-riscv" remote="gitee-oniro" />
+	<extend-project name="meta-clang" remote="gitee-oniro" />
+	<extend-project name="meta-python-extra" remote="gitee-oniro" />
+
+	<extend-project name="docs" remote="gitee-oniro" />
+	<extend-project name="ip-policy" remote="gitee-oniro" />
+</manifest>
+
