@@ -29,6 +29,7 @@ include:
  - local: '/.oniro-ci/build-generic.yaml'
  - local: '/.oniro-ci/test-generic.yaml'
  - local: '/.oniro-ci/machines-and-flavours.yaml'
+ - template: 'Workflows/MergeRequest-Pipelines.gitlab-ci.yml'
 
 dco:
   extends: .dco
