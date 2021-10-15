@@ -16,7 +16,7 @@ SPDX-FileCopyrightText: Huawei Inc.
 
 	</notice>
 	<remote name="github" fetch="https://github.com" />
-	<remote name="ohos" fetch="https://git.ostc-eu.org/distro" />
+	<remote name="oniro" fetch="https://git.ostc-eu.org/distro" />
 	<remote name="ohos-governance" fetch="https://git.ostc-eu.org/distro/governance" />
 	<remote name="yocto" fetch="git://git.yoctoproject.org" />
 	<remote name="openembedded" fetch="git://git.openembedded.org" />
@@ -33,7 +33,7 @@ SPDX-FileCopyrightText: Huawei Inc.
 		Hence, the layers setup below uses corresponding "dunfell" layers or "dunfell" compatible revisions.
 	-->
 
-	<default remote="ohos" revision="develop" sync-j="4" />
+	<default remote="oniro" revision="dunfell" sync-j="4" />
 	<!--
 		dunfell is using the 1.46 bitbake branch so the bitbake project follow is following this branch.
 		More info can be found at https://wiki.yoctoproject.org/wiki/Releases.
