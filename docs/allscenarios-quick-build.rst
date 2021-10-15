@@ -66,8 +66,9 @@ cloned using the repo tool. See above.
 
 .. Note::
 
-   Depending on the configuration type, a single |main_project_name| build could 
-   use around 100GB of disk space for downloads, temporary files, and build artifacts combined.
+   Depending on the configuration type, a single |main_project_name| build
+   could use around 100GB of disk space for downloads, temporary files, and
+   build artifacts combined.
 
 Initialize the build directory and run a build:
 
