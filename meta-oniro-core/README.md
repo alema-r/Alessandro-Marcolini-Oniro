@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: Huawei Inc.
 SPDX-License-Identifier: Apache-2.0
 -->
 
-This README file contains information about the contents of the meta-ohos-core layer.
+This README file contains information about the contents of the meta-oniro-core layer.
 
 Please see the corresponding sections below for details.
 
@@ -12,7 +12,7 @@ Table of Contents
 =================
 
   I. Dependencies
- II. Adding the meta-ohos-core layer to your build
+ II. Adding the meta-oniro-core layer to your build
 III. Misc
 
 I. Dependencies
@@ -29,10 +29,10 @@ This layer depends on:
   - branch: master
   - revision: HEAD
 
-II. Adding the meta-ohos-core layer to your build
+II. Adding the meta-oniro-core layer to your build
 =================================================
 
-Run 'bitbake-layers add-layer /path/to/meta-ohos-core'
+Run 'bitbake-layers add-layer /path/to/meta-oniro-core'
 
 III. Misc
 =========
