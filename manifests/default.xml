@@ -25,6 +25,7 @@ SPDX-FileCopyrightText: Huawei Inc.
 	<remote name="seco-imx" fetch="https://git.seco.com/pub/i.mx/yocto/5.x" />
 	<remote name="stm" fetch="https://github.com/STMicroelectronics" />
 	<remote name="linaro" fetch="https://git.linaro.org/openembedded" />
+	<remote name="oe" fetch="git://git.openembedded.org" />
 
 	<!--
 		All Scenario OS build system is based on Yocto "dunfell"
@@ -33,7 +34,12 @@ SPDX-FileCopyrightText: Huawei Inc.
 	-->
 
 	<default remote="ohos" revision="develop" sync-j="4" />
-	<project name="poky" remote="yocto" revision="74b22db6879b388d700f61e08cb3f239cf940d18" path="poky" />
+	<!--
+		dunfell is using the 1.46 bitbake branch so the bitbake project follow is following this branch.
+		More info can be found at https://wiki.yoctoproject.org/wiki/Releases.
+	-->
+	<project name="bitbake" remote="oe" revision="b4117231bf070703b9375af4411bcd160e07fdae" path="bitbake" />
+	<project name="openembedded-core" remote="oe" revision="d12c44df66ca065a1526c7d6885e726cf50aab46" path="oe-core" />
 	<project name="meta-openembedded" remote="openembedded" revision="2e7e98cd0cb82db214b13224c71134b9335a719b" path="meta-openembedded" />
 	<project name="meta-homeassistant/meta-homeassistant.git" remote="github" revision="7de873c320fb20414738ad02ee45fc0e3e4a1e0b" path="meta-homeassistant" />
 	<project name="meta-freertos" remote="aehs29" revision="cdca1f2fffd99c00e3e471421ce485d3aaf99276" path="meta-freertos" />
