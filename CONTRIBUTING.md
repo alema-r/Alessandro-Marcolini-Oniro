@@ -13,13 +13,13 @@ SPDX-License-Identifier: CC-BY-4.0
 -   [DCO sign-off](#dco-sign-off)
     -   [Overview](#overview-1)
     -   [Developer Certificate of Origin](#developer-certificate-of-origin)
--   [`meta-ohos`-specific contributions process and guidelines](#meta-ohos-specific-contributions-process-and-guidelines)
+-   [`oniro`-specific contributions process and guidelines](#oniro-specific-contributions-process-and-guidelines)
 
 # Gitlab contributions
 
 ## Overview
 
-Oniro Project handles contributions as [merge requests](https://docs.gitlab.com/ee/user/project/merge_requests/) to relevant repositories part of the Oniro Project [GitLab instance](https://git.ostc-eu.org/OSTC/OHOS). The flow for handling that is classic: fork-based merge requests. This means that once you have an account, you can fork any repository, create a branch with proposed changes and raise a merge request against the forked repository. More generic information you can find on the Gitlab's documentation as part of ["Merge requests workflow"](https://docs.gitlab.com/ee/development/contributing/merge_request_workflow.html).
+Oniro Project handles contributions as [merge requests](https://docs.gitlab.com/ee/user/project/merge_requests/) to relevant repositories part of the Oniro Project [GitLab instance](https://git.ostc-eu.org/distro). The flow for handling that is classic: fork-based merge requests. This means that once you have an account, you can fork any repository, create a branch with proposed changes and raise a merge request against the forked repository. More generic information you can find on the Gitlab's documentation as part of ["Merge requests workflow"](https://docs.gitlab.com/ee/development/contributing/merge_request_workflow.html).
 
 # REUSE compliance
 
@@ -53,7 +53,7 @@ Make sure all of your submitted new files have a licensing statement in the head
 
 ### Substantial contributions
 
-Therefore, if your contribution is only a patch directly applied to an existing file, then you are not required to do anything. If your contribution is an entire new project, or a substantial, copyrighted contribution, you **MUST** make sure that you do that following the [IP Policy](https://git.ostc-eu.org/OSTC/OHOS/governance/ip-policy/-/blob/dev/oss/policy/source/sections/section05.rst) and that you comply with REUSE standard to include the licensing information where they are required.
+Therefore, if your contribution is only a patch directly applied to an existing file, then you are not required to do anything. If your contribution is an entire new project, or a substantial, copyrighted contribution, you **MUST** make sure that you do that following the [IP Policy](https://git.ostc-eu.org/distro/governance/ip-policy/-/blob/main/policy/source/sections/section05.rst) and that you comply with REUSE standard to include the licensing information where they are required.
 
 # DCO sign-off
 
@@ -117,10 +117,10 @@ By making a contribution to this project, I certify that:
     this project or the open source license(s) involved.
 ```
 
-# `meta-ohos`-specific contributions process and guidelines
+# `oniro`-specific contributions process and guidelines
 
 The project handles contributions as merge request in the project's
-[GitLab instance](https://git.ostc-eu.org/OSTC/OHOS/meta-ohos). See above for
+[GitLab instance](https://git.ostc-eu.org/distro/oniro). See above for
 more details.
 
 Each contributions must adhere to the [OpenEmbedded Commit Patch Message Guidelines](http://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines).
