@@ -26,13 +26,13 @@ EXTRA_OECMAKE += "-Dinstall:BOOL=ON"
 TARGET_CFLAGS += "-DLV_CONF_INCLUDE_SIMPLE=1"
 TARGET_CFLAGS += "-I${RECIPE_SYSROOT}/${includedir}/lvgl"
 
-do_configure:append() {
+do_configure_append() {
     [ -r "${S}/lv_drv_conf.h" ] \
         || sed -e "s|#if 0 .*Set it to \"1\" to enable the content.*|#if 1 // Enabled by ${PN}|g" \
                -e "s|#  define USE_WAYLAND       0|#  define USE_WAYLAND       1|g" \
           < "${S}/lv_drv_conf_template.h" > "${S}/lv_drv_conf.h"
 }
 
-FILES:${PN}-dev += "\
+FILES_${PN}-dev += "\
     ${includedir}/lvgl/lv_drivers/ \
     "
