@@ -10,4 +10,5 @@ PACKAGES = "packagegroup-oniro-core"
 
 RDEPENDS_packagegroup-oniro-core = "\
 	oniro-mounts \
+	oniro-sysctl \
 	"
