@@ -21,13 +21,13 @@ S = "${WORKDIR}/${PN}-${PV}"
 
 EXTRA_OECMAKE += "-Dinstall:BOOL=ON"
 
-do_configure:prepend() {
+do_configure_prepend() {
     [ -r "${S}/lv_conf.h" ] \
         || sed -e "s|#if 0 /*Set it to \"1\" to enable the content*/|#if 1 // Enabled by ${PN}|g" \
             < "${S}/lv_conf_template.h" > "${S}/lv_conf.h"
 }
 
-FILES:${PN}-dev += "\
+FILES_${PN}-dev += "\
     ${includedir}/${PN}/ \
     ${includedir}/${PN}/lvgl/ \
     "
