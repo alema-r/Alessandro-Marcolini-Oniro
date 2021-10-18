@@ -18,6 +18,6 @@ inherit cmake
 TARGET_CFLAGS += "-DLV_CONF_INCLUDE_SIMPLE=1"
 TARGET_CFLAGS += "-I${RECIPE_SYSROOT}/${includedir}/lvgl"
 
-FILES:${PN}-dev = "\
+FILES_${PN}-dev = "\
     ${includedir}/lvgl/lv_lib_png/ \
     "
