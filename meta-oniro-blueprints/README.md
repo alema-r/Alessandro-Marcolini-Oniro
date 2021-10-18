@@ -14,7 +14,7 @@ blueprints.
 The `meta-oniro-blueprints` layer depends on the following layers:
 
 * meta-oniro
-  * URI: https://git.ostc-eu.org/OSTC/OHOS/meta-ohos.git
+  * URI: https://git.ostc-eu.org/distro/oniro.git
 * meta-homeassistant
   * URI: https://github.com/meta-homeassistant/meta-homeassistant.git
 * meta-zephyr
@@ -27,7 +27,7 @@ consideration.
 
 ## Merge requests
 
-All contributions are to be handled as merge requests in the [meta-ohos Gitlab project](https://git.ostc-eu.org/OSTC/OHOS/meta-ohos).
+All contributions are to be handled as merge requests in the [oniro Gitlab project](https://git.ostc-eu.org/distro/oniro).
 
 ## Maintainers
 
@@ -35,4 +35,4 @@ All contributions are to be handled as merge requests in the [meta-ohos Gitlab p
 
 # License
 
-The license of this layer is [Apache-2.0](https://git.ostc-eu.org/OSTC/OHOS/meta-ohos/-/blob/stable/LICENSES/Apache-2.0.txt).
+The license of this layer is [Apache-2.0](https://git.ostc-eu.org/distro/oniro/-/blob/dunfell/LICENSES/Apache-2.0.txt).
