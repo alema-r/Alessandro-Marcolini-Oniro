@@ -111,8 +111,6 @@ zephyr-arduino-nano-33-ble:
 
 freertos-armv5:
   extends: .build-freertos
-  # FIXME: https://git.ostc-eu.org/OSTC/OHOS/meta-ohos/-/issues/132
-  allow_failure: true
   variables:
     MACHINE: qemuarmv5
     # See the note on linux-qemu-x86.
