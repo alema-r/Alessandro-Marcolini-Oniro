@@ -30,6 +30,16 @@ process of constructing the workspace from scratch.
 Variables
 =========
 
+CI_ONIRO_INSTANCE_SIZE
+----------------------
+
+An arbitrary GitLab Runner tag selecting the size of a system instance which
+processes the .workspace job, or its derivative. This defaults to s3.large.8
+which translates to two cores and 16GB of memory.
+
+This can be used to route specific jobs to specific instance sizes using
+easy-to-use variable map, rather than more painful to use tag list.
+
 CI_ONIRO_RUNNER_TAG
 -------------------
 

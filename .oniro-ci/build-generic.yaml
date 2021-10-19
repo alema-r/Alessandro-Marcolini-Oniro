@@ -6,7 +6,7 @@
   interruptible: true
   image:
     name: registry.ostc-eu.org/ostc/containers/ostc-builder:latest
-  tags: [large-disk, $CI_ONIRO_RUNNER_TAG]
+  tags: [large-disk, $CI_ONIRO_RUNNER_TAG, $CI_ONIRO_INSTANCE_SIZE]
   variables:
     CI_ONIRO_RUNNER_TAG : ""
     CI_ONIRO_MANIFEST_URL: https://git.ostc-eu.org/distro/oniro
@@ -14,6 +14,7 @@
     CI_ONIRO_MANIFEST_NAME: default.xml
     CI_ONIRO_MANIFEST_MIRROR: ostc-develop
     CI_ONIRO_GIT_REPO_PATH: ""
+    CI_ONIRO_INSTANCE_SIZE: s3.large.8
   before_script:
     - test ! -e "$CI_PROJECT_DIR"/.scratch-dir-name || (
         echo "precondition failed - concurrent modification of $CI_PROJECT_DIR"
@@ -218,6 +219,7 @@
   variables:
     CI_ONIRO_BUILD_FLAVOUR: zephyr
     CI_ONIRO_BITBAKE_TARGETS: "zephyr-philosophers"
+    CI_ONIRO_INSTANCE_SIZE: s3.large.2
   script:
     - test -n "$CI_ONIRO_BITBAKE_TARGETS" || (
         echo "nothing to build - CI_ONIRO_BITBAKE_TARGETS is empty"
@@ -233,6 +235,7 @@
   extends: .bitbake-workspace
   variables:
     CI_ONIRO_BUILD_FLAVOUR: freertos
+    CI_ONIRO_INSTANCE_SIZE: s3.large.2
   script:
     - !reference [.bitbake-workspace, script]
     - time bitbake freertos-demo

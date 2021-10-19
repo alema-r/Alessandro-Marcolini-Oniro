@@ -86,6 +86,7 @@ zephyr-96b-nitrogen:
     MACHINE: 96b-nitrogen
     CI_ONIRO_RECIPE_NAME: zephyr-philosophers
     CI_ONIRO_BUILD_FLAVOUR: zephyr
+    CI_ONIRO_INSTANCE_SIZE: s3.large.2
 
 zephyr-96b-nitrogen-tests:
   extends: .build-image
@@ -93,6 +94,7 @@ zephyr-96b-nitrogen-tests:
     MACHINE: 96b-nitrogen
     CI_ONIRO_RECIPE_NAME: zephyr-kernel-test-all
     CI_ONIRO_BUILD_FLAVOUR: zephyr
+    CI_ONIRO_INSTANCE_SIZE: s3.large.2
 
 zephyr-96b-avenger:
   extends: .build-zephyr
@@ -126,16 +128,16 @@ blueprint-smartpanel-zephyr:
 
 blueprint-smartpanel-linux:
   extends: .build-linux
-  tags: [large-disk, bitbake-friendly, heavy, $CI_ONIRO_RUNNER_TAG]
   variables:
     MACHINE: stm32mp1-av96
     DISTRO: oniro-linux-blueprint-dashboard
     CI_ONIRO_BITBAKE_TARGETS: "blueprint-dashboard-gateway-image"
+    CI_ONIRO_INSTANCE_SIZE: s3.xlarge.4
 
 blueprint-gateway-linux:
   extends: .build-linux
-  tags: [large-disk, bitbake-friendly, heavy, $CI_ONIRO_RUNNER_TAG]
   variables:
     MACHINE: raspberrypi4-64
     DISTRO: oniro-linux-blueprint-gateway
     CI_ONIRO_BITBAKE_TARGETS: "blueprint-gateway-image"
+    CI_ONIRO_INSTANCE_SIZE: s3.xlarge.4
