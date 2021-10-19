@@ -2,11 +2,11 @@
 '
 ' SPDX-License-Identifier: CC-BY-4.0
 
-@startuml meta-ohos-arch
+@startuml meta-oniro-arch
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
-Person(dev, "Developer", "Anyone willing to build the OHOS based image")
-System(meta_ohos, "meta-ohos", "All Scenario OS OS umbrella bitbake meta-layer")
+Person(dev, "Developer", "Anyone willing to build the Oniro Operating System")
+System(oniro, "oniro", "All Scenario OS OS umbrella bitbake meta-layer")
 Boundary(poky, "poky") {
     System_Ext(bitbake, "bitbake", "build process orchestrator")
     System_Ext(linux_yocto, "linux-yocto", "Yocto Project LTS linux kernel")
@@ -19,10 +19,10 @@ System_Ext(linux_yocto, "linux-yocto", "Yocto Project LTS linux kernel")
 System_Ext(meta_external_toolchain, "meta-external-toolchain", "Yocto Project LTS GNU GCC and LLVM toolchains")
 
 Rel(dev, bitbake, "selects configuration, initiates the build, deploys image to the target")
-Rel(bitbake, meta_ohos, "incorporates meta-layers relevant for selected kernel / configuration")
+Rel(bitbake, oniro, "incorporates meta-layers relevant for selected kernel / configuration")
 Rel(bitbake, linux_yocto, "incorporates Yocto Project LTS linux kernel reference")
 Rel(bitbake, meta_external_toolchain, "incorporates Yocto Project LTS toolchains")
-Rel(bitbake, meta_zephyr, "incorporates for OHOS on Zephyr build")
-Rel(bitbake, meta_freertos, "incorporates for OHOS on FreeRTOS build")
+Rel(bitbake, meta_zephyr, "incorporates for Oniro Operating System on Zephyr build")
+Rel(bitbake, meta_freertos, "incorporates for Oniro Operating System on FreeRTOS build")
 
 @enduml

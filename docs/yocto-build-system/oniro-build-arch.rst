@@ -22,4 +22,4 @@ ranging from RTOSes to Linux.
 required for compiling |main_project_name| images. The architecture supports plugging
 various kernels.
 
-.. image:: assets/meta-ohos-arch.png
+.. image:: assets/oniro-arch.png

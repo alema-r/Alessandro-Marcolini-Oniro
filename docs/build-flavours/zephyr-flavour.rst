@@ -31,7 +31,7 @@ Build steps example:
 
 .. code-block:: console
 
-    $ TEMPLATECONF=../oniro/flavours/zephyr . ./oe-core/oe-init-build-env build-ohos-zephyr
+    $ TEMPLATECONF=../oniro/flavours/zephyr . ./oe-core/oe-init-build-env build-oniro-zephyr
     $ bitbake zephyr-philosophers
 
 You can test the image built for the qemu-x86 target by issuing:

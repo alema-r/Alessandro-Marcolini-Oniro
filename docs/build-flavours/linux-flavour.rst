@@ -13,10 +13,10 @@ Linux Kernel Build Flavour
 
 Supported images:
 
-* allscenarios-image-base
-* allscenarios-image-base-tests
-* allscenarios-image-extra
-* allscenarios-image-extra-tests
+* oniro-image-base
+* oniro-image-base-tests
+* oniro-image-extra
+* oniro-image-extra-tests
 
 Supported machines (default in **bold**):
 
@@ -32,14 +32,14 @@ Build steps example:
 
 .. code-block:: console
 
-    $ TEMPLATECONF=../oniro/flavours/linux . ./oe-core/oe-init-build-env build-ohos-linux
-    $ bitbake allscenarios-image-base
+    $ TEMPLATECONF=../oniro/flavours/linux . ./oe-core/oe-init-build-env build-oniro-linux
+    $ bitbake oniro-image-base
 
 You can test the image built for the qemux86-64 target by issuing:
 
 .. code-block:: console
 
-    $ runqemu qemux86-64 allscenarios-image-base wic
+    $ runqemu qemux86-64 oniro-image-base wic
 
 After successful bootup, you will be dropped into a login shell:
 

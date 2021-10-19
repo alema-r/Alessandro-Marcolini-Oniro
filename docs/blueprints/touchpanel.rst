@@ -28,14 +28,14 @@ The TouchPanel Blueprint provides support for building a PoC smart touch panel t
 Get sources
 ***********
 #. 
-   Get |main_project_name| sources as described in the :ref:`documentation <AllScenariOSQuickBuild>`.
+   Get |main_project_name| sources as described in the :ref:`documentation <OniroQuickBuild>`.
 
 #. 
    If you already have sources cloned, update them to the most recent revision
 
    .. code-block:: bash
 
-      user@pc:~/ohos$ repo sync -d
+      user@pc:~/oniro$ repo sync -d
 
 Resources
 =========

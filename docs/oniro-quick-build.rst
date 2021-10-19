@@ -4,7 +4,7 @@
 
 .. include:: definitions.rst
 
-.. _AllScenariOSQuickBuild:
+.. _OniroQuickBuild:
 
 |main_project_name| - Quick Build
 #################################
@@ -55,10 +55,10 @@ Initialize a repo workspace and clone all required repositories:
     $ repo init -u https://git.ostc-eu.org/distro/oniro
     $ repo sync --no-clone-bundle
 
-Build the allscenarios-image-base image
-***************************************
+Building an Oniro image
+***********************
 
-The following steps will build a ``allscenarios-image-base``. The process will
+The following steps will build a ``oniro-image-base``. The process will
 build all its components, including the toolchain, from source.
 
 First of all change directory into the one where the build repositories were
@@ -75,7 +75,7 @@ Initialize the build directory and run a build:
 .. code-block:: console
 
     $ TEMPLATECONF=../oniro/flavours/linux . ./oe-core/oe-init-build-env build-oniro-linux
-    $ MACHINE=qemux86-64 bitbake allscenarios-image-base
+    $ MACHINE=qemux86-64 bitbake oniro-image-base
 
 Booting a Qemu X86-64 target with a |main_project_name| image
 *************************************************************
@@ -84,7 +84,7 @@ Once the image is built, you can run a Qemu X86-64 instance using the provided s
 
 .. code-block:: console
 
-      $ MACHINE=qemux86-64 runqemu allscenarios-image-base wic
+      $ MACHINE=qemux86-64 runqemu oniro-image-base wic
 
 If the host has a VT-capable CPU, you can pass the ``kvm`` argument for better
 performance. Check ``runqemu``'s help message for all available arguments.

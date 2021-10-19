@@ -15,8 +15,8 @@ Overview
 
 |main_project_name| supports running the software stack into an virtual environment using Qemu.
 
-Building OHOS image
-===================
+Building an Oniro image
+=======================
 
 To clone the source code, perform the procedure in: :ref:`Setting up a repo workspace <RepoWorkspace>`.
 
@@ -29,23 +29,23 @@ Build steps
 1. Source the environment with proper template settings, flavour being *linux*
    and target machine being *qemux86*. Pay attention to how relative paths are
    constructed. The value of *TEMPLATECONF* is relative to the location of the
-   build directory *./build-ohos-linux*, that is going to be created after
+   build directory *./build-oniro-linux*, that is going to be created after
    this step:
 
 .. code-block:: console
 
-   $ TEMPLATECONF=../oniro/flavours/linux . ./oe-core/oe-init-build-env build-ohos-linux
+   $ TEMPLATECONF=../oniro/flavours/linux . ./oe-core/oe-init-build-env build-oniro-linux
 
 2. You will find yourself in the newly created build directory. Call *bitbake*
-   to build the image. For example, if you are using *allscenarios-image-base*
+   to build the image. For example, if you are using *oniro-image-base*
    run the following command:
 
 .. code-block:: console
 
-   $ MACHINE=qemux86 bitbake allscenarios-image-base
+   $ MACHINE=qemux86 bitbake oniro-image-base
 
 Once the image is done, you can run the Qemu using the provided script wrapper:
 
 .. code-block:: console
 
-   $ MACHINE=qemux86 runqemu allscenarios-image-base wic
+   $ MACHINE=qemux86 runqemu oniro-image-base wic

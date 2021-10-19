@@ -15,4 +15,4 @@ This section details both generic and |main_project_name| specific aspects of th
    :maxdepth: 1
    
    yocto-project
-   ohos-build-arch
+   oniro-build-arch

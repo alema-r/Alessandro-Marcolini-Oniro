@@ -23,7 +23,7 @@ Build steps example:
 
 .. code-block:: console
 
-    $ TEMPLATECONF=../oniro/flavours/freertos . ./oe-core/oe-init-build-env build-ohos-freertos
+    $ TEMPLATECONF=../oniro/flavours/freertos . ./oe-core/oe-init-build-env build-oniro-freertos
     $ bitbake freertos-demo
 
 You can test the image built for the qemuarmv5 target by issuing:

@@ -23,11 +23,11 @@ kernel that serves as the primary interface between the computer's hardware and 
 
    * - Image Name
      - Description
-   * - allscenarios-image-base
+   * - oniro-image-base
      - 
 	   * |main_project_name| image including the base OS software stack.
 	   * This image also includes middleware and application packages to support a wide range of hardware which includes WiFi, Bluetooth, sound, and serial ports. 
-   * - allscenarios-image-extra
+   * - oniro-image-extra
      - 
 	   * |main_project_name| Wayland image including the base OS software stack. This is a Wayland protocol and Weston reference compositor-based image.
 	   * It uses the Wayland protocol and implementation to exchange data with its clients.

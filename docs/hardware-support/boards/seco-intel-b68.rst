@@ -30,8 +30,8 @@ For more detailed specifications of SBC-B68-eNUC SECO board, see `SBC-B68-eNUC S
 Working with the board
 **********************
 
-Building Oniro image
-====================
+Building an Oniro image
+=======================
 
 To clone the source code, perform the procedure in: :ref:`Setting up a repo workspace <RepoWorkspace>`.
 
@@ -44,16 +44,16 @@ Linux image
 
    $ TEMPLATECONF=../oniro/flavours/linux . ./oe-core/oe-init-build-env build-oniro-linux
 
-2. You will find yourself in the newly created build directory. Call *bitbake* to build the image. For example, if you are using *allscenarios-image-base* run the following command:
+2. You will find yourself in the newly created build directory. Call *bitbake* to build the image. For example, if you are using *oniro-image-base* run the following command:
 
 .. code-block:: console
 
-   $ MACHINE=seco-intel-b68 bitbake allscenarios-image-base
+   $ MACHINE=seco-intel-b68 bitbake oniro-image-base
 
-To generate images for SSD Disk, refer to the following flashing OHOS image section.
+To generate images for SSD Disk, refer to the following Flashing an Oniro image section.
 
-Flashing OHOS image
-*******************
+Flashing an Oniro image
+***********************
 
 .. _linux-image-2:
 
@@ -70,26 +70,27 @@ USB Storage
 * USB Storage
 * Linux Host
 
-To flash OHOS using USB storage, perform the following steps:
+To flash Oniro image using USB storage, perform the following
+steps:
 
-**Prepare OHOS bootable USB**
+**Prepare an Oniro Bootable USB Stick**
 
 1. Connect USB storage to your host PC.
 
 2. After the image is built, you are ready to burn the generated image onto the
    USB storage. We recommend using `bmaptool <https://github.com/intel/bmap-tools>`
    and the instructions below will use it. For example, if you are building
-   allscenarios-image-base run the following command replacing (or defining)
+   oniro-image-base run the following command replacing (or defining)
    ``$DEVNODE`` accordingly:
 
 .. code-block:: console
 
    $ cd tmp/deploy/images/seco-intel-b68
-   $ bmaptool copy allscenarios-image-base-seco-intel-b68.wic.bz2 $DEVNODE
+   $ bmaptool copy oniro-image-base-seco-intel-b68.wic.bz2 $DEVNODE
 
 3. Put the card to the board and turn it on.
 
-**Run OHOS**
+**Run Oniro image**
 
 #. Connect bootable USB to target
 

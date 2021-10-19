@@ -13,7 +13,7 @@ combination of ``FLAVOUR`` and ``MACHINE``.
 
 .. warning::
 
-    Do not include YAML files from the meta-ohos repository directly. The
+    Do not include YAML files from the oniro repository directly. The
     primary entry point for build and test pipelines is defined by the manifest
     repository.
 

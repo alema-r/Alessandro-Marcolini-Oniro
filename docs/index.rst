@@ -8,7 +8,7 @@ Build System Guide
 .. toctree::
    :maxdepth: 1
       
-   allscenarios-quick-build
+   oniro-quick-build
    yocto-build-system/index
    repo-workspace
    build-flavours/index

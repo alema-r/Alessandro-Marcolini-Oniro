@@ -31,8 +31,8 @@ For more details on Avenger96 board, see `Avenger96 product page <https://www.96
 Working with the board
 **********************
 
-Building OHOS image
-===================
+Building an Oniro image
+=======================
 
 To clone the source code, perform the procedure in: :ref:`Setting up a repo workspace <RepoWorkspace>`.
 
@@ -50,14 +50,14 @@ Linux image
    $ TEMPLATECONF=../oniro/flavours/linux . ./oe-core/oe-init-build-env build-oniro-linux
 
 2. You will find yourself in the newly created build directory. Call *bitbake*
-   to build the image. For example, if you are using *allscenarios-image-base*
+   to build the image. For example, if you are using *oniro-image-base*
    run the following command:
 
 .. code-block:: console
 
-   $ MACHINE=stm32mp1-av96 bitbake allscenarios-image-base
+   $ MACHINE=stm32mp1-av96 bitbake oniro-image-base
 
-To generate images for eMMC on SD card, refer to the :ref:`Flashing OHOS image <Flashing_ohos>`.
+To generate images for eMMC on SD card, refer to the :ref:`Flashing an Oniro image <Flashing_oniro>`.
 
 Zephyr image
 ------------
@@ -79,10 +79,10 @@ Zephyr image
 3. The output file will be located in the build directory
    *./tmp-newlib/deploy/images/96b-avenger96/*.
 
-.. _Flashing_ohos:
+.. _Flashing_oniro:
 
-Flashing OHOS image
-*******************
+Flashing an Oniro image
+***********************
 
 For Linux, `bmaptool <https://github.com/intel/bmap-tools>` is recommended to
 create an SD card image. The images we provide also create wic files (disk
@@ -112,13 +112,13 @@ For more information on Avenger96 boot options, see `Getting Started with the Av
 1. After the image is built, you are ready to burn the generated image onto the
    SD card. We recommend using `bmaptool <https://github.com/intel/bmap-tools>`
    and the instructions below will use it. For example, if you are building
-   allscenarios-image-base run the following command replacing (or defining)
+   oniro-image-base run the following command replacing (or defining)
    ``$DEVNODE`` accordingly:
 
 .. code-block:: console
 
    $ cd tmp/deploy/images/stm32mp1-av96
-   $ bmaptool copy allscenarios-image-base-stm32mp1-av96.wic.bz2 $DEVNODE
+   $ bmaptool copy oniro-image-base-stm32mp1-av96.wic.bz2 $DEVNODE
 
 2. Put the card to the board and turn it on.
 
@@ -127,7 +127,7 @@ STM32 Cube Programmer
 
 After you build the image, follow the instructions in `Avenger96 Image Programming <https://wiki.dh-electronics.com/index.php/Avenger96_Image_Programming>`_,
 pointing the program to the
-*./tmp/deploy/images/stm32mp1-av96/flashlayout_allscenarios-image-base/trusted/FlashLayout_emmc_stm32mp157a-av96-trusted.tsv*
+*./tmp/deploy/images/stm32mp1-av96/flashlayout_oniro-image-base/trusted/FlashLayout_emmc_stm32mp157a-av96-trusted.tsv*
 flash layout file.
 
 .. _zephyr-image-1:

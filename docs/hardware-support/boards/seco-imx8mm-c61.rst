@@ -29,8 +29,8 @@ For more detailed specifications of SBC-C61 SECO board, see `SBC-C61 Specificati
 Working with the board
 **********************
 
-Building OHOS image
-===================
+Building an Oniro image
+=======================
 
 To clone the source code, perform the procedure in: :ref:`Setting up a repo workspace <RepoWorkspace>`.
 
@@ -43,16 +43,16 @@ Linux image
 
    $ TEMPLATECONF=../oniro/flavours/linux . ./oe-core/oe-init-build-env build-oniro-linux
 
-2. You will find yourself in the newly created build directory. Call ``bitbake`` to build the image. The supported image is ``allscenarios-image-base``.
+2. You will find yourself in the newly created build directory. Call ``bitbake`` to build the image. The supported image is ``oniro-image-base``.
 
 .. code-block:: console
 
-   $ MACHINE=seco-imx8mm-c61 bitbake allscenarios-image-base
+   $ MACHINE=seco-imx8mm-c61 bitbake oniro-image-base
 
 To generate images for eMMC, refer to the following flashing procedure.
 
-Flashing OHOS image
-*******************
+Flashing an Oniro image
+***********************
 
 Linux image
 ===========
@@ -67,7 +67,8 @@ MMC Storage
 * Download and install `mfgtools <https://github.com/NXPmicro/mfgtools>`__
 * Linux Host
 
-To flash OHOS using USB to OTG adapter, perform the following steps:
+To flash Oniro image using USB to OTG adapter, perform the
+following steps:
 
 #. Short circuit pin 1 and 2 of CN52 pin header to enter the Serial Download mode.
 #. Connect USB to OTG adapter to your host PC
@@ -81,13 +82,13 @@ To flash OHOS using USB to OTG adapter, perform the following steps:
 
    .. code-block:: console
 
-      $ gzip -d allscenarios-image-base-seco-imx8mm-c61.wic.gz
+      $ gzip -d oniro-image-base-seco-imx8mm-c61.wic.gz
 
 #. To write uboot and image(p1:kernel, p2:dtb, rootfs) into c61 mmc via mfgtools:
 
    .. code-block:: console
 
-      $ sudo uuu -b emmc_all imx-boot-seco-imx8mm-c61-emmc.bin-flash_evk allscenarios-image-base-seco-imx8mm-c61.wic
+      $ sudo uuu -b emmc_all imx-boot-seco-imx8mm-c61-emmc.bin-flash_evk oniro-image-base-seco-imx8mm-c61.wic
 
 #. Power ON SBC-C61
 #. Remove **CN52 short circuit**

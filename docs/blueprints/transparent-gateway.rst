@@ -63,7 +63,7 @@ For more details, the used `OpenThread configuration script <https://git.ostc-eu
 Get sources
 ***********
 
-#. Get |main_project_name| sources as described in the :ref:`documentation <AllScenariOSQuickBuild>`.
+#. Get |main_project_name| sources as described in the :ref:`documentation <OniroQuickBuild>`.
 #. If you already have sources cloned, update them to the most recent revision.
 
    .. code-block:: bash

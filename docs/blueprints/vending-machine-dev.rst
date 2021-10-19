@@ -245,13 +245,13 @@ order" message and show a "reset" button to refresh for the next order.
 Software Dependencies Versions
 ------------------------------
 
-ASOS supports the following libraries for message encoding/decoding/parsing and
+Oniro Project supports the following libraries for message encoding/decoding/parsing and
 the communication protocol:
 
 * `libwebsockets <https://libwebsockets.org/>`_ 4.0.1
 
 * `cjson <https://github.com/DaveGamble/cJSON/>`_ 1.7.13 (to be upgraded to
-  1.7.14 for OHOS convergence reasons)
+  1.7.14 for OpenHarmony convergence)
 
 * `json-c <https://github.com/json-c/json-c>`_ 0.13.1
 
