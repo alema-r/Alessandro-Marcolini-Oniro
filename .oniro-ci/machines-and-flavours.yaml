@@ -79,6 +79,7 @@ zephyr-qemu-cortex-m3:
     CI_ONIRO_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
     CI_ONIRO_RECIPE_NAME: zephyr-philosophers
     CI_ONIRO_BUILD_FLAVOUR: zephyr
+    CI_ONIRO_INSTANCE_SIZE: s3.large.2
 
 zephyr-96b-nitrogen:
   extends: .build-image
