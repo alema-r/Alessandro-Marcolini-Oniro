@@ -43,3 +43,17 @@ do_install_append() {
         bbwarn "The image is using a known, insecure test key for verifying RAUC bundles. Do not use this in production systems."
     fi
 }
+
+# Install Oniro specific override for RAUC state directory.
+
+SRC_URI_append = " \
+  file://rauc-state-dir.conf \
+  "
+
+FILES_${PN}-service += "\
+	${systemd_unitdir}/system/rauc.service.d/*.conf \
+	"
+
+do_install_append() {
+    install -D -m 644 ${WORKDIR}/rauc-state-dir.conf --target-directory=${D}${systemd_unitdir}/system/rauc.service.d/
+}
