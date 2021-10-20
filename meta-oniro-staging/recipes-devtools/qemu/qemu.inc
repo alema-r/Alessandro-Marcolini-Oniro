@@ -143,7 +143,7 @@ EXTRA_OECONF = " \
     --extra-ldflags='${LDFLAGS}' \
     --with-git=/bin/false \
     --disable-git-update \
-    --meson=meson \
+    --skip-meson \
     ${PACKAGECONFIG_CONFARGS} \
     "
 
