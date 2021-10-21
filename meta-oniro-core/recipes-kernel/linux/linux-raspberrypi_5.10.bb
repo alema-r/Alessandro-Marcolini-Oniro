@@ -10,4 +10,5 @@ require linux-raspberrypi_5.10.inc
 SRC_URI += "\
     file://powersave.cfg \
     file://android-drivers.cfg \
+    file://rauc.cfg \
     "

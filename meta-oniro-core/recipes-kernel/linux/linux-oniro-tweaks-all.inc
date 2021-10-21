@@ -18,6 +18,7 @@ SRC_URI += "file://hardening_memory.cfg"
 SRC_URI += "file://hardening_toolchain.cfg"
 SRC_URI += "file://hardening_usercopy.cfg"
 SRC_URI += "file://hardening_validation_checks.cfg"
+SRC_URI += "file://rauc.cfg"
 
 # For the gcc-plugins build of the kernel we need to ensure the right include
 # path for headers is picked up to use the natively build dependencies.
