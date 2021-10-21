@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+[Unit]
+Description=Vending Machine UI Application
+Requires=weston@root.service
+After=weston@root.service
+After=vending-machine-control-application.service
+
+[Service]
+Environment="WAYLAND_DISPLAY=wayland-0"
+Environment="XDG_RUNTIME_DIR=/run/user/0"
+ExecStart=/usr/bin/vending-machine-ui-application
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
