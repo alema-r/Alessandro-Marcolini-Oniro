@@ -143,3 +143,19 @@ blueprint-gateway-linux:
     DISTRO: oniro-linux-blueprint-gateway
     CI_ONIRO_BITBAKE_TARGETS: "blueprint-gateway-image"
     CI_ONIRO_INSTANCE_SIZE: s3.xlarge.4
+
+blueprint-vending-machine-seco-intel-b68:
+  extends: .build-linux
+  variables:
+    MACHINE: seco-intel-b68
+    DISTRO: oniro-linux-blueprint-vending-machine
+    CI_ONIRO_BITBAKE_TARGETS: "blueprint-vending-machine-image"
+    CI_ONIRO_INSTANCE_SIZE: s3.xlarge.4
+
+blueprint-vending-machine-raspberrypi4-64:
+  extends: .build-linux
+  variables:
+    MACHINE: raspberrypi4-64
+    DISTRO: oniro-linux-blueprint-vending-machine
+    CI_ONIRO_BITBAKE_TARGETS: "blueprint-vending-machine-image"
+    CI_ONIRO_INSTANCE_SIZE: s3.xlarge.4
