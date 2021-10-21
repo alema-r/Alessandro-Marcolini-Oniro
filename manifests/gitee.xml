@@ -8,7 +8,7 @@ SPDX-FileCopyrightText: Huawei Inc.
 
 	<remote name="gitee-oniro" fetch="https://gitee.com/oniroproject/" />
 
-	<extend-project name="meta-ohos" remote="gitee-oniro" />
+	<extend-project name="oniro" remote="gitee-oniro" />
 	<extend-project name="meta-zephyr" remote="gitee-oniro" />
 	<extend-project name="meta-riscv" remote="gitee-oniro" />
 	<extend-project name="meta-clang" remote="gitee-oniro" />
