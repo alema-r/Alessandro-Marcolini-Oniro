@@ -11,6 +11,12 @@ INHERIT += "oniro-sanity"
 # them only the blueprint distributions.
 BBMASK += "oniro/meta-oniro-blueprints/"
 
+# Default versions of toolchain components
+# (can be overridden in kernel specific files if necessary)
+BINUVERSION ?= "2.37%"
+GCCVERSION ?= "11.%"
+GLIBCVERSION ?= "2.33%"
+
 # This is the ugliest fix possible but it fixes the build while keeping
 # meta-freertos around. meta-freertos is pulling in a dependency on
 # meta-poky-bsp without a reason that we can put a finger on and given that we
