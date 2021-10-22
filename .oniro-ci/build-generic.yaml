@@ -5,7 +5,7 @@
 .workspace:
   interruptible: true
   image:
-    name: registry.ostc-eu.org/ostc/containers/ostc-builder:latest
+    name: registry.booting.oniroproject.org/distro/oniro/bitbake-builder:latest
   tags: [large-disk, $CI_ONIRO_RUNNER_TAG, $CI_ONIRO_INSTANCE_SIZE]
   variables:
     CI_ONIRO_RUNNER_TAG : ""
@@ -292,7 +292,7 @@
 .build-docs:
   interruptible: true
   image:
-    name: registry.ostc-eu.org/ostc/containers/ostc-docs-builder
+    name: registry.booting.oniroproject.org/distro/oniro/docs-builder:latest
   stage: build
   script:
     - make -C docs
