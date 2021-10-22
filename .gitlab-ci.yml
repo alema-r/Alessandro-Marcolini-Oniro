@@ -130,3 +130,60 @@ lava-report:
   extends: .lava-report
   rules:
     - when: never
+
+.build-with-kaniko:
+  stage: build
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  script:
+    - |
+      set -xe
+      mkdir -p /kaniko/.docker
+      printf '{"auths":{"%s":{"auth":"%s"}}}\n' "$CI_REGISTRY" "$(printf '%s:%s' "$CI_REGISTRY_USER" "$CI_REGISTRY_PASSWORD" | base64)" > /kaniko/.docker/config.json
+      BUILD_DATE="$(date '+%FT%T%z' | sed -E -n 's/(\+[0-9]{2})([0-9]{2})$/\1:\2/p')" #rfc 3339 date
+      BUILD_TITLE=$(echo "$CI_PROJECT_TITLE" | tr " " "_")
+      IMAGE_LABELS="$(cat <<EOM
+          --label build-date=$BUILD_DATE
+          --label com.gitlab.ci.cijoburl=$CI_JOB_URL
+          --label com.gitlab.ci.commiturl=$CI_PROJECT_URL/commit/$CI_COMMIT_SHA
+          --label com.gitlab.ci.email=$GITLAB_USER_EMAIL
+          --label com.gitlab.ci.mrurl=$CI_PROJECT_URL/-/merge_requests/$CI_MERGE_REQUEST_ID
+          --label com.gitlab.ci.pipelineurl=$CI_PIPELINE_URL
+          --label com.gitlab.ci.tagorbranch=$CI_COMMIT_REF_NAME
+          --label com.gitlab.ci.user=$CI_SERVER_URL/$GITLAB_USER_LOGIN
+          --label org.opencontainers.image.authors=$CI_SERVER_URL/$GITLAB_USER_LOGIN
+          --label org.opencontainers.image.created=$BUILD_DATE
+          --label org.opencontainers.image.description=$BUILD_TITLE
+          --label org.opencontainers.image.documentation=$CI_PROJECT_URL
+          --label org.opencontainers.image.licenses=$CI_PROJECT_URL
+          --label org.opencontainers.image.ref.name=$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+          --label org.opencontainers.image.revision=$CI_COMMIT_SHA
+          --label org.opencontainers.image.source=$CI_PROJECT_URL
+          --label org.opencontainers.image.title=$BUILD_TITLE
+          --label org.opencontainers.image.url=$CI_PROJECT_URL
+          --label org.opencontainers.image.vendor=$CI_SERVER_URL/$GITLAB_USER_LOGIN
+          --label org.opencontainers.image.version=$CI_COMMIT_TAG
+          --label vcs-url=$CI_PROJECT_URL
+      EOM
+      )"
+
+      ADDITIONAL_TAG_LIST="$CI_COMMIT_REF_NAME $CI_COMMIT_SHORT_SHA"
+      if [ "$CI_COMMIT_BRANCH" = "$CI_DEFAULT_BRANCH" ]; then
+          ADDITIONAL_TAG_LIST="$ADDITIONAL_TAG_LIST latest";
+      fi
+
+      if [ -n "$ADDITIONAL_TAG_LIST" ]; then
+          for TAG in $ADDITIONAL_TAG_LIST; do
+              FORMATTED_TAG_LIST="$FORMATTED_TAG_LIST --tag $CI_REGISTRY_IMAGE:$TAG "
+          done
+      fi
+      FORMATTED_TAG_LIST="$(echo "$FORMATTED_TAG_LIST" | sed -e 's/--tag/--destination/g')"
+
+      echo "Building and shipping image to $CI_REGISTRY_IMAGE"
+      exec /kaniko/executor --context "$CI_PROJECT_DIR/.oniro-ci/containers/$CONTAINER_PATH" --dockerfile "$CI_PROJECT_DIR/.oniro-ci/containers/$CONTAINER_PATH/Dockerfile" --destination $CI_REGISTRY_IMAGE/$CONTAINER_PATH $IMAGE_LABELS
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+        - .oniro-ci/containers/$CONTAINER_PATH/*
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
