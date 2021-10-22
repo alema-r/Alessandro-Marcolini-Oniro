@@ -22,22 +22,11 @@ stages:
   - deploy
 
 include:
- - project: 'OSTC/infrastructure/pipelines'
-   file:
-    - 'dco.yaml'
-    - 'reuse.yaml'
  - local: '/.oniro-ci/build-generic.yaml'
  - local: '/.oniro-ci/test-generic.yaml'
  - local: '/.oniro-ci/machines-and-flavours.yaml'
  - template: 'Workflows/MergeRequest-Pipelines.gitlab-ci.yml'
 
-dco:
-  extends: .dco
-
-reuse:
-  extends: .reuse
-  # FIXME: https://git.ostc-eu.org/distro/oniro/-/issues/19
-  allow_failure: true
 
 build-docs:
   extends: .build-docs
