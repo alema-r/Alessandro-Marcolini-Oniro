@@ -17,10 +17,7 @@ linux-qemu-x86:
     # during this job.
     #
     # This is done assuming that there are no non-redistributable or otherwise
-    # tainted build intermediate files, downloads or published artifacts. All
-    # the non-tainted builds help to populate a cache exposed at
-    # https://cache.ostc-eu.org/bitbake
-    CI_ONIRO_BUILD_CACHE: "pub"
+    # tainted build intermediate files, downloads or published artifacts.
     CI_ONIRO_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
 
 linux-qemu-x86_64:
