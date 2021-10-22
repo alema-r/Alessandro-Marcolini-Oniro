@@ -1,0 +1,54 @@
+# SPDX-License-Identifier: Apache-2.0
+#
+# Copyright 2020-2021 Huawei Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# How to use this job in your pipeline:
+#
+# 1) Make sure the git repository is REUSE compliant by using the `reuse lint`
+#    command. The reuse tool is available in the ppa:zyga/oh-tools Ubuntu archive
+#    or can be installed manually on other distributions.
+# 2) Create a .gitlab-ci.yml file or configure the repository to use another
+#    path. Some repositories use .oniro-ci/gitlab-ci.yml instead, to avoid
+#    clashing with third-party CI pipelines that may be present in the same
+#    repository.
+# 3) Copy the text indicated below and make sure to adjust the pipeline stages
+#    that are present in your repository to take into account all the jobs
+#    that participate in the pipeline.
+#
+# -- 8< ------------[ cut here ]---
+# stages:
+#   - compliance
+#   # add any stages that your pipeline requires here
+#
+# include:
+#  - project: 'distro/oniro'
+#    file: '.oniro-ci/reuse.yaml'
+#
+# reuse:
+#   extends: .reuse
+#   # Uncomment this if the repository is not yet fully compliant.
+#   # allow_failure: true
+# -- 8< ------------[ cut here ]---
+.reuse:
+  stage: compliance 
+  interruptible: true
+  tags: [compliance]
+  # This pipeline relies on a container with the reuse package pre-installed.
+  # Precise, machine readable description of this container can be found in
+  # https://booting.oniroproject.org/distro/oniro/-/blob/master/.oniro-ci/containers/reuse/Dockerfile
+  image:
+    name: registry.booting.oniroproject.org/distro/oniro/reuse:latest
+  script:
+    - reuse lint
