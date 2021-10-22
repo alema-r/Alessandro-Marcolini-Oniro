@@ -1,0 +1,72 @@
+# SPDX-License-Identifier: Apache-2.0
+#
+# Copyright 2021 Huawei Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# How to use this job in your pipeline:
+#
+# 1) Create a .gitlab-ci.yml file or configure the repository to use another
+#    path. Some repositories use .oniro-ci/gitlab-ci.yml instead, to avoid
+#    clashing with third-party CI pipelines that may be present in the same
+#    repository.
+# 2) Copy the text indicated below and make sure to adjust the pipeline stages
+#    that are present in your repository to take into account all the jobs
+#    that participate in the pipeline.
+#
+# -- 8< ------------[ cut here ]---
+# stages:
+#   - compliance
+#   # add any stages that your pipeline requires here
+#
+# include:
+#  - project: 'distro/oniro'
+#    file: '.oniro-ci/dco.yaml'
+#
+# dco:
+#   extends: .dco
+#   variables:
+#    # NOTE: copy and set only those that you need. Run: dco-check --help for details.
+#    # DCO_CHECK_DEFAULT_BRANCH: "master"
+#    # DCO_CHECK_DEFAULT_BRANCH_FROM_REMOTE: ""
+#    # DCO_CHECK_CHECK_MERGE_COMMITS: ""
+#    # DCO_CHECK_DEFAULT_REMOTE: ""
+#    # DCO_CHECK_QUIET: ""
+#    # DCO_CHECK_VERBOSE: ""
+# -- 8< ------------[ cut here ]---
+.dco:
+  stage: compliance
+  interruptible: true
+  tags: [compliance]
+  # This pipeline relies on a container with the dco-check package pre-installed.
+  # Precise, machine readable description of this container can be found in
+  # https://booting.oniroproject.org/distro/oniro/-/blob/master/.oniro-ci/containers/dco-check/Dockerfile
+  image:
+    name: registry.booting.oniroproject.org/distro/oniro/dco-check:latest
+  script:
+    # Work around a bug in dco-check affecting pipelines for merge requests.
+    # https://github.com/christophebedard/dco-check/issues/104
+    - |
+        if [ "${CI_MERGE_REQUEST_EVENT_TYPE:-}" = detached ]; then
+            git fetch -a  # so that we can resolve branch names below
+            export CI_COMMIT_BRANCH="$CI_COMMIT_REF_NAME";
+            export CI_COMMIT_BEFORE_SHA="$CI_MERGE_REQUEST_DIFF_BASE_SHA";
+            export CI_MERGE_REQUEST_SOURCE_BRANCH_SHA="$(git rev-parse "origin/$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME")";
+            export CI_MERGE_REQUEST_TARGET_BRANCH_SHA="$(git rev-parse "origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME")";
+        fi
+    - dco-check --default-branch-from-remote --verbose
+  rules:
+    # Run this check on merge requests...
+    - if: $CI_MERGE_REQUEST_ID
+    # ... and when things land into the default branch.
+    - if: "$CI_COMMIT_BRANCH == '$CI_DEFAULT_BRANCH'"
