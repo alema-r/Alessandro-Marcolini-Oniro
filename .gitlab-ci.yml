@@ -187,3 +187,28 @@ lava-report:
       changes:
         - .oniro-ci/containers/$CONTAINER_PATH/*
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+
+build-bitbake-builder:
+  extends: .build-with-kaniko
+  variables:
+    CONTAINER_PATH: bitbake-builder
+
+build-docs-builder:
+  extends: .build-with-kaniko
+  variables:
+    CONTAINER_PATH: docs-builder
+
+build-dco-check:
+  extends: .build-with-kaniko
+  variables:
+    CONTAINER_PATH: dco-check
+
+build-reuse:
+  extends: .build-with-kaniko
+  variables:
+    CONTAINER_PATH: reuse
+
+build-npm-cspell:
+  extends: .build-with-kaniko
+  variables:
+    CONTAINER_PATH: npm-cspell

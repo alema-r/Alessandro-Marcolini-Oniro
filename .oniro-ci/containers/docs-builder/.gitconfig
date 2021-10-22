@@ -1,0 +1,6 @@
+# SPDX-FileCopyrightText: 2021 Huawei Inc.
+# SPDX-License-Identifier: Apache-2.0
+
+[user]
+	name = OSTC Builder 
+	email = ostc-builder@example.org
