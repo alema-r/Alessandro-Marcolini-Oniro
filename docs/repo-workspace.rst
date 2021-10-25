@@ -65,11 +65,11 @@ On openSUSE or SUSE Enterprise Linux:
 
 .. code-block:: console
 
-   $ sudo zypper addrepo http://download.opensuse.org/repositories/home:/openharmony:/tools/openSUSE_Tumbleweed/home:openharmony:tools.repo
+   $ sudo zypper addrepo https://build.opensuse.org/project/show/home:oniroproject:tools
    $ sudo zypper in repo
 
 In the `zypper addrepo` line, replace ``openSUSE_Tumbleweed`` with the distribution you're using - a list of distributions
-for which the package is available `here <http://download.opensuse.org/repositories/home:/openharmony:/tools/>`_.
+for which the package is available `here <https://build.opensuse.org/project/show/home:oniroproject:tools>`_.
 
 On Arch Linux:
 --------------
