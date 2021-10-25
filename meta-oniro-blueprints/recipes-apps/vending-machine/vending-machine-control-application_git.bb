@@ -8,7 +8,7 @@ DESCRIPTION = "Vending machine server for UI app to control IO"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=ba963850f6731c74878fe839d227e675"
 
-SRC_URI = "git://git.ostc-eu.org/distro/components/${BPN};protocol=https;branch=main;"
+SRC_URI = "git://booting.oniroproject.org/distro/components/${BPN};protocol=https;branch=main"
 SRCREV = "e21c34cdd9b554978a80699f44fe35077b0dbb90"
 SRC_URI += "file://${BPN}.service"
 S = "${WORKDIR}/git"
