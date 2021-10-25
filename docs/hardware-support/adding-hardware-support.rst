@@ -33,7 +33,7 @@ maintained support** in targeted kernels.
 Add Required meta-layers
 ************************
 
-Oniro flavours configuration templates (stored in `distro/oniro/flavours <https://git.ostc-eu.org/distro/oniro/-/tree/dunfell/flavours>`_
+Oniro flavours configuration templates (stored in `distro/oniro/flavours <https://booting.oniroproject.org/distro/oniro/-/tree/dunfell/flavours>`_
 directory) consist of the following files:
 
 .. list-table:: Configuration Files
@@ -51,7 +51,7 @@ directory) consist of the following files:
 
 |main_project_name| build system uses ***repo*** tool for cloning required meta-layers
 into appropriate build directory structure (see :ref:`Setting up a repo workspace <RepoWorkspace>`).
-To include a new layer, it has to be added in two places of the `oniro repository <https://git.ostc-eu.org/distro/oniro/-/tree/dunfell/manifests>`_:
+To include a new layer, it has to be added in two places of the `oniro repository <https://booting.oniroproject.org/distro/oniro/-/tree/dunfell/manifests>`_:
 
 - The manifest file
 - The flavours ``bblayers.conf.sample`` file
@@ -80,4 +80,4 @@ Create Merge Requests
 Create the Merge Request against the ***dunfell*** branch according to the
 Contributing Process for repositories:
 
-- `distro/oniro <https://git.ostc-eu.org/distro/oniro>`_
+- `distro/oniro <https://booting.oniroproject.org/distro/oniro>`_

@@ -93,7 +93,7 @@ repositories. If you're on OpenMandriva, simply ``dnf install repo``.
 The Manifests
 *************
 
-The ``repo manifest`` files are part of the main `oniro repository <https://git.ostc-eu.org/distro/oniro>`_
+The ``repo manifest`` files are part of the main `oniro repository <https://booting.oniroproject.org/distro/oniro>`_
 and are to be used for configuring a workspace. The project provides a single
 ``default.xml`` manifest file in each of the active branches.
 
@@ -110,7 +110,7 @@ This will bring in all the needed sources for building |main_project_name|:
 .. code-block:: console
 
    $ mkdir oniroproject; cd oniroproject
-   $ repo init -u https://git.ostc-eu.org/distro/oniro
+   $ repo init -u https://booting.oniroproject.org/distro/oniro
    $ repo sync --no-clone-bundle
 
 Workspace structure

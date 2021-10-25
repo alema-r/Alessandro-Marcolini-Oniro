@@ -35,7 +35,7 @@ for more information.
 --------------------------------
 
 |main_project_name| bases its build setup on OE-core and bitbake. The main hub
-of layers, is `oniro <https://git.ostc-eu.org/distro/oniro/>`_, a
+of layers, is `oniro <https://booting.oniroproject.org/distro/oniro/>`_, a
 collection of layers with different scopes for defining the project's
 requirements and capabilities.
 
@@ -51,7 +51,7 @@ For more details of each provided layer of ``oniro``, see the relevant
 ``README.md`` file at the root of the layer.
 
 Besides the ``oniro`` collection of layers, the project is also the home
-to a set of other build system layers. Explore them all in our project `GitLab <https://git.ostc-eu.org/distro>`_
+to a set of other build system layers. Explore them all in our project `GitLab <https://booting.oniroproject.org/distro>`_
 instance.
 
 Additional Documentation

@@ -48,7 +48,7 @@ In our default WiFi access point configuration, we create an AP on channel 6 in 
    SSID: "|main_project_name| WiFi"
    Passphrase: "12345678".
 
-For more details, the used `hostapd configuration file <https://git.ostc-eu.org/distro/oniro/-/blob/dunfell/meta-oniro-blueprints/recipes-connectivity/hostapd/files/hostapd.conf>`_ is the best reference.
+For more details, the used `hostapd configuration file <https://booting.oniroproject.org/distro/oniro/-/blob/dunfell/meta-oniro-blueprints/recipes-connectivity/hostapd/files/hostapd.conf>`_ is the best reference.
 
 OpenThread Border Router Configuration
 **************************************
@@ -58,7 +58,7 @@ In our default OpenThread Border Router configuration, we create an OpenThread m
    Networkname "ASOS Thread"
    OpenThread masterkey: 00112233445566778899aabbccddeeff
 
-For more details, the used `OpenThread configuration script <https://git.ostc-eu.org/distro/oniro/-/blob/dunfell/meta-oniro-blueprints/recipes-connectivity/openthread/ot-br-posix/otbr-configuration>`_ is the best reference.
+For more details, the used `OpenThread configuration script <https://booting.oniroproject.org/distro/oniro/-/blob/dunfell/meta-oniro-blueprints/recipes-connectivity/openthread/ot-br-posix/otbr-configuration>`_ is the best reference.
 
 Get sources
 ***********

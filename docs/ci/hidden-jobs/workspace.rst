@@ -57,7 +57,7 @@ CI_ONIRO_MANIFEST_URL
 The URL consumed by git-repo. You only want to change this if you forked the
 entire infrastructure and want to use it in private.
 
-The default value is ``https://git.ostc-eu.org/distro/manifest``.
+The default value is ``https://booting.oniroproject.org/distro/oniro``.
 
 If you change the default value, please set ``CI_ONIRO_MANIFEST_MIRROR``
 as well.
