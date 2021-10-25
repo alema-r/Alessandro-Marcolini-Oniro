@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 FILESEXTRAPATHS_prepend := "${ONIRO_COREBASE}/assets:"
-SPLASH_IMAGES = "file://oniro-logo-small.png;outsuffix=default"
+SPLASH_IMAGES_append = " file://psplash-oniro-img.png;outsuffix=oniro"
 
 EXTRA_OECONF += "--enable-img-fullscreen --disable-startup-msg --disable-progress-bar"
 
