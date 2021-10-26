@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 SUMMARY = "Home Assistant custom component for Oniro Project SmartHome device"
-HOMEPAGE = "https://git.ostc-eu.org/OSTC/OHOS/components/smart_home_homeassistant_plugin/"
+HOMEPAGE = "https://booting.oniroproject.org/distro/components/smart_home_homeassistant_plugin/"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSES/Apache-2.0.txt;md5=c846ebb396f8b174b10ded4771514fcc"
 
@@ -14,7 +14,7 @@ SRC_OPT_NAME = "name=smart_home_homeassistant_plugin"
 SRC_OPT_BRANCH = "branch=master"
 
 SRC_OPTIONS = "${SRC_OPT_PROTO};${SRC_OPT_DEST};${SRC_OPT_NAME};${SRC_OPT_BRANCH}"
-SRC_URI = "git://git.ostc-eu.org/OSTC/OHOS/components/smart_home_homeassistant_plugin.git;${SRC_OPTIONS}"
+SRC_URI = "git://booting.oniroproject.org/distro/components/smart_home_homeassistant_plugin.git;${SRC_OPTIONS}"
 SRCREV_smart_home_homeassistant_plugin = "63c39b0eebab086ba793be8e7963c2d3c69cbedc"
 
 S = "${WORKDIR}/${SRC_OPT_CLONE_DIR}"
