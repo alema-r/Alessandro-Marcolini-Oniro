@@ -10,6 +10,7 @@ WESTON_DYNAMIC_INI ?= "0"
 WESTON_INI_PATH ?= "etc/xdg/weston/weston.ini"
 
 WESTON_INI_NO_TOOLBAR ?= "0"
+WESTON_INI_SHELL_LOCKING ?= "true"
 WESTON_INI_BACKGROUND_IMAGE ?= ""
 WESTON_INI_BACKGROUND_IMAGE_BASENAME = "${@os.path.basename("${WESTON_INI_BACKGROUND_IMAGE}")}"
 WESTON_INI_BACKGROUND_COLOR ?= "0xffffffff"
@@ -50,6 +51,12 @@ python generate_dynamic_ini() {
         if 'shell' not in config.sections():
             config.add_section('shell')
         config.set('shell', 'panel-position', 'none')
+    # Handle locking configuration.
+    if d.getVar('WESTON_INI_SHELL_LOCKING') != None:
+        bb.note('Handling WESTON_INI_SHELL_LOCKING')
+        if 'shell' not in config.sections():
+            config.add_section('shell')
+        config.set('shell', 'locking', d.getVar('WESTON_INI_SHELL_LOCKING'))
 
     # Handle background.
     background_image = d.getVar('WESTON_INI_BACKGROUND_IMAGE', True)
