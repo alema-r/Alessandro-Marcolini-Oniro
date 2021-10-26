@@ -9,7 +9,7 @@
 Linux Kernel Build Flavour
 ##########################
 
-|main_project_name| Linux build flavour is based on *allscenarios-linux* distribution (distro configuration).
+|main_project_name| Linux build flavour is based on *oniro-linux* distribution (distro configuration).
 
 Supported images:
 

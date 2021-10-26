@@ -9,7 +9,7 @@
 Zephyr Kernel Build Flavour
 ###########################
 
-|main_project_name| Zephyr build flavour is based on *allscenarios-zephyr* distribution (distro configuration).
+|main_project_name| Zephyr build flavour is based on *oniro-zephyr* distribution (distro configuration).
 
 Supported images:
 
