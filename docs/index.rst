@@ -12,7 +12,7 @@ Build System Guide
    yocto-build-system/index
    repo-workspace
    build-flavours/index
-   ohos-build/index
+   oniro-build/index
    os/index
    ci/index
    blueprints/index
