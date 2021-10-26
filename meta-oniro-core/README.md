@@ -1,40 +1,52 @@
-<!--
-SPDX-FileCopyrightText: Huawei Inc.
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
 
-SPDX-License-Identifier: Apache-2.0
--->
+# Introduction
 
-This README file contains information about the contents of the meta-oniro-core layer.
+## Description
 
-Please see the corresponding sections below for details.
+The `meta-oniro-core` is the core layer for Oniro Project build metadata.
 
-Table of Contents
-=================
+## Layer dependencies
 
-  I. Dependencies
- II. Adding the meta-oniro-core layer to your build
-III. Misc
+The `meta-oniro-core` layer depends on the following layers:
 
-I. Dependencies
-===============
+* openembedded-core
+  * URI: https://git.openembedded.org/openembedded-core
+* bitbake
+  * URI: https://git.openembedded.org/bitbake/
+* meta-intel
+  * URI: https://git.yoctoproject.org/git/meta-intel
+* meta-openembedded
+  * URI: https://git.openembedded.org/meta-openembedded/
+  * layers: meta-networking
+* meta-raspberrypi
+  * URI: https://git.yoctoproject.org/git/meta-raspberrypi
+* meta-rauc
+  * URI: https://github.com/rauc/meta-rauc
+* meta-seco-imx
+  * URI: https://git.seco.com/pub/i.mx/yocto/5.x/meta-seco-imx
+* meta-st-stm32mp
+  * URI: https://github.com/STMicroelectronics/meta-st-stm32mp
 
-This layer depends on:
+Note that the dependencies of the above layers should also be taken into
+consideration.
 
-- URI: git://git.yoctoproject.org/poky
-  - branch: master
-  - revision: HEAD
+# Contributing
 
-- URI: git://git.openembedded.org/meta-openembedded
-  - layers: meta-oe
-  - branch: master
-  - revision: HEAD
+## Merge requests
 
-II. Adding the meta-oniro-core layer to your build
-=================================================
+All contributions are to be handled as merge requests in the
+[oniro Gitlab repository](https://booting.oniroproject.org/distro/oniro). For
+more information on the contributing process, check the `CONRIBUTING.md` file.
 
-Run 'bitbake-layers add-layer /path/to/meta-oniro-core'
+## Maintainers
 
-III. Misc
-=========
+* Andrei Gherzan <andrei.gherzan@huawei.com>
+* Eilís Ní Fhlannagáin <elizabeth.flanagan@huawei.com>
+* Stefan Schmidt <stefan.schmidt@huawei.com>
 
-This layer provides recipes for the core elements of the Oniro Project distribution.
+# License
+
+This layer is release under the licenses listed in the `LICENSES` root directory.
