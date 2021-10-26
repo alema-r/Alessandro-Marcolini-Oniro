@@ -1,0 +1,7 @@
+This repository is using "reuse"[1] for license compliance. This implies having all the
+license files for any of the artefacts in this repository, in the "LICENSES" root
+directory.
+
+See the "LICENSES" subdirectory for more information.
+
+[1] https://reuse.software/
