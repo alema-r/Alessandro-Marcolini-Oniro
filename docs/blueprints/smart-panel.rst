@@ -171,7 +171,7 @@ Build
 
    .. code-block:: bash
 
-      $ DISTRO=allscenarios-zephyr-blueprint-dashboard bitbake zephyr-blueprint-smarthome-sensors
+      $ DISTRO=oniro-zephyr-blueprint-dashboard bitbake zephyr-blueprint-smarthome-sensors
 
    .. note::
 
@@ -198,7 +198,7 @@ Build
 
      .. code-block:: bash
 
-        $ DISTRO=allscenarios-zephyr-blueprint-dashboard bitbake zephyr-blueprint-smarthome-switch
+        $ DISTRO=oniro-zephyr-blueprint-dashboard bitbake zephyr-blueprint-smarthome-switch
 
      .. note::
 
@@ -281,7 +281,7 @@ Build
 #. Build ``blueprint-dashboard-gateway-image`` image using ``bitbake``,
    with the following overrides:
 
-   * ``DISTRO`` set to ``allscenarios-linux-blueprint-dashboard`` --
+   * ``DISTRO`` set to ``oniro-linux-blueprint-dashboard`` --
      this distribution configuration enhances the regular distribution
      with dependencies necessary for this demonstration scenario,
    * ``SMART_HOME_SENSORS_MAC`` and ``SMART_HOME_SWITCH_MAC`` set to MAC
@@ -289,7 +289,7 @@ Build
 
      .. code-block:: bash
 
-        $ DISTRO=allscenarios-linux-blueprint-dashboard \
+        $ DISTRO=oniro-linux-blueprint-dashboard \
             BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE SMART_HOME_SENSORS_MAC SMART_HOME_SWITCH_MAC" \
             SMART_HOME_SENSORS_MAC="C0:BA:DD:06:F0:0D" \
             SMART_HOME_SWITCH_MAC="C0:BA:DD:06:F0:0E" \
