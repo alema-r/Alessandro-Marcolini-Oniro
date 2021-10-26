@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-HOMEPAGE = "https://git.ostc-eu.org/distro/components/vending-machine-control-application"
+HOMEPAGE = "https://booting.oniroproject.org/distro/components/vending-machine-control-application"
 SUMMARY = "Vending Machine control Application"
 DESCRIPTION = "Vending machine server for UI app to control IO"
 LICENSE = "Apache-2.0"

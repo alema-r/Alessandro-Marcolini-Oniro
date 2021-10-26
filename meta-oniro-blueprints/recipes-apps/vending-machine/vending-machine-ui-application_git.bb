@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-HOMEPAGE = "https://git.ostc-eu.org/distro/components/vending-machine-ui-application"
+HOMEPAGE = "https://booting.oniroproject.org/distro/components/vending-machine-ui-application"
 SUMMARY = "Vending Machine UI Application"
 DESCRIPTION = "Vending machine front end client, it's a native GUI made with LVGL"
 LICENSE = "Apache-2.0"
