@@ -26,15 +26,10 @@ include:
  - local: '/.oniro-ci/test-generic.yaml'
  - local: '/.oniro-ci/machines-and-flavours.yaml'
  - local: '/.oniro-ci/dco.yaml'
- - local: '/.oniro-ci/reuse.yaml'
  - template: 'Workflows/MergeRequest-Pipelines.gitlab-ci.yml'
 
 dco:
   extends: .dco
-
-reuse:
-  extends: .reuse
-  allow_failure: true
 
 build-docs:
   extends: .build-docs
