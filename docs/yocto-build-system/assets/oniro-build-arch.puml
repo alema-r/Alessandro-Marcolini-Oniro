@@ -6,7 +6,7 @@
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
 Person(dev, "Developer", "Anyone willing to build the Oniro Operating System")
-System(oniro, "oniro", "All Scenario OS OS umbrella bitbake meta-layer")
+System(oniro, "oniro", "Oniro Project umbrella bitbake meta-layer")
 Boundary(poky, "poky") {
     System_Ext(bitbake, "bitbake", "build process orchestrator")
     System_Ext(linux_yocto, "linux-yocto", "Yocto Project LTS linux kernel")
