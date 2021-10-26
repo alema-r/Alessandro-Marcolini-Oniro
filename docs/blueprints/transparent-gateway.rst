@@ -74,7 +74,7 @@ Get sources
 
    .. code-block:: bash
 
-      $ DISTRO="allscenarios-linux-blueprint-gateway" MACHINE=raspberrypi4-64 bitbake blueprint-gateway-image
+      $ DISTRO="oniro-linux-blueprint-gateway" MACHINE=raspberrypi4-64 bitbake blueprint-gateway-image
 
 Resources
 *********
