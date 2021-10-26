@@ -1,28 +1,44 @@
-<!--
-SPDX-FileCopyrightText: Huawei Inc.
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
 
-SPDX-License-Identifier: Apache-2.0
--->
+# Introduction
 
-This README file contains information on the contents of the meta-oniro-staging layer.
+## Description
 
-Table of Contents
-=================
+The `meta-oniro-staging` layer contains build metadata for Oniro Project
+staging components. These components are intended for upstreaming, but are not
+fully ready yet.
 
-  I. Adding the meta-oniro-staging layer to your build
- II. Misc
+## Layer dependencies
 
+The `meta-oniro-staging` layer depends on the following layers:
 
-I. Adding the meta-oniro-staging layer to your build
-===================================================
+* openembedded-core
+  * URI: https://git.openembedded.org/openembedded-core
+* bitbake
+  * URI: https://git.openembedded.org/bitbake/
+* oniro
+  * URI: https://booting.oniroproject.org/distro/oniro.git
+  * layers: meta-oniro-core
 
-This layer only depends on poky or oe-core. To add it to your layers:
+Note that the dependencies of the above layers should also be taken into
+consideration.
 
-Run 'bitbake-layers add-layer meta-oniro-staging'
+# Contributing
 
-II. Misc
-========
+## Merge requests
 
-This layer provides recipes intended to upstream into other layer, but are not
-fully ready yet. As a start we will have some connectivity related recipes for
-OpenThread as well as MQTT.
+All contributions are to be handled as merge requests in the
+[oniro Gitlab repository](https://booting.oniroproject.org/distro/oniro). For
+more information on the contributing process, check the `CONRIBUTING.md` file.
+
+## Maintainers
+
+* Andrei Gherzan <andrei.gherzan@huawei.com>
+* Eilís Ní Fhlannagáin <elizabeth.flanagan@huawei.com>
+* Stefan Schmidt <stefan.schmidt@huawei.com>
+
+# License
+
+This layer is release under the licenses listed in the `LICENSES` root directory.
