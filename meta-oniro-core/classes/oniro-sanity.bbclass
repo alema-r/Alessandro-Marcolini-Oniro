@@ -12,7 +12,6 @@ ONIRO_DEPRECATED_COLLECTIONS = " \
 
 # Same format as for ONIRO_DEPRECATED_COLLECTIONS but for DISTRO configurations.
 ONIRO_DEPRECATED_DISTROS = " \
-    allscenarios-linux-demo-dashboard:allscenarios-linux-blueprint-dashboard \
     "
 
 def unpack_deprecation(elem) -> 'Tuple[str, str]':
