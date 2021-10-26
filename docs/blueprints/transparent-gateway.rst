@@ -55,7 +55,7 @@ OpenThread Border Router Configuration
 
 In our default OpenThread Border Router configuration, we create an OpenThread mesh network on channel 26 in the 2.4 GHz band with panid 0x1357::
 
-   Networkname "ASOS Thread"
+   Networkname "Oniro Thread"
    OpenThread masterkey: 00112233445566778899aabbccddeeff
 
 For more details, the used `OpenThread configuration script <https://booting.oniroproject.org/distro/oniro/-/blob/dunfell/meta-oniro-blueprints/recipes-connectivity/openthread/ot-br-posix/otbr-configuration>`_ is the best reference.
