@@ -7,9 +7,9 @@
 ===============
 
 The ``.aggregate-docs`` job triggers a build of the aggregated documentation of
-All Scenarios OS.
+Oniro OS.
 
-All Scenarios OS documentation is maintained in an unusual way. Individual
+Oniro OS documentation is maintained in an unusual way. Individual
 repositories contain dedicated documentation that can be built with
 :doc`build-docs` job. A special *centralized* documentation project aggregates
 documentation from multiple git repositories, as checked out by *git-repo* based
@@ -37,7 +37,7 @@ To use this job in your pipeline include the generic build definition file,
     build-docs:
       extends: .build-docs
 
-    # Trigger aggregation of All Scenarios OS documentation.
+    # Trigger aggregation of Oniro OS documentation.
     aggregate-docs:
       extends: .aggregate-docs
       needs: [build-docs]

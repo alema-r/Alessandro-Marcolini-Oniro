@@ -20,7 +20,7 @@ the way BitBake is configured.
 CI_ONIRO_BUILD_FLAVOUR
 ----------------------
 
-The name of the *flavour* of All Scenarios OS, which effectively picks the kernel
+The name of the *flavour* of Oniro OS, which effectively picks the kernel
 type. This is used to select the initial BitBake configuration template.
 Templates are stored in the **oniro** repository.
 

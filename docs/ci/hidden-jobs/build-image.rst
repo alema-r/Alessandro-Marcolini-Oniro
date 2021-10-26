@@ -19,6 +19,6 @@ Implementation Details
 ======================
 
 The job handles differences between the name of the temporary build directory
-between various All Scenarios OS flavours. Internally BitBake is interrogated for
+between various Oniro OS flavours. Internally BitBake is interrogated for
 the value of ``TMPDIR`` and the image is copied back to a subdirectory
 of ``$CI_PROJECT_DIR`` for delivery to the GitLab runner.
