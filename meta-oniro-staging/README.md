@@ -18,9 +18,6 @@ The `meta-oniro-staging` layer depends on the following layers:
   * URI: https://git.openembedded.org/openembedded-core
 * bitbake
   * URI: https://git.openembedded.org/bitbake/
-* oniro
-  * URI: https://booting.oniroproject.org/distro/oniro.git
-  * layers: meta-oniro-core
 
 Note that the dependencies of the above layers should also be taken into
 consideration.
