@@ -10,13 +10,13 @@ BBPATH = "${TOPDIR}"
 BBFILES ?= ""
 
 BBLAYERS ?= " \
+  ##OEROOT##/../oniro/meta-oniro-staging \
   ##OEROOT##/meta \
   ##OEROOT##/../meta-clang \
   ##OEROOT##/../meta-zephyr \
   ##OEROOT##/../meta-zephyr-bsp \
   ##OEROOT##/../oniro/meta-oniro-core \
   ##OEROOT##/../oniro/meta-oniro-blueprints \
-  ##OEROOT##/../oniro/meta-oniro-staging \
   ##OEROOT##/../meta-freertos \
   ##OEROOT##/../meta-intel \
   ##OEROOT##/../meta-seco-intel \
