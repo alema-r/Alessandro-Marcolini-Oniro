@@ -6,12 +6,12 @@ DESCRIPTION = "Robust, unattended update system for Linux gateways"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSES/Apache-2.0.txt;md5=c846ebb396f8b174b10ded4771514fcc"
 
-SRC_URI = "git://git.ostc-eu.org/OSTC/OHOS/components/sysota.git;protocol=https;branch=main"
+SRC_URI = "git://booting.oniroproject.org/distro/components/sysota.git;protocol=https;branch=main"
 SRC_URI_append = " \
   file://sysotad.conf \
   "
 
-SRCREV = "0eb9b2d24c744fd341b7ed77bed4b957548bd127"
+SRCREV = "3cb40a1392fd2b849db711c6a9a050d00bad8c93"
 S = "${WORKDIR}/git"
 
 # This package is built with go-mod as well as with make.
@@ -34,7 +34,7 @@ S = "${WORKDIR}/git"
 inherit go-mod systemd features_check
 
 # Go import path of SystemOTA.
-GO_IMPORT = "git.ostc-eu.org/OSTC/OHOS/components/sysota"
+GO_IMPORT = "booting.oniroproject.org/distro/components/sysota"
 
 # The make side of the build depends on zmk. We cannot rely on zmk.bbclass as
 # that internally depends on autotools.bbclass but using autotools.bbclass and
