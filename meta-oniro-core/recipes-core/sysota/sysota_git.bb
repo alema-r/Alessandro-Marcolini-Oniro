@@ -112,3 +112,10 @@ FILESEXTRAPATHS_prepend_raspberrypi4-64 := "${THISDIR}/files/raspberrypi4:"
 # Make the SystemOTA package machine-specific. This lets us put the specific
 # configuration file, which encodes boot loader type, into it safely.
 PACKAGE_ARCH = "${MACHINE_ARCH}"
+
+# Persist SystemOTA state directory.
+inherit writables
+
+WRITABLE_TYPE[sysota] = "persistent"
+WRITABLES = "sysota"
+WRITABLE_PATH[sysota] = "/var/lib/sysota"
