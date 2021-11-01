@@ -4,12 +4,9 @@
 
 [Unit]
 Description=Vending Machine Control Application
-Requires=weston@root.service
-After=weston@root.service
 
 [Service]
-Environment="WAYLAND_DISPLAY=wayland-0"
-Environment="XDG_RUNTIME_DIR=/run/user/0"
+Type=notify
 ExecStart=/usr/bin/vending-machine-control-application
 Restart=always
 

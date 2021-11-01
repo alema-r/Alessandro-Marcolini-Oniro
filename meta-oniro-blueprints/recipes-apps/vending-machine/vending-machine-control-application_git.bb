@@ -9,11 +9,11 @@ LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=ba963850f6731c74878fe839d227e675"
 
 SRC_URI = "git://booting.oniroproject.org/distro/components/${BPN};protocol=https;branch=main"
-SRCREV = "a1a8ad59cbdbfae02270a1465c67d132b4eeb38c"
+SRCREV = "de63b97d58ed04052e58064a1228ed07d36b29e2"
 SRC_URI += "file://${BPN}.service"
 S = "${WORKDIR}/git"
 
-DEPENDS="i2c-tools json-c libwebsockets"
+DEPENDS="systemd i2c-tools json-c libwebsockets"
 
 inherit pkgconfig features_check systemd
 
