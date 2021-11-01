@@ -4,6 +4,7 @@
 
 FILESEXTRAPATHS_prepend := "${ONIRO_COREBASE}/assets:"
 SPLASH_IMAGES_append = " file://psplash-oniro-img.png;outsuffix=oniro"
+ALTERNATIVE_PRIORITY_psplash-oniro[psplash] = "200"
 
 EXTRA_OECONF += "--enable-img-fullscreen --disable-startup-msg --disable-progress-bar"
 
