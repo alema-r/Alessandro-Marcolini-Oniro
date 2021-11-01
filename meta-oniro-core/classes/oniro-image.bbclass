@@ -118,7 +118,6 @@ python deploy_boot_artifacts_to_rootfs() {
     if not boot_files:
         # Nothing to do if IMAGE_BOOT_FILES is not defined. Custom wic plugins
         # are not supported.
-        bb.warn('IMAGE_BOOT_FILES empty, so no boot files will be included in the rootfs')
         return
     deploy_dir = d.getVar('DEPLOY_DIR_IMAGE')
     rootfs_dir = d.getVar('IMAGE_ROOTFS')
