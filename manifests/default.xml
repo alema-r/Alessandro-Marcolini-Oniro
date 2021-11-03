@@ -78,6 +78,7 @@ SPDX-FileCopyrightText: Huawei Inc.
 	<project name="meta-clang" revision="main" path="meta-clang" />
 	<project name="meta-riscv" revision="OSTC/dunfell" path="meta-riscv" />
 	<project name="meta-zephyr" revision="ostc/master" path="meta-zephyr" />
+        <project name="meta-zephyr-bsp" revision="dunfell" path="meta-zephyr-bsp" />
 	<project name="docs" path="docs" revision="main" />
 	<project name="ip-policy" remote="oniro-governance" revision="main" path="ip-policy" />
 </manifest>
