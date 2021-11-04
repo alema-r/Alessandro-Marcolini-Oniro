@@ -22,7 +22,7 @@ Overview
 The DoorLock Blueprint provides support for building a PoC smart door lock to demonstrate:
 
 * Operating several types of locks
-* Keypad input to operate the lock locally (TBD)
+* Keypad input to operate the lock locally
 * Secure wireless communication to operate the lock locally (TBD)
 * Secure communication with the lock remotely (TBD)
 * Secure OTA (TBD)
@@ -55,8 +55,8 @@ Lock Variant 2: Using a rotating motor
 * Rotating door lock motor (e.g. http://adafru.it/3881)
 * Solder iron, some solder
 
-Control Variant 1: Number keypad (TBD)
---------------------------------------
+Control Variant 1: Number keypad
+--------------------------------
 * Number keypad (e.g. http://adafru.it/419)
 
 Control Variant 2: Touch sensors (TBD)
@@ -71,6 +71,7 @@ Control Variant 3: Fingerprint sensor (TBD)
 Wiring up the breadboard
 ========================
 There are multiple ways to wire the breadboard. Locations of various components don't matter as long as the connections between the components are correct. We'll give an example that will get you going even if you don't know anything about electronics.
+When talking about holes on the breadboard, we're assuming the breadboard is labeled like http://adafru.it/239 - A to J is left to right, 1 to 63 is top to bottom. Some breadboards are labeled differently.
 
 Common to all variants
 ----------------------
@@ -84,7 +85,7 @@ Common to all variants
 Lock Variant 1: Using a lock-style solenoid
 -------------------------------------------
 #.
- Add the DC power barrel to the breadboard. Pin 1 (the one on the opposite side of the plug) goes to hole H60, pin 2 (under the plug) to H63, pin 3 (on the side) to J61. Make sure the power supply is set up for center positive.¨
+ Add the DC power barrel to the breadboard. Pin 1 (the one on the opposite side of the plug) goes to hole H60, pin 2 (under the plug) to H63, pin 3 (on the side) to J61. Make sure the power supply is set up for center positive.
 #.
  Prepare the DRV8871 breakout board. This requires some soldering.
  Cut the header strip to 4 pins (usually the board comes with a 6 pin strip).
@@ -97,13 +98,13 @@ Lock Variant 1: Using a lock-style solenoid
 #.
  Connect the DRV8871 breakout board. The terminal blocks go to the right, the pins you soldered on go to holes E25, E26, E27 and E28.
 #.
- Connect the lock's power supply to the DRV8871 board. Hole F60 to C27, and F63 to C28.
+ Connect the DC barrel jack to the DRV8871 board. Pin 1 (hole F60) to the VM pin on the DRV8871 board (hole C27), and pin 2 (hole F63) to the GND pin on the DRV8871 board (hole C28).
 #.
- Connect the DRV8871's IN1 port to the Arduino's digital pin 2: Hole B26 to I11.
+ Connect the DRV8871's IN1 port to the Arduino's digital pin D6: Hole B26 to I7.
 #.
- Connect the DRV8871's IN2 port to the Arduino's digital pin 3: Hole B25 to I10.
+ Connect the DRV8871's IN2 port to the Arduino's digital pin D7: Hole B25 to I6.
 #.
- Connect the lock-style solenoid to the DRV8871's MOTOR terminal block (the upper one).
+ Connect the lock-style solenoid to the DRV8871's MOTOR terminal block (the one facing the Arduino). The wire facing the Arduino board goes to the blue wire on the solenoid, the wire closer to the power barrel goes to the red wire on the solenoid.
 #.
  Note that the Arduino board is not connected to the barrel power plug. You need to power the lock with the barrel power plug and the Arduino board with its USB port, at the same time.
 
@@ -112,24 +113,24 @@ Lock Variant 2: Using a rotating motor
 #.
  Connect the L9110H driver to the breadboard. The side with the notch faces the Arduino board, pins go into holes E22 to E25 and F22 to F25.
 #.
- Connect the power supply to the L9110H: The + terminal (Hole +23) to hole D23 and hole +24 to D24. The - terminal (hole -22) to hole G22 and hole -25 to hole G25.
+ Connect the power supply to the L9110H: The VCC pins (pins 2 and 3 on the L9110H, holes D23 and D24) must be connected to the + terminal (e.g. hole D23 to +23 and D24 to +24). The GND pins (pins 5 and 8 on the L9110H, holes G22 and G25) must be connected to the - terminal (e.g. hole G22 to -22 and G25 to -25).
 #.
- Connect the L9110H's control ports to the Arduino's digital outputs 6 and 7 (hole H23 to J6, H24 to J7).
+ Connect the L9110H's control ports (IA and IB, pins 6 and 7) to the Arduino's digital outputs D6 and D7 (hole H23 to J6, H24 to J7).
 #.
- Connect the L9110H's output pins to the lock motor. The easiest way is to solder a breadboard wire to the motor's wires. Connect the black wire to hole A22, and the red wire to hole A25.
+ Connect the L9110H's output pins (OA and OB, pins 1 and 4) to the lock motor. The easiest way is to solder a breadboard wire to the motor's wires. Connect the black wire to hole A22, and the red wire to hole A25.
 
-Control Variant 1: Number keypad (TBD)
---------------------------------------
+Control Variant 1: Number keypad
+--------------------------------
 #.
  Connect the 7 pins of the keypad to the Arduino's digital pins 2, 3, 4, 5, 8, 9 and 10. From left to right:
 
- * Pin 1 to hole H4
- * Pin 2 to hole H11
- * Pin 3 to hole H5
- * Pin 4 to hole H8
- * Pin 5 to hole H3
- * Pin 6 to hole H9
- * Pin 7 to hole H10
+ * Pin 1 to D9 (hole H4)
+ * Pin 2 to D2 (hole H11)
+ * Pin 3 to D8 (hole H5)
+ * Pin 4 to D5 (hole H8)
+ * Pin 5 to D10 (hole H3)
+ * Pin 6 to D4 (hole H9)
+ * Pin 7 to D3 (hole H10)
 
 ************
 The Software
@@ -152,3 +153,32 @@ Resources
 .. _ResourcesDL:
 
 - See `Door lock's requirement <https://git.ostc-eu.org/OSTC/requirements/-/issues/12>`_
+
+*******************
+Using the door lock
+*******************
+
+Initial setup
+=============
+After initial flashing, you get to select the pin that will unlock the lock.
+The red LED on the Arduino board flashes quickly while waiting for your new pin.
+
+Setting a pin
+=============
+You can use any combination of keys, including pressing multiple keys simultaneously.
+Enter the pin you would like to use, and finish by holding the "*" key and pressing "#".
+For example, if you want to use pin 1 23 4 (where 3 has to be pressed while 2 is still being held down), press and release 1, press and hold 2, press 3, release 2 and 3, press and release 4, press and hold * , press #, release * and #.
+
+Driving the lock
+================
+Simply enter your pin using the matrix keypad to unlock the lock.
+
+Changing the pin
+================
+Within 10 seconds of entering your pin to unlock the lock, hold the "*" key and press "#".
+At this point, the red LED on the board will flash quickly, and you can enter a new pin
+as described in "Setting a pin".
+
+Forgotten pin
+=============
+There is no "master key". If you've forgotten your pin, flash the separate `factory reset app <https://booting.oniroproject.org/distro/blueprints/doorlock/doorlock-factoryreset>`_, boot it, then reflash the doorlock app.
