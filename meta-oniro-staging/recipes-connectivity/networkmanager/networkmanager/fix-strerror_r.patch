@@ -1,0 +1,34 @@
+From 18765456467af24786bc2397ca72affe42149504 Wed Sep  8 22:33:40 2021
+From: Bernhard Rosenkraenzer <bernhard.rosenkraenzer.ext@huawei.com>
+Date: Wed,  8 Sep 2021 22:33:40 +0200
+Subject: [PATCH] Fix crash on startup when using musl
+
+nm_strerror_native_r makes use of a glibc extension to strerror_r
+when _GNU_SOURCE is defined -- even when not using glibc.
+
+musl uses _GNU_SOURCE for some extensions, but doesn't have the
+strerror_r for unknown error codes extension -- resulting in a
+NULL pointer being passed to UTF-8 check functions that don't
+check for it.
+
+Use the non-glibc code path when __GLIBC__ isn't set.
+
+Signed-off-by: Bernhard Rosenkraenzer <bernhard.rosenkraenzer.ext@huawei.com>
+Upstream-status: Inappropriate [problem doesn't exist in current releases]
+
+---
+ nm-errno.c |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff -up NetworkManager-1.22.10/shared/nm-glib-aux/nm-errno.c.omv~ NetworkManager-1.22.10/shared/nm-glib-aux/nm-errno.c
+--- NetworkManager-1.22.10/shared/nm-glib-aux/nm-errno.c.omv~	2021-09-08 22:10:10.753007649 +0200
++++ NetworkManager-1.22.10/shared/nm-glib-aux/nm-errno.c	2021-09-08 22:18:11.975338808 +0200
+@@ -106,7 +106,7 @@ nm_strerror_native_r (int errsv, char *b
+ 	nm_assert (buf);
+ 	nm_assert (buf_size > 0);
+ 
+-#if (_POSIX_C_SOURCE >= 200112L) && !  _GNU_SOURCE
++#if !defined(__GLIBC__) || ((_POSIX_C_SOURCE >= 200112L) && !  _GNU_SOURCE)
+ 	/* XSI-compliant */
+ 	{
+ 		int errno_saved = errno;
