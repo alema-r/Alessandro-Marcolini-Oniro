@@ -42,7 +42,7 @@ GO_IMPORT = "booting.oniroproject.org/distro/components/sysota"
 DEPENDS += "zmk-native pkgconfig-native systemd"
 EXTRA_OEMAKE += "-I${RECIPE_SYSROOT_NATIVE}/usr/include"
 
-do_configure[dirs] =+ "${B}/make-build"
+do_configure[cleandirs] =+ "${B}/make-build"
 
 do_configure_append() {
     # Note that path ${S}/src/${GO_IMPORT} is hard-coded in go.bbclass.
