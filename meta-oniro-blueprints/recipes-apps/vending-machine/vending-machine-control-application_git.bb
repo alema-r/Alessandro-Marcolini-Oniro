@@ -31,6 +31,7 @@ do_install() {
     oe_runmake install
     install -d "${D}${systemd_system_unitdir}/"
     install -m 0644 "${WORKDIR}/${BPN}.service" "${D}${systemd_system_unitdir}/"
-    sed -i -e 's,@VENDING_MACHINE_CONTROL_I2C_BUS@,${VENDING_MACHINE_CONTROL_I2C_BUS},g' \
-        "${D}${systemd_system_unitdir}/${BPN}.service"
+    install -d "${D}${sysconfdir}"
+    echo "VENDING_MACHINE_CONTROL_I2C_BUS=${VENDING_MACHINE_CONTROL_I2C_BUS}" > \
+        "${D}${sysconfdir}/vending-machine.env"
 }
