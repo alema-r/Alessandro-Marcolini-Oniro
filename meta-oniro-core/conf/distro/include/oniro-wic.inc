@@ -33,6 +33,8 @@ APPDATA_PARTITION_SIZE ?= "1G"
 # Default root filesystem type is squashfs.
 ROOT_FSTYPE ?= "squashfs"
 
+WIC_BOOOTLOADER_TIMEOUT ?= "5"
+
 #
 # Use this to include extra wic configuration per partition
 #
