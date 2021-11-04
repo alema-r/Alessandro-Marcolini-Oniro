@@ -7,6 +7,7 @@ Description=Vending Machine Control Application
 
 [Service]
 Type=notify
+Environment="VENDING_MACHINE_CONTROL_I2C_BUS=@VENDING_MACHINE_CONTROL_I2C_BUS@"
 ExecStart=/usr/bin/vending-machine-control-application
 Restart=always
 

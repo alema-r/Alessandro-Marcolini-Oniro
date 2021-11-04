@@ -23,8 +23,14 @@ REQUIRED_DISTRO_FEATURES = "systemd"
 
 EXTRA_OEMAKE += "DESTDIR=${D}"
 
+VENDING_MACHINE_CONTROL_I2C_BUS ??= "0"
+VENDING_MACHINE_CONTROL_I2C_BUS_rpi ?= "1"
+VENDING_MACHINE_CONTROL_I2C_BUS_seco-intel-b68 ?= "2"
+
 do_install() {
     oe_runmake install
     install -d "${D}${systemd_system_unitdir}/"
     install -m 0644 "${WORKDIR}/${BPN}.service" "${D}${systemd_system_unitdir}/"
+    sed -i -e 's,@VENDING_MACHINE_CONTROL_I2C_BUS@,${VENDING_MACHINE_CONTROL_I2C_BUS},g' \
+        "${D}${systemd_system_unitdir}/${BPN}.service"
 }
