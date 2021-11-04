@@ -45,6 +45,13 @@ python generate_dynamic_ini() {
             bb.fatal("weston.ini already exists and it is not a regular file")
         config.read(ini_path)
 
+    # Core configuration
+    if d.getVar('WESTON_IDLE_TIME', True) != None:
+        bb.note('Handling WESTON_IDLE_TIME.')
+        if 'core' not in config.sections():
+            config.add_section('core')
+        config.set('core', 'idle-time', d.getVar('WESTON_IDLE_TIME'))
+
     # Handle no toolbar configuration.
     if d.getVar('WESTON_INI_NO_TOOLBAR', True) == '1':
         bb.note('Handling WESTON_INI_NO_TOOLBAR.')
