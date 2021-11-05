@@ -141,6 +141,13 @@ blueprint-gateway-linux:
     CI_ONIRO_BITBAKE_TARGETS: "blueprint-gateway-image"
     CI_ONIRO_INSTANCE_SIZE: s3.xlarge.4
 
+blueprint-gateway-zephyr:
+  extends: .build-zephyr
+  variables:
+    MACHINE: arduino-nano-33-ble
+    DISTRO: oniro-zephyr-blueprint-gateway
+    CI_ONIRO_BITBAKE_TARGETS: "zephyr-blueprint-gateway-node"
+
 blueprint-vending-machine-seco-intel-b68:
   extends: .build-linux
   variables:
