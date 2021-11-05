@@ -43,7 +43,7 @@ by:
 
 .. code-block:: console
 
-    $ sudo add-apt-repository ppa:openharmony/tools
+    $ sudo add-apt-repository ppa:ostc/ppa
     $ sudo apt-get update
     $ sudo apt-get install git-repo
 
