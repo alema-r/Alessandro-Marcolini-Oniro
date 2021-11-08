@@ -9,11 +9,11 @@ LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=ba963850f6731c74878fe839d227e675"
 
 SRC_URI = "git://booting.oniroproject.org/distro/components/${BPN};protocol=https;branch=main"
-SRCREV = "de63b97d58ed04052e58064a1228ed07d36b29e2"
+SRCREV = "e755ddda4fdd51a90e0448477183fb0bdede62fd"
 SRC_URI += "file://${BPN}.service"
 S = "${WORKDIR}/git"
 
-DEPENDS="systemd i2c-tools json-c libwebsockets"
+DEPENDS="systemd pim435 i2c-tools json-c libwebsockets"
 
 inherit pkgconfig features_check systemd
 
@@ -22,6 +22,7 @@ SYSTEMD_SERVICE_${PN} = "${BPN}.service"
 REQUIRED_DISTRO_FEATURES = "systemd"
 
 EXTRA_OEMAKE += "DESTDIR=${D}"
+EXTRA_OEMAKE += "sysroot=${RECIPE_SYSROOT}"
 
 VENDING_MACHINE_CONTROL_I2C_BUS ??= "0"
 VENDING_MACHINE_CONTROL_I2C_BUS_rpi ?= "1"
