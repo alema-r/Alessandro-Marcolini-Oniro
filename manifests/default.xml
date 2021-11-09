@@ -38,9 +38,9 @@ SPDX-FileCopyrightText: Huawei Inc.
 		dunfell is using the 1.46 bitbake branch so the bitbake project follow is following this branch.
 		More info can be found at https://wiki.yoctoproject.org/wiki/Releases.
 	-->
-	<project name="bitbake" remote="oe" revision="b4117231bf070703b9375af4411bcd160e07fdae" path="bitbake" />
-	<project name="openembedded-core" remote="oe" revision="62cdc20a2186ecd54d3a7131ec8f6937aa0229ed" path="oe-core" />
-	<project name="meta-openembedded" remote="openembedded" revision="814eec96c2a29172da57a425a3609f8b6fcc6afe" path="meta-openembedded" />
+	<project name="bitbake" remote="oe" revision="f1a3e9d22b5f4fb01c4a0e4ba03afb1afbba47f1" path="bitbake" />
+	<project name="openembedded-core" remote="oe" revision="6cd21ddc6f998eec4d9be05f080e32072fddd2bd" path="oe-core" />
+	<project name="meta-openembedded" remote="openembedded" revision="7889158dcd187546fc5e99fd81d0779cad3e8d17" path="meta-openembedded" />
 	<project name="meta-homeassistant/meta-homeassistant.git" remote="github" revision="7de873c320fb20414738ad02ee45fc0e3e4a1e0b" path="meta-homeassistant" />
 	<project name="meta-freertos" remote="aehs29" revision="cdca1f2fffd99c00e3e471421ce485d3aaf99276" path="meta-freertos" />
 	<project name="meta-st-stm32mp" remote="stm" revision="b25a2b0daa6e9e1e3ce76b9fdf5bd7cbf30e90fc" path="meta-st-stm32mp" />
