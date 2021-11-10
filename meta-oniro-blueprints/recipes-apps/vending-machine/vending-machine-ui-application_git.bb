@@ -9,7 +9,7 @@ LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=ba963850f6731c74878fe839d227e675"
 
 SRC_URI = "git://booting.oniroproject.org/distro/components/${BPN};protocol=https;branch=main"
-SRCREV = "d0254d4666661d7c67e554dfda5d1f86dac0b7f7"
+SRCREV = "3c87c70f679686d69dc5d08ec842daa61ba1f6a7"
 SRC_URI += "file://${BPN}.service"
 S = "${WORKDIR}/git"
 
