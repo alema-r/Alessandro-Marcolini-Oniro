@@ -144,6 +144,15 @@ lava-qemu-x86:
   rules:
     - when: never
 
+lava-zephyr-96b-nitrogen-tests:
+  needs: [zephyr-96b-nitrogen-tests]
+  stage: test
+  extends: .lava-test
+  variables:
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/nitrogen-test.yaml"
+    CI_BUILD_JOB_NAME: zephyr-96b-nitrogen-tests
+    CI_REPORT_JOB_NAME: lava-report
+
 lava-report:
   needs: [lava-linux-avenger96, lava-qemu-x86_64, lava-qemu-x86]
   extends: .lava-report
