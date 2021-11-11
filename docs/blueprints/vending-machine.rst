@@ -10,21 +10,19 @@ Vending Machine Blueprint
 .. contents::
    :depth: 4
 
-.. attention::
-   The `Vending Machine` blueprint is a still work in progress (WIP). For
-   more information, see the :ref:`resources <ResourcesVM>` section.
-
 Overview
 ********
 
-The Vending Machine Blueprint provides support for building a PoC smart vending machine
-with components showing the capabilities of the |main_project_name| build infrastructure to easily
-build an end-to-end solution using multiple operating systems cooperating inside a product.
+The Vending Machine Blueprint provides support for building a PoC smart vending
+machine with components showing the capabilities of the |main_project_name|
+build infrastructure to easily build an end-to-end solution using multiple
+operating systems cooperating inside a product.
 
 Get sources
 ***********
 #. 
-   Get |main_project_name| sources as described in the :ref:`documentation <OniroQuickBuild>`.
+   Get |main_project_name| sources as described in the :ref:`documentation
+   <OniroQuickBuild>`.
 
 #. 
    If you already have sources cloned, update them to the most recent revision
