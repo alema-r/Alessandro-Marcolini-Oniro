@@ -295,6 +295,7 @@
     name: registry.booting.oniroproject.org/distro/oniro/docs-builder:latest
   stage: build
   script:
+    - (cd docs && git lfs pull)
     - make -C docs
   artifacts:
     paths:
