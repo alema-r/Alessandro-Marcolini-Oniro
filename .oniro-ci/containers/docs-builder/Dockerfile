@@ -10,7 +10,7 @@ ARG DEBIAN_FRONTEND="noninteractive"
 RUN apt-get update -qq \
  && apt-get install -y eatmydata \
  && eatmydata apt-get install -qq -y \
-      git-repo git \
+      git-repo git git-lfs \
       python3-sphinx python3-sphinx-rtd-theme python3-recommonmark python3-sphinx-tabs \
       python3-sphinxcontrib.plantuml \
  && eatmydata apt-get install -qq -y 'ca-certificates=20210119~20.10.1' \
