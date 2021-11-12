@@ -23,9 +23,9 @@ ARG DEBIAN_FRONTEND="noninteractive"
 RUN apt-get update -qq \
  && apt-get install -y eatmydata \
  && eatmydata apt-get install -qq -y \
-        bash git-repo apt-utils build-essential chrpath cpio diffstat gawk git sudo wget \
-	language-pack-en-base time locales python-is-python3 python3-distutils libssl-dev \
-        iproute2 iputils-ping curl jq \
+	bash git-repo git-lfs apt-utils build-essential chrpath cpio diffstat \
+	gawk git sudo wget language-pack-en-base time locales python-is-python3 \
+	python3-distutils libssl-dev iproute2 iputils-ping curl jq \
  && eatmydata apt-get install -qq -y 'ca-certificates=20210119~20.04.2' \
  && eatmydata apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN locale-gen
