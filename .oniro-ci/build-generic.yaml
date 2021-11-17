@@ -47,8 +47,8 @@
         if [ -n "$CI_MERGE_REQUEST_SOURCE_PROJECT_URL" ]; then
             echo "CI: Bootstrapping '$CI_PROJECT_DIR' as 'incoming-merged' remote in '$CI_ONIRO_GIT_REPO_PATH'";
             ( cd "$CI_ONIRO_GIT_REPO_PATH" \
-                && git remote add incoming-merged "$CI_PROJECT_DIR" \
-                && git fetch incoming-merged HEAD );
+                && git remote add incoming-merged "$CI_MERGE_REQUEST_SOURCE_PROJECT_URL" \
+                && git fetch incoming-merged );
         fi;
         echo "CI: Switching $CI_ONIRO_GIT_REPO_PATH to $CI_COMMIT_SHA";
         ( cd "$CI_ONIRO_GIT_REPO_PATH" && git checkout "$CI_COMMIT_SHA" );
