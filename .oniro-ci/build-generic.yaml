@@ -52,6 +52,9 @@
         fi;
         echo "CI: Switching $CI_ONIRO_GIT_REPO_PATH to $CI_COMMIT_SHA";
         ( cd "$CI_ONIRO_GIT_REPO_PATH" && git checkout "$CI_COMMIT_SHA" );
+        if [ -n "$CI_MERGE_REQUEST_SOURCE_PROJECT_URL" ]; then
+            ( cd "$CI_ONIRO_GIT_REPO_PATH" && git lfs pull incoming-merged );
+        fi;
       fi
 
     # Some of the repo projects come with LFS configuration (that repo refuses
