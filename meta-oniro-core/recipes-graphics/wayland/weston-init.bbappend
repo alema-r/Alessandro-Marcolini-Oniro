@@ -15,6 +15,7 @@ WESTON_INI_BACKGROUND_IMAGE ?= ""
 WESTON_INI_BACKGROUND_IMAGE_BASENAME = "${@os.path.basename("${WESTON_INI_BACKGROUND_IMAGE}")}"
 WESTON_INI_BACKGROUND_COLOR ?= "0xffffffff"
 WESTON_INI_BACKGROUND_TYPE ?= "centered"
+WESTON_INI_INPUT_METHOD_PATH ?= "/usr/libexec/weston-keyboard"
 
 do_install_append() {
 	# The filename references in WESTON_INI_BACKGROUND_IMAGE needs to be
@@ -64,6 +65,13 @@ python generate_dynamic_ini() {
         if 'shell' not in config.sections():
             config.add_section('shell')
         config.set('shell', 'locking', d.getVar('WESTON_INI_SHELL_LOCKING'))
+
+    # Handle Input method
+    if d.getVar('WESTON_INI_INPUT_METHOD_PATH') != None:
+        bb.note('Handling WESTON_INI_INPUT_METHOD_PATH')
+        if 'input-method' not in config.sections():
+            config.add_section('input-method')
+        config.set('input-method', 'path', d.getVar('WESTON_INI_INPUT_METHOD_PATH'))
 
     # Handle background.
     background_image = d.getVar('WESTON_INI_BACKGROUND_IMAGE', True)
