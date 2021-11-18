@@ -19,3 +19,4 @@ This section details the hardware (including virtualized) supported as part of
    virtual-boards/index
    adding-hardware-support
    blueprint-peripherals/index
+   peripherals/index
