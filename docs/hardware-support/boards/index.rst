@@ -4,6 +4,8 @@
 
 .. include:: ../../definitions.rst
 
+.. _SupportedBoards:
+
 Supported Boards
 ################
 
