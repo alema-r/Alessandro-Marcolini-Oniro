@@ -15,7 +15,6 @@ Build System Guide
    oniro-build/index
    os/index
    ci/index
-   blueprints/index
    supported-images
    hardware-support/index
    fallback-devices-support

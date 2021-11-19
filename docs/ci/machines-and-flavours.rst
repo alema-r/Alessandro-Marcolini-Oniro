@@ -161,23 +161,3 @@ This job extends `.build-freertos` job from the manifest repository and builds
 32bit ARMv5 micro-controller virtual machine.
 
 The cache for this job is publicly available.
-
-blueprint-smartpanel-zephyr
-...........................
-
-This job extends `.build-zephyr` job from the manifest repository and builds
-the Smart Panel Blueprint - the Zephyr side of it.
-
-.. note::
-    The cache for this job is not public, pending legal review of any firmware
-    that may be included.
-
-blueprint-smartpanel-linux
-..........................
-
-This job extends `.build-linux` job from the manifest repository and builds
-the Smart Panel Blueprint - the Linux side of it.
-
-.. note::
-    The cache for this job is not public, pending legal review of any firmware
-    that may be included.
