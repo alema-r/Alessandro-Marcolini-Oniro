@@ -52,18 +52,7 @@
         fi;
         echo "CI: Switching $CI_ONIRO_GIT_REPO_PATH to $CI_COMMIT_SHA";
         ( cd "$CI_ONIRO_GIT_REPO_PATH" && git checkout "$CI_COMMIT_SHA" );
-        if [ -n "$CI_MERGE_REQUEST_SOURCE_PROJECT_URL" ]; then
-            ( cd "$CI_ONIRO_GIT_REPO_PATH" && git lfs pull incoming-merged );
-        fi;
       fi
-
-    # Some of the repo projects come with LFS configuration (that repo refuses
-    # to initialize). See:
-    # https://gerrit-review.googlesource.com/c/git-repo/+/83130/. As per this
-    # limitation, the repositories using LFS blobs need to be pulled manually.
-    # Now that repo synced all projects and we handled fork-based merge
-    # requests, we can pull all the LFS blobs.
-    - find -type d -name .git -execdir git lfs pull \;
 
   script:
     # Reload the value of SCRATCH_DIR set in the before_script phase. Those run
@@ -306,7 +295,6 @@
     name: registry.booting.oniroproject.org/distro/oniro/docs-builder:latest
   stage: build
   script:
-    - (cd docs && git lfs pull)
     - make -C docs
   artifacts:
     paths:
