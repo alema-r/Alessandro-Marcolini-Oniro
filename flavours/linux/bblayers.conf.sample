@@ -16,7 +16,6 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-zephyr \
   ##OEROOT##/../meta-zephyr-bsp \
   ##OEROOT##/../oniro/meta-oniro-core \
-  ##OEROOT##/../oniro/meta-oniro-blueprints \
   ##OEROOT##/../meta-freertos \
   ##OEROOT##/../meta-intel \
   ##OEROOT##/../meta-seco-intel \
