@@ -89,17 +89,6 @@ On OpenMandriva:
 OpenMandriva has already added |main_project_name| version of ``repo`` to its official
 repositories. If you're on OpenMandriva, simply ``dnf install repo``.
 
-Git LFS
-*******
-
-Some projects included in the repo configuration (manifests) use git LFS which
-means the associated package needs to be installed. Here is an example for
-**Ubuntu**:
-
-.. code-block:: console
-
-    $ sudo apt-get install git-lfs
-
 The Manifests
 *************
 

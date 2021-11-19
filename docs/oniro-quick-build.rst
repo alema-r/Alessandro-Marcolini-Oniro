@@ -45,7 +45,7 @@ by:
 
     $ sudo add-apt-repository ppa:ostc/ppa
     $ sudo apt-get update
-    $ sudo apt-get install git-repo git-lfs
+    $ sudo apt-get install git-repo
 
 Initialize a repo workspace and clone all required repositories:
 
