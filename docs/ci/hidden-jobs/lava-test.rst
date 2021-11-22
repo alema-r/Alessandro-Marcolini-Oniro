@@ -24,12 +24,12 @@ CI_LAVA_JOB_DEFINITION
 This is the url to the job definition template. The template needs to have
 variables inside which will be replaced by this job. The list of variables is
 the following:
+
 - $ci_pipeline_id - pipeline ID of the CI job ($CI_PIPELINE_ID in GitLab)
 - $ci_job_id - CI job ID ($CI_JOB_ID in GitLab)
 - $ci_project_id - CI project ID ($CI_PROJECT_ID in GitLab)
 - $build_job_id - job ID of the **build** job within the same pipeline
-- $callback_url - url which triggers the execution or the manual job which
-collects the results back from LAVA to GitLab. See :doc:`lava-report`
+- $callback_url - url which triggers the execution or the manual job which collects the results back from LAVA to GitLab. See :doc:`lava-report`
 
 CI_BUILD_JOB_NAME
 -----------------
@@ -48,4 +48,10 @@ LAVA and import them to GitLab.
 CI_LAVA_INSTANCE
 ----------------
 
-The base url of the LAVA server.
+The base url of the LAVA server. The variable should be added to GitLab CI/CD variables.
+
+
+CI_LAVA_TOKEN
+----------------
+
+The authentication token generated on LAVA server for job submission from gitlab. The variable should be added to GitLab CI/CD variables.

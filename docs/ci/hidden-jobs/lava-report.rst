@@ -16,4 +16,4 @@ Job Variables
 CI_LAVA_INSTANCE
 ----------------
 
-The base url of the LAVA server.
+The base url of the LAVA server. The variable should be added to GitLab CI/CD variables.
