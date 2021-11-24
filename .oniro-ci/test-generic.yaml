@@ -8,7 +8,12 @@
   interruptible: true
   image:
     name: registry.ostc-eu.org/ostc/containers/ostc-builder:latest
+  variables:
+    CI_LAVA_INSTANCE: "https://lava.ostc-eu.org/"
   before_script:
+    - test -n "$CI_LAVA_TOKEN" || (
+        echo "precondition failed - please disable the child job if CI_LAVA_TOKEN not set in gitlab CI/CD variables"
+        && exit 1 )
     # Check if the job is configured properly.
     - test -n "$CI_LAVA_JOB_DEFINITION" || (
         echo "precondition failed - set CI_LAVA_JOB_DEFINITION to the URL of the LAVA test job definition"
@@ -77,6 +82,8 @@
   image:
     name: registry.ostc-eu.org/ostc/containers/ostc-builder:latest
   stage: report
+  variables:
+    CI_LAVA_INSTANCE: "https://lava.ostc-eu.org/"
   script:
     - |
       for file in $(find ./ -name "job_ids_*.txt"); do
