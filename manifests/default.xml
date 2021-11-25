@@ -74,6 +74,7 @@ SPDX-FileCopyrightText: Huawei Inc.
 	<project name="oniro" revision="dunfell" path="oniro">
 		<linkfile src="README.md" dest="README.md"/>
 	</project>
+	<project name="meta-arm-dunfell-backports" revision="dunfell" path="meta-arm-mixin" />
 	<project name="meta-clang" revision="main" path="meta-clang" />
 	<project name="meta-riscv" revision="OSTC/dunfell" path="meta-riscv" />
 	<project name="meta-zephyr" revision="ostc/master" path="meta-zephyr" />

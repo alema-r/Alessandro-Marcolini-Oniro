@@ -81,6 +81,9 @@ WKS_FILE_qemux86 ?= "x-qemux86-directdisk.wks.in"
 IMAGE_FSTYPES_qemux86-64 ?= "wic wic.bz2"
 WKS_FILE_qemux86-64 ?= "x-qemux86-directdisk.wks.in"
 
+WKS_FILE_qemu-generic-arm64 = "x-qemu-efi-disk.wks.in"
+IMAGE_FSTYPES_qemu-generic-arm64 += "wic wic.qcow2"
+
 WKS_FILE_seco-imx8mm-c61 ?= "x-imx-uboot-bootpart.wks.in"
 
 #
