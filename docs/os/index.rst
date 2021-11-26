@@ -14,4 +14,3 @@ details various aspects for each kernel type.
    :maxdepth: 2
 
    linux/index
-   supported-technologies/index

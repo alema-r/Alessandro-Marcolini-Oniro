@@ -6,15 +6,38 @@ Build System Guide
 ##################
 
 .. toctree::
-   :maxdepth: 1
-      
+   :caption: Quick Start
+   :maxdepth: 2
+
    oniro-quick-build
-   yocto-build-system/index
-   repo-workspace
+
+.. toctree::
+   :caption: Oniro Project Blueprints
+   :maxdepth: 2
+
+   Oniro Project Blueprints <https://docs.oniroproject.org/projects/blueprints>
+
+.. toctree::
+   :caption: Build System Guide
+   :maxdepth: 2
+
+   Overview <yocto-build-system/index>
+   Creating Workspace <repo-workspace>
    build-flavours/index
    oniro-build/index
    os/index
    ci/index
    supported-images
    hardware-support/index
-   fallback-devices-support
+
+.. toctree::
+   :caption: Supported Technologies
+   :maxdepth: 2
+
+   supported-technologies/openthread
+
+.. toctree::
+   :caption: Troubleshoot
+   :maxdepth: 2
+
+   fallback-devices-support 
