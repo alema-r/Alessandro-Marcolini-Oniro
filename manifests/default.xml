@@ -71,14 +71,14 @@ SPDX-FileCopyrightText: Huawei Inc.
 
 	-->
 
-	<project name="oniro" revision="refs/tags/v1.0.0-rc" path="oniro">
+	<project name="oniro" revision="dunfell" path="oniro">
 		<linkfile src="README.md" dest="README.md"/>
 	</project>
-	<project name="meta-arm-dunfell-backports" revision="7902cf4ce402e52a3a939b4b50b4905193c943ed" path="meta-arm-mixin" />
-	<project name="meta-clang" revision="60891c293886c70f85a5c595315402609222d935" path="meta-clang" />
-	<project name="meta-riscv" revision="98124ed494e714e50f1281517199a73b120a34bc" path="meta-riscv" />
-	<project name="meta-zephyr" revision="99c895c2d0363fb7c829b1a3712e54015ea61660" path="meta-zephyr" />
-        <project name="meta-zephyr-bsp" revision="fb4553c8ff27334683fad73a62573d325d55298b" path="meta-zephyr-bsp" />
-	<project name="docs" path="docs" revision="refs/tags/v1.0.0-rc" />
-	<project name="ip-policy" remote="oniro-governance" revision="refs/tags/v1.0.0-rc" path="ip-policy" />
+	<project name="meta-arm-dunfell-backports" revision="dunfell" path="meta-arm-mixin" />
+	<project name="meta-clang" revision="main" path="meta-clang" />
+	<project name="meta-riscv" revision="OSTC/dunfell" path="meta-riscv" />
+	<project name="meta-zephyr" revision="ostc/master" path="meta-zephyr" />
+        <project name="meta-zephyr-bsp" revision="dunfell" path="meta-zephyr-bsp" />
+	<project name="docs" path="docs" revision="main" />
+	<project name="ip-policy" remote="oniro-governance" revision="main" path="ip-policy" />
 </manifest>
