@@ -76,35 +76,6 @@ sample application, *blinky*. In order to do so issue the following:
 
 Flashing an application
 =======================
-Install bossac tool required to flash Arduino Nano 33 BLE.
-
-.. note::
-   You will not be able to flash with the bossac included with the zephyr-sdk or using shumatech’s
-   mainline build.
-
-Installing bossac
------------------
-
-You can install the Arduino variant of bossac in one of two ways:
-
-**Option 1:** Build the binary from the Arduino source tree.
-
-**Option 2:** Download the Arduino IDE:
-     1. Install the board support package within the IDE.
-     2. Change your IDE preferences to provide verbose logging.
-     3. Build and flash a sample application and read the logs to figure out
-        where Arduino stored bossac.
-	   
-After successful installation, add the bossac installed path to the PATH
-variable. It is important for the bitbake to find the correct bossac installed path
-to flash.
-
-.. code-block:: console
- 
-   $ export PATH=<bossac_path>:$PATH
-
-How to flash
-------------
 
 1. Enable the permissions for board connected port:
 
