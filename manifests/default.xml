@@ -71,7 +71,7 @@ SPDX-FileCopyrightText: Huawei Inc.
 
 	-->
 
-	<project name="oniro" revision="refs/tags/v1.0.0-rc" path="oniro">
+	<project name="oniro" revision="releases/v1.0.0" path="oniro">
 		<linkfile src="README.md" dest="README.md"/>
 	</project>
 	<project name="meta-arm-dunfell-backports" revision="7902cf4ce402e52a3a939b4b50b4905193c943ed" path="meta-arm-mixin" />
