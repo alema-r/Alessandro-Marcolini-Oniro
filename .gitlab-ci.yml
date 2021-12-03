@@ -81,6 +81,8 @@ aggregate-docs:
 # Mimic the updated rules for lava-test from the bitbake-workspace.
 .lava-test:
   rules:
+    - if: '$CI_LAVA_TOKEN == null'
+      when: never
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TITLE =~ /^(wip|draft):.*/i'
       when: manual
@@ -96,6 +98,8 @@ aggregate-docs:
 # Mimic the updated rules for lava-report from the bitbake-workspace.
 .lava-report:
   rules:
+    - if: '$CI_LAVA_TOKEN == null'
+      when: never
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TITLE =~ /^(wip|draft):.*/i'
       when: manual
@@ -152,15 +156,10 @@ lava-zephyr-96b-nitrogen-tests:
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/nitrogen-test.yaml"
     CI_BUILD_JOB_NAME: zephyr-96b-nitrogen-tests
     CI_REPORT_JOB_NAME: lava-report
-  rules:
-    - if: '$CI_LAVA_TOKEN == ""'
-      when: never
 
 lava-report:
-  needs: [lava-linux-avenger96, lava-qemu-x86_64, lava-qemu-x86]
+  needs: [lava-zephyr-96b-nitrogen-tests]
   extends: .lava-report
-  rules:
-    - when: never
 
 .build-with-kaniko:
   stage: build
