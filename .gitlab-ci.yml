@@ -101,9 +101,11 @@ aggregate-docs:
     - if: '$CI_LAVA_TOKEN == null'
       when: never
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: manual
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TITLE =~ /^(wip|draft):.*/i'
       when: manual
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: manual
       changes:
         - assets/**/*
         - flavours/**/*
