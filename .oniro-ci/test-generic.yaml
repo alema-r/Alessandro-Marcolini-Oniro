@@ -26,10 +26,10 @@
         && exit 1 )
   script:
     # Build callback URL for the "report" job
-    - curl --silent "https://booting.oniroproject.org/api/v4/projects/$CI_PROJECT_ID/pipelines/$CI_PIPELINE_ID/jobs?per_page=100" > jobs-manual.json
+    - curl --silent "$CI_API_V4_URL/projects/$CI_PROJECT_ID/pipelines/$CI_PIPELINE_ID/jobs?per_page=100" > jobs-manual.json
     - job_id="$(jq -r ".[] | select(.name == \"$CI_REPORT_JOB_NAME\") | .id" jobs-manual.json)"
     - build_job_id="$(jq -r ".[] | select(.name == \"$CI_BUILD_JOB_NAME\") | .id" jobs-manual.json)"
-    - CALLBACK_URL="https://git.ostc-eu.org/api/v4/projects/$CI_PROJECT_ID/jobs/${job_id}/play"
+    - CALLBACK_URL="$CI_API_V4_URL/projects/$CI_PROJECT_ID/jobs/${job_id}/play"
     # Get the job definition from remote source.
     - curl --silent "$CI_LAVA_JOB_DEFINITION" > job_def.yaml
     # Update the job definition with CI data.
