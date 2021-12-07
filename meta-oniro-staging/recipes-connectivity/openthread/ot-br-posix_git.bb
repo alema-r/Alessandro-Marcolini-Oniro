@@ -28,7 +28,10 @@ S = "${WORKDIR}/git"
 
 DEPENDS = "autoconf-archive dbus readline avahi jsoncpp boost"
 
-inherit cmake systemd
+inherit cmake systemd writables
+
+WRITABLES = "data"
+WRITABLE_PATH[data] = "/var/lib/thread/"
 
 SYSTEMD_SERVICE_${PN} = "otbr-agent.service otbr-web.service"
 
