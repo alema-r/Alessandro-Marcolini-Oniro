@@ -13,7 +13,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=e7820bc7f7d1638a6b54fc2e8d7fb103 \
                     file://third_party/pt/LICENSE;md5=dcd598b69cad786beea33da7b1ae14b7 \
                     "
 
-SRC_URI = "gitsm://github.com/openthread/wpantund.git;protocol=https \
+SRC_URI = "gitsm://github.com/openthread/wpantund.git;protocol=https;branch=master \
            file://CVE-2021-33889.patch \
            "
 # CVE-2020-8916 has been fixed in commit
