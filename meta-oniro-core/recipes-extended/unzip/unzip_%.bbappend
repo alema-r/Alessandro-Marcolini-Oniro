@@ -9,4 +9,4 @@
 # -Werror=format-nonliteral globally in OPTIMIZE_FOR=security mode
 # while keeping unzip building.
 
-TARGET_CFLAGS_remove = "-Wformat-nonliteral -Werror=format-nonliteral"
+TARGET_CFLAGS:remove = "-Wformat-nonliteral -Werror=format-nonliteral"
