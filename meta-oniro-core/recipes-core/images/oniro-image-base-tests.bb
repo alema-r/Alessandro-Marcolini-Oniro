@@ -6,13 +6,13 @@ require recipes-core/images/oniro-image-base.bb
 
 SUMMARY = "Oniro Project image including the base OS software stack and tests"
 
-IMAGE_INSTALL_append = "\
+IMAGE_INSTALL:append = "\
     packagegroup-oniro-tests \
 "
 
 # This adds ptest packages to the image
-EXTRA_IMAGE_FEATURES_append = " ptest-pkgs"
+EXTRA_IMAGE_FEATURES:append = " ptest-pkgs"
 
 # For testing purposes, we want to have an extra ext4 format for the root
 # filesystem.
-IMAGE_FSTYPES_append = " ext4"
+IMAGE_FSTYPES:append = " ext4"
