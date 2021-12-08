@@ -6,11 +6,11 @@
 
 inherit oniro-image
 
-IMAGE_INSTALL_append = "\
+IMAGE_INSTALL:append = "\
 			packagegroup-oniro-core \
 			packagegroup-net-essentials \
 			packagegroup-ble-essentials \
 			sysota \
 			"
 
-IMAGE_INSTALL_append = " ${@bb.utils.contains('MACHINE_FEATURES', 'optee', 'optee-client', '', d)} "
+IMAGE_INSTALL:append = " ${@bb.utils.contains('MACHINE_FEATURES', 'optee', 'optee-client', '', d)} "
