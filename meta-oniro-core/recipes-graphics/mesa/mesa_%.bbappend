@@ -24,4 +24,4 @@
 # use these flags globally in OPTIMIZE_FOR=security mode while keeping
 # mesa building.
 
-TARGET_CFLAGS_remove = "-Werror=array-bounds -Wformat-nonliteral -Werror=format-nonliteral"
+TARGET_CFLAGS:remove = "-Werror=array-bounds -Wformat-nonliteral -Werror=format-nonliteral"
