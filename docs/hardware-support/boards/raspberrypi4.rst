@@ -138,6 +138,12 @@ Setting a static of dynamic IP for the interface is implementation and
 deployment specific and any network configuration tool can be used to
 configure IPv4 or IPv6 address to RPi.
 
+To set up Wi-Fi connection, use ``nmcli`` by executing the following command:
+
+.. code-block:: console
+
+   # nmcli dev wifi connect "network-ssid" password "network-password"
+
 For any fault in the hardware device, see :ref:`How to handle faulty hardware device <FallbackSupport>`.
 
 Audio
