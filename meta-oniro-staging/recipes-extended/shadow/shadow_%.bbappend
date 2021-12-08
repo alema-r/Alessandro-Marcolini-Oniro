@@ -1,4 +1,4 @@
-do_install_append () {
+do_install:append () {
 	# to hardend
 	sed -i -e 's:UMASK.*:UMASK 027:' ${D}${sysconfdir}/login.defs
 # TODO: set the password age limit and min length
