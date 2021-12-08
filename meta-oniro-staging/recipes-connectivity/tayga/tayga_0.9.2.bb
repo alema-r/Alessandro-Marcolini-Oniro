@@ -19,9 +19,9 @@ SRC_URI[sha256sum] = "2b1f7927a9d2dcff9095aff3c271924b052ccfd2faca9588b277431a44
 
 inherit autotools systemd
 
-SYSTEMD_SERVICE_${PN} = "tayga.service"
+SYSTEMD_SERVICE:${PN} = "tayga.service"
 
-do_install_append() {
+do_install:append() {
     install -d ${D}${systemd_unitdir}/system/
     install -m 0644 ${WORKDIR}/tayga.service ${D}${systemd_unitdir}/system/
     install -m 0644 ${WORKDIR}/tayga.conf ${D}${sysconfdir}
