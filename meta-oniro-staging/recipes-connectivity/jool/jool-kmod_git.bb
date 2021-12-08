@@ -23,7 +23,7 @@ EXTRA_OEMAKE += "KERNEL_DIR=${STAGING_KERNEL_DIR} \
                  KBUILD_EXTRA_SYMBOLS="${B}/common/Module.symvers" \
                  "
 
-MODULES_MODULE_SYMVERS_LOCATION="common/Module.symvers"
+MODULES_MODULE_SYMVERS_LOCATION = "common/Module.symvers"
 
 module_do_compile () {
         unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS
