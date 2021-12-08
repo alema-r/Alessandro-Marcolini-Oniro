@@ -9,4 +9,4 @@
 # -Werror=format-nonliteral globally in OPTIMIZE_FOR=security mode
 # while keeping gmp building.
 
-TARGET_CFLAGS_remove = "-Werror=format-nonliteral"
+TARGET_CFLAGS:remove = "-Werror=format-nonliteral"
