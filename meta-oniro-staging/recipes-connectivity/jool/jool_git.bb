@@ -13,21 +13,21 @@ SRC_URI += "file://0001-Build-system-changes-to-be-handled-by-yocto-recipe.patch
 S = "${WORKDIR}/git"
 
 DEPENDS = "libnl iptables"
-DEPENDS_append_libc-musl = " argp-standalone"
+DEPENDS:append:libc-musl = " argp-standalone"
 
 inherit pkgconfig autotools
 
 CFLAGS += "-I${STAGING_INCDIR}"
 LDFLAGS += "-L${STAGING_LIBDIR}"
 
-do_compile_append () {
+do_compile:append () {
         oe_runmake -C ${S}/src/usr/iptables/
 }
 
-do_install_append () {
+do_install:append () {
 	install -d ${D}/${libdir}/xtables
         install ${S}/src/usr/iptables/*.so ${D}/${libdir}/xtables
 }
 
-FILES_${PN} += "${datadir}/bash-completion"
-FILES_${PN} += "${libdir}/xtables/*.so"
+FILES:${PN} += "${datadir}/bash-completion"
+FILES:${PN} += "${libdir}/xtables/*.so"
