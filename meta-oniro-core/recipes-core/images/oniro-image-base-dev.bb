@@ -7,7 +7,7 @@ require oniro-image-common.inc
 
 SUMMARY = "Oniro Project development image including the base OS software stack"
 
-IMAGE_INSTALL_append = "\
+IMAGE_INSTALL:append = "\
     packagegroup-net-tools \
     "
 
