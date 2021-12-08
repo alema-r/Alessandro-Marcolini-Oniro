@@ -30,11 +30,11 @@ DEPENDS = "autoconf-archive dbus readline avahi jsoncpp boost"
 
 inherit cmake systemd
 
-SYSTEMD_SERVICE_${PN} = "otbr-agent.service otbr-web.service"
+SYSTEMD_SERVICE:${PN} = "otbr-agent.service otbr-web.service"
 
 EXTRA_OECMAKE = "-DBUILD_TESTING=OFF -DOTBR_DBUS=ON -DOTBR_REST=ON -DOTBR_WEB=ON -DCMAKE_LIBRARY_PATH=${libdir}"
 
-FILES_${PN} += "${systemd_unitdir}/*"
-FILES_${PN} += "${datadir}/*"
+FILES:${PN} += "${systemd_unitdir}/*"
+FILES:${PN} += "${datadir}/*"
 
-RCONFLICTS_${PN} = "ot-daemon"
+RCONFLICTS:${PN} = "ot-daemon"
