@@ -160,9 +160,9 @@ To enable the ``aplay`` support for audio playback, append the following lines:
 
 .. code-block:: console
 
-   IMAGE_INSTALL_append = " gstreamer1.0  gstreamer1.0-meta-base
+   IMAGE_INSTALL:append = " gstreamer1.0  gstreamer1.0-meta-base
    gstreamer1.0-plugins-base gstreamer1.0-plugins-good"
-   IMAGE_INSTALL_append = " alsa-lib alsa-utils alsa-tools"
+   IMAGE_INSTALL:append = " alsa-lib alsa-utils alsa-tools"
 
 To test the audio out on the *3.5mm audio jack*, we need to download the wav
 file and play with ``aplay``.
