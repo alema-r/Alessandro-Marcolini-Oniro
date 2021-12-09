@@ -22,4 +22,4 @@ do_install () {
 }
 
 PACKAGES =+ "${PN}-demo"
-FILES_${PN}-demo = "${bindir}/QrCodeGeneratorDemo"
+FILES:${PN}-demo = "${bindir}/QrCodeGeneratorDemo"
