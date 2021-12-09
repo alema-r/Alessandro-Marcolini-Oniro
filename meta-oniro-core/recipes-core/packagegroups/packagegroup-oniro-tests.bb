@@ -10,6 +10,6 @@ PACKAGES = "\
 	packagegroup-oniro-tests \
 	"
 
-RDEPENDS_packagegroup-oniro-tests = "\
+RDEPENDS:packagegroup-oniro-tests = "\
 	ptest-runner \
         "
