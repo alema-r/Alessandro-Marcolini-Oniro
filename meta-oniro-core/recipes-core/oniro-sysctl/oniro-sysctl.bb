@@ -28,4 +28,4 @@ do_install() {
 	install -m 0644 "${WORKDIR}/oniro-bpf.conf" "${D}${sysconfdir}/sysctl.d/"
 }
 
-FILES_${PN} += "${sysconfdir}/sysctl.d/oniro-*"
+FILES:${PN} += "${sysconfdir}/sysctl.d/oniro-*"
