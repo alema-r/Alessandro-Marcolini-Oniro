@@ -1,0 +1,26 @@
+diff --git a/sdk_liteos/app/wifiiot_app/module_config.mk b/sdk_liteos/app/wifiiot_app/module_config.mk
+index 5c9baf2ae932a1de94983eb1a7a8193ff246a76d..97722001dd8888a97afb23ca5a278223111ac118 100755
+--- a/sdk_liteos/app/wifiiot_app/module_config.mk
++++ b/sdk_liteos/app/wifiiot_app/module_config.mk
+@@ -1,5 +1,5 @@
+-ALL_LIBS := demo
+-demo_srcs := init src
++ALL_LIBS := wifiiot_app
++wifiiot_app_srcs := init src
+ CCFLAGS +=
+ CCFLAGS += -D_PRE_WLAN_FEATURE_CSI -D_PRE_WLAN_FEATURE_P2P -DLWIP_ENABLE_DIAG_CMD=0
+-CCFLAGS += -I$(MAIN_TOPDIR)/components/iperf2/include -I$(MAIN_TOPDIR)/app/demo/include -I$(MAIN_TOPDIR)/app/demo/init -I$(MAIN_TOPDIR)/app/demo/src -I$(MAIN_TOPDIR)/config/app -I$(MAIN_TOPDIR)/config/diag -I$(MAIN_TOPDIR)/platform/os/Huawei_LiteOS/net/ripple/exports -I$(MAIN_TOPDIR)/components/ripple/exports
++CCFLAGS += -I$(MAIN_TOPDIR)/components/iperf2/include -I$(MAIN_TOPDIR)/app/wifiiot_app/include -I$(MAIN_TOPDIR)/app/wifiiot_app/init -I$(MAIN_TOPDIR)/app/wifiiot_app/src -I$(MAIN_TOPDIR)/config/app -I$(MAIN_TOPDIR)/config/diag -I$(MAIN_TOPDIR)/platform/os/Huawei_LiteOS/net/ripple/exports -I$(MAIN_TOPDIR)/components/ripple/exports -I$(MAIN_TOPDIR)/components/hilink/include
+diff --git a/sdk_liteos/build/make_scripts/usr.mk b/sdk_liteos/build/make_scripts/usr.mk
+index fe1d96829acbf1c1db2ac40603d31ad74cef1c55..c31c74e4dc878ce25ddca9ad9add84ae0d21dd5f 100755
+--- a/sdk_liteos/build/make_scripts/usr.mk
++++ b/sdk_liteos/build/make_scripts/usr.mk
+@@ -2,7 +2,7 @@ include $(MAIN_TOPDIR)/build/config/usr_config.mk
+ 
+ COMPILE_MODULE :=
+ USR_APP_ON ?= n
+-APP_NAME ?= demo
++APP_NAME ?= wifiiot_app
+ Q := @
+ TOOLS_PREFIX := riscv32-unknown-elf-
+ GCC_VER_NUM := 7.3.0
