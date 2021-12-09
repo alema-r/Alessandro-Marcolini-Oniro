@@ -41,7 +41,7 @@ SYSTEM_STATE_MOUNT_UNIT ??= "run-mount-sysdata.mount"
 # known location as described above. The respective system partition mount
 # units are part of the oniro-mounts package. This provides the
 # SYSTEM_STATE_MOUNT_UNIT systemd mount unit.
-RDEPENDS_${PN} += "oniro-mounts"
+RDEPENDS:${PN} += "oniro-mounts"
 
 # This is the root filesystem hierarchy used as part of the bind mount units to
 # provide read-write locations.
@@ -130,10 +130,10 @@ python() {
 
     systemd_system_unitdir = d.getVar('systemd_system_unitdir')
     for writable in get_writable_data(d):
-        d.appendVar('FILES_' + d.getVar('PN'), ' ' + writable['where'])
-        d.appendVar('FILES_' + d.getVar('PN'), ' ' + \
+        d.appendVar('FILES:' + d.getVar('PN'), ' ' + writable['where'])
+        d.appendVar('FILES:' + d.getVar('PN'), ' ' + \
             os.path.join(systemd_system_unitdir, mountUnitName(writable['where'])))
-        d.appendVar('SYSTEMD_SERVICE_' + d.getVar('PN'), ' ' + \
+        d.appendVar('SYSTEMD_SERVICE:' + d.getVar('PN'), ' ' + \
             mountUnitName(writable['where']))
 }
 
