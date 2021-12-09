@@ -12,16 +12,16 @@ PACKAGES = "\
 	packagegroup-ble-essentials \
 	"
 
-RDEPENDS_packagegroup-net-essentials = "\
+RDEPENDS:packagegroup-net-essentials = "\
 	dropbear \
 	${@bb.utils.contains("COMBINED_FEATURES", "wifi", "packagegroup-base-wifi iw", "", d)} \
 	networkmanager \
 	"
 
-RDEPENDS_packagegroup-net-tools = "\
+RDEPENDS:packagegroup-net-tools = "\
 	iperf3 \
 	"
 
-RDEPENDS_packagegroup-ble-essentials = "\
+RDEPENDS:packagegroup-ble-essentials = "\
 	${@bb.utils.contains("COMBINED_FEATURES", "bluetooth", "bluez5 obexftp", "", d)} \
 	"
