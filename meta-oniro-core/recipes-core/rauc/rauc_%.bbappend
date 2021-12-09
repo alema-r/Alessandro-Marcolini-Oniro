@@ -9,7 +9,7 @@
 # FIXME(zyga): The file defines RAUC compatible string which is technically
 # something that SystemOTA should be responsible for (make/model and remodel
 # operations). This should be addressed before re-model is supported.
-FILESEXTRAPATHS_prepend_raspberrypi4-64 := "${THISDIR}/files/raspberrypi4:"
+FILESEXTRAPATHS:prepend:raspberrypi4-64 := "${THISDIR}/files/raspberrypi4:"
 
 # Make the RAUC package machine-specific. This lets us put the specific configuration
 # file, which encodes the slot configuration, into it safely.
@@ -36,9 +36,9 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 # key. This variable is also set up to append to SRC_URI, so no additional
 # declaration is needed.
 RAUC_KEYRING_FILE ?= "oniro-insecure-cert.pem"
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
-do_install_append() {
+do_install:append() {
     if [ -f ${D}${sysconfdir}/rauc/oniro-insecure-cert.pem ]; then
         bbwarn "The image is using a known, insecure test key for verifying RAUC bundles. Do not use this in production systems."
     fi
@@ -46,14 +46,14 @@ do_install_append() {
 
 # Install Oniro specific override for RAUC state directory.
 
-SRC_URI_append = " \
+SRC_URI:append = " \
   file://rauc-state-dir.conf \
   "
 
-FILES_${PN}-service += "\
+FILES:${PN}-service += "\
 	${systemd_unitdir}/system/rauc.service.d/*.conf \
 	"
 
-do_install_append() {
+do_install:append() {
     install -D -m 644 ${WORKDIR}/rauc-state-dir.conf --target-directory=${D}${systemd_unitdir}/system/rauc.service.d/
 }
