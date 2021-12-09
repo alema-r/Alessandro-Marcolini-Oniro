@@ -8,7 +8,7 @@ inherit packagegroup
 
 PACKAGES = "packagegroup-oniro-core"
 
-RDEPENDS_packagegroup-oniro-core = "\
+RDEPENDS:packagegroup-oniro-core = "\
 	oniro-mounts \
 	oniro-sysctl \
 	"
