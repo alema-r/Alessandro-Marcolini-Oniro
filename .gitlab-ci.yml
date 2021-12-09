@@ -122,18 +122,6 @@ aggregate-docs:
 ##
 ## Submit jobs to LAVA
 ##
-lava-linux-avenger96:
-  needs: [linux-stm32mp1-av96]
-  stage: test
-  extends: .lava-test
-  variables:
-    MACHINE: stm32mp1-av96
-    CI_BUILD_JOB_NAME: linux-stm32mp1-av96
-    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/avenger96-acts.yaml"
-    CI_REPORT_JOB_NAME: lava-report
-  rules:
-    - when: never
-
 lava-qemu-x86:
   needs: [linux-qemu-x86]
   stage: test

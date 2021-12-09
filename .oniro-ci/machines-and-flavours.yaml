@@ -43,13 +43,6 @@ linux-seco-imx8mm-c61:
     # See build-generic.yaml for explanation of CI_ONIRO_BB_LOCAL_CONF_ variables.
     CI_ONIRO_BB_LOCAL_CONF_ACCEPT_FSL_EULA: 1
 
-linux-stm32mp1-av96:
-  extends: .build-recipe
-  variables:
-    CI_ONIRO_BUILD_FLAVOUR: linux
-    CI_ONIRO_RECIPE_NAME: oniro-image-base-tests
-    MACHINE: stm32mp1-av96
-
 linux-raspberrypi4-64:
   extends: .build-wic-image
   variables:

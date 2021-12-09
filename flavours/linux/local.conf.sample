@@ -22,7 +22,6 @@
 #
 #MACHINE ?= "qemux86"
 #MACHINE ?= "qemux86-64"
-#MACHINE ?= "stm32mp1-av96"
 #MACHINE ?= "seco-intel-b68"
 #MACHINE ?= "seco-imx8mm-c61"
 #MACHINE ?= "raspberrypi4-64"

@@ -66,20 +66,6 @@ architecture.
     The cache for this job is not public, as it contains proprietary elements
     that cannot be redistributed without an agreement with Freescale.
 
-linux-stm32mp1-av96
-...................
-
-This job extends `.build-linux` job from the manifest repository and builds
-``oniro-image-base-tests`` and ``oniro-image-extra-tests`` using the Linux
-flavour of |main_project_name| and ``MACHINE=stm32mp1-av96``. This job checks
-that |main_project_name| software can be built for the 96Boards Avenger
-development board, which contains the STM32MP157 SoC, which implements 32bit
-ARMv7 architecture.
-
-.. note::
-    The cache for this job is not public, pending legal review of any firmware
-    that may be included.
-
 linux-raspberrypi4-64
 .....................
 

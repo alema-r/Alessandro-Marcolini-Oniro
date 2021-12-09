@@ -25,7 +25,6 @@ Supported machines (default in **bold**):
 * qemuarm
 * qemuarm64
 * seco-intel-b68 (SECO SBC-B68)
-* stm32mp1-av96 (96Boards Avenger96)
 * seco-imx8mm-c61 (SECO SBC-C61)
 
 Build steps example:
