@@ -8,4 +8,4 @@
 # Removing -Werror=array-bounds here allows us to use -Werror=array-bounds
 # globally in OPTIMIZE_FOR=security mode.
 
-TARGET_CFLAGS_remove = "-Werror=array-bounds"
+TARGET_CFLAGS:remove = "-Werror=array-bounds"
