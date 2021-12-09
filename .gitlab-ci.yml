@@ -128,27 +128,23 @@ lava-linux-avenger96:
   rules:
     - when: never
 
-lava-qemu-x86_64:
-  needs: [linux-qemu-x86_64]
-  stage: test
-  extends: .lava-test
-  variables:
-    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/qemu-x86_64-acts.yaml"
-    CI_BUILD_JOB_NAME: linux-qemu-x86_64
-    CI_REPORT_JOB_NAME: lava-report
-  rules:
-    - when: never
-
 lava-qemu-x86:
   needs: [linux-qemu-x86]
   stage: test
   extends: .lava-test
   variables:
-    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/qemu-x86-acts.yaml"
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/qemu-x86.yaml"
     CI_BUILD_JOB_NAME: linux-qemu-x86
     CI_REPORT_JOB_NAME: lava-report
-  rules:
-    - when: never
+
+lava-qemu-x86_64:
+  needs: [linux-qemu-x86_64]
+  stage: test
+  extends: .lava-test
+  variables:
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/qemu-x86_64.yaml"
+    CI_BUILD_JOB_NAME: linux-qemu-x86_64
+    CI_REPORT_JOB_NAME: lava-report
 
 lava-zephyr-96b-nitrogen-tests:
   needs: [zephyr-96b-nitrogen-tests]
@@ -159,8 +155,26 @@ lava-zephyr-96b-nitrogen-tests:
     CI_BUILD_JOB_NAME: zephyr-96b-nitrogen-tests
     CI_REPORT_JOB_NAME: lava-report
 
+lava-zephyr-qemu-cortex-m3:
+  needs: [zephyr-qemu-cortex-m3]
+  stage: test
+  extends: .lava-test
+  variables:
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/qemu-zephyr-cortex-m3.yaml"
+    CI_BUILD_JOB_NAME: zephyr-qemu-cortex-m3
+    CI_REPORT_JOB_NAME: lava-report
+
+lava-zephyr-qemu-x86:
+  needs: [zephyr-qemu-x86]
+  stage: test
+  extends: .lava-test
+  variables:
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/qemu-zephyr-x86.yaml"
+    CI_BUILD_JOB_NAME: zephyr-qemu-x86
+    CI_REPORT_JOB_NAME: lava-report
+
 lava-report:
-  needs: [lava-zephyr-96b-nitrogen-tests]
+  needs: [lava-qemu-x86, lava-qemu-x86_64, lava-zephyr-96b-nitrogen-tests, lava-zephyr-qemu-cortex-m3, lava-zephyr-qemu-x86]
   extends: .lava-report
 
 .build-with-kaniko:
