@@ -9,6 +9,7 @@
   image:
     name: registry.ostc-eu.org/ostc/containers/ostc-builder:latest
   variables:
+    GIT_STRATEGY: none
     CI_LAVA_INSTANCE: "https://lava.ostc-eu.org/"
   before_script:
     - test -n "$CI_LAVA_TOKEN" || (
@@ -83,6 +84,7 @@
     name: registry.ostc-eu.org/ostc/containers/ostc-builder:latest
   stage: report
   variables:
+    GIT_STRATEGY: none
     CI_LAVA_INSTANCE: "https://lava.ostc-eu.org/"
   script:
     - |
