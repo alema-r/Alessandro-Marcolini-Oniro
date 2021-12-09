@@ -20,32 +20,32 @@ revert_volatile_dropear_hostkeys () {
     sed -i '/DROPBEAR_RSAKEY_DIR/d' ${IMAGE_ROOTFS}/etc/default/dropbear
 }
 
-IMAGE_PREPROCESS_COMMAND_append = " ${@ 'systemd_mask_getty;' if bb.utils.contains('DISTRO_FEATURES', 'systemd', True, False, d) and not bb.utils.contains('IMAGE_FEATURES', 'stateless-rootfs', True, False, d) else ''} revert_volatile_dropear_hostkeys"
+IMAGE_PREPROCESS_COMMAND:append = " ${@ 'systemd_mask_getty;' if bb.utils.contains('DISTRO_FEATURES', 'systemd', True, False, d) and not bb.utils.contains('IMAGE_FEATURES', 'stateless-rootfs', True, False, d) else ''} revert_volatile_dropear_hostkeys"
 
-IMAGE_FEATURES_append = " read-only-rootfs"
+IMAGE_FEATURES:append = " read-only-rootfs"
 
 #
 # wic configuration with support for system update partition setup
 #
 
-IMAGE_FSTYPES_append = " squashfs"
+IMAGE_FSTYPES:append = " squashfs"
 
-WKS_FILE_raspberrypi4-64 ?= "x-raspberrypi.wks.in"
+WKS_FILE:raspberrypi4-64 ?= "x-raspberrypi.wks.in"
 
-WKS_FILE_seco-intel-b68 ?= "x-efi-systemd-microcode.wks.in"
-IMAGE_FSTYPES_append_seco-intel-b68 = " wic.bz2 wic.bmap"
+WKS_FILE:seco-intel-b68 ?= "x-efi-systemd-microcode.wks.in"
+IMAGE_FSTYPES:append:seco-intel-b68 = " wic.bz2 wic.bmap"
 
 # We avoid any other fstypes (for qemu) by default as the OS depends on a
 # specific partition table provided through the wic configuration.
-IMAGE_FSTYPES_qemux86 ?= "wic wic.bz2"
-WKS_FILE_qemux86 ?= "x-qemux86-directdisk.wks.in"
-IMAGE_FSTYPES_qemux86-64 ?= "wic wic.bz2"
-WKS_FILE_qemux86-64 ?= "x-qemux86-directdisk.wks.in"
+IMAGE_FSTYPES:qemux86 ?= "wic wic.bz2"
+WKS_FILE:qemux86 ?= "x-qemux86-directdisk.wks.in"
+IMAGE_FSTYPES:qemux86-64 ?= "wic wic.bz2"
+WKS_FILE:qemux86-64 ?= "x-qemux86-directdisk.wks.in"
 
-WKS_FILE_qemu-generic-arm64 = "x-qemu-efi-disk.wks.in"
-IMAGE_FSTYPES_qemu-generic-arm64 += "wic wic.qcow2"
+WKS_FILE:qemu-generic-arm64 = "x-qemu-efi-disk.wks.in"
+IMAGE_FSTYPES:qemu-generic-arm64 += "wic wic.qcow2"
 
-WKS_FILE_seco-imx8mm-c61 ?= "x-imx-uboot-bootpart.wks.in"
+WKS_FILE:seco-imx8mm-c61 ?= "x-imx-uboot-bootpart.wks.in"
 
 #
 # Deploy boot partition artifacts to the root partition. This is part of the
