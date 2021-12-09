@@ -6,5 +6,5 @@
 # the project.
 deltask warn_musl
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 SRC_URI += "file://systemd-244-musl-1.2.2.patch"
