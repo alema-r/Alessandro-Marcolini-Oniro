@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:${ONIRO_COREBASE}/assets:"
+FILESEXTRAPATHS_prepend := "${ONIRO_COREBASE}/assets:"
 
 SRC_URI += "${@oe.utils.conditional('WESTON_INI_BACKGROUND_IMAGE', '', '', "file://${WESTON_INI_BACKGROUND_IMAGE_BASENAME}", d)}"
 
