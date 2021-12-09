@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 SRC_URI += "file://busybox-1.31.1-Wformat-security.patch \
 	file://oniro.cfg"
 
@@ -14,5 +14,5 @@ SRC_URI += "file://busybox-1.31.1-Wformat-security.patch \
 # -Werror=format-nonliteral globally in OPTIMIZE_FOR=security mode
 # while keeping busybox building.
 
-TARGET_CFLAGS_remove = "-Wformat-nonliteral -Werror=format-nonliteral"
+TARGET_CFLAGS:remove = "-Wformat-nonliteral -Werror=format-nonliteral"
 
