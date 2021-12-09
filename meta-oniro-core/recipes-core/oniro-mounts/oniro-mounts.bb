@@ -20,7 +20,7 @@ SRC_URI = " \
 
 inherit allarch systemd
 
-SYSTEMD_SERVICE_${PN} = " \
+SYSTEMD_SERVICE:${PN} = " \
     run-mount-boot.mount \
     run-mount-sysdata.mount \
     run-mount-devdata.mount \
@@ -42,4 +42,4 @@ do_install () {
     done
 }
 
-FILES_${PN} += "${systemd_unitdir}"
+FILES:${PN} += "${systemd_unitdir}"
