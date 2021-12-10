@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-FILESEXTRAPATHS_prepend := "${ONIRO_COREBASE}/assets:"
+FILESEXTRAPATHS:prepend := "${ONIRO_COREBASE}/assets:"
 
 SRC_URI += "${@oe.utils.conditional('WESTON_INI_BACKGROUND_IMAGE', '', '', "file://${WESTON_INI_BACKGROUND_IMAGE_BASENAME}", d)}"
 
@@ -17,7 +17,7 @@ WESTON_INI_BACKGROUND_COLOR ?= "0xffffffff"
 WESTON_INI_BACKGROUND_TYPE ?= "centered"
 WESTON_INI_INPUT_METHOD_PATH ?= "/usr/libexec/weston-keyboard"
 
-do_install_append() {
+do_install:append() {
 	# The filename references in WESTON_INI_BACKGROUND_IMAGE needs to be
 	# provided in SRC_URI/WORKDIR.
 	if [ -n "${WESTON_INI_BACKGROUND_IMAGE}" ]; then
