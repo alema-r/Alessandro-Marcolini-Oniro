@@ -39,7 +39,7 @@ SPDX-FileCopyrightText: Huawei Inc.
 		More info can be found at https://wiki.yoctoproject.org/wiki/Releases.
 	-->
 	<project name="bitbake" remote="oe" revision="f1a3e9d22b5f4fb01c4a0e4ba03afb1afbba47f1" path="bitbake" />
-	<project name="openembedded-core" remote="oe" revision="44b1970c40e9d73f6e63fb10cdc55837a26f5921" path="oe-core" />
+	<project name="openembedded-core" remote="oe" revision="90a07178ea26be453d101c2e8b33d3a0f437635d" path="oe-core" />
 	<project name="meta-openembedded" remote="openembedded" revision="7889158dcd187546fc5e99fd81d0779cad3e8d17" path="meta-openembedded" />
 	<project name="meta-freertos" remote="aehs29" revision="f3c2edb0f22c34b35a775c5d17ea1424d44bee21" path="meta-freertos" />
 	<project name="meta-st-stm32mp" remote="stm" revision="b25a2b0daa6e9e1e3ce76b9fdf5bd7cbf30e90fc" path="meta-st-stm32mp" />
