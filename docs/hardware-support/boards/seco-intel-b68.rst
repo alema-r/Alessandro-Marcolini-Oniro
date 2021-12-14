@@ -27,7 +27,7 @@ Hardware
 For more detailed specifications of SBC-B68-eNUC SECO board, see `SBC-B68-eNUC Specification <https://www.seco.com/en/products/sbc-b68-enuc>`__.
 
 
-Working with the board
+Working with the Board
 **********************
 
 Building an Oniro image
@@ -103,7 +103,7 @@ steps:
 #. Select the bootable USB device under **Boot Override** and press Enter.
 
 
-Testing the board
+Testing the Board
 *****************
 
 Ethernet
@@ -132,7 +132,7 @@ eMMC
    954240 cylinders, 4 heads, 16 sectors/track
    Units: sectors of 1 * 512 = 512 bytes
 
-PCI buses
+PCI Buses
 =========
 
 ::

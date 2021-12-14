@@ -86,10 +86,10 @@ Linux image
    The key file which is needed to flash into the SD card is
    ``oniro-image-base-raspberrypi4-64.wic.bz2``.
 
-Flashing |main_project_name| Linux Image
+Flashing |main_project_name| Linux image
 ****************************************
 
-SD card
+SD Card
 =======
 
 The Raspberry Pi 4 board support multiple boot options. The below section
@@ -108,7 +108,7 @@ describes booting the board with an SD card option.
 
 2. Put the card to the board and turn it on.
 
-Testing the board
+Testing the Board
 *****************
 
 HDMI

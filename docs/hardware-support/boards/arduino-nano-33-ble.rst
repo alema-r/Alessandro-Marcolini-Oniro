@@ -39,10 +39,10 @@ Hardware
 * For product specification and Datasheet, see `Arduino page <https://content.arduino.cc/assets/Nano_BLE_MCU-nRF52840_PS_v1.1.pdf>`_.
 * For hardware schematics, see `Arduino <https://content.arduino.cc/assets/NANO33BLE_V2.0_sch.pdf>`_.
 
-Working with the board
+Working with the Board
 **********************
 
-Building an application
+Building an Application
 =======================
 
 |main_project_name| Zephyr flavour is based on the Zephyr kernel.
@@ -74,7 +74,7 @@ sample application, *blinky*. In order to do so issue the following:
 3. After the build completes, the ``zephyr-philosophers.bin`` and the ``zephyr-blinky.bin``
    file can be found in ``build-oniro-zephyr/tmp-newlib/deploy/images/arduino-nano-33-ble/``.
 
-Flashing an application
+Flashing an Application
 =======================
 
 1. Enable the permissions for board connected port:

@@ -35,7 +35,7 @@ Install all the required host packages. Here is an example for **Ubuntu**:
 See `official Yocto documentation <https://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#required-packages-for-the-build-host>`_
 for host package requirements on all supported Linux distributions.
 
-Clone build system repositories
+Clone Build System Repositories
 *******************************
 
 Install Google git repo tool. For example, on **Ubuntu 20.04**, you can do this
@@ -77,7 +77,7 @@ Initialize the build directory and run a build:
     $ TEMPLATECONF=../oniro/flavours/linux . ./oe-core/oe-init-build-env build-oniro-linux
     $ MACHINE=qemux86-64 bitbake oniro-image-base
 
-Booting a Qemu X86-64 target with a |main_project_name| image
+Booting a Qemu X86-64 Target with a |main_project_name| image
 *************************************************************
 
 Once the image is built, you can run a Qemu X86-64 instance using the provided script wrapper as follows:

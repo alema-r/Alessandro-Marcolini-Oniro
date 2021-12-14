@@ -26,10 +26,10 @@ Hardware
 * For detailed specifications, see nRF52840 DK product page on the `nRF52840 DK website <https://www.nordicsemi.com/Software-and-Tools/Development-Kits/nRF52840-DK>`_.
 * For hardware schematics, see `nRF52840 Development Kit <https://www.nordicsemi.com/Software-and-tools/Development-Kits/nRF52840-DK/Download#infotabs>`_.
 
-Working with the board
+Working with the Board
 **********************
 
-Building an application
+Building an Application
 =======================
 
 |main_project_name| Zephyr flavour is based on Zephyr kernel.
@@ -54,7 +54,7 @@ Building an application
 3. After the build completes, the image file can be found in
    ``build-oniro-zephyr/tmp-newlib/deploy/images/nrf52840dk-nrf52840/``.
 
-Flashing an application
+Flashing an Application
 =======================
 
 pyOCD is a required host tool used by the flashing mechanism described below:

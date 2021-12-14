@@ -23,7 +23,7 @@ To clone the source code, perform the procedure in: :ref:`Setting up a repo work
 Building a Linux image
 ======================
 
-Build steps
+Build Steps
 -----------
 
 1. Source the environment with proper template settings, flavour being *linux*

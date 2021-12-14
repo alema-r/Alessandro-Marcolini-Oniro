@@ -26,7 +26,7 @@ Hardware
 
 For more detailed specifications of SBC-C61 SECO board, see `SBC-C61 Specification <https://www.seco.com/en/products/sbc-c61>`__.
 
-Working with the board
+Working with the Board
 **********************
 
 Building an Oniro image
@@ -94,7 +94,7 @@ following steps:
 #. Remove **CN52 short circuit**
 #. Press the reset button
 
-Testing the board
+Testing the Board
 *****************
 
 Ethernet
