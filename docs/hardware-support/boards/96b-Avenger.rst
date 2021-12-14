@@ -28,7 +28,7 @@ Hardware
 
 For more details on Avenger96 board, see `Avenger96 product page <https://www.96boards.org/product/avenger96/>`_.
 
-Working with the board
+Working with the Board
 **********************
 
 Building an Oniro image
@@ -97,7 +97,7 @@ For Zephyr, there is no automation as for now. To have the ELF file in the files
 Linux image
 ===========
 
-SD card
+SD Card
 -------
 
 The Avenger96 board supports multiple boot options which are selected by the
@@ -198,10 +198,10 @@ Zephyr image
 There is no fully-featured console available in Linux yet, so typing commands
 to the Zephyr application is not possible.
 
-Testing the board
+Testing the Board
 *****************
 
-Serial port
+Serial Port
 ===========
 
 To connect the USB converter serial port to the low-speed connector, see `Hardware User Manual <https://github.com/96boards/documentation/blob/master/consumer/avenger96/hardware-docs/files/avenger96-hardware-user-manual.pdf>`__.

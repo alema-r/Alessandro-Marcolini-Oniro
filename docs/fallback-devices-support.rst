@@ -4,7 +4,7 @@
 
 .. _FallbackSupport:
 
-How to handle faulty hardware device?
+How to Handle Faulty Hardware Device?
 #####################################
 
 In a situation where you have enabled a new board and one of the devices is 

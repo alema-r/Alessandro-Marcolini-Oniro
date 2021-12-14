@@ -34,10 +34,10 @@ Hardware
 
 For more details on 96Boards Nitrogen, see `Nitrogen product page <https://www.96boards.org/product/nitrogen/>`_.
 
-Working with the board
+Working with the Board
 **********************
 
-Building an application
+Building an Application
 =======================
 
 |main_project_name| OS Zephyr flavour is based on Zephyr kernel.
@@ -57,7 +57,7 @@ Building an application
 MACHINE variable can be set up in conf/local.conf file under build directory or via command line.
 
 
-Flashing an application
+Flashing an Application
 =======================
 
 Installing pyOCD
@@ -94,7 +94,7 @@ pyOCD is an open source Python package for programming and debugging Arm Cortex-
 
    When *ValueError: The device has no langid* error is displayed due to lack of permission, perform the instructions as suggested in https://github.com/pyocd/pyOCD/tree/master/udev.
 
-How to flash
+How to Flash
 ------------
 
 * To flash the image, execute the command used to build the image with -c flash_usb appended.

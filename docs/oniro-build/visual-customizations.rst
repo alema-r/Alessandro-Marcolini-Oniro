@@ -8,7 +8,7 @@ Build System Visual Customizations
 .. contents:: 
    :depth: 2
 
-Weston dynamic configuration
+Weston Dynamic Configuration
 ****************************
 
 The build exposes mechanism to tweak weston configuration through build
@@ -28,7 +28,7 @@ Additional variable to be used in conjunction with ``WESTON_DYNAMIC_INI``:
   * ``WESTON_INI_BACKGROUND_COLOR`` - sets shell.background-color accordingly
   * ``WESTON_INI_BACKGROUND_TYPE`` - sets shell.background-type accordingly
 
-Epiphany support for Application mode
+Epiphany Support for Application Mode
 *************************************
 
 Epiphany is one of the browsers supported by the build meta-data. It provides a

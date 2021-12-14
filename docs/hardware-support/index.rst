@@ -6,7 +6,7 @@
 
 .. _HardwareSupport:
 
-Hardware support in |main_project_name|
+Hardware Support in |main_project_name|
 #######################################
 
 This section details the hardware (including virtualized) supported as part of

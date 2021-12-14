@@ -52,7 +52,7 @@ On Ubuntu 20.04:
    $ sudo apt-get update
    $ sudo apt-get install git-repo
 
-On distributions that use ``dnf``:
+On Distributions that Use ``dnf``:
 ----------------------------------
 
 .. code-block:: console
@@ -100,7 +100,7 @@ Depending on the specific branch of the above-mentioned repository, that
 manifest may either allow some projects to follow changes by selecting git
 branches or pin all projects to a specific git commit revision.
 
-Setting up the Workspace
+Setting-up the Workspace
 ************************
 
 Once the repo tool is installed, you can initialize and populate the workspace.
@@ -112,7 +112,7 @@ This will bring in all the needed sources for building |main_project_name|:
    $ repo init -u https://booting.oniroproject.org/distro/oniro
    $ repo sync --no-clone-bundle
 
-Workspace structure
+Workspace Structure
 *******************
 
 A fully set workspace, will provide a structure similar to:
