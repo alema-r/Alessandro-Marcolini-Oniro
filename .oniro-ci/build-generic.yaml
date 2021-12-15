@@ -30,6 +30,7 @@
     - cd "$SCRATCH_DIR"
 
     - |
+        set -x
         echo "Building repo workspace with the following properties:"
         echo "CI_ONIRO_MANIFEST_URL: $CI_ONIRO_MANIFEST_URL"
         echo "CI_ONIRO_MANIFEST_NAME: $CI_ONIRO_MANIFEST_NAME"
@@ -39,10 +40,12 @@
            --manifest-url "$CI_ONIRO_MANIFEST_URL" \
            --manifest-name "$CI_ONIRO_MANIFEST_NAME" \
            --manifest-branch "$CI_ONIRO_MANIFEST_BRANCH"
+        set +x
     - time repo sync --no-clone-bundle
 
     # See the documentation of CI_ONIRO_GIT_REPO_PATH
     - |
+      set -x
       if [ -n "$CI_ONIRO_GIT_REPO_PATH" ]; then
         if [ -n "$CI_MERGE_REQUEST_SOURCE_PROJECT_URL" ]; then
             echo "CI: Bootstrapping '$CI_PROJECT_DIR' as 'incoming-merged' remote in '$CI_ONIRO_GIT_REPO_PATH'";
@@ -53,6 +56,7 @@
         echo "CI: Switching $CI_ONIRO_GIT_REPO_PATH to $CI_COMMIT_SHA";
         ( cd "$CI_ONIRO_GIT_REPO_PATH" && git checkout "$CI_COMMIT_SHA" );
       fi
+      set +x
 
   script:
     # Reload the value of SCRATCH_DIR set in the before_script phase. Those run
