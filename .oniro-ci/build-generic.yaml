@@ -322,6 +322,8 @@
   stage: deploy
   trigger: distro/docs
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
     # Update the documentation when things land in the default branch.
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
       changes:
