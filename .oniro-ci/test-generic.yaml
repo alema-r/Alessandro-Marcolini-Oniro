@@ -42,7 +42,7 @@
       -e 's,$callback_url,'"$CALLBACK_URL"',' job_def.yaml
     # Generate job definitions for zephyr build
     - |
-      mkdir lava_jobs
+      rm -rf lava_jobs && mkdir lava_jobs
       if echo "${CI_BUILD_JOB_NAME}" | grep -i "zephyr"; then
         for image in $(find artifacts/ -name "*.elf" -exec basename {} \;); do
           job_name=$(basename "${image}" ".elf")
