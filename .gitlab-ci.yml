@@ -54,6 +54,9 @@ aggregate-docs:
 .bitbake-workspace:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      variables:
+        CI_ONIRO_MANIFEST_URL: "$CI_PROJECT_URL"
+        CI_ONIRO_MANIFEST_BRANCH: "$CI_COMMIT_REF_NAME"
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TITLE =~ /^(wip|draft):.*/i'
       when: manual
       variables:
