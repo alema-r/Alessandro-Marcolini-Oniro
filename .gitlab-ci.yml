@@ -186,6 +186,10 @@ lava-report:
   needs: [lava-qemu-x86, lava-qemu-x86_64, lava-zephyr-96b-nitrogen-tests, lava-zephyr-qemu-cortex-m3, lava-zephyr-qemu-x86]
   extends: .lava-report
 
+lava-badge:
+  needs: [lava-report]
+  extends: .lava-badge
+
 .build-with-kaniko:
   stage: build
   image:
