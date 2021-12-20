@@ -16,11 +16,14 @@
         echo "precondition failed - please disable the child job if CI_LAVA_TOKEN not set in gitlab CI/CD variables"
         && exit 1 )
     # Check if the job is configured properly.
-    - test -n "$CI_LAVA_JOB_DEFINITION" || (
-        echo "precondition failed - set CI_LAVA_JOB_DEFINITION to the URL of the LAVA test job definition"
+    - test -n "$MACHINE" || (
+        echo "precondition failed - set MACHINE to the name of the target device for which the image is built"
         && exit 1 )
     - test -n "$CI_BUILD_JOB_NAME" || (
         echo "precondition failed - set CI_BUILD_JOB_NAME to the appropriate job name from which LAVA will pick up build artifact"
+        && exit 1 )
+    - test -n "$CI_LAVA_JOB_DEFINITION" || (
+        echo "precondition failed - set CI_LAVA_JOB_DEFINITION to the URL of the LAVA test job definition"
         && exit 1 )
     - test -n "$CI_REPORT_JOB_NAME" || (
         echo "precondition failed - set CI_REPORT_JOB_NAME to the CI job name which will gather results back from LAVA"
@@ -44,7 +47,7 @@
     - |
       rm -rf lava_jobs && mkdir lava_jobs
       if echo "${CI_BUILD_JOB_NAME}" | grep -i "zephyr"; then
-        for image in $(find artifacts/ -name "*.elf" -exec basename {} \;); do
+        for image in $(find artifacts/images/${MACHINE} -name "*.elf" -exec basename {} \;); do
           job_name=$(basename "${image}" ".elf")
           echo "--- Generating lava job definition ${job_name}.yaml ---"
           sed "s/\$elf_file/$image/" job_def.yaml | tee lava_jobs/"${job_name}".yaml
