@@ -25,10 +25,11 @@ RUN apt-get update -qq \
  && eatmydata apt-get install -qq -y \
 	bash git-repo git-lfs apt-utils build-essential chrpath cpio diffstat \
 	gawk git sudo wget language-pack-en-base time locales python-is-python3 \
-	python3-distutils libssl-dev iproute2 iputils-ping curl jq \
+	python3-distutils python3-pip libssl-dev iproute2 iputils-ping curl jq \
  && eatmydata apt-get install -qq -y 'ca-certificates=20210119~20.04.2' \
  && eatmydata apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN locale-gen
+RUN pip3 install anybadge
 
 # Let's just have /bin/sh as bash
 RUN echo "dash dash/sh boolean false" | debconf-set-selections \
