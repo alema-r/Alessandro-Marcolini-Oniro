@@ -7,7 +7,7 @@
 .lava-test:
   interruptible: true
   image:
-    name: registry.ostc-eu.org/ostc/containers/ostc-builder:latest
+    name: registry.booting.oniroproject.org/distro/oniro/bitbake-builder:latest
   variables:
     GIT_STRATEGY: none
     CI_LAVA_INSTANCE: "https://lava.ostc-eu.org/"
@@ -81,7 +81,7 @@
 .lava-report:
   interruptible: true
   image:
-    name: registry.ostc-eu.org/ostc/containers/ostc-builder:latest
+    name: registry.booting.oniroproject.org/distro/oniro/bitbake-builder:latest
   stage: report
   variables:
     GIT_STRATEGY: none
