@@ -248,6 +248,8 @@ lava-badge:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
       changes:
         - .oniro-ci/containers/$CONTAINER_PATH/*
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
 
 build-bitbake-builder:
   extends: .build-with-kaniko
