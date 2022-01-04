@@ -244,14 +244,14 @@ lava-badge:
       echo "Building and shipping image to $CI_REGISTRY_IMAGE"
       exec /kaniko/executor --context "$CI_PROJECT_DIR/.oniro-ci/containers/$CONTAINER_PATH" --dockerfile "$CI_PROJECT_DIR/.oniro-ci/containers/$CONTAINER_PATH/Dockerfile" --destination $CI_REGISTRY_IMAGE/$CONTAINER_PATH $IMAGE_LABELS
   rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       changes:
         - .oniro-ci/containers/$CONTAINER_PATH/*
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
       changes:
         - .oniro-ci/containers/$CONTAINER_PATH/*
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: never
 
 build-bitbake-builder:
   extends: .build-with-kaniko
