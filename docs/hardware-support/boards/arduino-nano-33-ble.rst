@@ -77,22 +77,31 @@ sample application, *blinky*. In order to do so issue the following:
 Flashing an application
 =======================
 
-1. Enable the permissions for board connected port:
+To flash the image on Arduino Nano 33 BLE device, ensure it enters the bootloader state: 
+
+1. Connect the USB cable and double press the reset button in the middle of the board. An orange LED fading in and out indicates that the device is ready for the flashing process.
+
+2. Enable the permissions for the board connected to the port:
 
   .. code-block:: console
 	
 	$ sudo usermod -a -G dialout `whoami`
 	$ sudo chmod a+rw /dev/ttyACM0
 
-2. To flash the image, execute the command used to build the image with 
+3. To flash the image, execute the command used to build the image with 
    -c flash_usb appended. For example, to flash the already built 
    zephyr-philosophers image, execute:
 
-  .. code-block:: console
-   
-   $ MACHINE=arduino-nano-33-ble bitbake zephyr-philosophers -c flash_usb
+   .. code-block:: console
 
-3. Run your favorite terminal program to listen for output. 
+      $ MACHINE=arduino-nano-33-ble bitbake zephyr-philosophers -c flash_usb
+
+   .. note::
+   
+      You need the `pySerial <https://pyserial.readthedocs.io/en/latest/pyserial.html#installation>`_ 
+      package installed on your host OS for the flashing task.
+
+4. Run your terminal program to listen for the output.
 
   .. code-block:: console
 	
@@ -109,7 +118,7 @@ Flashing an application
    If no output is displayed, set the permissions again as mentioned in
    Step-1 of of this section.
 
-4. Firmware output can be viewed in minicom with:
+5. The firmware output can be viewed in Minicom as follows:
 
   ::
 
