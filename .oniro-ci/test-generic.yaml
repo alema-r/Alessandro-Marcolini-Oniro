@@ -70,6 +70,7 @@
   artifacts:
     paths:
       - job_ids_*.txt
+      - lava_jobs/*.yaml
   rules:
     # Run the build when it is scheduled.
     - if: $CI_PIPELINE_SOURCE == "schedule"

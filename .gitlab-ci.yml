@@ -154,6 +154,16 @@ lava-qemu-x86_64:
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/qemu-x86_64.yaml"
     CI_REPORT_JOB_NAME: lava-report
 
+lava-raspberrypi4-64:
+  needs: [linux-raspberrypi4-64]
+  stage: test
+  extends: .lava-test
+  variables:
+    MACHINE: raspberrypi4-64
+    CI_BUILD_JOB_NAME: linux-raspberrypi4-64
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/raspberrypi4-64.yaml"
+    CI_REPORT_JOB_NAME: lava-report
+
 lava-zephyr-96b-nitrogen-tests:
   needs: [zephyr-96b-nitrogen-tests]
   stage: test
@@ -185,7 +195,7 @@ lava-zephyr-qemu-x86:
     CI_REPORT_JOB_NAME: lava-report
 
 lava-report:
-  needs: [lava-qemu-x86, lava-qemu-x86_64, lava-zephyr-96b-nitrogen-tests, lava-zephyr-qemu-cortex-m3, lava-zephyr-qemu-x86]
+  needs: [lava-qemu-x86, lava-qemu-x86_64, lava-zephyr-96b-nitrogen-tests, lava-zephyr-qemu-cortex-m3, lava-zephyr-qemu-x86, lava-raspberrypi4-64]
   extends: .lava-report
 
 lava-badge:
