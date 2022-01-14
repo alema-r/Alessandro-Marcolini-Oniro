@@ -6,10 +6,10 @@ DESCRIPTION = "Robust, unattended update system for Linux gateways"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSES/Apache-2.0.txt;md5=c846ebb396f8b174b10ded4771514fcc"
 
-SRC_URI = "git://booting.oniroproject.org/distro/components/sysota.git;protocol=https;branch=main \
+SRC_URI = "git://gitlab.com/zygoon/sysota.git;protocol=https;branch=main \
            file://sysotad.conf \
 "
-SRCREV = "3cb40a1392fd2b849db711c6a9a050d00bad8c93"
+SRCREV = "6aec6e345e7c7f6d94932acbebeada32fde33162"
 S = "${WORKDIR}/git"
 
 # This package is built with go-mod as well as with make.
@@ -62,6 +62,7 @@ do_configure:append() {
     # systemd units.
     cd ${B}/make-build/ && ${S}/src/${GO_IMPORT}/configure \
         --prefix=${prefix} \
+        --bindir=${bindir} \
         --libexecdir=${libexecdir} \
         --sysconfdir=${sysconfdir}
 }
@@ -69,8 +70,8 @@ do_configure:append() {
 do_compile:append() {
     # See the "trick" paragraph above. If additional binaries are added to the
     # package, they should be moved as well.
-    mkdir -p ${B}/make-build/cmd/sysotad
-    mv ${B}/${GO_BUILD_BINDIR}/sysotad ${B}/make-build/cmd/sysotad
+    mkdir -p ${B}/make-build/cmd/sysota-mux
+    mv ${B}/${GO_BUILD_BINDIR}/sysota-mux ${B}/make-build/cmd/sysota-mux
 
     # Run the upstream build system which prepares systemd units and manual pages.
     oe_runmake -C ${B}/make-build --warn-undefined-variables Go.Cmd=/bin/false
@@ -114,6 +115,9 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 # Persist SystemOTA state directory.
 inherit writables
 
-WRITABLE_TYPE[sysota] = "persistent"
-WRITABLES = "sysota"
-WRITABLE_PATH[sysota] = "/var/lib/sysota"
+WRITABLES = "sysota-lib sysota-cfg"
+WRITABLE_TYPE[sysota-lib] = "persistent"
+WRITABLE_PATH[sysota-lib] = "/var/lib/sysota"
+
+WRITABLE_TYPE[sysota-cfg] = "persistent"
+WRITABLE_PATH[sysota-cfg] = "/etc/sysota"
