@@ -33,7 +33,7 @@ SPDX-FileCopyrightText: Huawei Inc.
 		Hence, the layers setup below uses corresponding "dunfell" layers or "dunfell" compatible revisions.
 	-->
 
-	<default remote="oniro" revision="kirkstone-next" sync-j="4" />
+	<default remote="oniro" revision="kirkstone" sync-j="4" />
 	<!--
 		dunfell is using the 1.46 bitbake branch so the bitbake project follow is following this branch.
 		More info can be found at https://wiki.yoctoproject.org/wiki/Releases.
@@ -71,7 +71,7 @@ SPDX-FileCopyrightText: Huawei Inc.
 
 	-->
 
-	<project name="oniro" revision="kirkstone-next" path="oniro">
+	<project name="oniro" revision="kirkstone" path="oniro">
 		<linkfile src="README.md" dest="README.md"/>
 	</project>
 	<project name="meta-arm-dunfell-backports" revision="dunfell" path="meta-arm-mixin" />
