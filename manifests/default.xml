@@ -15,42 +15,26 @@ SPDX-FileCopyrightText: Huawei Inc.
 		Meet the developers on mattermost at https://chat.booting.oniroproject.org/
 
 	</notice>
+
 	<remote name="github" fetch="https://github.com" />
-	<remote name="oniro" fetch="https://booting.oniroproject.org/distro" />
-	<remote name="oniro-governance" fetch="https://booting.oniroproject.org/distro/governance" />
+	<remote name="oniro-booting" fetch="https://booting.oniroproject.org" />
 	<remote name="yocto" fetch="git://git.yoctoproject.org" />
 	<remote name="openembedded" fetch="git://git.openembedded.org" />
-	<remote name="aehs29" fetch="https://github.com/aehs29" />
-	<remote name="seco-intel" fetch="https://git.seco.com/pub/intel/yocto" />
-	<remote name="seco-imx" fetch="https://git.seco.com/pub/i.mx/yocto/5.x" />
-	<remote name="linaro" fetch="https://git.linaro.org/openembedded" />
+	<remote name="seco" fetch="https://git.seco.com" />
 	<remote name="oe" fetch="git://git.openembedded.org" />
 
-	<!--
-		Oniro Project build system is based on Yocto "dunfell"
-		(3.1 - see https://wiki.yoctoproject.org/wiki/Releases for more information).
-		Hence, the layers setup below uses corresponding "dunfell" layers or "dunfell" compatible revisions.
-	-->
-
-	<default remote="oniro" revision="kirkstone" sync-j="4" />
-	<!--
-		dunfell is using the 1.46 bitbake branch so the bitbake project follow is following this branch.
-		More info can be found at https://wiki.yoctoproject.org/wiki/Releases.
-	-->
-	<project name="bitbake" remote="oe" revision="f1a3e9d22b5f4fb01c4a0e4ba03afb1afbba47f1" path="bitbake" />
-	<project name="openembedded-core" remote="oe" revision="90a07178ea26be453d101c2e8b33d3a0f437635d" path="oe-core" />
-	<project name="meta-openembedded" remote="openembedded" revision="7889158dcd187546fc5e99fd81d0779cad3e8d17" path="meta-openembedded" />
-	<project name="meta-freertos" remote="aehs29" revision="f3c2edb0f22c34b35a775c5d17ea1424d44bee21" path="meta-freertos" />
-	<project name="meta-intel" remote="yocto" revision="b4e5d33affeaa223459c0935a853485137b4591d" path="meta-intel" />
-	<project name="meta-seco-intel" remote="seco-intel" revision="baf4cd3237bdf4f4999b7d44c6992dbcab93d5e3" path="meta-seco-intel" />
-
-	<project name="meta-freescale" remote="yocto" revision="11170950b155168ec414bbde48e3a4427fcac4bd" path="meta-freescale" />
-	<project name="meta-seco-imx" remote="seco-imx" revision="986dd20885277df45d2acc6e38823bf4c64f0085" path="meta-seco-imx" />
-	<project name="meta-python-mixin" revision="7bda3c1e5d6876375a8bf865ed9fcce2622c1715" path="meta-python-mixin" />
-	<project name="meta-raspberrypi" remote="yocto" revision="934064a01903b2ba9a82be93b3f0efdb4543a0e8" path="meta-raspberrypi" />
-	<project name="meta-security" remote="yocto" revision="b76698c788cb8ca632077a972031899ef15025d6" path="meta-security" />
-	<project name="meta-linaro" remote="linaro" revision="10af9133aeb28b3487fd227c900c11b786505699" path="meta-linaro" />
-	<project name="rauc/meta-rauc.git" remote="github" revision="f528f95b75922eb81895d764836a67f13858365a" path="meta-rauc" />
+	<project name="bitbake" remote="oe" revision="bdf5739c5d831dc97a7d81568f94a0953c71017f" path="bitbake" />
+	<project name="openembedded-core" remote="oe" revision="549597d422c7bcb467f34139ff25d2bee96bf851" path="oe-core" />
+	<project name="meta-openembedded" remote="openembedded" revision="47a4542bf7ddc72b2b82a0e3c3d9bb2c20bdde27" path="meta-openembedded" />
+	<project name="aehs29/meta-freertos" remote="github" revision="2e735ad3f433a3a4d7a8ce04a24d6159a24f0060" path="meta-freertos" />
+	<project name="meta-intel" remote="yocto" revision="49c69323b547b0c757c05ba65f1e6c2c7e6fc506" path="meta-intel" />
+	<project name="pub/intel/yocto/meta-seco-intel" remote="seco" revision="58f464daf2046f85c1a1909abee2dbe5d39a38d6" path="meta-seco-intel" />
+	<project name="meta-freescale" remote="yocto" revision="58a442bdafae4329a61f656d597c76c5fb8da928" path="meta-freescale" />
+	<project name="pub/i.mx/yocto/5.x/meta-seco-imx" remote="seco" revision="fdde41a289615f0b7b286fbee9d5290d5f8ef360" path="meta-seco-imx" />
+	<project name="meta-raspberrypi" remote="yocto" revision="836755370f5a61d96d62d5ff23e7b73c81032c8e" path="meta-raspberrypi" />
+	<project name="meta-security" remote="yocto" revision="e4a49814e101a8ed437b85beea43ca437a7b96c6" path="meta-security" />
+	<project name="rauc/meta-rauc" remote="github" revision="bf69e28d677d8a8c89aba1c24a94043e5296e0d8" path="meta-rauc" />
+	<project name="riscv/meta-riscv" remote="github" revision="9fb725c93549849bcf5623325f6ac256fcd56e1e" path="meta-riscv" />
 
 	<!--
 		All entries above are pinned to a specific revision and updated manually.
@@ -63,17 +47,13 @@ SPDX-FileCopyrightText: Huawei Inc.
 		When the release process is entered these would be pinned as well. Most
 		likely to a git tag in the repository. If a revision="" tag is present
 		this is the case.
-
 	-->
 
-	<project name="oniro" revision="kirkstone" path="oniro">
+	<project name="distro/oniro" remote="oniro-booting" revision="kirkstone" path="oniro">
 		<linkfile src="README.md" dest="README.md"/>
 	</project>
-	<project name="meta-arm-dunfell-backports" revision="dunfell" path="meta-arm-mixin" />
-	<project name="meta-clang" revision="main" path="meta-clang" />
-	<project name="meta-riscv" revision="OSTC/dunfell" path="meta-riscv" />
-	<project name="meta-zephyr" revision="ostc/master" path="meta-zephyr" />
-        <project name="meta-zephyr-bsp" revision="dunfell" path="meta-zephyr-bsp" />
-	<project name="docs" path="docs" revision="main" />
-	<project name="ip-policy" remote="oniro-governance" revision="main" path="ip-policy" />
+	<project name="distro/meta-clang" remote="oniro-booting" revision="oniro/main" path="meta-clang" />
+	<project name="distro/meta-zephyr" remote="oniro-booting" revision="oniro/main" path="meta-zephyr" />
+	<project name="distro/docs" remote="oniro-booting" revision="main" path="docs" />
+	<project name="distro/governance/ip-policy" remote="oniro-booting" revision="main" path="ip-policy" />
 </manifest>
