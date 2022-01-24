@@ -13,10 +13,9 @@ BBLAYERS ?= " \
   ##OEROOT##/../oniro/meta-oniro-staging \
   ##OEROOT##/meta \
   ##OEROOT##/../meta-clang \
-  ##OEROOT##/../meta-zephyr \
-  ##OEROOT##/../meta-zephyr-bsp \
+  ##OEROOT##/../meta-zephyr/meta-zephyr-bsp \
+  ##OEROOT##/../meta-zephyr/meta-zephyr-core \
   ##OEROOT##/../oniro/meta-oniro-core \
-  ##OEROOT##/../meta-arm-mixin/meta-arm \
   ##OEROOT##/../meta-freertos \
   ##OEROOT##/../meta-intel \
   ##OEROOT##/../meta-seco-intel \
@@ -26,10 +25,8 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-openembedded/meta-networking \
   ##OEROOT##/../meta-openembedded/meta-perl \
   ##OEROOT##/../meta-openembedded/meta-python \
-  ##OEROOT##/../meta-python-mixin \
   ##OEROOT##/../meta-raspberrypi \
   ##OEROOT##/../meta-security \
-  ##OEROOT##/../meta-linaro/meta-optee \
   ##OEROOT##/../meta-riscv \
   ##OEROOT##/../meta-rauc \
   "
