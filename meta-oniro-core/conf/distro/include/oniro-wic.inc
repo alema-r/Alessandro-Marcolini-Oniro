@@ -13,7 +13,7 @@ BOOT_PARTITION_SIZE ?= "512M"
 # Root partitions
 # No label as default filesystem is squashfs.
 # The SECO B68 board pulls in almost half a Gigabyte worth of linux-firmware.
-ROOT_PARTITION_SIZE_seco-intel-b68 ?= "2G"
+ROOT_PARTITION_SIZE:seco-intel-b68 ?= "2G"
 ROOT_PARTITION_SIZE ?= "1G"
 ROOTA_PARTITION_SIZE = "${ROOT_PARTITION_SIZE}"
 ROOTB_PARTITION_SIZE = "${ROOT_PARTITION_SIZE}"
