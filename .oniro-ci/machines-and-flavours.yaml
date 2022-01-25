@@ -31,9 +31,16 @@ linux-qemu-x86_64:
     CI_ONIRO_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
 
 linux-seco-intel-b68:
-  extends: .build-linux-matrix
+  extends: .build-wic-image
   variables:
+    CI_ONIRO_BUILD_FLAVOUR: linux
+    CI_ONIRO_RECIPE_NAME: oniro-image-base-tests
     MACHINE: seco-intel-b68
+
+linux-seco-intel-b68-extra:
+  extends: .build-linux
+  variables:
+    CI_ONIRO_BITBAKE_TARGETS: oniro-image-extra-tests
 
 linux-seco-imx8mm-c61:
   extends: .build-linux-matrix
