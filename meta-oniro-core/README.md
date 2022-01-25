@@ -49,4 +49,5 @@ more information on the contributing process, check the `CONRIBUTING.md` file.
 
 # License
 
-This layer is release under the licenses listed in the `LICENSES` root directory.
+This layer is released under the licenses listed in the `LICENSES` root
+directory.
