@@ -26,6 +26,7 @@ RUN apt-get update -qq \
 	bash git-repo git-lfs apt-utils build-essential chrpath cpio diffstat \
 	gawk git sudo wget language-pack-en-base time locales python-is-python3 \
 	python3-distutils python3-pip libssl-dev iproute2 iputils-ping curl jq \
+	lz4 zstd \
  && eatmydata apt-get install -qq -y 'ca-certificates=20210119~20.04.2' \
  && eatmydata apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN locale-gen
