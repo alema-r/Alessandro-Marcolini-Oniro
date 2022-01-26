@@ -262,3 +262,7 @@ CONF_VERSION = "2"
 # *and* the project you are building has a public sstate cache, you may choose to uncomment
 # this line and use the sstate cache published by Oniro Project.
 # SSTATE_MIRRORS = "file://.* https://cache.ostc-eu.org/bitbake/sstate-cache/PATH;downloadfilename=PATH \n"
+
+# Avoid warnings for included layers
+SKIP_META_SECURITY_SANITY_CHECK = "1"
+SKIP_META_RAUC_FEATURE_CHECK = "1"
