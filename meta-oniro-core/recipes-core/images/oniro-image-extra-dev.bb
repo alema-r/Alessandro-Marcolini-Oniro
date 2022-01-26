@@ -13,5 +13,5 @@ IMAGE_INSTALL:append = "\
 
 EXTRA_IMAGE_FEATURES += "dev-pkgs dbg-pkgs src-pkgs tools-sdk tools-debug tools-profile"
 
-# With the EXTRA_IMAGE_FEATURES we need to bump the size of the rootfs slightly
-ROOT_PARTITION_SIZE = "1300M"
+# With the EXTRA_IMAGE_FEATURES we need to bump the default size of the rootfs
+ROOT_PARTITION_SIZE = "2G"
