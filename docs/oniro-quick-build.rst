@@ -14,8 +14,8 @@ a supported reference hardware. It will also provide the steps for flashing and
 booting such an image.
 
 The steps below will focus on a Qemu-based target. If you want to get a feeling
-of |main_project_name| on a real hardware, checkout the :ref:`Avenger96 support page
-<SupportedBoardAvenger96>`.
+of |main_project_name| on a real hardware, checkout one of the
+:ref:`supported boards <SupportedBoards>`.
 
 .. contents:: 
     :depth: 2
