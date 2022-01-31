@@ -16,6 +16,7 @@ RDEPENDS:packagegroup-net-essentials = "\
 	dropbear \
 	${@bb.utils.contains("COMBINED_FEATURES", "wifi", "packagegroup-base-wifi iw", "", d)} \
 	networkmanager \
+	networkmanager-nmcli \
 	"
 
 RDEPENDS:packagegroup-net-tools = "\
