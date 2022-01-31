@@ -34,7 +34,7 @@ inherit systemd
 # mountpoint handled with systemd mount unit. In this way the state/writable
 # systemd mount units this class generates, will have the correct dependency on
 # having the read-write partition mounted.
-SYSTEM_STATE_RUNTIME_MOUNTPOINT ??= "/var/run/mount/sysdata"
+SYSTEM_STATE_RUNTIME_MOUNTPOINT ??= "/run/mount/sysdata"
 SYSTEM_STATE_MOUNT_UNIT ??= "run-mount-sysdata.mount"
 
 # The mount units depend on having the system state partition mounted at a
