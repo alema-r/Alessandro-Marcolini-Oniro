@@ -7,6 +7,19 @@
 |main_project_name| Build Architecture
 ######################################
 
+Oniro build architecture is composed of multifaceted, independent, modular, and 
+reusable building blocks, and in order to build OpenHarmony based images and 
+its components, meta-openharmony serves as a primary building block. OpenHarmony 
+OS depends on various building blocks, but in terms of applicability and other 
+benefits, meta-openharmony essentially helps to desolate the barrier of 
+hardware boundaries, inevitably transcending the classical OS dichotomy. 
+
+In a closer view, `meta-openharmony` is a bitbake layer, containing recipes 
+for building OpenHarmony images and components. The meta-openharmony includes
+a number of different repo manifest files, which you can use to fetch all 
+repositories needed for building OpenHarmony. To have a successful build image, 
+ensure all the dependencies are met, and build the image. 
+ 
 ``Oniro Project`` architecture is documented using `c4 model <https://c4model.com/>`_.
 
 .. contents:: 
