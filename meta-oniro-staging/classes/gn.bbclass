@@ -89,9 +89,7 @@ python do_write_gn_toolchain_file () {
     # of places including this class implementation and patchwork for projects
     # using this class
     toolchain_dir = os.path.join(root_gn_dir, "build", "toolchain", "yocto")
-    bb.utils.mkdirhier(toolchain_dir)
-    toolchain_file = os.path.join(toolchain_dir, "BUILD.gn")
-    write_toolchain_file(d, toolchain_file)
+    write_toolchain_files(d, toolchain_dir)
 }
 
 addtask write_gn_toolchain_file after do_patch before do_configure
@@ -99,7 +97,7 @@ addtask write_gn_toolchain_file after do_patch before do_configure
 do_check_yocto_toolchain_is_used() {
     cd "${S}"
     DEFAULT_TARGET_TOOLCHAIN=$(gn desc ${B} "//build/toolchain/yocto:yocto_flags" | \
-        grep "toolchain: //build/toolchain/yocto:yocto_target") || true
+        grep "toolchain: //build/toolchain/yocto/target:yocto_target") || true
     LIST_OF_GN_TARGETS_USING_YOCTO_FLAGS=$(gn refs -q ${B} \
         "//build/toolchain/yocto:yocto_flags") || true
     if test -z "$DEFAULT_TARGET_TOOLCHAIN" || \
@@ -228,11 +226,11 @@ def gn_toolchain_flags(d):
 
     return str(
         'config("yocto_flags") {\n'
-        '  if (current_toolchain == "//build/toolchain/yocto:yocto_target") {\n'
+        '  if (current_toolchain == "//build/toolchain/yocto/target:yocto_target") {\n'
         f'    cflags = {yocto_target_cflags}\n'
         f'    cflags_cc = {yocto_target_cflags_cc}\n'
         f'    ldflags = {yocto_target_ldflags}\n'
-        '  } else if (current_toolchain == "//build/toolchain/yocto:yocto_native") {\n'
+        '  } else if (current_toolchain == "//build/toolchain/yocto/native:yocto_native") {\n'
         f'    cflags = {yocto_native_cflags}\n'
         f'    cflags_cc = {yocto_native_cflags_cc}\n'
         f'    ldflags = {yocto_native_ldflags}\n'
@@ -301,11 +299,25 @@ def gn_toolchain_target(d):
 
     return gn_toolchain(target_toolchain_args)
 
-def write_toolchain_file(d, file_path):
-    """Creates a complete GN toolchain file in |file_path|."""
+def write_toolchain_files(d, toolchain_dir):
+    """Creates cflags BUILD.gn file, target and native GN toolchain files
+    in respective subdirectories of the |toolchain_dir_path|."""
 
-    with open(file_path, 'w') as toolchain_file:
-        toolchain_file.write(gn_toolchain_file_header(d))
+    bb.utils.mkdirhier(toolchain_dir)
+    toolchain_flags_file = os.path.join(toolchain_dir, "BUILD.gn")
+    with open(toolchain_flags_file, 'w') as toolchain_file:
         toolchain_file.write(gn_toolchain_flags(d))
-        toolchain_file.write(gn_toolchain_native(d))
+
+    target_toolchain_dir = os.path.join(toolchain_dir, "target")
+    bb.utils.mkdirhier(target_toolchain_dir)
+    target_toolchain_file = os.path.join(target_toolchain_dir,  "BUILD.gn")
+    with open(target_toolchain_file, 'w') as toolchain_file:
+        toolchain_file.write(gn_toolchain_file_header(d))
         toolchain_file.write(gn_toolchain_target(d))
+
+    native_toolchain_dir = os.path.join(toolchain_dir, "native")
+    bb.utils.mkdirhier(native_toolchain_dir)
+    native_toolchain_file = os.path.join(native_toolchain_dir, "BUILD.gn")
+    with open(native_toolchain_file, 'w') as toolchain_file:
+        toolchain_file.write(gn_toolchain_file_header(d))
+        toolchain_file.write(gn_toolchain_native(d))
