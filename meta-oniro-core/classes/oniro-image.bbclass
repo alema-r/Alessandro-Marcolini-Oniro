@@ -32,7 +32,7 @@ IMAGE_FSTYPES:append = " squashfs"
 
 WKS_FILE:raspberrypi4-64 ?= "x-raspberrypi.wks.in"
 
-WKS_FILE:seco-intel-b68 ?= "x-efi-systemd-microcode.wks.in"
+WKS_FILE:seco-intel-b68 ?= "x-gpt-efi-disk.wks.in"
 IMAGE_FSTYPES:append:seco-intel-b68 = " wic.bz2 wic.bmap"
 
 # We avoid any other fstypes (for qemu) by default as the OS depends on a
