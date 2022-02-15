@@ -38,11 +38,12 @@ IMAGE_FSTYPES:append:seco-intel-b68 = " wic.bz2 wic.bmap"
 # We avoid any other fstypes (for qemu) by default as the OS depends on a
 # specific partition table provided through the wic configuration.
 IMAGE_FSTYPES:qemux86 ?= "wic wic.bz2"
-WKS_FILE:qemux86 ?= "x-qemux86-directdisk.wks.in"
+WKS_FILE:qemux86 ?= "x-gpt-efi-disk.wks.in"
 IMAGE_FSTYPES:qemux86-64 ?= "wic wic.bz2"
 WKS_FILE:qemux86-64 ?= "x-gpt-efi-disk.wks.in"
-# Build EFI firmware for x86-64 QEMU machine.
+# Build EFI firmware for x86{,-64} QEMU machine.
 WKS_FILE_DEPENDS:qemux86-64 += "ovmf"
+WKS_FILE_DEPENDS:qemux86 += "ovmf"
 
 WKS_FILE:qemu-generic-arm64 = "x-qemu-efi-disk.wks.in"
 IMAGE_FSTYPES:qemu-generic-arm64 += "wic wic.qcow2"
