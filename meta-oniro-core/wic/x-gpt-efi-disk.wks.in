@@ -1,0 +1,25 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+# short-description: Creates a GPT-partitioned disk with EFI bootloader
+# long-description: The created disk is universal, and applies to physical and
+# virtual machines alike. The particular bootloader can be controlled with
+# EFI_PROVIDER.
+#
+# Disk layout:
+#  -- ------ ------- ------- --------- --------- ---------
+# |  | boot | sys-a | sys-b | devdata | sysdata | appdata |
+#  -- ------ ------- ------- --------- --------- ---------
+# ^  ^
+# |  |
+# 0  4096KiB
+
+bootloader --ptable gpt --timeout=${WIC_BOOTLOADER_TIMEOUT} --append=" rootfstype=${ROOT_FSTYPE} "
+
+part --source bootimg-efi --sourceparams="loader=${EFI_PROVIDER}" --label ${BOOT_PARTITION_LABEL} --label boot --active --align 4096 --offset 4096 --fixed-size ${BOOT_PARTITION_SIZE}
+${WIC_ROOTA_PARTITION}
+${WIC_ROOTB_PARTITION}
+${WIC_DEVDATA_PARTITION}
+${WIC_SYSDATA_PARTITION}
+${WIC_APPDATA_PARTITION}
