@@ -2,7 +2,7 @@
 # long-description: Creates a partitioned EFI disk image that the user
 # can directly dd to boot media.
 
-bootloader --ptable gpt --timeout=5 --append="rootwait rootfstype=squashfs"
+bootloader --ptable gpt --timeout=${WIC_BOOTLOADER_TIMEOUT} --append="rootwait rootfstype=squashfs"
 part /boot --source bootimg-efi --sourceparams="loader=${EFI_PROVIDER}" --label boot --active --align 1024 --use-uuid
 ${WIC_ROOTA_PARTITION}
 ${WIC_ROOTB_PARTITION}
