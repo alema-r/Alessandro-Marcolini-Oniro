@@ -269,8 +269,8 @@
     # meta-oniro-core/classes/oniro-image.bbclass as runqemu needs it for local
     # build and boot.
     - find "$BITBAKE_TMPDIR"/deploy/images/ -name *.wic -exec rm -rf {} \;
-    - mv "$BITBAKE_TMPDIR"/deploy/images/ "$CI_PROJECT_DIR"/artifacts || true
-    - mv "$BITBAKE_TMPDIR"/deploy/licenses/ "$CI_PROJECT_DIR"/artifacts || true
+    - cp -a "$BITBAKE_TMPDIR"/deploy/images/ "$CI_PROJECT_DIR"/artifacts || true
+    - cp -a "$BITBAKE_TMPDIR"/deploy/licenses/ "$CI_PROJECT_DIR"/artifacts || true
   artifacts:
     paths:
       - artifacts/
