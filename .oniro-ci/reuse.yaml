@@ -42,7 +42,6 @@
 #   # allow_failure: true
 # -- 8< ------------[ cut here ]---
 .reuse:
-  stage: compliance 
   interruptible: true
   tags: [compliance]
   # This pipeline relies on a container with the reuse package pre-installed.
