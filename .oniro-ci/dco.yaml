@@ -47,7 +47,6 @@
 .dco:
   stage: compliance
   interruptible: true
-  tags: [compliance]
   # This pipeline relies on a container with the dco-check package pre-installed.
   # Precise, machine readable description of this container can be found in
   # https://gitlab.eclipse.org/eclipse/oniro-core/oniro/-/blob/dunfell/.oniro-ci/containers/dco-check/Dockerfile
