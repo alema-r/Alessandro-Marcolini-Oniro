@@ -287,6 +287,18 @@
     - echo "Pruning empty directories"
     - find "$CI_PROJECT_DIR"/artifacts/ -type d -exec rmdir --verbose --ignore-fail-on-non-empty {} \; 2>/dev/null || true
 
+.build-rauc-bundle:
+  extends: .build-image
+  script:
+    - !reference [.build-image, script]
+    # Remove everything _except_ for the .raucb.* files. The bundle is
+    # self-sufficient (aka standalone) and does not need any supporting
+    # infrastructure.
+    - echo "Removing non-bundle files"
+    - find "$CI_PROJECT_DIR"/artifacts/images/ \( -type f -o -type l \) -a ! -name "*.raucb" -print -delete
+    - echo "Pruning empty directories"
+    - find "$CI_PROJECT_DIR"/artifacts/ -type d -exec rmdir --verbose --ignore-fail-on-non-empty {} \; 2>/dev/null || true
+
 # This job is currently used to customize the behavior in oniro and xts-acts.
 # It will be removed when that is safe to do so. It is not documented.
 .build:

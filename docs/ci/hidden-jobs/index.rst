@@ -23,6 +23,7 @@ implementation details.
    build-recipe
    build-image
    build-wic-image
+   build-rauc-bundle
    build-docs
    lava-test
    lava-report

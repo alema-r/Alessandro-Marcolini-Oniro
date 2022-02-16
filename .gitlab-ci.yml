@@ -17,6 +17,7 @@
 stages:
   - compliance
   - build
+  - update
   - test
   - report
   - deploy
@@ -80,6 +81,15 @@ aggregate-docs:
         CI_ONIRO_MANIFEST_BRANCH: "$CI_COMMIT_REF_NAME"
     - if: '$CI_COMMIT_TAG'
       # XXX: This needs CI_ONIRO_MANIFEST_BRANCH as well, most likely.
+
+# Build a RAUC update bundle for Raspberry Pi 4
+bundle-raspberrypi4-64:
+  extends: .build-rauc-bundle
+  stage: update
+  variables:
+    MACHINE: raspberrypi4-64
+    CI_ONIRO_BUILD_FLAVOUR: linux
+    CI_ONIRO_RECIPE_NAME: oniro-bundle-base
 
 # Mimic the updated rules for lava-test from the bitbake-workspace.
 .lava-test:
