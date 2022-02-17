@@ -25,5 +25,5 @@ or via command line, e.g.:
 
 You can also run generated qemu images with a command:
 
-    $ runqemu qemux86-64 qemuparams="-nographic" oniro-image-base wic
+    $ runqemu qemux86-64 qemuparams="-nographic" oniro-image-base wic ovmf
 
