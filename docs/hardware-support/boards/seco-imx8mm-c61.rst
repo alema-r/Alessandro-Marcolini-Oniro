@@ -37,17 +37,17 @@ To clone the source code, perform the procedure in: :ref:`Setting up a repo work
 Linux image
 -----------
 
-1. Source the environment with proper template settings, flavour being ``linux`` and target machine being ``seco-imx8mm-c61``.
+1. Source the environment with proper template settings, flavour being ``linux`` and target machine being ``seco-imx8mm-c61-Xgb``, where X can be 2 or 4 depending on the amount of DRAM installed on the target board.
 
 .. code-block:: console
 
    $ TEMPLATECONF=../oniro/flavours/linux . ./oe-core/oe-init-build-env build-oniro-linux
 
-2. You will find yourself in the newly created build directory. Call ``bitbake`` to build the image. The supported image is ``oniro-image-base``.
+2. You will find yourself in the newly created build directory. Call ``bitbake`` to build the image. The supported image is ``oniro-image-base``. E.g.: for a 2GB board:
 
 .. code-block:: console
 
-   $ MACHINE=seco-imx8mm-c61 bitbake oniro-image-base
+   $ MACHINE=seco-imx8mm-c61-2gb bitbake oniro-image-base
 
 To generate images for eMMC, refer to the following flashing procedure.
 
@@ -76,19 +76,13 @@ following steps:
 
    .. code-block:: console
 
-      $ cd tmp/deploy/images/seco-imx8mm-c61/
-
-#. Unzip build output using Gzip software:
-
-   .. code-block:: console
-
-      $ gzip -d oniro-image-base-seco-imx8mm-c61.wic.gz
+      $ cd tmp/deploy/images/seco-imx8mm-c61-2gb/
 
 #. To write uboot and image(p1:kernel, p2:dtb, rootfs) into c61 mmc via mfgtools:
 
    .. code-block:: console
 
-      $ sudo uuu -b emmc_all imx-boot-seco-imx8mm-c61-emmc.bin-flash_evk oniro-image-base-seco-imx8mm-c61.wic
+      $ sudo uuu -b emmc_all imx-boot-seco-imx8mm-c61-emmc.bin-flash_evk "oniro-image-base-seco-imx8mm-c61-2gb.wic.gz/*"
 
 #. Power ON SBC-C61
 #. Remove **CN52 short circuit**
