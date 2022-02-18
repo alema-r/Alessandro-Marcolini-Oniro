@@ -11,4 +11,5 @@ PACKAGES = "packagegroup-oniro-core"
 RDEPENDS:packagegroup-oniro-core = "\
 	oniro-mounts \
 	oniro-sysctl \
+	oniro-modprobe \
 	"
