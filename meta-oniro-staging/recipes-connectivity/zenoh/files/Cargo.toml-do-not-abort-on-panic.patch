@@ -1,0 +1,28 @@
+From 93e3d4b581f9b492d3b474698bfe409143676d1a Mon Sep 17 00:00:00 2001
+From: Francesco Pham <francesco.pham@huawei.com>
+Date: Wed, 2 Feb 2022 16:14:16 +0100
+Subject: [PATCH] Cargo.toml: do not abort on panic
+
+panic abort mode is incompatible with OE's rust,
+OE's rust is configured to unwind, and this setting clashes with it.
+
+Upstream-Status: Inappropriate [OE specific]
+
+Relate-to: https://lists.openembedded.org/g/openembedded-core/topic/88421290
+
+Signed-off-by: Francesco Pham <francesco.pham@huawei.com>
+---
+ Cargo.toml | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/Cargo.toml b/Cargo.toml
+index 24721e88..9c1b7f60 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -54,4 +54,3 @@ debug = false     # If you want debug symbol in release mode, set the env variab
+ lto = "fat"
+ codegen-units = 1
+ opt-level = 3
+-panic = "abort"
+-- 
+2.25.1
