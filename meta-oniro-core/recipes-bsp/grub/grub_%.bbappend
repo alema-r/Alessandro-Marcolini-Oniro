@@ -10,3 +10,7 @@
 # globally in OPTIMIZE_FOR=security mode.
 
 TARGET_CFLAGS:remove = "-Werror=array-bounds"
+
+# Make sure that GRUB can load squashfs, so that it can mount the system image
+# and load the kernel, or other modules, from there directly.
+GRUB_BUILDIN:append = " squash4"
