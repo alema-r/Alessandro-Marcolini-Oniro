@@ -11,6 +11,7 @@ IMAGE_INSTALL:append = "\
 			packagegroup-net-essentials \
 			packagegroup-ble-essentials \
 			sysota \
+			kernel-image \
 			"
 
 IMAGE_INSTALL:append = " ${@bb.utils.contains('MACHINE_FEATURES', 'optee', 'optee-client', '', d)} "
