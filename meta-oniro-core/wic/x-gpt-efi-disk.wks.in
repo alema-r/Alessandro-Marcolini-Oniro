@@ -17,7 +17,7 @@
 
 bootloader --ptable gpt --timeout=${WIC_BOOTLOADER_TIMEOUT} --append=" rootfstype=${ROOT_FSTYPE} "
 
-part --source bootimg-efi --sourceparams="loader=${EFI_PROVIDER}" --label ${BOOT_PARTITION_LABEL} --label boot --active --align 4096 --offset 4096 --fixed-size ${BOOT_PARTITION_SIZE}
+part --source bootimg-efi --sourceparams="loader=${EFI_PROVIDER}" --label ${BOOT_PARTITION_LABEL} --active --align 4096 --offset 4096 --fixed-size ${BOOT_PARTITION_SIZE}
 ${WIC_ROOTA_PARTITION}
 ${WIC_ROOTB_PARTITION}
 ${WIC_DEVDATA_PARTITION}
