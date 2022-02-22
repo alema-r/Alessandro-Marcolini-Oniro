@@ -91,6 +91,15 @@ bundle-raspberrypi4-64:
     CI_ONIRO_BUILD_FLAVOUR: linux
     CI_ONIRO_RECIPE_NAME: oniro-bundle-base
 
+.build-wic-image-daily:
+  extends: .build-wic-image
+  variables:
+    # Add packages needed by daily testing.
+    CI_ONIRO_BB_LOCAL_CONF_IMAGE_INSTALL_colon_append: " ltp"
+  rules:
+    # Run the build for scheduled pipelines.
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+
 # Mimic the updated rules for lava-test from the bitbake-workspace.
 .lava-test:
   rules:
