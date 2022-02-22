@@ -279,11 +279,11 @@
   extends: .build-image
   script:
     - !reference [.build-image, script]
-    # Remove everything _except_ for the .wic.* and *.bmap files. Most of the
-    # remaining files are redundant and quite large. Our Linux builds really
-    # only care about the wic files.
+    # Remove everything _except_ for the .wic.* and *.bmap and ovmf.qcow2 files.
+    # Most of the remaining files are redundant and quite large. Our Linux
+    # builds really only care about the wic files and the qemu UEFI firmware.
     - echo "Removing non-wic/bmap image files"
-    - find "$CI_PROJECT_DIR"/artifacts/images/ \( -type f -o -type l \) -a ! -name "*.wic.*" -print -delete
+    - find "$CI_PROJECT_DIR"/artifacts/images/ \( -type f -o -type l \) -a ! \( -name "*.wic.*" -o -name "ovmf.qcow2" \) -print -delete
     - echo "Pruning empty directories"
     - find "$CI_PROJECT_DIR"/artifacts/ -type d -exec rmdir --verbose --ignore-fail-on-non-empty {} \; 2>/dev/null || true
 
