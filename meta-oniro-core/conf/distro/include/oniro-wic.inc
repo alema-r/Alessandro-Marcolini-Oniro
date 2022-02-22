@@ -55,3 +55,9 @@ WIC_ROOTB_PARTITION ?= "part / --source rootfs --use-uuid --fstype=${ROOT_FSTYPE
 WIC_DEVDATA_PARTITION ?= "part --fstype=ext4 --label ${DEVDATA_PARTITION_LABEL} --mkfs-extraopts '-T default' --align 4096 --fixed-size ${DEVDATA_PARTITION_SIZE} ${WIC_DEVDATA_PARTITION_EXTRA_ARGS}"
 WIC_SYSDATA_PARTITION ?= "part --fstype=ext4 --label ${SYSDATA_PARTITION_LABEL} --mkfs-extraopts '-T default' --align 4096 --fixed-size ${SYSDATA_PARTITION_SIZE} ${WIC_SYSDATA_PARTITION_EXTRA_ARGS}"
 WIC_APPDATA_PARTITION ?= "part --fstype=ext4 --label ${APPDATA_PARTITION_LABEL} --mkfs-extraopts '-T default' --align 4096 --fixed-size ${APPDATA_PARTITION_SIZE} ${WIC_APPDATA_PARTITION_EXTRA_ARGS}"
+
+# The construction of the image depends on the files deployed by the
+# oniro-grub-bootconf package, namely the empty grubenv file.
+do_image_wic[depends] += " \
+    oniro-grub-bootconf:do_deploy \
+"
