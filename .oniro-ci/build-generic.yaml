@@ -136,20 +136,26 @@
     # dropped. Some extra sed processing is used to quote the variables.
     # Everything runs in a sub-shell with bash pipefail disabled, as otherwise
     # lack of variables matching the grep pattern causes the execution to stop.
+    # Variables in the form of 'CI_ONIRO_BB_LOCAL_CONF_attr' are converted to
+    # 'attr = "value"'. It can include '_colon_' substrings which are converted
+    # to ':'.
     - |
       ( set +o pipefail;
         env \
-          | grep -E '^CI_ONIRO_BB_LOCAL_CONF_[A-Z_0-9]+=' \
-          | sed -e 's/^CI_ONIRO_BB_LOCAL_CONF_//g' -e 's/"/\\"/g' -e 's/=/ = "/g' -e 's/$/"/g' \
+          | grep -v "_plus_equals_" \
+          | grep -E '^CI_ONIRO_BB_LOCAL_CONF_[a-zA-Z_0-9]+=' \
+          | sed -e 's/^CI_ONIRO_BB_LOCAL_CONF_//g' -e 's/_colon_/:/g' -e 's/"/\\"/g' -e 's/=/ = "/g' -e 's/$/"/g' \
           | sort \
           | tee -a conf/local.conf )
+    # Variables in the form of 'CI_ONIRO_BB_LOCAL_CONF_plus_equals_attr' are
+    # converted to 'attr += "value"'
+    - |
       ( set +o pipefail;
         env \
           | grep -E '^CI_ONIRO_BB_LOCAL_CONF_plus_equals_[A-Z_0-9]+=' \
           | sed -e 's/^CI_ONIRO_BB_LOCAL_CONF_plus_equals_//g' -e 's/"/\\"/g' -e 's/=/ += "/g' -e 's/$/"/g' \
           | sort \
           | tee -a conf/local.conf )
-
 
     # Sanity check: disallow using public build cache with a specific setting
     # in local.conf. The list of settings may grow over time.

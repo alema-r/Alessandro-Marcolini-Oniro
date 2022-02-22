@@ -89,9 +89,11 @@ Configuring BitBake
 
 The ``local.conf`` file can define numerous variables that influence the
 BitBake build process. This job offers a declarative method of doing that. Job
-variables with have the prefix ``CI_ONIRO_BB_LOCAL_CONF_`` are converted to
-``attr = "value"`` and those with prefix
-``CI_ONIRO_BB_LOCAL_CONF_plus_equals_`` are converted to ``attr += "value"``.
+variables can be of two forms. ``CI_ONIRO_BB_LOCAL_CONF_attr`` and
+``CI_ONIRO_BB_LOCAL_CONF_plus_equals_attr``. The former is converted to
+``attr = "value"``. It can include ``_colon_`` substrings which are converted
+to ``:``. And variables in the latter form are converted to
+``attr += "value"``.
 
 This method is friendly to job inheritance and re-definition. Derivative jobs
 can add or re-define variables without having to duplicate any imperative logic
