@@ -11,6 +11,9 @@
   variables:
     GIT_STRATEGY: none
     CI_LAVA_INSTANCE: "https://lava.ostc-eu.org/"
+    # Run the same ltp test suites that using by LKFT project.
+    # Reference: https://qa-reports.linaro.org/lkft/linux-stable-rc-linux-5.10.y/build/v5.10.98-75-g9f5cb871ceb9/testjobs/
+    LTP_TST_CMDFILES: "cap_bounds cpuhotplug crypto nptl pty securebits fs controllers hugetlb mm tracing containers io dio syscalls math commands ipc fcntl-locktests filecaps fs_bind fs_perms_simple fsx sched cve"
   before_script:
     - test -n "$CI_LAVA_TOKEN" || (
         echo "precondition failed - please disable the child job if CI_LAVA_TOKEN not set in gitlab CI/CD variables"
@@ -43,27 +46,37 @@
       -e 's,$ci_pipeline_url,'"$CI_PIPELINE_URL"','
       -e 's/$build_job_id/'"$build_job_id"'/'
       -e 's,$callback_url,'"$CALLBACK_URL"',' job_def.yaml
-    # Generate job definitions for zephyr build
+    # Generate test jobs.
     - |
+      set -x
       rm -rf lava_jobs && mkdir lava_jobs
+      # Generate job definitions for zephyr build
       if echo "${CI_BUILD_JOB_NAME}" | grep -i "zephyr"; then
         for image in $(find artifacts/images/${MACHINE} -name "*.elf" -exec basename {} \;); do
           image_basename=$(basename "${image}" ".elf")
           echo "--- Generating lava job definition ${image_basename}.yaml ---"
           sed "s/\$image_basename/$image_basename/" job_def.yaml | tee lava_jobs/"${image_basename}".yaml
         done
+      # Generate job definitions for linux LTP test.
+      elif grep -q "\$TST_CMDFILES" job_def.yaml; then
+        for test_cmdfile in ${LTP_TST_CMDFILES}; do
+          ltp_job_name="ltp-${test_cmdfile}.yaml"
+          echo "--- Generating lava job definition ${ltp_job_name} ---"
+          sed "s/\$TST_CMDFILES/${test_cmdfile}/" job_def.yaml | tee lava_jobs/"${ltp_job_name}"
+        done
       else
         mv job_def.yaml lava_jobs/
       fi
+      set +x
     # Submit the job to LAVA.
     - |
       for job_def in $(find lava_jobs/ -name "*.yaml"); do
         lava_job_id=$(curl -X POST -H "Authorization: Token $CI_LAVA_TOKEN" -F "definition=$(<${job_def})" "$CI_LAVA_INSTANCE/api/v0.2/jobs/" | jq ".job_ids" | tr -d "[\n ]")
-        if [ -n "${lava_job_id}" ]; then
+        if [ "${lava_job_id}" != "null" ]; then
           echo "$CI_LAVA_INSTANCE/scheduler/job/$lava_job_id"
           echo "$lava_job_id" >> job_ids_"${CI_JOB_NAME}_${lava_job_id}".txt
         else
-          echo "Failed to submit LAVA job"
+          echo "Failed to submit ${job_def}"
           exit 1
         fi
       done
