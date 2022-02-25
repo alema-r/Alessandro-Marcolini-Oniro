@@ -9,6 +9,7 @@ SUMMARY = "Oniro Project image including the base OS software stack and tests"
 IMAGE_INSTALL:append = "\
     packagegroup-oniro-tests \
     ltp \
+    perf \
 "
 
 # This adds ptest packages to the image
