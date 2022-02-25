@@ -58,7 +58,7 @@
           sed "s/@image_basename@/$image_basename/" job_def.yaml | tee lava_jobs/"${image_basename}".yaml
         done
       # Generate job definitions for linux LTP test.
-      elif grep -q "\$TST_CMDFILES" job_def.yaml; then
+      elif grep -q "@TST_CMDFILES@" job_def.yaml; then
         for test_cmdfile in ${LTP_TST_CMDFILES}; do
           ltp_job_name="ltp-${test_cmdfile}.yaml"
           echo "--- Generating lava job definition ${ltp_job_name} ---"
