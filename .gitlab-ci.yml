@@ -208,6 +208,46 @@ lava-zephyr-96b-nitrogen-tests:
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/nitrogen-test.yaml"
     CI_REPORT_JOB_NAME: lava-report
 
+lava-qemu-x86-perf:
+  needs: [linux-qemu-x86]
+  stage: test
+  extends: .lava-test
+  variables:
+    MACHINE: qemux86
+    CI_BUILD_JOB_NAME: linux-qemu-x86
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/qemu-x86-perf.yaml"
+    CI_REPORT_JOB_NAME: lava-report
+
+lava-qemu-x86_64-perf:
+  needs: [linux-qemu-x86_64]
+  stage: test
+  extends: .lava-test
+  variables:
+    MACHINE: qemux86-64
+    CI_BUILD_JOB_NAME: linux-qemu-x86_64
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/qemu-x86_64-perf.yaml"
+    CI_REPORT_JOB_NAME: lava-report
+
+lava-raspberrypi4-64-perf:
+  needs: [linux-raspberrypi4-64]
+  stage: test
+  extends: .lava-test
+  variables:
+    MACHINE: raspberrypi4-64
+    CI_BUILD_JOB_NAME: linux-raspberrypi4-64
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/raspberrypi4-64-perf.yaml"
+    CI_REPORT_JOB_NAME: lava-report
+
+lava-seco-intel-b68-perf:
+  needs: [linux-seco-intel-b68]
+  stage: test
+  extends: .lava-test
+  variables:
+    MACHINE: seco-intel-b68
+    CI_BUILD_JOB_NAME: linux-seco-intel-b68
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/seco-intel-b68-perf.yaml"
+    CI_REPORT_JOB_NAME: lava-report
+
 lava-zephyr-qemu-cortex-m3:
   needs: [zephyr-qemu-cortex-m3]
   stage: test
@@ -238,6 +278,10 @@ lava-report:
     - lava-qemu-x86_64-ltp
     - lava-raspberrypi4-64-ltp
     - lava-seco-intel-b68-ltp
+    - lava-qemu-x86-perf
+    - lava-qemu-x86_64-perf
+    - lava-raspberrypi4-64-perf
+    - lava-seco-intel-b68-perf
     - lava-zephyr-96b-nitrogen-tests
     - lava-zephyr-qemu-cortex-m3
     - lava-zephyr-qemu-x86
