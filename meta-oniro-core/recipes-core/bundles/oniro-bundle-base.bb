@@ -6,6 +6,8 @@ inherit bundle
 
 SUMMARY = "SysOTA/RAUC Update Bundle for Oniro Base Image"
 
+RAUC_BUNDLE_COMPATIBLE:qemux86 = "QEMU x86"
+RAUC_BUNDLE_COMPATIBLE:qemux86-64 = "QEMU x86-64"
 RAUC_BUNDLE_COMPATIBLE:raspberrypi4-64 = "Raspberry Pi 4"
 # TODO: add compatibility strings for other machines.
 
