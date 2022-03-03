@@ -77,6 +77,8 @@ do_compile:append() {
     oe_runmake -C ${B}/make-build --warn-undefined-variables Go.Cmd=/bin/false
 }
 
+do_compile[network] = "1"
+
 do_install:append() {
     oe_runmake -C ${B}/make-build --warn-undefined-variables install DESTDIR=${D}
 
