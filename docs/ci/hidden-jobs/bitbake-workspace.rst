@@ -125,10 +125,10 @@ than the artifact system, that copies all the data regardless of the need to
 actually use that data in practice.
 
 The default location is changed to
-``/var/shared/$CI_ONIRO_BUILD_CACHE/bitbake/downloads``, but this should
-be treated as an implementation detail. The location may change in the future.
-The download cache is not automatically purged yet. In the future it may be
-purged periodically, if space becomes an issue.
+``$CI_ONIRO_RUNNER_PERSISTENT_STORAGE/$CI_ONIRO_BUILD_CACHE/bitbake/downloads``,
+but this should be treated as an implementation detail. The location may change
+in the future.  The download cache is not automatically purged yet. In the
+future it may be purged periodically, if space becomes an issue.
 
 Note that the location relies on the value of ``$CI_ONIRO_BUILD_CACHE``
 discussed above.
@@ -147,10 +147,11 @@ tasks and simply assemble the desired system image out of intermediate files
 present in the cache.
 
 The default location is changed to
-``/var/shared/$CI_ONIRO_BUILD_CACHE/bitbake/sstate-cache``, but this
-should be treated as an implementation detail. The location may change in the
-future.  The sstate cache is not automatically purged yet. It can be purged
-periodically with the only caveat, that initial builds will be much slower.
+``$CI_ONIRO_RUNNER_PERSISTENT_STORAGE/$CI_ONIRO_BUILD_CACHE/bitbake/sstate-cache``,
+but this should be treated as an implementation detail. The location may change
+in the future.  The sstate cache is not automatically purged yet. It can be
+purged periodically with the only caveat, that initial builds will be much
+slower.
 
 Cache Considerations
 ====================
