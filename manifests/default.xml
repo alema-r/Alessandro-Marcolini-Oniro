@@ -22,18 +22,18 @@ SPDX-FileCopyrightText: Huawei Inc.
 	<remote name="openembedded" fetch="git://git.openembedded.org" />
 	<remote name="seco" fetch="https://git.seco.com" />
 
-	<project name="bitbake" remote="openembedded" revision="bdf5739c5d831dc97a7d81568f94a0953c71017f" path="bitbake" />
-	<project name="openembedded-core" remote="openembedded" revision="549597d422c7bcb467f34139ff25d2bee96bf851" path="oe-core" />
-	<project name="meta-openembedded" remote="openembedded" revision="47a4542bf7ddc72b2b82a0e3c3d9bb2c20bdde27" path="meta-openembedded" />
-	<project name="aehs29/meta-freertos" remote="github" revision="0bf34ac4acb807d3553939bf7d56cebeaaf211af" path="meta-freertos" />
-	<project name="meta-intel" remote="yocto" revision="49c69323b547b0c757c05ba65f1e6c2c7e6fc506" path="meta-intel" />
-	<project name="pub/intel/yocto/meta-seco-intel" remote="seco" revision="58f464daf2046f85c1a1909abee2dbe5d39a38d6" path="meta-seco-intel" />
-	<project name="meta-freescale" remote="yocto" revision="58a442bdafae4329a61f656d597c76c5fb8da928" path="meta-freescale" />
-	<project name="pub/i.mx/yocto/5.x/meta-seco-imx" remote="seco" revision="2c9a8d794d6ea43a5664b72c9c94bec5def484ad" path="meta-seco-imx" />
-	<project name="meta-raspberrypi" remote="yocto" revision="836755370f5a61d96d62d5ff23e7b73c81032c8e" path="meta-raspberrypi" />
-	<project name="meta-security" remote="yocto" revision="e4a49814e101a8ed437b85beea43ca437a7b96c6" path="meta-security" />
-	<project name="rauc/meta-rauc" remote="github" revision="bf69e28d677d8a8c89aba1c24a94043e5296e0d8" path="meta-rauc" />
-	<project name="riscv/meta-riscv" remote="github" revision="9fb725c93549849bcf5623325f6ac256fcd56e1e" path="meta-riscv" />
+	<project name="bitbake" remote="openembedded" revision="f0fc0fe94161d4dd4f34df8426222ac590ef6736" path="bitbake" />
+	<project name="openembedded-core" remote="openembedded" revision="b1bb4e2d73985c6e8cf03b0fea94e8b739648cf7" path="oe-core" />
+	<project name="meta-openembedded" remote="openembedded" revision="8b8bfbcadf188cd5b234358590764e20d03d7861" path="meta-openembedded" />
+	<project name="aehs29/meta-freertos" remote="github" revision="98a6838261d36b8f79c5fbae1736492169727a1e" path="meta-freertos" />
+	<project name="meta-intel" remote="yocto" revision="2bdc432840d0f862fec965281540dbe91d8eb565" path="meta-intel" />
+	<project name="pub/intel/yocto/meta-seco-intel" remote="seco" revision="65a673560211b11986db5785c70254fad190785f" path="meta-seco-intel" />
+	<project name="meta-freescale" remote="yocto" revision="04a7bbdddfe9cfd41e93f127fed41293cde79741" path="meta-freescale" />
+	<project name="pub/i.mx/yocto/5.x/meta-seco-imx" remote="seco" revision="f09f884e163d10aee7daf5cdcc5092be4fc00128" path="meta-seco-imx" />
+	<project name="meta-raspberrypi" remote="yocto" revision="390b3f63cfd2a780e71fce18530ca6c8b9195d1c" path="meta-raspberrypi" />
+	<project name="meta-security" remote="yocto" revision="6cc8dde794bd56077e0e2eb5d303e958cc553b68" path="meta-security" />
+	<project name="rauc/meta-rauc" remote="github" revision="9e206d6998b363315791be144815a4eabc3fe5a8" path="meta-rauc" />
+	<project name="riscv/meta-riscv" remote="github" revision="b3550462b3e827259efbc8872ead6ecc0e30c7fb" path="meta-riscv" />
 
 	<!--
 		All entries above are pinned to a specific revision and updated manually.
@@ -51,8 +51,8 @@ SPDX-FileCopyrightText: Huawei Inc.
 	<project name="distro/oniro" remote="oniro-booting" revision="kirkstone" path="oniro">
 		<linkfile src="README.md" dest="README.md"/>
 	</project>
-	<project name="distro/meta-clang" remote="oniro-booting" revision="oniro/main" path="meta-clang" />
-	<project name="distro/meta-zephyr" remote="oniro-booting" revision="oniro/main" path="meta-zephyr" />
+	<project name="distro/meta-clang" remote="oniro-booting" revision="oniro/kirkstone" path="meta-clang" />
+	<project name="distro/meta-zephyr" remote="oniro-booting" revision="oniro/kirkstone" path="meta-zephyr" />
 	<project name="distro/docs" remote="oniro-booting" revision="main" path="docs" />
 	<project name="distro/governance/ip-policy" remote="oniro-booting" revision="main" path="ip-policy" />
 </manifest>
