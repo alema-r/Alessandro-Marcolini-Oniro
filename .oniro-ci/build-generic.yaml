@@ -35,7 +35,7 @@
         echo "CI_ONIRO_MANIFEST_NAME: $CI_ONIRO_MANIFEST_NAME"
         echo "CI_ONIRO_MANIFEST_BRANCH: $CI_ONIRO_MANIFEST_BRANCH"
         repo init --reference \
-           /var/shared/pub/git-repo-mirrors/"$CI_ONIRO_MANIFEST_MIRROR" \
+           "$CI_ONIRO_RUNNER_PERSISTENT_STORAGE"/pub/git-repo-mirrors/"$CI_ONIRO_MANIFEST_MIRROR" \
            --manifest-url "$CI_ONIRO_MANIFEST_URL" \
            --manifest-name "$CI_ONIRO_MANIFEST_NAME" \
            --manifest-branch "$CI_ONIRO_MANIFEST_BRANCH"
@@ -79,8 +79,8 @@
     CI_ONIRO_BUILD_FLAVOUR: ""
     CI_ONIRO_BUILD_CACHE: "private"
     CI_ONIRO_BB_LOCAL_CONF_CONNECTIVITY_CHECK_URIS: "https://example.net/"
-    CI_ONIRO_BB_LOCAL_CONF_DL_DIR: /var/shared/$CI_ONIRO_BUILD_CACHE/bitbake/downloads
-    CI_ONIRO_BB_LOCAL_CONF_SSTATE_DIR: /var/shared/$CI_ONIRO_BUILD_CACHE/bitbake/sstate-cache
+    CI_ONIRO_BB_LOCAL_CONF_DL_DIR: $CI_ONIRO_RUNNER_PERSISTENT_STORAGE/$CI_ONIRO_BUILD_CACHE/bitbake/downloads
+    CI_ONIRO_BB_LOCAL_CONF_SSTATE_DIR: $CI_ONIRO_RUNNER_PERSISTENT_STORAGE/$CI_ONIRO_BUILD_CACHE/bitbake/sstate-cache
     CI_ONIRO_BB_LOCAL_CONF_IMAGE_VERSION_SUFFIX: ""
     CI_ONIRO_BB_LOCAL_CONF_CVE_CHECK_DB_DIR: "$${TMPDIR}/CVE_CHECK/"
     CI_ONIRO_BB_LOCAL_CONF_plus_equals_INHERIT: cve-check
@@ -104,13 +104,16 @@
         echo "precondition failed - cannot define just one of CI_ONIRO_DEVTOOL_RECIPE_NAME and CI_ONIRO_DEVTOOL_LAYER_PATH"
         exit 1
       fi
-    # Bitbake is configured to use /var/shared/$CI_ONIRO_BUILD_CACHE/bitbake
+    # Bitbake is configured to use $CI_ONIRO_RUNNER_PERSISTENT_STORAGE/$CI_ONIRO_BUILD_CACHE/bitbake
     # directory for both the download directory and the sstate-cache.
-    - test -w /var/shared/$CI_ONIRO_BUILD_CACHE/bitbake || (
-        echo "precondition failed - expected /var/shared/$CI_ONIRO_BUILD_CACHE/bitbake to be writable"
+    - test -n "$CI_ONIRO_RUNNER_PERSISTENT_STORAGE" || (
+        echo "precondition failed - CI_ONIRO_RUNNER_PERSISTENT_STORAGE is not set"
+        && exit 1 )
+    - test -w "$CI_ONIRO_RUNNER_PERSISTENT_STORAGE/$CI_ONIRO_BUILD_CACHE/bitbake" || (
+        echo "precondition failed - expected $CI_ONIRO_RUNNER_PERSISTENT_STORAGE/$CI_ONIRO_BUILD_CACHE/bitbake to be writable"
         && exit 1 )
     # Log available disk space on the persistent shared disk.
-    - df -h /var/shared/$CI_ONIRO_BUILD_CACHE/bitbake
+    - df -h "$CI_ONIRO_RUNNER_PERSISTENT_STORAGE/$CI_ONIRO_BUILD_CACHE/bitbake"
     - !reference [.workspace, before_script]
 
   script:
