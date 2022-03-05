@@ -16,6 +16,7 @@ SPDX-FileCopyrightText: Huawei Inc.
 
 	</notice>
 
+	<remote name="eclipse" fetch="https://gitlab.eclipse.org/eclipse" />
 	<remote name="github" fetch="https://github.com" />
 	<remote name="oniro-booting" fetch="https://booting.oniroproject.org" />
 	<remote name="yocto" fetch="git://git.yoctoproject.org" />
@@ -48,11 +49,11 @@ SPDX-FileCopyrightText: Huawei Inc.
 		this is the case.
 	-->
 
-	<project name="distro/oniro" remote="oniro-booting" revision="kirkstone" path="oniro">
+	<project name="oniro-core/oniro" remote="eclipse" revision="kirkstone" path="oniro">
 		<linkfile src="README.md" dest="README.md"/>
 	</project>
-	<project name="distro/meta-clang" remote="oniro-booting" revision="oniro/kirkstone" path="meta-clang" />
-	<project name="distro/meta-zephyr" remote="oniro-booting" revision="oniro/kirkstone" path="meta-zephyr" />
-	<project name="distro/docs" remote="oniro-booting" revision="main" path="docs" />
+	<project name="oniro-core/meta-clang" remote="eclipse" revision="oniro/kirkstone" path="meta-clang" />
+	<project name="oniro-core/meta-zephyr" remote="eclipse" revision="oniro/kirkstone" path="meta-zephyr" />
+	<project name="oniro-core/docs" remote="eclipse" revision="main" path="docs" />
 	<project name="distro/governance/ip-policy" remote="oniro-booting" revision="main" path="ip-policy" />
 </manifest>
