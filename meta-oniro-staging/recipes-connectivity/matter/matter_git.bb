@@ -41,6 +41,7 @@ SRC_URI = "git://github.com/project-chip/connectedhomeip.git;protocol=https;name
            git://github.com/nestlabs/nlio.git;protocol=https;destsuffix=git/third_party/nlio/repo;name=nlio;branch=master \
            file://0001-projectmatter-use-Yocto-toolchain-and-flags.patch \
            file://0002-mbedtls-disable-building-integrated-library-in-Yocto.patch \
+           file://0001-BUILD.gn-enbale-all-Linux-examples-in-the-default-bu.patch \
            "
 
 PV = "0.0+git${SRCPV}"
@@ -60,7 +61,7 @@ GN_ARGS += "chip_enable_python_modules=false"
 
 # GCC v11 reports multiple problems that span across project's source code and
 # submodules. Temporarily disabling those warnings for the whole project
-TARGET_CFLAGS:append = " -Wno-format-truncation -Wno-stringop-truncation -Wno-format-security"
+TARGET_CFLAGS:append = " -Wno-format-truncation -Wno-stringop-truncation -Wno-format-security -Wno-unused-result"
 
 do_install() {
     install -d ${D}${bindir}
@@ -73,4 +74,11 @@ do_install() {
     install ${B}/chip-shell ${D}${bindir}
     install ${B}/chip-tool ${D}${bindir}
     install ${B}/spake2p ${D}${bindir}
+    install ${B}/chip-all-clusters-app ${D}${bindir}
+    install ${B}/chip-bridge-app ${D}${bindir}
+    install ${B}/chip-door-lock-app ${D}${bindir}
+    install ${B}/chip-lighting-app ${D}${bindir}
+    install ${B}/chip-tv-app ${D}${bindir}
+    install ${B}/chip-tv-casting-app ${D}${bindir}
+    install ${B}/thermostat-app ${D}${bindir}
 }

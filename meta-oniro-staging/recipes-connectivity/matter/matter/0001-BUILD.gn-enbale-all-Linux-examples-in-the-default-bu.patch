@@ -1,0 +1,36 @@
+From 0c592f854ac44c8388f55e8e78b553d5a0976272 Mon Sep 17 00:00:00 2001
+From: Stefan Schmidt <stefan.schmidt@huawei.com>
+Date: Thu, 10 Mar 2022 18:07:05 +0100
+Subject: [PATCH] BUILD.gn: enbale all Linux examples in the default build
+
+Instead of doing extra builds for each example we enable the ones we are
+interested in by default.
+
+Upstream-Status: Inappropriate [configuration]
+
+Signed-off-by: Stefan Schmidt <stefan.schmidt@huawei.com>
+---
+ BUILD.gn | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/BUILD.gn b/BUILD.gn
+index 09b8f2956..1334a45c8 100644
+--- a/BUILD.gn
++++ b/BUILD.gn
+@@ -107,6 +107,13 @@ if (current_toolchain != "${dir_pw_toolchain}/default:default") {
+       deps += [
+         ":certification",
+         "${chip_root}/examples/shell/standalone:chip-shell",
++        "${chip_root}/examples/all-clusters-app/linux:chip-all-clusters-app",
++        "${chip_root}/examples/thermostat/linux:thermostat-app",
++        "${chip_root}/examples/tv-app/linux:chip-tv-app",
++        "${chip_root}/examples/tv-casting-app/linux:chip-tv-casting-app",
++        "${chip_root}/examples/bridge-app/linux:chip-bridge-app",
++        "${chip_root}/examples/lighting-app/linux:chip-lighting-app",
++        "${chip_root}/examples/door-lock-app/linux:chip-door-lock-app",
+         "${chip_root}/src/app/tests/integration:chip-im-initiator",
+         "${chip_root}/src/app/tests/integration:chip-im-responder",
+         "${chip_root}/src/lib/address_resolve:address-resolve-tool",
+-- 
+2.35.1
+
