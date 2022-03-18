@@ -10,6 +10,8 @@
 # something that SystemOTA should be responsible for (make/model and remodel
 # operations). This should be addressed before re-model is supported.
 FILESEXTRAPATHS:prepend:raspberrypi4-64 := "${THISDIR}/files/raspberrypi4:"
+FILESEXTRAPATHS:prepend:qemux86 := "${THISDIR}/files/qemux86:"
+FILESEXTRAPATHS:prepend:qemux86-64 := "${THISDIR}/files/qemux86-64:"
 
 # Make the RAUC package machine-specific. This lets us put the specific configuration
 # file, which encodes the slot configuration, into it safely.
