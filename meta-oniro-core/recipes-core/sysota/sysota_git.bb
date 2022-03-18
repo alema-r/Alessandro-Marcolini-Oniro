@@ -12,6 +12,14 @@ SRC_URI = "git://gitlab.com/zygoon/sysota.git;protocol=https;branch=main \
 SRCREV = "6aec6e345e7c7f6d94932acbebeada32fde33162"
 S = "${WORKDIR}/git"
 
+# Disable linking to shared Go stdlib.
+# This fixes a crash when using Go 1.17 on x86.
+# https://gitlab.eclipse.org/eclipse/oniro-core/sysota/-/issues/7
+GO_DYNLINK:x86 = ""
+GO_DYNLINK:x86-64 = ""
+GO_DYNLINK:arm = ""
+GO_DYNLINK:aarch64 = ""
+
 # This package is built with go-mod as well as with make.
 #
 # The go-mod build is done in the ${B} directory but is not sufficient for
