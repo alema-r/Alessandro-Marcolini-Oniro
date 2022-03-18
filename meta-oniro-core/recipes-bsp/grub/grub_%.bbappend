@@ -12,5 +12,7 @@
 TARGET_CFLAGS:remove = "-Werror=array-bounds"
 
 # Make sure that GRUB can load squashfs, so that it can mount the system image
-# and load the kernel, or other modules, from there directly.
-GRUB_BUILDIN:append = " squash4"
+# and load the kernel, or other modules, from there directly. In addition add
+# echo and halt modules, so that the GRUB boot script can print diagnostic
+# messages or shut down on error.
+GRUB_BUILDIN:append = " squash4 halt echo"
