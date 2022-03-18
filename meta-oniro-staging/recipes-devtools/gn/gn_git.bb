@@ -44,7 +44,7 @@ do_install() {
     install ${B}/gn ${D}${bindir}
 }
 
-BBCLASSEXTEND = "native"
+BBCLASSEXTEND = "native nativesdk"
 
 COMPATIBLE_HOST = "^(?!riscv32).*"
 
