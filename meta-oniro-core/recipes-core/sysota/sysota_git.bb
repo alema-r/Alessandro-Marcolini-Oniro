@@ -6,10 +6,10 @@ DESCRIPTION = "Robust, unattended update system for Linux gateways"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSES/Apache-2.0.txt;md5=c846ebb396f8b174b10ded4771514fcc"
 
-SRC_URI = "git://gitlab.com/zygoon/sysota.git;protocol=https;branch=main \
+SRC_URI = "git://gitlab.eclipse.org/eclipse/oniro-core/sysota.git;protocol=https;branch=main \
            file://sysotad.conf \
 "
-SRCREV = "6aec6e345e7c7f6d94932acbebeada32fde33162"
+SRCREV = "4fc590e1d329aa9e05e64ae3a15d91481aa86e1d"
 S = "${WORKDIR}/git"
 
 # Disable linking to shared Go stdlib.
@@ -40,7 +40,8 @@ GO_DYNLINK:aarch64 = ""
 inherit go-mod systemd features_check
 
 # Go import path of SystemOTA.
-GO_IMPORT = "booting.oniroproject.org/distro/components/sysota"
+# See: https://gitlab.com/zygoon/sysota/-/merge_requests/60 for rationale.
+GO_IMPORT = "gitlab.com/zygoon/sysota"
 
 # The make side of the build depends on zmk. We cannot rely on zmk.bbclass as
 # that internally depends on autotools.bbclass but using autotools.bbclass and
