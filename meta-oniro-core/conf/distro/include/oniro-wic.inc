@@ -48,7 +48,7 @@ WIC_ROOTA_PARTITION ?= "part / --source rootfs --use-uuid --fstype=${ROOT_FSTYPE
                         ${@bb.utils.contains('ROOT_FSTYPE', 'ext4', '--mkfs-extraopts \'-T default\'', '', d)} \
                         --align 4096 --fixed-size ${ROOTA_PARTITION_SIZE} \
                         ${WIC_ROOTA_PARTITION_EXTRA_ARGS}"
-WIC_ROOTB_PARTITION ?= "part / --source rootfs --use-uuid --fstype=${ROOT_FSTYPE} \
+WIC_ROOTB_PARTITION ?= "part / --source empty --use-uuid --fstype=${ROOT_FSTYPE} \
                         ${@bb.utils.contains('ROOT_FSTYPE', 'ext4', '--mkfs-extraopts \'-T default\'', '', d)} \
                         --align 4096 --fixed-size ${ROOTB_PARTITION_SIZE} \
                         ${WIC_ROOTB_PARTITION_EXTRA_ARGS}"
