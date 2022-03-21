@@ -11,6 +11,7 @@ IMAGE_INSTALL:append = "\
 			packagegroup-net-essentials \
 			packagegroup-ble-essentials \
 			sysota \
+			rauc-hawkbit-updater \
 			kernel-image \
 			"
 
