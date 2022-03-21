@@ -1,0 +1,26 @@
+From 869ef9023085ffcb0f01011de1e74d5379d56d7a Mon Sep 17 00:00:00 2001
+From: Zygmunt Krynicki <zygmunt.krynicki@huawei.com>
+Date: Mon, 21 Mar 2022 11:52:41 +0100
+Subject: [PATCH] Do not include glibc-specific bits/types/struct_tm.h
+
+This fails to compile against musl. The time.h include is sufficient.
+
+Upstream-Status: Accepted
+
+Signed-off-by: Zygmunt Krynicki <zygmunt.krynicki@huawei.com>
+---
+ src/hawkbit-client.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/src/hawkbit-client.c b/src/hawkbit-client.c
+index f7a8886..1bd56e1 100644
+--- a/src/hawkbit-client.c
++++ b/src/hawkbit-client.c
+@@ -26,7 +26,6 @@
+ #include <glib/gstdio.h>
+ #include <json-glib/json-glib.h>
+ #include <libgen.h>
+-#include <bits/types/struct_tm.h>
+ #include <gio/gio.h>
+ #include <sys/reboot.h>
+ 
