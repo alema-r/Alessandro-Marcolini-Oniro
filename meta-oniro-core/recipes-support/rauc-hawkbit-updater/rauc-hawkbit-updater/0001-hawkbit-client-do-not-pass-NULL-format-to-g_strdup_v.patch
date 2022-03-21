@@ -1,0 +1,44 @@
+From 439feeeb0080b4fdc93cc41adfbebc2f85aa8317 Mon Sep 17 00:00:00 2001
+From: Bastian Krause <bst@pengutronix.de>
+Date: Tue, 16 Nov 2021 21:08:01 +0100
+Subject: [PATCH] hawkbit-client: do not pass NULL format to g_strdup_vprintf()
+ in build_api_url()
+
+build_api_url() can be called with NULL to get the base deployment URL.
+Passing NULL as a format argument to g_strdup_vprintf() returns NULL if
+GLIB_USING_SYSTEM_PRINTF is defined, otherwise it leads to a segmentation
+fault. The format argument is explicitly documented as "not nullable",
+so we rely on undefined behavior here.
+
+Skip over va_start(), g_strdup_vprintf(), va_end() for path=NULL to fix
+that.
+
+Upstream-Status: Backport
+
+Signed-off-by: Bastian Krause <bst@pengutronix.de>
+---
+ src/hawkbit-client.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/src/hawkbit-client.c b/src/hawkbit-client.c
+index f7a8886..67fd7bc 100644
+--- a/src/hawkbit-client.c
++++ b/src/hawkbit-client.c
+@@ -702,9 +702,11 @@ static gchar* build_api_url(const gchar *path, ...)
+         g_autofree gchar *buffer = NULL;
+         va_list args;
+ 
+-        va_start(args, path);
+-        buffer = g_strdup_vprintf(path, args);
+-        va_end(args);
++        if (path) {
++                va_start(args, path);
++                buffer = g_strdup_vprintf(path, args);
++                va_end(args);
++        }
+ 
+         return g_strdup_printf(
+                 "%s://%s/%s/controller/v1/%s%s%s",
+-- 
+2.25.1
+
