@@ -23,7 +23,8 @@
 #MACHINE ?= "qemux86"
 #MACHINE ?= "qemux86-64"
 #MACHINE ?= "seco-intel-b68"
-#MACHINE ?= "seco-imx8mm-c61"
+#MACHINE ?= "seco-imx8mm-c61-2gb"
+#MACHINE ?= "seco-imx8mm-c61-4gb"
 #MACHINE ?= "raspberrypi4-64"
 #
 # This sets the default machine to be qemux86 if no other machine is selected:
