@@ -25,7 +25,8 @@ Supported machines (default in **bold**):
 * qemuarm
 * qemuarm64
 * seco-intel-b68 (SECO SBC-B68)
-* seco-imx8mm-c61 (SECO SBC-C61)
+* seco-imx8mm-c61-2gb (SECO SBC-C61 2GB DRAM)
+* seco-imx8mm-c61-4gb (SECO SBC-C61 4GB DRAM)
 
 Build steps example:
 
