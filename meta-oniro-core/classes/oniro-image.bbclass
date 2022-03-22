@@ -48,7 +48,8 @@ WKS_FILE_DEPENDS:qemux86 += "ovmf"
 WKS_FILE:qemu-generic-arm64 = "x-qemu-efi-disk.wks.in"
 IMAGE_FSTYPES:qemu-generic-arm64 += "wic wic.qcow2"
 
-WKS_FILE:seco-imx8mm-c61 ?= "x-imx-uboot-bootpart.wks.in"
+WKS_FILE:seco-imx8mm-c61-2gb ?= "x-imx-uboot-bootpart.wks.in"
+WKS_FILE:seco-imx8mm-c61-4gb ?= "x-imx-uboot-bootpart.wks.in"
 
 #
 # Deploy boot partition artifacts to the root partition. This is part of the
