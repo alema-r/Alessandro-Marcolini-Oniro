@@ -41,12 +41,10 @@ SPDX-FileCopyrightText: Huawei Inc.
 
 		For the entries below this comment it depends on the phase of development
 		the project is in at the given time. In normal development mode it would be
-		"floating" entries, that follow branches and not precise revisions (this
-		can be identified by the missing revision="" tag).
+		"floating" entries, that follow branches and not precise revisions.
 
 		When the release process is entered these would be pinned as well. Most
-		likely to a git tag in the repository. If a revision="" tag is present
-		this is the case.
+		likely to a git tag in the repository.
 	-->
 
 	<project name="oniro-core/oniro" remote="eclipse" revision="kirkstone" path="oniro">
