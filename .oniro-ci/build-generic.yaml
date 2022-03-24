@@ -102,6 +102,9 @@
     - test -n "$CI_ONIRO_BUILD_FLAVOUR" || (
         echo "precondition failed - set CI_ONIRO_BUILD_FLAVOUR to \"flavour\" of the build to use (e.g. linux)"
         && exit 1 )
+    - test -n "$MACHINE" || (
+        echo "precondition failed - set MACHINE to supported machines (e.g. qemux86-64)"
+        && exit 1 )
     # Check devtool operation is enabled and configured properly.
     - |
       if { [ -n "$CI_ONIRO_DEVTOOL_RECIPE_NAME" ] && [ -z "$CI_ONIRO_DEVTOOL_LAYER_PATH" ]; } || { [ -z "$CI_ONIRO_DEVTOOL_RECIPE_NAME" ] && [ -n "$CI_ONIRO_DEVTOOL_LAYER_PATH" ]; } then
