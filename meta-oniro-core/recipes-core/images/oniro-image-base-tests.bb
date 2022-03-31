@@ -10,6 +10,7 @@ IMAGE_INSTALL:append = "\
     packagegroup-oniro-tests \
     ltp \
     perf \
+    kernel-selftest \
 "
 
 # This adds ptest packages to the image
