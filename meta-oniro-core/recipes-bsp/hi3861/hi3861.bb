@@ -9,7 +9,7 @@ SRC_URI += " \
 	file://pegasus-make-wifiiot.patch \
 " 
 
-SRCREV = "master"
+SRCREV = "0af23969365dad92c0b080f28caada4102a9a7da"
 LICENSE = "MulanPSL-2.0"
 LIC_FILES_CHKSUM = "file://NOTICE;md5=d8d6d3af7fa6ad0de5ba69a3520963f8"
 S="${WORKDIR}/git"
