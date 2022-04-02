@@ -1,7 +1,6 @@
 # SPDX-FileCopyrightText: Huawei Inc.
 #
 # SPDX-License-Identifier: Apache-2.0
-
 SUMMARY = "OpenThread Border Router"
 SECTION = "net"
 LICENSE = "BSD-3-Clause & MIT"
@@ -11,19 +10,17 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=87109e44b2fda96a8991f27684a7349c \
                     file://third_party/http-parser/repo/LICENSE-MIT;md5=9bfa835d048c194ab30487af8d7b3778 \
                     file://third_party/openthread/repo/LICENSE;md5=543b6fe90ec5901a683320a36390c65f \
                     "
+DEPENDS = "autoconf-archive dbus readline avahi jsoncpp boost libnetfilter-queue"
+SRCREV = "9ef4e310b05ca0dbecb549e92ce7caa9d7461f19"
+PV = "0.3.0+git${SRCPV}"
 
 SRC_URI = "gitsm://github.com/openthread/ot-br-posix.git;protocol=https;branch=main \
            file://0001-web-service-ot-client-add-needed-header-for-fd_set-c.patch \
            file://0001-otbr-agent.service.in-remove-pre-exec-hook-for-mdns-.patch \
            "
 
-PV = "0.3.0+git${SRCPV}"
-SRCREV = "9ef4e310b05ca0dbecb549e92ce7caa9d7461f19"
-
 S = "${WORKDIR}/git"
-
-DEPENDS = "autoconf-archive dbus readline avahi jsoncpp boost libnetfilter-queue"
-RDEPENDS:${PN} = "iproute2 avahi-daemon"
+SYSTEMD_SERVICE:${PN} = "otbr-agent.service"
 
 inherit pkgconfig cmake systemd
 
@@ -54,9 +51,9 @@ EXTRA_OECMAKE = "-DBUILD_TESTING=OFF \
                  -DOT_DHCP6_SERVER=ON \
                  "
 
-SYSTEMD_SERVICE:${PN} = "otbr-agent.service"
+RDEPENDS:${PN} = "iproute2 avahi-daemon"
+
+RCONFLICTS:${PN} = "ot-daemon"
 
 FILES:${PN} += "${systemd_unitdir}/*"
 FILES:${PN} += "${datadir}/*"
-
-RCONFLICTS:${PN} = "ot-daemon"
