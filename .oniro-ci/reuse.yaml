@@ -48,6 +48,6 @@
   # Precise, machine readable description of this container can be found in
   # https://booting.oniroproject.org/distro/oniro/-/blob/master/.oniro-ci/containers/reuse/Dockerfile
   image:
-    name: registry.booting.oniroproject.org/distro/oniro/reuse:latest
+    name: registry.ostc-eu.org/ostc/oniro/reuse:latest
   script:
     - reuse lint

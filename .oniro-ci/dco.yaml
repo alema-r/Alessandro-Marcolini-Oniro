@@ -51,7 +51,7 @@
   # Precise, machine readable description of this container can be found in
   # https://booting.oniroproject.org/distro/oniro/-/blob/master/.oniro-ci/containers/dco-check/Dockerfile
   image:
-    name: registry.booting.oniroproject.org/distro/oniro/dco-check:latest
+    name: registry.ostc-eu.org/ostc/oniro/dco-check:latest
   script:
     # Work around a bug in dco-check affecting pipelines for merge requests.
     # https://github.com/christophebedard/dco-check/issues/104
