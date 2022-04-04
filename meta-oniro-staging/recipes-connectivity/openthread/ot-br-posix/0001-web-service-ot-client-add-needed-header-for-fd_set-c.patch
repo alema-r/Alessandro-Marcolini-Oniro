@@ -6,7 +6,7 @@ Subject: [PATCH] web-service/ot-client: add needed header for fd_set() call
 The select.h header file is needed for fd_set(). Depending on the
 compiler and settings this will result in an error when not included.
 
-Upstream-Status: Pending
+Upstream-Status: Submitted [https://github.com/openthread/ot-br-posix/pull/1326]
 
 Signed-off-by: Stefan Schmidt <stefan.schmidt@huawei.com>
 ---
