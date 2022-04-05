@@ -45,7 +45,7 @@ SRC_URI = "git://github.com/project-chip/connectedhomeip.git;protocol=https;name
            "
 
 PV = "0.0+git${SRCPV}"
-SRCREV_matter = "65440ab4d97ea1dfa5762a3a3a2558f716eb0ef5"
+SRCREV_matter = "fae3888d4baadd8d3b598e13e6c01b06c0180e97"
 SRCREV_pigweed = "c4dac15049d9742f0263f09ae9ec452fc57dfeb6"
 SRCREV_jsoncpp = "42e892d96e47b1f6e29844cc705e148ec4856448"
 SRCREV_nlfaultinjection = "e0de0ab4f52c1d1cc7f3948557a1abd0fceeb5ef"
