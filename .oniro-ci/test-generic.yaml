@@ -97,6 +97,8 @@
 
 .lava-report:
   interruptible: true
+  # Let the pipeline continue running 'lava-badge' job.
+  allow_failure: true
   image:
     name: registry.booting.oniroproject.org/distro/oniro/bitbake-builder:latest
   stage: report
@@ -105,6 +107,7 @@
     CI_LAVA_INSTANCE: "https://lava.ostc-eu.org/"
   script:
     - |
+      incomplete=false
       for file in $(find ./ -name "job_ids_*.txt"); do
         echo "Job file: $file"
         while read -r p; do
@@ -113,12 +116,17 @@
           # Echo LAVA job health and link.
           link="$CI_LAVA_INSTANCE/scheduler/job/$p"
           health="$(curl --silent "$CI_LAVA_INSTANCE/api/v0.2/jobs/$p/" | jq '.health' | tr -d '"')"
+          echo $health | grep -iq incomplete && incomplete=true
           echo "[$health] $link"
           # Get the JUnit export from LAVA.
           curl --silent -o job_$p.xml "$CI_LAVA_INSTANCE/api/v0.2/jobs/$p/junit/?classname_prefix=$p"
           echo "Report file: $(ls job_$p.xml)"
         done < "$file"
       done
+      if $incomplete; then
+        echo "ERROR: Incomplete test job reported: exit code 1"
+        exit 1
+      fi
   artifacts:
     when: always
     paths:
