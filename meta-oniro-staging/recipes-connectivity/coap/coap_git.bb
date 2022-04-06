@@ -36,4 +36,4 @@ EXTRA_OECONF = "--disable-doxygen --disable-manpages --with-mbedtls"
 BBCLASSEXTEND = "native nativesdk"
 
 PACKAGE_BEFORE_PN = "${PN}-examples"
-FILES_${PN}-examples = "${datadir}/*"
+FILES:${PN}-examples = "${datadir}/libcoap/examples/*"
