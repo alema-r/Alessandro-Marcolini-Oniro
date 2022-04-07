@@ -82,7 +82,7 @@ def gn_target_arch_name(d):
     """Returns a GN architecture name corresponding to the target machine's
     architecture."""
     name = d.getVar("GN_TARGET_ARCH_NAME")
-    if name is None:
+    if not name:
         bb.fatal('Unsupported target architecture. A valid override for the '
                  'GN_TARGET_ARCH_NAME variable could not be found.')
     return name
