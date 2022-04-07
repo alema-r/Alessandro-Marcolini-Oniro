@@ -14,7 +14,7 @@
 # function. For more information please refer do_check_yocto_toolchain_is_used
 # task below. Lastly, recipe has to provide do_install task.
 
-DEPENDS += "gn-native ninja-native"
+inherit gn_base
 
 # Location of the GN toolchain template file, used in write_toolchain_file(). It
 # can be overridden in the recipe as needed. The name of the GN toolchain
@@ -26,61 +26,6 @@ GN_TOOLCHAIN_TMPL_FILE ??= "//build/toolchain/gcc_toolchain.gni"
 # toolchain definition - can be overridden in the recipe
 GN_TARGET_TOOLCHAIN_TMPL_LABEL ??= "gcc_toolchain"
 GN_HOST_TOOLCHAIN_TMPL_LABEL ??= "gcc_toolchain"
-
-# General GN options, like --dotfile
-GN_OPTIONS ??= ""
-
-# GN_ARGS can be added in the recipe
-GN_ARGS ?= ' \
-            target_cpu="${@gn_target_arch_name(d)}" \
-'
-
-# NINJA_ARGS can be added in the recipe
-NINJA_ARGS ?= ""
-
-B = "${WORKDIR}/out"
-
-do_configure[cleandirs] = "${B}"
-gn_do_configure() {
-    cd ${S}
-    gn gen ${GN_OPTIONS} --args='${GN_ARGS}' ${B}
-}
-
-gn_do_compile() {
-    ninja ${NINJA_ARGS} -C ${B}
-}
-
-gn_do_install() {
-    bbfatal " \
-        Missing do_install task definition! \
-        GN projects don't usually follow any particular convention with regards \
-        to build artifacts, therefore do_install task has to be defined in the \
-        project's recipe. \
-    "
-}
-
-# GN fails with unclear and confusing error logs when build directory is the
-# same as source directory. To avoid that build directory is set to
-# "S{WORKDIR}/out". Nevertheless let's make sure that B != S as devtool default
-# behaviour is to override B variable to be the same as S.
-#
-# NOTE: devtool adds bbappend file which makes recipe to inherit externalsrc
-# class with EXTERNALSRC set to workspace/sources/<recipe-name> and by default
-# EXTERNALSRC_BUILD set to the same value as EXTERNALSRC. To change this
-# behavior --no-same-dir option has to be passed to devtool add command.
-python do_check_B_is_not_S() {
-    bpath = os.path.abspath(d.expand("${B}"))
-    spath = os.path.abspath(d.expand("${S}"))
-    if os.path.abspath(d.expand("${S}")) == os.path.abspath(d.expand("${B}")):
-        bb.fatal('''
-GN requires build and sources directories to be different. By default build
-directory is set to ${WORKDIR}/out. If you're using devtool remember to use
---no-same-dir option, e.g.:
-devtool add --no-same-dir <your-gn-project-name> <your-gn-project-git-url>
-        ''')
-}
-
-addtask check_B_is_not_S after do_patch before do_configure
 
 python do_write_gn_toolchain_file () {
     root_gn_dir = d.expand("${S}")
@@ -133,8 +78,6 @@ set_defaults(\"shared_library\") {\n\
 
 addtask do_check_yocto_toolchain_is_used after do_configure before do_compile
 
-EXPORT_FUNCTIONS do_configure do_compile do_install
-
 def is_clang(cc: str) -> bool:
     """ Returns True when the argument (cc) string contains the word `clang`;
     False otherwise"""
@@ -178,30 +121,6 @@ def gn_host_arch_name(d):
         if re.match(arch_regexp, build_arch):
             return gn_arch_name
     bb.fatal('Unsuported BUILD_ARCH value: "%s"' % build_arch)
-
-# GN target architecture helpers.
-#
-# Determining the target architecture is more difficult, as there are many
-# different values we can use on the Yocto side (e.g. TUNE_ARCH, TARGET_ARCH,
-# MACHINEOVERRIDES etc). What we do is define the mapping with regular,
-# non-Python variables with overrides that are generic enough (i.e. "x86"
-# instead of "i586") and then use gn_target_arch_name() to return the right
-# value with some validation.
-GN_TARGET_ARCH_NAME:aarch64 = "arm64"
-GN_TARGET_ARCH_NAME:arm = "arm"
-GN_TARGET_ARCH_NAME:x86 = "x86"
-GN_TARGET_ARCH_NAME:x86-64 = "x64"
-GN_TARGET_ARCH_NAME:riscv32 = "riscv32"
-GN_TARGET_ARCH_NAME:riscv64 = "riscv64"
-
-def gn_target_arch_name(d):
-    """Returns a GN architecture name corresponding to the target machine's
-    architecture."""
-    name = d.getVar("GN_TARGET_ARCH_NAME")
-    if name is None:
-        bb.fatal('Unsupported target architecture. A valid override for the '
-                 'GN_TARGET_ARCH_NAME variable could not be found.')
-    return name
 
 def gn_toolchain_file_header(d):
     """Reurns GN toolchain file header as a multi-line string"""
