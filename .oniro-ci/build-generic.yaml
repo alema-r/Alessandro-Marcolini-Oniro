@@ -9,7 +9,7 @@
   tags: [large-disk, $CI_ONIRO_RUNNER_TAG, $CI_ONIRO_INSTANCE_SIZE]
   variables:
     CI_ONIRO_RUNNER_TAG : ""
-    CI_ONIRO_MANIFEST_URL: https://booting.oniroproject.org/distro/oniro
+    CI_ONIRO_MANIFEST_URL: https://gitlab.eclipse.org/eclipse/oniro-core/oniro
     CI_ONIRO_MANIFEST_BRANCH: dunfell
     CI_ONIRO_MANIFEST_NAME: default.xml
     CI_ONIRO_MANIFEST_MIRROR: oniro-develop
@@ -320,7 +320,7 @@
 # This job is documented in docs/ci/hidden-jobs/aggregate-docs.rst
 .aggregate-docs:
   stage: deploy
-  trigger: distro/docs
+  trigger: eclipse/oniro-core/docs
   rules:
     # Update the documentation when things land in the default branch.
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
