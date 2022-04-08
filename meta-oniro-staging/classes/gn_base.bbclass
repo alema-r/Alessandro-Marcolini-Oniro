@@ -52,7 +52,7 @@ EXPORT_FUNCTIONS do_configure do_compile do_install
 python do_check_B_is_not_S() {
     bpath = os.path.abspath(d.expand("${B}"))
     spath = os.path.abspath(d.expand("${S}"))
-    if os.path.samefile(bpath, spath):
+    if os.path.abspath(d.expand("${S}")) == os.path.abspath(d.expand("${B}")):
         bb.fatal('''
 GN requires build and sources directories to be different. By default build
 directory is set to ${WORKDIR}/out. If you're using devtool remember to use
