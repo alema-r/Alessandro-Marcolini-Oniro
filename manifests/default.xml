@@ -15,9 +15,9 @@ SPDX-FileCopyrightText: Huawei Inc.
 		Meet the developers on mattermost at https://chat.booting.oniroproject.org/
 
 	</notice>
+	<remote name="eclipse" fetch="https://gitlab.eclipse.org/eclipse" />
 	<remote name="github" fetch="https://github.com" />
-	<remote name="oniro" fetch="https://booting.oniroproject.org/distro" />
-	<remote name="oniro-governance" fetch="https://booting.oniroproject.org/distro/governance" />
+	<remote name="oniro-booting" fetch="https://booting.oniroproject.org/distro" />
 	<remote name="yocto" fetch="git://git.yoctoproject.org" />
 	<remote name="openembedded" fetch="git://git.openembedded.org" />
 	<remote name="aehs29" fetch="https://github.com/aehs29" />
@@ -33,7 +33,6 @@ SPDX-FileCopyrightText: Huawei Inc.
 		Hence, the layers setup below uses corresponding "dunfell" layers or "dunfell" compatible revisions.
 	-->
 
-	<default remote="oniro" revision="dunfell" sync-j="4" />
 	<!--
 		dunfell is using the 1.46 bitbake branch so the bitbake project follow is following this branch.
 		More info can be found at https://wiki.yoctoproject.org/wiki/Releases.
@@ -44,14 +43,12 @@ SPDX-FileCopyrightText: Huawei Inc.
 	<project name="meta-freertos" remote="aehs29" revision="f3c2edb0f22c34b35a775c5d17ea1424d44bee21" path="meta-freertos" />
 	<project name="meta-st-stm32mp" remote="stm" revision="b25a2b0daa6e9e1e3ce76b9fdf5bd7cbf30e90fc" path="meta-st-stm32mp" />
 	<project name="meta-st-stm32mp-addons" remote="stm" revision="81065195a63e98be8f423ab422960e9d7896f4d5" path="meta-st-stm32mp-addons" />
-
 	<project name="meta-intel" remote="yocto" revision="b4e5d33affeaa223459c0935a853485137b4591d" path="meta-intel" />
 	<project name="meta-seco-intel" remote="seco-intel" revision="baf4cd3237bdf4f4999b7d44c6992dbcab93d5e3" path="meta-seco-intel" />
-
 	<project name="meta-freescale" remote="yocto" revision="11170950b155168ec414bbde48e3a4427fcac4bd" path="meta-freescale" />
 	<project name="meta-seco-imx" remote="seco-imx" revision="986dd20885277df45d2acc6e38823bf4c64f0085" path="meta-seco-imx" />
-	<project name="meta-av96" revision="a4b2b45efcbad1882227eac54b5023ff6b736b10" path="meta-av96" />
-	<project name="meta-python-mixin" revision="7bda3c1e5d6876375a8bf865ed9fcce2622c1715" path="meta-python-mixin" />
+	<project name="oniro-core/meta-av96.git" remote="eclipse" revision="a4b2b45efcbad1882227eac54b5023ff6b736b10" path="meta-av96" />
+	<project name="oniro-core/meta-python-mixin.git" remote="eclipse" revision="7bda3c1e5d6876375a8bf865ed9fcce2622c1715" path="meta-python-mixin" />
 	<project name="meta-raspberrypi" remote="yocto" revision="934064a01903b2ba9a82be93b3f0efdb4543a0e8" path="meta-raspberrypi" />
 	<project name="meta-security" remote="yocto" revision="b76698c788cb8ca632077a972031899ef15025d6" path="meta-security" />
 	<project name="meta-linaro" remote="linaro" revision="10af9133aeb28b3487fd227c900c11b786505699" path="meta-linaro" />
@@ -71,14 +68,14 @@ SPDX-FileCopyrightText: Huawei Inc.
 
 	-->
 
-	<project name="oniro" revision="dunfell" path="oniro">
+	<project name="oniro-core/oniro.git" remote="eclipse" revision="dunfell" path="oniro">
 		<linkfile src="README.md" dest="README.md"/>
 	</project>
-	<project name="meta-arm-dunfell-backports" revision="dunfell" path="meta-arm-mixin" />
-	<project name="meta-clang" revision="main" path="meta-clang" />
-	<project name="meta-riscv" revision="OSTC/dunfell" path="meta-riscv" />
-	<project name="meta-zephyr" revision="oniro/dunfell" path="meta-zephyr" />
-	<project name="meta-zephyr-bsp" revision="dunfell" path="meta-zephyr-bsp" />
-	<project name="docs" path="docs" revision="main" />
-	<project name="ip-policy" remote="oniro-governance" revision="main" path="ip-policy" />
+	<project name="oniro-core/meta-arm.git" remote="eclipse" revision="dunfell" path="meta-arm-mixin" />
+	<project name="oniro-core/meta-clang.git" remote="eclipse" revision="oniro/dunfell" path="meta-clang" />
+	<project name="oniro-core/meta-riscv.git" remote="eclipse" revision="OSTC/dunfell" path="meta-riscv" />
+	<project name="oniro-core/meta-zephyr.git" remote="eclipse" revision="oniro/dunfell" path="meta-zephyr" />
+	<project name="oniro-core/meta-zephyr-bsp.git" remote="eclipse" revision="dunfell" path="meta-zephyr-bsp" />
+	<project name="oniro-core/docs.git" remote="eclipse" revision="main" path="docs" />
+	<project name="governance/ip-policy.git" remote="oniro-booting" revision="main" path="ip-policy" />
 </manifest>
