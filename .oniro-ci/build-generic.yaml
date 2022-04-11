@@ -206,6 +206,7 @@
     # Linux builds can be extremely large. Use rm_work to remove the temporary
     # build data as soon as possible to reclaim space.
     CI_ONIRO_BB_LOCAL_CONF_plus_equals_INHERIT: "rm_work"
+    CI_ONIRO_BB_LOCAL_CONF_plus_equals_INHERIT: create-spdx
   script:
     - test -n "$CI_ONIRO_BITBAKE_TARGETS" || (
         echo "nothing to build - CI_ONIRO_BITBAKE_TARGETS is empty"
