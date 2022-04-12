@@ -52,7 +52,7 @@ Initialize a repo workspace and clone all required repositories:
 .. code-block:: console
 
     $ mkdir oniroproject; cd oniroproject
-    $ repo init -u https://booting.oniroproject.org/distro/oniro
+    $ repo init -u https://gitlab.eclipse.org/eclipse/oniro-core/oniro.git -b dunfell
     $ repo sync --no-clone-bundle
 
 Building an Oniro image
