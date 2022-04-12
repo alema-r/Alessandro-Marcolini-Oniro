@@ -26,9 +26,10 @@ consideration.
 
 ## Merge requests
 
-All contributions are to be handled as merge requests in the
-[oniro Gitlab repository](https://booting.oniroproject.org/distro/oniro). For
-more information on the contributing process, check the `CONRIBUTING.md` file.
+All contributions are to be handled as merge requests to the
+[oniro Gitlab repository](https://gitlab.eclipse.org/eclipse/oniro-core/oniro.git).
+For more information on the contributing process, check the `CONRIBUTING.md`
+file.
 
 ## Maintainers
 

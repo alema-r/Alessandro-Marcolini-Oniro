@@ -11,8 +11,8 @@ Disk Partition Table
 Overview
 ********
 
-The OS defines the partitions included as part of the Linux-based distro as it
-follows:
+The OS defines the partitions included as part of the Linux-based distribution
+as it follows:
 
 * boot
 
