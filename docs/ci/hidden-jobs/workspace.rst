@@ -18,7 +18,7 @@ path of that directory between the code in ``before_script``, ``script`` and
 Constraints
 ===========
 
-This job uses the ``ostc-builder`` container image, mainly for convenience, as
+This job uses the ``bitbake-builder`` container image, mainly for convenience, as
 it is often extended to perform other tasks, such as bitbake builds. Other
 containers can be used, as long as they have the ``repo`` program
 pre-installed.
