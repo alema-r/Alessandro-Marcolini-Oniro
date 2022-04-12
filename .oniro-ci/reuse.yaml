@@ -33,7 +33,7 @@
 #   # add any stages that your pipeline requires here
 #
 # include:
-#  - project: 'distro/oniro'
+#  - project: 'eclipse/oniro-core/oniro'
 #    file: '.oniro-ci/reuse.yaml'
 #
 # reuse:

@@ -345,7 +345,7 @@
 # This job is documented in docs/ci/hidden-jobs/aggregate-docs.rst
 .aggregate-docs:
   stage: deploy
-  trigger: distro/docs
+  trigger: eclipse/oniro-core/docs
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
       when: never
