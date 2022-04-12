@@ -49,7 +49,7 @@
   interruptible: true
   # This pipeline relies on a container with the dco-check package pre-installed.
   # Precise, machine readable description of this container can be found in
-  # https://booting.oniroproject.org/distro/oniro/-/blob/master/.oniro-ci/containers/dco-check/Dockerfile
+  # https://gitlab.eclipse.org/eclipse/oniro-core/oniro/-/blob/kirkstone/.oniro-ci/containers/dco-check/Dockerfile
   image:
     name: registry.ostc-eu.org/ostc/oniro/dco-check:latest
   script:

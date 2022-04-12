@@ -46,7 +46,7 @@
   tags: [compliance]
   # This pipeline relies on a container with the reuse package pre-installed.
   # Precise, machine readable description of this container can be found in
-  # https://booting.oniroproject.org/distro/oniro/-/blob/master/.oniro-ci/containers/reuse/Dockerfile
+  # https://gitlab.eclipse.org/eclipse/oniro-core/oniro/-/blob/kirkstone/.oniro-ci/containers/reuse/Dockerfile
   image:
     name: registry.ostc-eu.org/ostc/oniro/reuse:latest
   script:
