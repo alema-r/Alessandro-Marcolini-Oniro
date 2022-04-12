@@ -6,16 +6,17 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # Oniro Project
 
-Welcome to the Oniro Project bootstrap git repository! You are welcome to take
-a tour and play with Oniro's initial code contribution in its final steps
-toward becoming the project's official code base. And, if you feel like
-joining, we would love to welcome you among the list of Oniro's initiating
-supporters. These are exciting times! There couldn't be a better moment for
-joining Oniro!
+Welcome to the Oniro\* Project main git reposiotory! Oniro is an Eclipse
+Foundation project focused on the development of a distributed open source
+operating system for consumer devices.
 
-Learn more about the [Oniro Project](https://oniroproject.org/).
+The aim of this repository is to define the build workspace, provide build
+metadata and build documentation for the project. It also behaves as the main
+entry point for the code while aggregating most of the other components
+developed by the team.
 
-Read the [documentation](https://docs.oniroproject.org/).
+Learn more about Oniro Project on the main [website](https://oniroproject.org/)
+or on the project's [documentation](https://docs.oniroproject.org/).
 
 *\*Oniro is a trademark of Eclipse Foundation.*
 
