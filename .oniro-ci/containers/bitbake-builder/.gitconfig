@@ -2,5 +2,5 @@
 # SPDX-License-Identifier: Apache-2.0
 
 [user]
-	name = OSTC Builder 
-	email = ostc-builder@example.org
+	name = Oniro Project CI
+	email = oniro-dev@eclipse.org
