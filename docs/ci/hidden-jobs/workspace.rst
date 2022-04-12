@@ -88,7 +88,7 @@ Name of the ``git-repo`` mirror matching to use, expressed as a directory name
 in the shared disk volume. Check the section about git-repo mirror below, for
 details.
 
-The default value is ``ostc-develop``.
+The default value is ``oniro-develop``.
 
 CI_ONIRO_GIT_REPO_PATH
 ----------------------
