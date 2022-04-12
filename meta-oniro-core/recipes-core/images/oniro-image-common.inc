@@ -6,6 +6,10 @@
 
 inherit oniro-image
 
+# Remove some of the default Poky IMAGE_FEATURES we inherited, but do not need.
+# Best practices here are IMAGE_FEATURES should be used within image recipes.
+IMAGE_FEATURES:remove = " nfs-server nfs-client nfs-utils"
+
 IMAGE_INSTALL:append = "\
 			packagegroup-oniro-core \
 			packagegroup-net-essentials \
