@@ -169,17 +169,20 @@ def gn_toolchain(toolchain_args):
         '  cc = "${cc}"\n'
         '  cxx = "${cxx}"\n'
         '  ar = "${ar}"\n'
+        '  asm = "${asm}"\n'
         '  ld = cxx  # GN expects a compiler, not a linker.\n'
-        '  nm = "${nm}"\n'
-        '  readelf = "${readelf}"\n'
         '  toolchain_args = {\n'
         '    current_cpu = "${current_cpu}"\n'
         '    current_os = "linux"\n'
         '    is_clang = ${is_clang}\n'
         '  }\n'
-        '  # TODO: In some projects not all of the above variables are used\n'
-        '  # Marking all of those as "not_needed" to avoid errors\n'
-        '  # This should be fixed in some smart way if feasible\n'
+        '  # Below tools are not used by the GN, still some projects rely\n'
+        '  # on those being present in the toolchain definition.\n'
+        '  # Marking all of those as "not_needed" to avoid GN errors\n'
+        '  nm = "${nm}"\n'
+        '  readelf = "${readelf}"\n'
+        '  ranlib = "${ranlib}"\n'
+        '  strip = "${strip}"\n'
         '  not_needed("*")\n'
         '}\n'
     ).substitute(toolchain_args)
@@ -194,8 +197,11 @@ def gn_toolchain_native(d):
         'cc': d.expand('${BUILD_CC}'),
         'cxx': d.expand('${BUILD_CXX}'),
         'ar': d.expand('${BUILD_AR}'),
+        'asm': d.expand('${BUILD_AS}'),
         'nm': d.expand('${BUILD_NM}'),
         'readelf': d.expand('${BUILD_PREFIX}readelf'),
+        'ranlib': d.expand('${BUILD_RANLIB}'),
+        'strip': d.expand('${BUILD_STRIP}'),
         'is_clang': gn_bool(is_clang(d.expand('${BUILD_CC}')))
     }
 
@@ -211,8 +217,11 @@ def gn_toolchain_target(d):
         'cc': d.expand('${CC}'),
         'cxx': d.expand('${CXX}'),
         'ar': d.expand('${AR}'),
+        'asm': d.expand('${AS}'),
         'nm': d.expand('${NM}'),
         'readelf': d.expand('${TARGET_PREFIX}readelf'),
+        'ranlib': d.expand('${RANLIB}'),
+        'strip': d.expand('${STRIP}'),
         'is_clang': gn_bool(is_clang(d.expand('${CC}')))
     }
 
