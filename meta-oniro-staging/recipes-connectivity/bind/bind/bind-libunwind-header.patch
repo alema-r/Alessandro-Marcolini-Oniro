@@ -17,15 +17,18 @@ expanding the macro.
 Signed-off-by: Bernhard Rosenkraenzer <bernhard.rosenkraenzer.ext@huawei.com>
 Upstream-Status: Pending
 
-diff -up bind-9.11.32/lib/isc/backtrace.c.omv~ bind-9.11.32/lib/isc/backtrace.c
---- bind-9.11.32/lib/isc/backtrace.c.omv~	2021-06-29 21:39:37.700104599 +0200
-+++ bind-9.11.32/lib/isc/backtrace.c	2021-06-29 21:39:59.488413798 +0200
-@@ -81,8 +81,7 @@ isc_backtrace_gettrace(void **addrs, int
+diff --git a/lib/isc/backtrace.c b/lib/isc/backtrace.c
+index 69488de..8da2c61 100644
+--- a/lib/isc/backtrace.c
++++ b/lib/isc/backtrace.c
+@@ -82,10 +82,7 @@ isc_backtrace_gettrace(void **addrs, int maxaddrs, int *nframes) {
  	return (ISC_R_SUCCESS);
  }
  #elif defined(BACKTRACE_GCC)
--extern int _Unwind_Backtrace(void* fn, void* a);
--extern void* _Unwind_GetIP(void* ctx);
+-extern int
+-_Unwind_Backtrace(void *fn, void *a);
+-extern void *
+-_Unwind_GetIP(void *ctx);
 +#include <unwind.h>
  
  typedef struct {
