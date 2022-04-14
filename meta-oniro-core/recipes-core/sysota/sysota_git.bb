@@ -6,7 +6,7 @@ DESCRIPTION = "Robust, unattended update system for Linux gateways"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSES/Apache-2.0.txt;md5=c846ebb396f8b174b10ded4771514fcc"
 
-SRC_URI = "git://booting.oniroproject.org/distro/components/sysota.git;protocol=https;branch=main"
+SRC_URI = "git://gitlab.eclipse.org/eclipse/oniro-core/sysota.git;protocol=https;branch=main"
 SRC_URI_append = " \
   file://sysotad.conf \
   "
