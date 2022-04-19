@@ -23,18 +23,18 @@ SPDX-FileCopyrightText: Huawei Inc.
 	<remote name="openembedded" fetch="git://git.openembedded.org" />
 	<remote name="seco" fetch="https://git.seco.com" />
 
-	<project name="bitbake" remote="openembedded" revision="f0fc0fe94161d4dd4f34df8426222ac590ef6736" path="bitbake" />
-	<project name="openembedded-core" remote="openembedded" revision="b1bb4e2d73985c6e8cf03b0fea94e8b739648cf7" path="oe-core" />
-	<project name="meta-openembedded" remote="openembedded" revision="8b8bfbcadf188cd5b234358590764e20d03d7861" path="meta-openembedded" />
+	<project name="bitbake" remote="openembedded" revision="c212b0f3b542efa19f15782421196b7f4b64b0b9" path="bitbake" />
+	<project name="openembedded-core" remote="openembedded" revision="92fcb6570bddd0c5717d8cfdf38ecf3e44942b0f" path="oe-core" />
+	<project name="meta-openembedded" remote="openembedded" revision="6fbe7f748706229f43a2e06b08b6e1e729942314" path="meta-openembedded" />
 	<project name="aehs29/meta-freertos" remote="github" revision="98a6838261d36b8f79c5fbae1736492169727a1e" path="meta-freertos" />
-	<project name="meta-intel" remote="yocto" revision="2bdc432840d0f862fec965281540dbe91d8eb565" path="meta-intel" />
+	<project name="meta-intel" remote="yocto" revision="9b54de056d65140c819209bfec14de18a1fb144d" path="meta-intel" />
 	<project name="pub/intel/yocto/meta-seco-intel" remote="seco" revision="65a673560211b11986db5785c70254fad190785f" path="meta-seco-intel" />
-	<project name="meta-freescale" remote="yocto" revision="04a7bbdddfe9cfd41e93f127fed41293cde79741" path="meta-freescale" />
+	<project name="meta-freescale" remote="yocto" revision="e904064f046612ebd1834d5b2dcdd757c680503b" path="meta-freescale" />
 	<project name="pub/i.mx/yocto/5.x/meta-seco-imx" remote="seco" revision="81f8859d5dad73fc83fe96290c492eeeb445c8d7" path="meta-seco-imx" />
-	<project name="meta-raspberrypi" remote="yocto" revision="bc10842957212450023adfcbad5a73c21b28fce7" path="meta-raspberrypi" />
-	<project name="meta-security" remote="yocto" revision="6cc8dde794bd56077e0e2eb5d303e958cc553b68" path="meta-security" />
-	<project name="rauc/meta-rauc" remote="github" revision="9e206d6998b363315791be144815a4eabc3fe5a8" path="meta-rauc" />
-	<project name="riscv/meta-riscv" remote="github" revision="b3550462b3e827259efbc8872ead6ecc0e30c7fb" path="meta-riscv" />
+	<project name="meta-raspberrypi" remote="yocto" revision="3a91ee04ebb971d2f2b6e5238783497097e33c5b" path="meta-raspberrypi" />
+	<project name="meta-security" remote="yocto" revision="93f2146211001ee3cf697d8428969cc3069ed6ba" path="meta-security" />
+	<project name="rauc/meta-rauc" remote="github" revision="4429bd1f29677c9a7de032d53240fb4791a41e1f" path="meta-rauc" />
+	<project name="riscv/meta-riscv" remote="github" revision="70e099d7ceca52a1dde2c978713012f6b20a9891" path="meta-riscv" />
 
 	<!--
 		All entries above are pinned to a specific revision and updated manually.
