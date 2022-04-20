@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 [system]
-compatible=QEMU x86
+compatible=@RAUC_COMPAT@
 # Use the custom boot loader backend. The handler program is set in the
 # [handlers] section below. This loops in SystemOTA into the update process and
 # delegates slot status and slot active flag responsibilities to it.
@@ -13,14 +13,13 @@ bootloader=custom
 # is explicitly exempt from the A/B update process.
 statusfile=/run/mount/sysdata/common/status.raucs
 
-# Description of A/B slots used on QEMU.
-# Refer to meta-oniro-core/wic/x-gpt-efi-disk.wks.in for details.
+# Description of A/B slots used by the system.
 [slot.system.0]
-device=/dev/sda2
+device=@RAUC_SLOT_A@
 bootname=A
 
 [slot.system.1]
-device=/dev/sda3
+device=@RAUC_SLOT_B@
 bootname=B
 
 [keyring]

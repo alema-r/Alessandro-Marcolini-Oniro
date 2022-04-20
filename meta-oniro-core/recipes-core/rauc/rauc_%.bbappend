@@ -2,20 +2,43 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# For specific MACHINE configurations, provide a pre-baked RAUC system config
-# file. This confi file must be paired with equally tailored SystemOTA config
-# file.
-#
-# FIXME(zyga): The file defines RAUC compatible string which is technically
-# something that SystemOTA should be responsible for (make/model and remodel
-# operations). This should be addressed before re-model is supported.
-FILESEXTRAPATHS:prepend:raspberrypi4-64 := "${THISDIR}/files/raspberrypi4:"
-FILESEXTRAPATHS:prepend:qemux86 := "${THISDIR}/files/qemux86:"
-FILESEXTRAPATHS:prepend:qemux86-64 := "${THISDIR}/files/qemux86-64:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 # Make the RAUC package machine-specific. This lets us put the specific configuration
 # file, which encodes the slot configuration, into it safely.
 PACKAGE_ARCH = "${MACHINE_ARCH}"
+
+# Generate RAUC's system.conf configuration file and place it in the workdir
+# where it is picked up by the logic from rauc-target.inc.
+#
+# FIXME(zyga): The file defines RAUC compatible string which is technically
+# something that SystemOTA should be responsible for (make/model and remodel
+# operations). This should be addressed before re-model is supported.
+SRC_URI:append = " \
+  file://system.conf.in \
+  "
+
+# Define the slots and compatible strings for reference boards.
+RAUC_COMPAT:raspberrypi4-64 := "Raspberry Pi 4"
+RAUC_SLOT_A:raspberrypi4-64 := "/dev/mmcblk0p2"
+RAUC_SLOT_B:raspberrypi4-64 := "/dev/mmcblk0p3"
+
+RAUC_COMPAT:qemux86 := "QEMU x86"
+RAUC_SLOT_A:qemux86 := "/dev/sda2"
+RAUC_SLOT_B:qemux86 := "/dev/sda3"
+
+RAUC_COMPAT:qemux86-64 := "QEMU x86-64"
+RAUC_SLOT_A:qemux86-64 := "/dev/sda2"
+RAUC_SLOT_B:qemux86-64 := "/dev/sda3"
+
+do_install:prepend() {
+    sed \
+        -e 's,@RAUC_COMPAT@,${RAUC_COMPAT},g' \
+        -e 's,@RAUC_SLOT_A@,${RAUC_SLOT_A},g' \
+        -e 's,@RAUC_SLOT_B@,${RAUC_SLOT_B},g' \
+        <"${WORKDIR}/system.conf.in" >"${WORKDIR}/system.conf"
+}
+
 
 # Use the known insecure public key which is a part of this layer as the key
 # baked into our reference images.
@@ -38,7 +61,6 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 # key. This variable is also set up to append to SRC_URI, so no additional
 # declaration is needed.
 RAUC_KEYRING_FILE ?= "oniro-insecure-cert.pem"
-FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 do_install:append() {
     if [ -f ${D}${sysconfdir}/rauc/oniro-insecure-cert.pem ]; then
