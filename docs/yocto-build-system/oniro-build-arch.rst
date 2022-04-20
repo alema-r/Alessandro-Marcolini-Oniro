@@ -36,4 +36,16 @@ ranging from RTOSes to Linux.
 required for compiling |main_project_name| images. The architecture supports plugging
 various kernels.
 
+One of the core aims of |main_project_name| is to provide a stable foundation
+for product development. In doing so, the project tries its best to align all
+the included components to their respective LTS (long-term support) versions.
+The build system is one of the core components used in Oniro and its version
+adheres to the same principle.
+
+The current version of the projects uses ``kirkstone`` version of Yocto
+project, the build system of choice in |main_project_name|. This ensures that
+all the Yocto layers brought in are either on their respective
+``kirkstone`` branch/version or, in the absence of that, on a
+``kirkstone-compatible`` branch/version.
+
 .. image:: assets/oniro-arch.png
