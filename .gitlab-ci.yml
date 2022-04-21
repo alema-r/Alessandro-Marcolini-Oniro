@@ -158,6 +158,16 @@ lava-seco-intel-b68:
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/seco-intel-b68.yaml"
     CI_REPORT_JOB_NAME: lava-report
 
+lava-seco-c61:
+  needs: [linux-seco-imx8mm-c61-4gb]
+  stage: test
+  extends: .lava-test
+  variables:
+    MACHINE: seco-imx8mm-c61-4gb
+    CI_BUILD_JOB_NAME: linux-seco-imx8mm-c61-4gb
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/seco-c61.yaml"
+    CI_REPORT_JOB_NAME: lava-report
+
 lava-qemu-x86-ltp:
   needs: [linux-qemu-x86]
   stage: test
@@ -198,6 +208,16 @@ lava-seco-intel-b68-ltp:
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/seco-intel-b68-ltp.yaml"
     CI_REPORT_JOB_NAME: lava-report
 
+lava-seco-c61-ltp:
+  needs: [linux-seco-imx8mm-c61-4gb]
+  stage: test
+  extends: .lava-test
+  variables:
+    MACHINE: seco-imx8mm-c61-4gb
+    CI_BUILD_JOB_NAME: linux-seco-imx8mm-c61-4gb
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/seco-c61-ltp.yaml"
+    CI_REPORT_JOB_NAME: lava-report
+
 lava-qemu-x86_64-kselftest:
   needs: [linux-qemu-x86_64]
   stage: test
@@ -216,6 +236,16 @@ lava-raspberrypi4-64-kselftest:
     MACHINE: raspberrypi4-64
     CI_BUILD_JOB_NAME: linux-raspberrypi4-64
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/raspberrypi4-64-kselftest.yaml"
+    CI_REPORT_JOB_NAME: lava-report
+
+lava-seco-c61-kselftest:
+  needs: [linux-seco-imx8mm-c61-4gb]
+  stage: test
+  extends: .lava-test
+  variables:
+    MACHINE: seco-imx8mm-c61-4gb
+    CI_BUILD_JOB_NAME: linux-seco-imx8mm-c61-4gb
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/seco-c61-kselftest.yaml"
     CI_REPORT_JOB_NAME: lava-report
 
 lava-zephyr-96b-nitrogen-tests:
@@ -268,6 +298,16 @@ lava-seco-intel-b68-perf:
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/seco-intel-b68-perf.yaml"
     CI_REPORT_JOB_NAME: lava-report
 
+lava-seco-c61-perf:
+  needs: [linux-seco-imx8mm-c61-4gb]
+  stage: test
+  extends: .lava-test
+  variables:
+    MACHINE: seco-imx8mm-c61-4gb
+    CI_BUILD_JOB_NAME: linux-seco-imx8mm-c61-4gb
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/seco-c61-perf.yaml"
+    CI_REPORT_JOB_NAME: lava-report
+
 lava-zephyr-qemu-cortex-m3:
   needs: [zephyr-qemu-cortex-m3]
   stage: test
@@ -294,19 +334,23 @@ lava-report:
     - lava-qemu-x86_64
     - lava-raspberrypi4-64
     - lava-seco-intel-b68
+    - lava-seco-c61
     - lava-qemu-x86-ltp
     - lava-qemu-x86_64-ltp
     - lava-raspberrypi4-64-ltp
     - lava-seco-intel-b68-ltp
+    - lava-seco-c61-ltp
     - lava-qemu-x86-perf
     - lava-qemu-x86_64-perf
     - lava-raspberrypi4-64-perf
     - lava-seco-intel-b68-perf
+    - lava-seco-c61-perf
     - lava-zephyr-96b-nitrogen-tests
     - lava-zephyr-qemu-cortex-m3
     - lava-zephyr-qemu-x86
     - lava-qemu-x86_64-kselftest
     - lava-raspberrypi4-64-kselftest
+    - lava-seco-c61-kselftest
   extends: .lava-report
 
 lava-badge:
