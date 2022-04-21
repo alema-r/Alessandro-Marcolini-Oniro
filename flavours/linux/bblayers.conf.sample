@@ -22,6 +22,7 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-freescale \
   ##OEROOT##/../meta-seco-imx \
   ##OEROOT##/../meta-openembedded/meta-oe \
+  ##OEROOT##/../meta-openembedded/meta-filesystems \
   ##OEROOT##/../meta-openembedded/meta-networking \
   ##OEROOT##/../meta-openembedded/meta-perl \
   ##OEROOT##/../meta-openembedded/meta-python \
