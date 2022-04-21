@@ -31,6 +31,10 @@ RAUC_COMPAT:qemux86-64 := "QEMU x86-64"
 RAUC_SLOT_A:qemux86-64 := "/dev/sda2"
 RAUC_SLOT_B:qemux86-64 := "/dev/sda3"
 
+RAUC_COMPAT:seco-intel-b68 := "SECO Alvin"
+RAUC_SLOT_A:seco-intel-b68 := "/dev/sda2"
+RAUC_SLOT_B:seco-intel-b68 := "/dev/sda3"
+
 do_install:prepend() {
     sed \
         -e 's,@RAUC_COMPAT@,${RAUC_COMPAT},g' \
