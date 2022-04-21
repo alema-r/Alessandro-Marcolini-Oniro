@@ -40,7 +40,9 @@ linux-seco-intel-b68:
 linux-seco-intel-b68-extra:
   extends: .build-linux
   variables:
+    CI_ONIRO_BUILD_FLAVOUR: linux
     CI_ONIRO_BITBAKE_TARGETS: oniro-image-extra-tests
+    MACHINE: seco-intel-b68
 
 linux-seco-imx8mm-c61-2gb:
   extends: .build-linux-matrix
