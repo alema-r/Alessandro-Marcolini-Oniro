@@ -7,7 +7,7 @@ LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSES/Apache-2.0.txt;md5=c846ebb396f8b174b10ded4771514fcc"
 
 SRC_URI = "git://gitlab.eclipse.org/eclipse/oniro-core/sysota.git;protocol=https;branch=main \
-           file://sysotad.conf \
+           file://sysotad.conf.in \
 "
 SRCREV = "4fc590e1d329aa9e05e64ae3a15d91481aa86e1d"
 S = "${WORKDIR}/git"
@@ -88,6 +88,38 @@ do_compile:append() {
 
 do_compile[network] = "1"
 
+# Generate sysotad.conf configuration file based on several variables.
+
+SYSOTA_BOOTLOADER_TYPE ?= "inert"
+SYSOTA_BOOT_PARTITION_MOUNT_DIR ?= "/run/mount/boot"
+SYSOTA_MAKER ?= "Oniro Project"
+SYSOTA_MODEL ?= "Reference Device"
+SYSOTA_GRUB_ENV_PATH ?= "/run/mount/boot/EFI/BOOT/grubenv"
+SYSOTA_COMPAT_MACHINE ?= "${MACHINE}"
+SYSOTA_QUIRK_REBOOT_DELAY ?= "180"
+
+# Define machine-specific configuration overrides.
+SYSOTA_MODEL:raspberrypi4-64 := "Raspberry Pi 4B"
+SYSOTA_BOOTLOADER_TYPE:raspberrypi4-64 := "pi-boot"
+
+SYSOTA_MODEL:qemux86 := "QEMU Virtual Machine"
+SYSOTA_BOOTLOADER_TYPE:qemux86 := "GRUB"
+
+SYSOTA_MODEL:qemux86-64 := "QEMU Virtual Machine"
+SYSOTA_BOOTLOADER_TYPE:qemux86-64 := "GRUB"
+
+do_install:prepend() {
+    sed \
+        -e 's,@SYSOTA_BOOTLOADER_TYPE@,${SYSOTA_BOOTLOADER_TYPE},g' \
+        -e 's,@SYSOTA_BOOT_PARTITION_MOUNT_DIR@,${SYSOTA_BOOT_PARTITION_MOUNT_DIR},g' \
+        -e 's,@SYSOTA_MAKER@,${SYSOTA_MAKER},g' \
+        -e 's,@SYSOTA_MODEL@,${SYSOTA_MODEL},g' \
+        -e 's,@SYSOTA_GRUB_ENV_PATH@,${SYSOTA_GRUB_ENV_PATH},g' \
+        -e 's,@SYSOTA_COMPAT_MACHINE@,${SYSOTA_COMPAT_MACHINE},g' \
+        -e 's,@SYSOTA_QUIRK_REBOOT_DELAY@,${SYSOTA_QUIRK_REBOOT_DELAY},g' \
+        <"${WORKDIR}/sysotad.conf.in" >"${WORKDIR}/sysotad.conf"
+}
+
 do_install:append() {
     oe_runmake -C ${B}/make-build --warn-undefined-variables install DESTDIR=${D}
 
@@ -114,10 +146,6 @@ RDEPENDS:${PN}-dev += "bash"
 # systemd services.
 REQUIRED_DISTRO_FEATURES = "systemd"
 SYSTEMD_SERVICE:${PN} = "sysotad.service"
-
-# Specific MACHINE configurations have sysotad.conf which provides the right
-# settings, like the boot loader type.
-FILESEXTRAPATHS:prepend:raspberrypi4-64 := "${THISDIR}/files/raspberrypi4:"
 
 # Make the SystemOTA package machine-specific. This lets us put the specific
 # configuration file, which encodes boot loader type, into it safely.

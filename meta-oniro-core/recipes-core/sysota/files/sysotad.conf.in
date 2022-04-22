@@ -1,0 +1,20 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+[OTA]
+BootLoaderType=@SYSOTA_BOOTLOADER_TYPE@
+BootPartitionMountDir=@SYSOTA_BOOT_PARTITION_MOUNT_DIR@
+
+[Device]
+Maker=@SYSOTA_MAKER@
+Model=@SYSOTA_MODEL@
+
+[GRUB]
+EnvPath=@SYSOTA_GRUB_ENV_PATH@
+
+[Compatible]
+Machine=@SYSOTA_COMPAT_MACHINE@
+
+[Quirks]
+RebootDelay=@SYSOTA_QUIRK_REBOOT_DELAY@
