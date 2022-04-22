@@ -84,6 +84,16 @@ tested.
 This functionality is useful for testing incoming changes to repositories that
 contain source code that is already packaged one of the layers.
 
+CI_ONIRO_JOB_ARTIFACTS
+----------------------
+
+Most of the files generated in the ``tmp/deploy`` directory are redundant. Some
+of them are quite large. By default, only the files in the
+``tmp/deploy/licenses`` directory are published.
+
+``CI_ONIRO_JOB_ARTIFACTS`` allows build job to define space-separated list of
+build artifacts to publish. Wildcards are supported.
+
 Configuring BitBake
 ===================
 

@@ -268,11 +268,14 @@
 # This job is documented in docs/ci/hidden-jobs/build-image.rst
 .build-image:
   extends: .build-recipe
+  variables:
+    CI_ONIRO_JOB_ARTIFACTS: ""
   script:
     - !reference [.build-recipe, script]
     # Move artifacts for recovery, which only considers $CI_PROJECT_DIR and
     # subdirectories.
     - mkdir -p "$CI_PROJECT_DIR"/artifacts
+    - rm -rf "$CI_PROJECT_DIR"/artifacts/*
     # The name of the build-specific tmp directory may vary. Ask bitbake
     # instead of hard-coding it. This is currently only relevant for Zephyr,
     # which uses tmp-newlib.
@@ -281,35 +284,37 @@
     # meta-oniro-core/classes/oniro-image.bbclass as runqemu needs it for local
     # build and boot.
     - find "$BITBAKE_TMPDIR"/deploy/images/ -name *.wic -exec rm -rf {} \;
-    - cp -a "$BITBAKE_TMPDIR"/deploy/images/ "$CI_PROJECT_DIR"/artifacts || true
     - cp -a "$BITBAKE_TMPDIR"/deploy/licenses/ "$CI_PROJECT_DIR"/artifacts || true
+    # Only copy the files defined in the CI_ONIRO_JOB_ARTIFACTS variable. Most
+    # of the remaining files are redundant and quite large.
+    - |
+      set -x
+      if test -n "$CI_ONIRO_JOB_ARTIFACTS" && test -d "$BITBAKE_TMPDIR"/deploy/; then
+        (
+          cd "$BITBAKE_TMPDIR"/deploy/
+          for artifact in $CI_ONIRO_JOB_ARTIFACTS; do
+            find ./ -type f -name "$artifact" -exec cp --parents {} "$CI_PROJECT_DIR"/artifacts \;
+          done
+        )
+      fi
+      set +x
   artifacts:
     paths:
       - artifacts/
 
 .build-wic-image:
   extends: .build-image
+  variables:
+    CI_ONIRO_JOB_ARTIFACTS: "*.wic.* *.bmap"
   script:
     - !reference [.build-image, script]
-    # Remove everything _except_ for the .wic.* and *.bmap and ovmf.qcow2 files.
-    # Most of the remaining files are redundant and quite large. Our Linux
-    # builds really only care about the wic files and the qemu UEFI firmware.
-    - echo "Removing non-wic/bmap image files"
-    - find "$CI_PROJECT_DIR"/artifacts/images/ \( -type f -o -type l \) -a ! \( -name "*.wic.*" -o -name "ovmf.qcow2" \) -print -delete
-    - echo "Pruning empty directories"
-    - find "$CI_PROJECT_DIR"/artifacts/ -type d -exec rmdir --verbose --ignore-fail-on-non-empty {} \; 2>/dev/null || true
 
 .build-rauc-bundle:
   extends: .build-image
+  variables:
+    CI_ONIRO_JOB_ARTIFACTS: "*.raucb"
   script:
     - !reference [.build-image, script]
-    # Remove everything _except_ for the .raucb.* files. The bundle is
-    # self-sufficient (aka standalone) and does not need any supporting
-    # infrastructure.
-    - echo "Removing non-bundle files"
-    - find "$CI_PROJECT_DIR"/artifacts/images/ \( -type f -o -type l \) -a ! -name "*.raucb" -print -delete
-    - echo "Pruning empty directories"
-    - find "$CI_PROJECT_DIR"/artifacts/ -type d -exec rmdir --verbose --ignore-fail-on-non-empty {} \; 2>/dev/null || true
 
 # This job is currently used to customize the behavior in oniro and xts-acts.
 # It will be removed when that is safe to do so. It is not documented.

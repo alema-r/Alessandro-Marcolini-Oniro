@@ -19,6 +19,7 @@ linux-qemu-x86:
     # This is done assuming that there are no non-redistributable or otherwise
     # tainted build intermediate files, downloads or published artifacts.
     CI_ONIRO_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
+    CI_ONIRO_JOB_ARTIFACTS: "*.wic.* *.bmap ovmf.qcow2"
 
 linux-qemu-x86_64:
   extends: .build-wic-image
@@ -29,6 +30,7 @@ linux-qemu-x86_64:
     # See the note on linux-qemu-x86.
     CI_ONIRO_BUILD_CACHE: "pub"
     CI_ONIRO_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
+    CI_ONIRO_JOB_ARTIFACTS: "*.wic.* *.bmap ovmf.qcow2"
 
 linux-seco-intel-b68:
   extends: .build-wic-image
