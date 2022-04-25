@@ -19,6 +19,8 @@ SRC_URI:append = " \
   "
 
 # Define the slots and compatible strings for reference boards.
+# The values here must be synchronized with those in the bundle.
+# Look at meta-oniro-core/recipes-core/bundles/oniro-bundle-base.bb
 RAUC_COMPAT:raspberrypi4-64 := "Raspberry Pi 4"
 RAUC_SLOT_A:raspberrypi4-64 := "/dev/mmcblk0p2"
 RAUC_SLOT_B:raspberrypi4-64 := "/dev/mmcblk0p3"
