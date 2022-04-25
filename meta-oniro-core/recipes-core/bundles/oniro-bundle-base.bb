@@ -9,6 +9,7 @@ SUMMARY = "SysOTA/RAUC Update Bundle for Oniro Base Image"
 RAUC_BUNDLE_COMPATIBLE:qemux86 = "QEMU x86"
 RAUC_BUNDLE_COMPATIBLE:qemux86-64 = "QEMU x86-64"
 RAUC_BUNDLE_COMPATIBLE:raspberrypi4-64 = "Raspberry Pi 4"
+RAUC_BUNDLE_COMPATIBLE:seco-intel-b68 := "SECO Alvin"
 # TODO: add compatibility strings for other machines.
 
 RAUC_BUNDLE_DESCRIPTION = "SysOTA/RAUC Update Bundle"
