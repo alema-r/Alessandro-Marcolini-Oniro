@@ -12,6 +12,8 @@ BBFILES ?= ""
 BBLAYERS ?= " \
   ##OEROOT##/../oniro/meta-oniro-staging \
   ##OEROOT##/meta \
+  ##OEROOT##/../meta-arm/meta-arm \
+  ##OEROOT##/../meta-arm/meta-arm-toolchain \
   ##OEROOT##/../meta-clang \
   ##OEROOT##/../meta-zephyr/meta-zephyr-bsp \
   ##OEROOT##/../meta-zephyr/meta-zephyr-core \
