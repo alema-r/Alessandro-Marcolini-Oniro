@@ -120,6 +120,15 @@ zephyr-96b-nitrogen-tests:
     CI_ONIRO_BUILD_FLAVOUR: zephyr
     CI_ONIRO_INSTANCE_SIZE: s3.large.2
 
+zephyr-96b-nitrogen-twister:
+  extends: .build-image
+  variables:
+    MACHINE: 96b-nitrogen
+    CI_ONIRO_RECIPE_NAME: zephyr-kernel-test-twister
+    CI_ONIRO_BUILD_FLAVOUR: zephyr
+    CI_ONIRO_INSTANCE_SIZE: s3.large.2
+    CI_ONIRO_JOB_ARTIFACTS: "twister*.tar.bz2"
+
 zephyr-96b-avenger:
   extends: .build-zephyr
   variables:
