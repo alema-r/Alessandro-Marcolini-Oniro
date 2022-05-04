@@ -15,7 +15,9 @@ SRCREV_machine ?= "452ea6a15ed2ac74789b7b3513777cc94ea3b751"
 SRCREV_meta ?= "3b283fa8d4068ff68457b93e07d321c6c06d37e0"
 
 SRC_URI = "git://gitlab.eclipse.org/eclipse/oniro-core/linux.git;protocol=https;name=machine;branch=${KBRANCH}; \
-	    git://gitlab.eclipse.org/eclipse/oniro-core/linux-meta.git;type=kmeta;protocol=https;name=meta;branch=oniro/v5.10;destsuffix=${KMETA}"
+           git://gitlab.eclipse.org/eclipse/oniro-core/linux-meta.git;type=kmeta;protocol=https;name=meta;branch=oniro/v5.10;destsuffix=${KMETA} \
+           file://fix-gcc-plugins-with-gcc-11.patch \
+"
 
 require recipes-kernel/linux/linux-oniro-tweaks-all.inc
 
