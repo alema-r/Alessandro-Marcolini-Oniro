@@ -83,7 +83,7 @@ linux-raspberrypi4-64:
     CI_ONIRO_RECIPE_NAME: oniro-image-base-tests
 
 zephyr-qemu-x86:
-  extends: .build-image
+  extends: .build-zephyr-image
   variables:
     MACHINE: qemu-x86
     # See the note on linux-qemu-x86.
@@ -94,7 +94,7 @@ zephyr-qemu-x86:
     CI_ONIRO_INSTANCE_SIZE: s3.large.2
 
 zephyr-qemu-cortex-m3:
-  extends: .build-image
+  extends: .build-zephyr-image
   variables:
     MACHINE: qemu-cortex-m3
     # See the note on linux-qemu-x86.
@@ -105,7 +105,7 @@ zephyr-qemu-cortex-m3:
     CI_ONIRO_INSTANCE_SIZE: s3.large.2
 
 zephyr-96b-nitrogen:
-  extends: .build-image
+  extends: .build-zephyr-image
   variables:
     MACHINE: 96b-nitrogen
     CI_ONIRO_RECIPE_NAME: zephyr-philosophers
@@ -113,7 +113,7 @@ zephyr-96b-nitrogen:
     CI_ONIRO_INSTANCE_SIZE: s3.large.2
 
 zephyr-96b-nitrogen-tests:
-  extends: .build-image
+  extends: .build-zephyr-image
   variables:
     MACHINE: 96b-nitrogen
     CI_ONIRO_RECIPE_NAME: zephyr-kernel-test-all

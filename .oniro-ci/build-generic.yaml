@@ -316,6 +316,13 @@
   script:
     - !reference [.build-image, script]
 
+.build-zephyr-image:
+  extends: .build-image
+  variables:
+    CI_ONIRO_JOB_ARTIFACTS: "*.elf *.bin"
+  script:
+    - !reference [.build-image, script]
+
 # This job is currently used to customize the behavior in oniro and xts-acts.
 # It will be removed when that is safe to do so. It is not documented.
 .build:

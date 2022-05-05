@@ -13,7 +13,7 @@ implementation details.
 
 .. toctree::
    :maxdepth: 1
-      
+
    workspace
    bitbake-workspace
    build-linux
@@ -23,6 +23,7 @@ implementation details.
    build-recipe
    build-image
    build-wic-image
+   build-zephyr-image
    build-rauc-bundle
    build-docs
    lava-test
