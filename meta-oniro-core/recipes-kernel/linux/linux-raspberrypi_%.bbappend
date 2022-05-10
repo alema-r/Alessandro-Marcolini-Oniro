@@ -4,4 +4,7 @@
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/linux:"
 
-SRC_URI += "file://squashfs.cfg"
+SRC_URI += "\
+    file://squashfs.cfg \
+    file://rauc.cfg \
+    "
