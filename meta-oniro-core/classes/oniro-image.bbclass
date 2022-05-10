@@ -31,15 +31,16 @@ IMAGE_FEATURES:append = " read-only-rootfs"
 IMAGE_FSTYPES:append = " squashfs"
 
 WKS_FILE:raspberrypi4-64 ?= "x-raspberrypi.wks.in"
+IMAGE_FSTYPES:raspberrypi4-64 ?= "wic.gz wic.bmap"
 
 WKS_FILE:seco-intel-b68 ?= "x-gpt-efi-disk.wks.in"
-IMAGE_FSTYPES:append:seco-intel-b68 = " wic.bz2 wic.bmap"
+IMAGE_FSTYPES:seco-intel-b68 ?= "wic.gz wic.bmap"
 
 # We avoid any other fstypes (for qemu) by default as the OS depends on a
 # specific partition table provided through the wic configuration.
-IMAGE_FSTYPES:qemux86 ?= "wic wic.bz2"
+IMAGE_FSTYPES:qemux86 ?= "wic wic.gz"
 WKS_FILE:qemux86 ?= "x-gpt-efi-disk.wks.in"
-IMAGE_FSTYPES:qemux86-64 ?= "wic wic.bz2"
+IMAGE_FSTYPES:qemux86-64 ?= "wic wic.gz"
 WKS_FILE:qemux86-64 ?= "x-gpt-efi-disk.wks.in"
 # Build EFI firmware for x86{,-64} QEMU machine.
 WKS_FILE_DEPENDS:qemux86-64 += "ovmf"
@@ -49,7 +50,10 @@ WKS_FILE:qemu-generic-arm64 = "x-qemu-efi-disk.wks.in"
 IMAGE_FSTYPES:qemu-generic-arm64 += "wic wic.qcow2"
 
 WKS_FILE:seco-imx8mm-c61-2gb ?= "x-imx-uboot-bootpart.wks.in"
+IMAGE_FSTYPES:seco-imx8mm-c61-2gb ?= "wic.gz wic.bmap"
+
 WKS_FILE:seco-imx8mm-c61-4gb ?= "x-imx-uboot-bootpart.wks.in"
+IMAGE_FSTYPES:seco-imx8mm-c61-4gb ?= "wic.gz wic.bmap"
 
 #
 # Deploy boot partition artifacts to the root partition. This is part of the
