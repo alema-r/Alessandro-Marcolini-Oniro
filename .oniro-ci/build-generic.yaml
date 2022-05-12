@@ -313,6 +313,8 @@
   extends: .build-image
   variables:
     CI_ONIRO_JOB_ARTIFACTS: "*.raucb"
+  # Avoid pulling in any artifacts from the previous stage.
+  dependencies: []
 
 .build-zephyr-image:
   extends: .build-image
