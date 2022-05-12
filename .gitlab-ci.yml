@@ -93,6 +93,74 @@ bundle-raspberrypi4-64:
     CI_ONIRO_BUILD_FLAVOUR: linux
     CI_ONIRO_RECIPE_NAME: oniro-bundle-base
 
+publish-raspberrypi4-64:
+  # TODO: switch to zygoon/hawkbitctl
+  # blocked by https://gitlab.com/zygoon/go-hawkbit/-/issues/26
+  image: golang:latest
+  stage: update
+  dependencies: [bundle-raspberrypi4-64]
+  needs: [bundle-raspberrypi4-64]
+  variables:
+    CI_ONIRO_HAWKBIT_SWMOD_NAME: oniro-bundle-base-raspberrypi4-64
+    CI_ONIRO_HAWKBIT_DS_NAME: oniro-image-base-raspberrypi4-64
+    CI_ONIRO_RAUC_BUNDLE_NAME: oniro-bundle-base
+    MACHINE: raspberrypi4-64
+  script:
+    - env | grep -E ^HAWKBIT_
+    - test -n "${HAWKBIT_URL:-}" || (
+        echo "precondition failed - HAWKBIT_URL is not set."
+        && exit 1 )
+    - test -n "${HAWKBIT_USERNAME:-}" || (
+        echo "precondition failed - HAWKBIT_USERNAME is not set."
+        && exit 1 )
+    - test -n "${HAWKBIT_PASSWORD:-}" || (
+        echo "precondition failed - HAWKBIT_PASSWORD is not set."
+        && echo "It should be set with a protected and masked variable."
+        && exit 1 )
+    # TODO: remove this when switching to the dedicated docker container.
+    - go install gitlab.com/zygoon/go-hawkbit/cmd/hawkbitctl@latest
+    - test -L "${CI_PROJECT_DIR}/artifacts/images/${MACHINE}/${CI_ONIRO_RAUC_BUNDLE_NAME}-${MACHINE}.raucb")" || (
+        echo "precondition failed - bundle file is either missing or is not a symbolic link."
+        && find "${CI_PROJECT_DIR}/artifacts"
+        && exit 1 )
+    - BUNDLE_FILE="$(readlink "${CI_PROJECT_DIR}/artifacts/images/${MACHINE}/${CI_ONIRO_RAUC_BUNDLE_NAME}-${MACHINE}.raucb")"
+    - test -n "$BUNDLE_FILE" || (
+        echo "Cannot compute BUNDLE_FILE"
+        && ls -l "${CI_PROJECT_DIR}/artifacts/images/${MACHINE}/${CI_ONIRO_RAUC_BUNDLE_NAME}-${MACHINE}.raucb"
+        && exit 1 )
+    - BUNDLE_VERSION="$(echo "$CI_BUNDLE_FILE" | awk -e 'BEGIN { RS = "-" } /.*\.raucb/ { sub(".raucb", "", $NF); print $NF }')"
+    - test -n "$BUNDLE_VERSION" || (
+        echo "Cannot compute BUNDLE_VERSION"
+        && echo "BUNDLE_FILE=$BUNDLE_FILE"
+        && exit 1 )
+    # TODO: create or find sw mod type for SysOTA + RAUC bundle
+    - hawkbitctl create software-module \
+        -name "$CI_ONIRO_HAWKBIT_SWMOD_NAME" \
+        -version "$BUNDLE_VERSION" \
+        -type os \
+        -vendor Onrio \
+        -description "Automatic build from Oniro CI"
+    # TODO: create or find ds type for Raspberry Pi 4 + Oniro
+    - hawkbitctl create distribution-set \
+        -name "$CI_ONIRO_HAWKBIT_DS_NAME" \
+        -version "$BUNDLE_VERSION" \
+        -type os_only \
+        -modules "$CI_ONIRO_HAWKBIT_SWMOD_NAME:$BUNDLE_VERSION" \
+        -description "Automatic build from Oniro CI"
+    - hawkbitctl upload \
+        -m "$CI_ONIRO_HAWKBIT_SWMOD_NAME:$BUNDLE_VERSION" \
+        -a "${CI_PROJECT_DIR}/artifacts/images/${MACHINE}/$(readlink "${CI_PROJECT_DIR}/artifacts/images/${MACHINE}/${CI_ONIRO_RAUC_BUNDLE_NAME}-${MACHINE}.raucb")"
+  rules:
+    # There's no point in trying when we don't have credentials or instance URL.
+    - if: '$HAWKBIT_USERNAME == "" || $HAWKBIT_PASSWORD == "" || $HAWKBIT_URL == ""'
+      when: never
+    # For merge requests, the publishing is optional and can be triggered manually.
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: manual
+      allow_failure: true
+    # Publishing is done only for scheduled builds
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+
 .build-wic-image-daily:
   extends: .build-wic-image
   variables:
