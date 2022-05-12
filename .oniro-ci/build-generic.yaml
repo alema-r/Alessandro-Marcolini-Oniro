@@ -314,6 +314,7 @@
   variables:
     # Put timestamp into bundle name.
     CI_ONIRO_BB_LOCAL_CONF_IMAGE_VERSION_SUFFIX: "-$${DATETIME}"
+    # Collect rauc bundles as artifacts.
     CI_ONIRO_JOB_ARTIFACTS: "*.raucb"
   # Avoid pulling in any artifacts from the previous stage.
   dependencies: []
