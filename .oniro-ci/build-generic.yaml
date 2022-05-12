@@ -293,7 +293,7 @@
         (
           cd "$BITBAKE_TMPDIR"/deploy/
           for artifact in $CI_ONIRO_JOB_ARTIFACTS; do
-            find ./ -type f -name "$artifact" -exec cp --verbose --archive --parents {} "$CI_PROJECT_DIR"/artifacts \;
+            find ./ \( -type f -o -type l \) -name "$artifact" -exec cp --verbose --archive --parents {} "$CI_PROJECT_DIR"/artifacts \;
           done
         )
       fi
