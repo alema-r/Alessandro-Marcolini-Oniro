@@ -93,6 +93,96 @@ bundle-raspberrypi4-64:
     CI_ONIRO_BUILD_FLAVOUR: linux
     CI_ONIRO_RECIPE_NAME: oniro-bundle-base
 
+.publish-rauc-bundle-to-hawkbit:
+  image: zyga/hawkbitctl:latest-ubuntu
+  # Use the deploy stage so that we only publish bundles to HawkBit if and only
+  # if all the bundles built in their stage completed successfully. This delays
+  # publishing to ensure that we have a consistent set and not some partial set
+  # when something failed to build.
+  stage: deploy
+  variables:
+    # Those variables have to be provided by specialized jobs.
+    CI_ONIRO_HAWKBIT_SWMOD_NAME: ""
+    CI_ONIRO_HAWKBIT_DS_NAME: ""
+    CI_ONIRO_RAUC_BUNDLE_NAME: ""
+    MACHINE: ""
+  script:
+    - set -e
+    - test -n "${CI_ONIRO_HAWKBIT_SWMOD_NAME:-}" || (
+        echo "precondition failed - CI_ONIRO_HAWKBIT_SWMOD_NAME is not set."
+        && echo "It should be set to the name of the HawkBit software module"
+        && exit 1 )
+    - test -n "${CI_ONIRO_HAWKBIT_DS_NAME:-}" || (
+        echo "precondition failed - CI_ONIRO_HAWKBIT_DS_NAME is not set."
+        && echo "It should be set to the name of the HawkBit distribution set."
+        && exit 1 )
+    - test -n "${CI_ONIRO_RAUC_BUNDLE_NAME:-}" || (
+        echo "precondition failed - CI_ONIRO_RAUC_BUNDLE_NAME is not set."
+        && echo "It should be set to the name of the Yocto recipe constructing the RAUC bundle."
+        && exit 1 )
+    - test -n "${MACHINE:-}" || (
+        echo "precondition failed - MACHINE is not set."
+        && echo "It should be set to the name of the Yocto machine name."
+        && exit 1 )
+    - test -n "${HAWKBIT_URL:-}" || (
+        echo "precondition failed - HAWKBIT_URL is not set."
+        && exit 1 )
+    - test -n "${HAWKBIT_USERNAME:-}" || (
+        echo "precondition failed - HAWKBIT_USERNAME is not set."
+        && exit 1 )
+    - test -n "${HAWKBIT_PASSWORD:-}" || (
+        echo "precondition failed - HAWKBIT_PASSWORD is not set."
+        && echo "It should be set with a protected and masked variable."
+        && exit 1 )
+    - test -L "${CI_PROJECT_DIR}/artifacts/images/${MACHINE}/${CI_ONIRO_RAUC_BUNDLE_NAME}-${MACHINE}.raucb" || (
+        echo "precondition failed - bundle file is either missing or is not a symbolic link."
+        && find "${CI_PROJECT_DIR}/artifacts"
+        && exit 1 )
+    - BUNDLE_FILE="$(readlink "${CI_PROJECT_DIR}/artifacts/images/${MACHINE}/${CI_ONIRO_RAUC_BUNDLE_NAME}-${MACHINE}.raucb")"
+    - test -n "$BUNDLE_FILE" || (
+        echo "Cannot compute BUNDLE_FILE"
+        && ls -l "${CI_PROJECT_DIR}/artifacts/images/${MACHINE}/${CI_ONIRO_RAUC_BUNDLE_NAME}-${MACHINE}.raucb"
+        && exit 1 )
+    - BUNDLE_VERSION="$(echo "$BUNDLE_FILE" | awk 'BEGIN { RS = "-" } /.*\.raucb/ { sub(".raucb", "", $NF); print $NF }')"
+    - test -n "$BUNDLE_VERSION" || (
+        echo "Cannot compute BUNDLE_VERSION"
+        && echo "BUNDLE_FILE=$BUNDLE_FILE"
+        && exit 1 )
+    # TODO: create or find sw mod type for SysOTA + RAUC bundle
+    - hawkbitctl create software-module
+        -name "$CI_ONIRO_HAWKBIT_SWMOD_NAME"
+        -version "$BUNDLE_VERSION"
+        -type os
+        -vendor "Onrio"
+        -description "Automatic build from Oniro CI"
+    # TODO: create or find ds type for MACHINE and OS
+    - hawkbitctl create distribution-set
+        -name "$CI_ONIRO_HAWKBIT_DS_NAME"
+        -version "$BUNDLE_VERSION"
+        -type os
+        -modules "$CI_ONIRO_HAWKBIT_SWMOD_NAME:$BUNDLE_VERSION"
+        -description "Automatic build from Oniro CI"
+    - hawkbitctl upload
+        -m "$CI_ONIRO_HAWKBIT_SWMOD_NAME:$BUNDLE_VERSION"
+        -a "${CI_PROJECT_DIR}/artifacts/images/${MACHINE}/$(readlink "${CI_PROJECT_DIR}/artifacts/images/${MACHINE}/${CI_ONIRO_RAUC_BUNDLE_NAME}-${MACHINE}.raucb")"
+  rules:
+    # Publishing is done only for scheduled builds
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+    # For merge requests, the publishing is optional and can be triggered manually.
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: manual
+      allow_failure: true
+
+publish-raspberrypi4-64:
+  extends: .publish-rauc-bundle-to-hawkbit
+  dependencies: [bundle-raspberrypi4-64]
+  needs: [bundle-raspberrypi4-64]
+  variables:
+    CI_ONIRO_HAWKBIT_SWMOD_NAME: oniro-bundle-base-raspberrypi4-64
+    CI_ONIRO_HAWKBIT_DS_NAME: oniro-image-base-raspberrypi4-64
+    CI_ONIRO_RAUC_BUNDLE_NAME: oniro-bundle-base
+    MACHINE: raspberrypi4-64
+
 .build-wic-image-daily:
   extends: .build-wic-image
   variables:
