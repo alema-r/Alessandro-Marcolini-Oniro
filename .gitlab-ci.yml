@@ -87,7 +87,9 @@ bundle-raspberrypi4-64:
   extends: .build-rauc-bundle
   stage: update
   # Depend on the build job to prevent repeating build failures.
-  needs: [linux-raspberrypi4-64]
+  # disabled for development
+  # needs: [linux-raspberrypi4-64]
+  needs: []
   variables:
     MACHINE: raspberrypi4-64
     CI_ONIRO_BUILD_FLAVOUR: linux
