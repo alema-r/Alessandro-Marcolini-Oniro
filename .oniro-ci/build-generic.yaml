@@ -313,8 +313,6 @@
   extends: .build-image
   variables:
     CI_ONIRO_JOB_ARTIFACTS: "*.raucb"
-  script:
-    - !reference [.build-image, script]
 
 .build-zephyr-image:
   extends: .build-image
