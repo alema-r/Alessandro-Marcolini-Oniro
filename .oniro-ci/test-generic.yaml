@@ -68,21 +68,14 @@
         mv job_def.yaml lava_jobs/
       fi
       set +x
-    # Submit the job to LAVA.
+    # Submit the jobs to SQUAD.
     - |
       for job_def in $(find lava_jobs/ -name "*.yaml"); do
-        lava_job_id=$(curl -X POST -H "Authorization: Token $CI_LAVA_TOKEN" -F "definition=$(<${job_def})" "$CI_LAVA_INSTANCE/api/v0.2/jobs/" | jq ".job_ids" | tr -d "[\n ]")
-        if [ "${lava_job_id}" != "null" ]; then
-          echo "$CI_LAVA_INSTANCE/scheduler/job/$lava_job_id"
-          echo "$lava_job_id" >> job_ids_"${CI_JOB_NAME}_${lava_job_id}".txt
-        else
-          echo "Failed to submit ${job_def}"
-          exit 1
-        fi
+        echo $CI_SQUAD_INSTANCE/api/submitjob/oniro-core/$CI_PROJECT_NAME/$CI_COMMIT_SHORT_SHA/$MACHINE --header "Auth-Token: $CI_SQUAD_TOKEN"  --form "backend=oniro_lava" --form "definition=@${job_def}"
+        curl $CI_SQUAD_INSTANCE/api/submitjob/oniro-core/$CI_PROJECT_NAME/$CI_COMMIT_SHORT_SHA/$MACHINE --header "Auth-Token: $CI_SQUAD_TOKEN"  --form "backend=oniro_lava" --form "definition=@${job_def}"
       done
   artifacts:
     paths:
-      - job_ids_*.txt
       - lava_jobs/*.yaml
   rules:
     # Run the build when it is scheduled.
@@ -107,33 +100,18 @@
     CI_LAVA_INSTANCE: "https://lava.ostc-eu.org/"
   script:
     - |
-      incomplete=false
-      for file in $(find ./ -name "job_ids_*.txt"); do
-        echo "Job file: $file"
-        while read -r p; do
-          echo "Job ID: $p"
-          mkdir "$p"
-          # Echo LAVA job health and link.
-          link="$CI_LAVA_INSTANCE/scheduler/job/$p"
-          health="$(curl --silent "$CI_LAVA_INSTANCE/api/v0.2/jobs/$p/" | jq '.health' | tr -d '"')"
-          echo $health | grep -iq incomplete && incomplete=true
-          echo "[$health] $link"
-          # Get the JUnit export from LAVA.
-          curl --silent -o job_$p.xml "$CI_LAVA_INSTANCE/api/v0.2/jobs/$p/junit/?classname_prefix=$p"
-          echo "Report file: $(ls job_$p.xml)"
-        done < "$file"
-      done
-      if $incomplete; then
+      # Get the build id based on commit sha
+      build_id="$(curl --silent "https://squadp.svc.ostc-eu.dev/api/builds/?version=$CI_COMMIT_SHORT_SHA" | jq -r '.results[0].id')"
+
+      # Get the test_runs_incomplete value from build status. That will tell
+      # us if any of the LAVA jobs failed and we can determine whether the
+      # report job is successful or not.
+      incomplete="$(curl --silent https://squadp.svc.ostc-eu.dev/api/builds/$build_id/status/ | jq -r '.test_runs_incomplete')"
+      if [ "$incomplete" != "0" ]; then
         echo "ERROR: Incomplete test job reported: exit code 1"
         exit 1
       fi
-  artifacts:
-    when: always
-    paths:
-      - job_*.xml
-    reports:
-      junit:
-        - job_*.xml
+
   rules:
     # Run the build when it is scheduled.
     - if: $CI_PIPELINE_SOURCE == "schedule"
