@@ -93,6 +93,17 @@ bundle-raspberrypi4-64:
     CI_ONIRO_BUILD_FLAVOUR: linux
     CI_ONIRO_RECIPE_NAME: oniro-bundle-base
 
+# Build a RAUC update bundle for SECO B68
+bundle-seco-intel-b68:
+  extends: .build-rauc-bundle
+  stage: update
+  # Depend on the build job to prevent repeating build failures.
+  needs: [linux-seco-intel-b68]
+  variables:
+    MACHINE: seco-intel-b68
+    CI_ONIRO_BUILD_FLAVOUR: linux
+    CI_ONIRO_RECIPE_NAME: oniro-bundle-base
+
 .publish-rauc-bundle-to-hawkbit:
   image: zyga/hawkbitctl:latest-ubuntu
   # Use the deploy stage so that we only publish bundles to HawkBit if and only
@@ -182,6 +193,16 @@ publish-raspberrypi4-64:
     CI_ONIRO_HAWKBIT_DS_NAME: oniro-image-base-raspberrypi4-64
     CI_ONIRO_RAUC_BUNDLE_NAME: oniro-bundle-base
     MACHINE: raspberrypi4-64
+
+publish-seco-intel-b68:
+  extends: .publish-rauc-bundle-to-hawkbit
+  dependencies: [bundle-seco-intel-b68]
+  needs: [bundle-seco-intel-b68]
+  variables:
+    CI_ONIRO_HAWKBIT_SWMOD_NAME: oniro-bundle-base-seco-intel-b68
+    CI_ONIRO_HAWKBIT_DS_NAME: oniro-image-base-seco-intel-b68
+    CI_ONIRO_RAUC_BUNDLE_NAME: oniro-bundle-base
+    MACHINE: seco-intel-b68
 
 .build-wic-image-daily:
   extends: .build-wic-image
