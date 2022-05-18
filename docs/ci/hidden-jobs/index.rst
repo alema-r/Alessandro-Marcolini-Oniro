@@ -29,3 +29,4 @@ implementation details.
    lava-test
    lava-report
    aggregate-docs
+   publish-rauc-bundle-to-hawkbit
