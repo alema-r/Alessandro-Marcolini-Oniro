@@ -281,14 +281,14 @@ lava-seco-c61-kselftest:
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/seco-c61-kselftest.yaml"
     CI_REPORT_JOB_NAME: lava-report
 
-lava-zephyr-96b-nitrogen-tests:
-  needs: [zephyr-96b-nitrogen-tests]
+lava-zephyr-96b-nitrogen-twister:
+  needs: [zephyr-96b-nitrogen-twister]
   stage: test
   extends: .lava-test
   variables:
     MACHINE: 96b-nitrogen
-    CI_BUILD_JOB_NAME: zephyr-96b-nitrogen-tests
-    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/nitrogen-test.yaml"
+    CI_BUILD_JOB_NAME: zephyr-96b-nitrogen-twister
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/nitrogen-twister.yaml"
     CI_REPORT_JOB_NAME: lava-report
 
 lava-qemu-x86-perf:
@@ -378,7 +378,7 @@ lava-report:
     - lava-raspberrypi4-64-perf
     - lava-seco-intel-b68-perf
     - lava-seco-c61-perf
-    - lava-zephyr-96b-nitrogen-tests
+    - lava-zephyr-96b-nitrogen-twister
     - lava-zephyr-qemu-cortex-m3
     - lava-zephyr-qemu-x86
     - lava-qemu-x86_64-kselftest
