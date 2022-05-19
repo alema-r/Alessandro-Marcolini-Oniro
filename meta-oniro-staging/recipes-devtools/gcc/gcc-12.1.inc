@@ -2,14 +2,14 @@ require gcc-common.inc
 
 # Third digit in PV should be incremented after a minor release
 
-PV = "12.0.1"
+PV = "12.1.0"
 
 # BINV should be incremented to a revision after a minor gcc release
 
-BINV = "12.0.1"
+BINV = "12.1.0"
 
 MAJOR = "12"
-SNAPSHOT = "20220313"
+# SNAPSHOT = "20220313"
 
 FILESEXTRAPATHS =. "${FILE_DIRNAME}/gcc:${FILE_DIRNAME}/gcc/backport:"
 
@@ -26,11 +26,11 @@ LIC_FILES_CHKSUM = "\
     file://COPYING.RUNTIME;md5=fe60d87048567d4fe8c8a0ed2448bcc8 \
 "
 
-#RELEASE ?= "5b2ac9b40c325e9209c0bd55955db84aad4a0cc5"
-#BASEURI ?= "https://github.com/gcc-mirror/gcc/archive/${RELEASE}.zip;downloadfilename=gcc-${PV}-${RELEASE}.zip"
+RELEASE ?= "1ea978e3066ac565a1ec28a96a4d61eaf38e2726"
+BASEURI ?= "https://github.com/gcc-mirror/gcc/archive/${RELEASE}.tar.gz;downloadfilename=gcc-${PV}-${RELEASE}.tar.gz"
 
-BASEURI ?= "https://mirror.koddos.net/gcc/snapshots/${MAJOR}-${SNAPSHOT}/gcc-${MAJOR}-${SNAPSHOT}.tar.xz \
-           "
+# For snapshots
+#BASEURI ?= "https://mirror.koddos.net/gcc/snapshots/${MAJOR}-${SNAPSHOT}/gcc-${MAJOR}-${SNAPSHOT}.tar.xz"
 SRC_URI = "\
            ${BASEURI} \
            file://0001-gcc-4.3.1-ARCH_FLAGS_FOR_TARGET.patch \
@@ -57,12 +57,12 @@ SRC_URI = "\
            file://0006-If-CXXFLAGS-contains-something-unsupported-by-the-bu.patch \
            file://0001-Fix-install-path-of-linux64.h.patch \
 "
-SRC_URI[sha256sum] = "979d8cbe9b2ed2ab4434f52097754e004a207cf6541aea3e167c5d0f74957633"
+SRC_URI[sha256sum] = "37f4815d27485cd84bfd725598a5afe53714ce4ecdfdef4bc266c086ae165367"
 
-S = "${TMPDIR}/work-shared/gcc-${PV}-${PR}/gcc-${MAJOR}-${SNAPSHOT}"
+S = "${TMPDIR}/work-shared/gcc-${PV}-${PR}/gcc-${RELEASE}"
 
 # For dev release snapshotting
-#S = "${TMPDIR}/work-shared/gcc-${PV}-${PR}/gcc-${RELEASE}"
+#S = "${TMPDIR}/work-shared/gcc-${PV}-${PR}/gcc-${MAJOR}-${SNAPSHOT}"
 #B = "${WORKDIR}/gcc-${PV}/build.${HOST_SYS}.${TARGET_SYS}"
 
 # Language Overrides

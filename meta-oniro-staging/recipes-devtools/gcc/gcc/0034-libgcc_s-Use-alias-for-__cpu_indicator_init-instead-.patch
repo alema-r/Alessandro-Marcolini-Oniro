@@ -43,17 +43,17 @@ diff --git a/gcc/config/i386/i386-expand.cc b/gcc/config/i386/i386-expand.cc
 index ac69eed4d32..ffaa44a16fc 100644
 --- a/gcc/config/i386/i386-expand.cc
 +++ b/gcc/config/i386/i386-expand.cc
-@@ -11038,10 +11038,10 @@ ix86_expand_builtin (tree exp, rtx target, rtx subtarget,
+@@ -12338,10 +12338,10 @@ ix86_expand_builtin (tree exp, rtx targe
      {
      case IX86_BUILTIN_CPU_INIT:
        {
--	/* Make it call __cpu_indicator_init in libgcc. */
-+	/* Make it call __cpu_indicator_init_local in libgcc.a. */
+-	/* Make it call __cpu_indicator_init in libgcc.  */
++	/* Make it call __cpu_indicator_init_local in libgcc.a.  */
  	tree call_expr, fndecl, type;
-         type = build_function_type_list (integer_type_node, NULL_TREE); 
+ 	type = build_function_type_list (integer_type_node, NULL_TREE);
 -	fndecl = build_fn_decl ("__cpu_indicator_init", type);
 +	fndecl = build_fn_decl ("__cpu_indicator_init_local", type);
- 	call_expr = build_call_expr (fndecl, 0); 
+ 	call_expr = build_call_expr (fndecl, 0);
  	return expand_expr (call_expr, target, mode, EXPAND_NORMAL);
        }
 diff --git a/libgcc/config/i386/cpuinfo.c b/libgcc/config/i386/cpuinfo.c
