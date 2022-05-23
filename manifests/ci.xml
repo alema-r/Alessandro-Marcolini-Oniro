@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: Huawei Inc.
+-->
+<manifest>
+  <include name="manifests/default.xml" />
+  <project name="oniro-core/meta-binaryaudit" remote="eclipse" revision="oniro/kirkstone" path="meta-binaryaudit" />
+</manifest>

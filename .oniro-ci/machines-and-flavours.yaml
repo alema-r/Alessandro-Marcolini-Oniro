@@ -32,7 +32,7 @@
       allow_failure: true
 
 .linux-qemu-x86:
-  extends: .build-wic-image
+  extends: [.build-wic-image, .check-abi]
   variables:
     MACHINE: qemux86
     CI_ONIRO_BUILD_FLAVOUR: linux
@@ -51,7 +51,7 @@ linux-qemu-x86-clang:
  extends: [.linux-qemu-x86, .toolchain-clang]
 
 .linux-qemu-x86_64:
-  extends: .build-wic-image
+  extends: [.build-wic-image, .check-abi]
   variables:
     MACHINE: qemux86-64
     CI_ONIRO_BUILD_FLAVOUR: linux
@@ -129,7 +129,7 @@ linux-seco-imx8mm-c61-4gb-extra-clang:
   extends: [.linux-seco-imx8mm-c61-4gb-extra, .toolchain-clang, .broken]
 
 .linux-raspberrypi4-64:
-  extends: .build-wic-image
+  extends: [.build-wic-image, .check-abi]
   variables:
     MACHINE: raspberrypi4-64
     CI_ONIRO_BUILD_FLAVOUR: linux

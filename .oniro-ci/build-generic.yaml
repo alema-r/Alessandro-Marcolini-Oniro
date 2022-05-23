@@ -162,6 +162,17 @@
           | sed -e 's/^CI_ONIRO_BB_LOCAL_CONF_plus_equals_//g' -e 's/"/\\"/g' -e 's/=/ += "/g' -e 's/$/"/g' \
           | sort \
           | tee -a conf/local.conf )
+    # Variables in the form of '^CI_ONIRO_BB_BBLAYERS_CONF_plus_equals_attr' are
+    # converted to 'attr += "value"' and appended to bblayers.conf
+    # this is useful if layer has to be added but bitbake add-layer command cannot be used 
+    # (for example this layer's class is inherited via local.conf already)
+    - |
+      ( set +o pipefail;
+        env \
+          | grep -E '^CI_ONIRO_BB_BBLAYERS_CONF_plus_equals_[A-Z_0-9]+=' \
+          | sed -e 's/^CI_ONIRO_BB_BBLAYERS_CONF_plus_equals_//g' -e 's/"/\\"/g' -e 's/=/ += "/g' -e 's/$/"/g' \
+          | sort \
+          | tee -a conf/bblayers.conf )
 
     # Sanity check: disallow using public build cache with a specific setting
     # in local.conf. The list of settings may grow over time.
@@ -274,6 +285,10 @@
             find ./ \( -type f -o -type l \) -name "$artifact" -exec cp --verbose --archive --parents {} "$CI_PROJECT_DIR"/artifacts \;
           done
         )
+      fi
+      # Compress and copy artifacts of do_abicheck task (if any)
+      if test -n "$CI_ONIRO_ABICHECK_TOPDIR" && test -d "$BITBAKE_TMPDIR"/../"$CI_ONIRO_ABICHECK_TOPDIR"; then
+            tar -cJf "$CI_PROJECT_DIR"/artifacts/abicheck-"$CI_COMMIT_SHA".tar.xz "$BITBAKE_TMPDIR"/../"$CI_ONIRO_ABICHECK_TOPDIR"/*/*/binaryaudit
       fi
       set +x
   artifacts:
@@ -398,6 +413,14 @@
 # It will be removed when that is safe to do so. It is not documented.
 .build:
  extends: .build-recipe
+
+.check-abi:
+  variables:
+    CI_ONIRO_BB_LOCAL_CONF_plus_equals_INHERIT: abicheck
+    CI_ONIRO_BB_LOCAL_CONF_BINARY_AUDIT_WARN_ONLY: "1"
+    CI_ONIRO_MANIFEST_NAME: manifests/ci.xml
+    CI_ONIRO_BB_BBLAYERS_CONF_plus_equals_BBLAYERS: "../meta-binaryaudit"
+    CI_ONIRO_ABICHECK_TOPDIR: "./buildhistory/packages"
 
 # This job is documented in docs/ci/hidden-jobs/build-docs.rst
 .build-docs:
