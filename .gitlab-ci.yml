@@ -46,13 +46,17 @@ aggregate-docs:
   variables:
     CI_ONIRO_GIT_REPO_PATH: oniro
 
-# Customize the .bitbake-workspace job to set the rules governing when a build
-# is attempted to: modifications (changes) to the pipeline, meta-layers,
-# flavours and assets OR to placement of a tag on a commit OR when a job is
-# scheduled. In addition, draft merge requests will no longer start the heavy
-# build jobs automatically, giving an option to the developer, to start the
-# desired jobs manually.
-.bitbake-workspace:
+# Anchor job rules, which govern if a job is instantiated in a given pipeline.
+# This job is then used as another base to several different jobs, including
+# .bitbake-workspace, .build-rauc-bundle and the
+# .publish-rauc-bundle-to-hawkbit jobs.
+#
+# The rules are: modifications (changes) to the pipeline, meta-layers, flavours
+# and assets OR to placement of a tag on a commit OR when a job is scheduled.
+# In addition, draft merge requests will no longer start the heavy build jobs
+# automatically, giving an option to the developer, to start the desired jobs
+# manually.
+.workspace-rules:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
       variables:
@@ -81,6 +85,30 @@ aggregate-docs:
         CI_ONIRO_MANIFEST_BRANCH: "$CI_COMMIT_REF_NAME"
     - if: '$CI_COMMIT_TAG'
       # XXX: This needs CI_ONIRO_MANIFEST_BRANCH as well, most likely.
+
+
+# The three jobs defined below override the definitions from build-generic.yaml
+# to inject .workspace-rules and the rules defined therein. It is important to
+# understand that this is based on several separate systems: parsing and
+# loading yaml, processing the include rules, and processing extends rules.
+#
+# This specific trick (ab)uses the fact that yaml-top-level is one big map of
+# entities, and we can define an entity multiple times to effectively extend or
+# replace specific elements.
+#
+# The following three jobs are equivalent to copy-pasting the modified extends
+# line into the jobs in .oniro-ci/build-generic.yaml, because map/dictionary
+# entries compute the union of the defined keys, unlike list entries or scalars
+# that replace the previous value.
+
+.bitbake-workspace:
+  extends: [.workspace, .workspace-rules]
+
+.build-rauc-bundle:
+  extends: [.build-image, .workspace-rules]
+
+.publish-rauc-bundle-to-hawkbit:
+  extends: [.workspace-rules]
 
 # Build a RAUC update bundle for Raspberry Pi 4
 bundle-raspberrypi4-64:
