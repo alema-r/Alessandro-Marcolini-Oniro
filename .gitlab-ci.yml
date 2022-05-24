@@ -110,6 +110,28 @@ aggregate-docs:
 .publish-rauc-bundle-to-hawkbit:
   extends: [.workspace-rules]
 
+# Build a RAUC update bundle for qemu x86
+bundle-qemu-x86:
+  extends: .build-rauc-bundle
+  stage: update
+  # Depend on the build job to prevent repeating build failures.
+  needs: [linux-qemu-x86]
+  variables:
+    MACHINE: qemux86
+    CI_ONIRO_BUILD_FLAVOUR: linux
+    CI_ONIRO_RECIPE_NAME: oniro-bundle-base
+
+# Build a RAUC update bundle for qemu x86 64
+bundle-qemu-x86_64:
+  extends: .build-rauc-bundle
+  stage: update
+  # Depend on the build job to prevent repeating build failures.
+  needs: [linux-qemu-x86_64]
+  variables:
+    MACHINE: qemux86-64
+    CI_ONIRO_BUILD_FLAVOUR: linux
+    CI_ONIRO_RECIPE_NAME: oniro-bundle-base
+
 # Build a RAUC update bundle for Raspberry Pi 4
 bundle-raspberrypi4-64:
   extends: .build-rauc-bundle
@@ -131,6 +153,26 @@ bundle-seco-intel-b68:
     MACHINE: seco-intel-b68
     CI_ONIRO_BUILD_FLAVOUR: linux
     CI_ONIRO_RECIPE_NAME: oniro-bundle-base
+
+publish-qemu-x86:
+  extends: .publish-rauc-bundle-to-hawkbit
+  dependencies: [bundle-qemu-x86]
+  needs: [bundle-qemu-x86]
+  variables:
+    CI_ONIRO_HAWKBIT_SWMOD_NAME: oniro-bundle-base-qemu-x86
+    CI_ONIRO_HAWKBIT_DS_NAME: oniro-image-base-qemu-x86
+    CI_ONIRO_RAUC_BUNDLE_NAME: oniro-bundle-base
+    MACHINE: qemux86
+
+publish-qemu-x86_64:
+  extends: .publish-rauc-bundle-to-hawkbit
+  dependencies: [bundle-qemu-x86_64]
+  needs: [bundle-qemu-x86_64]
+  variables:
+    CI_ONIRO_HAWKBIT_SWMOD_NAME: oniro-bundle-base-qemu-x86_64
+    CI_ONIRO_HAWKBIT_DS_NAME: oniro-image-base-qemu-x86_64
+    CI_ONIRO_RAUC_BUNDLE_NAME: oniro-bundle-base
+    MACHINE: qemux86-64
 
 publish-raspberrypi4-64:
   extends: .publish-rauc-bundle-to-hawkbit
