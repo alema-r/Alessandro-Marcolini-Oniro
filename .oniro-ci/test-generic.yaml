@@ -51,7 +51,7 @@
       set -x
       rm -rf lava_jobs && mkdir lava_jobs
       # Generate job definitions for zephyr build
-      if echo "${CI_BUILD_JOB_NAME}" | grep -i "zephyr | grep -vi "twister""; then
+      if echo "${CI_BUILD_JOB_NAME}" | grep -i "zephyr" | grep -vi "twister"; then
         for image in $(find artifacts/images/${MACHINE} -name "*.elf" -exec basename {} \;); do
           image_basename=$(basename "${image}" ".elf")
           echo "--- Generating lava job definition ${image_basename}.yaml ---"
