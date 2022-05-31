@@ -529,3 +529,92 @@ build-npm-cspell:
   extends: .build-with-kaniko
   variables:
     CONTAINER_PATH: npm-cspell
+
+.oe-selftest-rules:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $OE_SELFTEST == "gcc"
+
+oe-selftest-gcc-qemu-linux-user:
+  extends: [.oe-selftest, .oe-selftest-rules]
+  variables:
+    # Set the variable to 'gcc' will run all tests defined in the gcc.py file.
+    # https://github.com/openembedded/openembedded-core/blob/master/meta/lib/oeqa/selftest/cases/gcc.py#L79
+    CI_ONIRO_OE_SELFTESTS:
+      gcc.GccCrossSelfTest
+      gcc.GccLibAtomicSelfTest
+      gcc.GccLibGompSelfTest
+      gcc.GccLibItmSelfTest
+      gcc.GccLibSspSelfTest
+      gcc.GccLibStdCxxSelfTest
+      gcc.GxxCrossSelfTest
+
+.oe-selftest-gcc-system-emulated:
+  timeout: 8h
+  extends: [.oe-selftest, .oe-selftest-rules]
+  variables:
+    MACHINE: qemux86-64
+    CI_ONIRO_OE_SELFTESTS:
+      gcc.GccCrossSelfTestSystemEmulated
+      gcc.GccLibAtomicSelfTestSystemEmulated
+      gcc.GccLibGompSelfTestSystemEmulated
+      gcc.GccLibItmSelfTestSystemEmulated
+      gcc.GccLibStdCxxSelfTestSystemEmulated
+      gcc.GccLibSspSelfTestSystemEmulated
+      gcc.GxxCrossSelfTestSystemEmulated
+
+oe-selftest-gcc-system-emulated-qemux86-64:
+  extends: .oe-selftest-gcc-system-emulated
+  variables:
+    MACHINE: qemux86-64
+
+oe-selftest-gcc-system-emulated-qemuarm64:
+  extends: .oe-selftest-gcc-system-emulated
+  variables:
+    MACHINE: qemuarm64
+
+oe-selftest-report:
+  timeout: 6h
+  extends: .oe-selftest-rules
+  image:
+    name: registry.ostc-eu.org/ostc/oniro/bitbake-builder:latest
+  stage: report
+  dependencies:
+    - oe-selftest-gcc-qemu-linux-user
+    - oe-selftest-gcc-system-emulated-qemux86-64
+    - oe-selftest-gcc-system-emulated-qemuarm64
+  needs:
+    - oe-selftest-gcc-qemu-linux-user
+    - oe-selftest-gcc-system-emulated-qemux86-64
+    - oe-selftest-gcc-system-emulated-qemuarm64
+  script:
+    - |
+      set -x
+      curl https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-test-definitions/-/raw/gcc-test/automated/utils/gcc-result-parser.py \
+        > gcc-result-parser.py
+      for job_path in $(find artifacts/ -type d -name oe-selftest-gcc*); do
+        (
+          job=$(basename $job_path)
+          test_env="$(echo $job | cut -d'-' -f4-)"
+          cd $job_path
+          xz -d *.xz
+          # Parse sum file.
+          for sum_file in $(ls *.sum); do
+            python3 $CI_PROJECT_DIR/gcc-result-parser.py $sum_file
+          done
+          # Upload result to squad.
+          for result_file in $(ls result_*.json); do
+            component="$(basename $result_file .json | cut -d'_' -f2-)"
+            job_id="$job-$component"
+            time curl \
+              --header "Auth-Token: $CI_SQUAD_TOKEN" \
+              https://squadp.svc.ostc-eu.dev/api/submit/oniro-core/gcc-test/$CI_PIPELINE_ID/$test_env \
+              --form tests=@$result_file \
+              --form metadata='{"job_id": "'$job_id'"}'
+          done
+        )
+      done
+      set +x
+  artifacts:
+    paths:
+      - artifacts/oe-selftest-gcc*/*.json
+      - artifacts/oe-selftest-gcc*/*.txt

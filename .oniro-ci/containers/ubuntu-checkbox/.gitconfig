@@ -1,0 +1,6 @@
+# SPDX-FileCopyrightText: 2021 Huawei Inc.
+# SPDX-License-Identifier: Apache-2.0
+
+[user]
+	name = Oniro Project CI
+	email = oniro-dev@eclipse.org
