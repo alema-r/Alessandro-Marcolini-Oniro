@@ -11,6 +11,7 @@
   variables:
     GIT_STRATEGY: none
     CI_LAVA_INSTANCE: "https://lava.ostc-eu.org/"
+    CI_SQUAD_INSTANCE: "https://squadp.svc.ostc-eu.dev"
     # Run the same ltp test suites that using by LKFT project.
     # Reference: https://qa-reports.linaro.org/lkft/linux-stable-rc-linux-5.10.y/build/v5.10.98-75-g9f5cb871ceb9/testjobs/
     LTP_TST_CMDFILES: "cap_bounds cpuhotplug crypto nptl pty securebits fs controllers hugetlb mm tracing containers io dio syscalls math commands ipc fcntl-locktests filecaps fs_bind fs_perms_simple fsx sched cve"
