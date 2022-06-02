@@ -26,8 +26,8 @@ RUN apt-get update -qq \
 	bash git-repo git-lfs apt-utils build-essential chrpath cpio diffstat \
 	gawk git sudo wget language-pack-en-base time locales python-is-python3 \
 	python3-distutils python3-pip libssl-dev iproute2 iputils-ping curl jq \
-	lz4 zstd \
- && eatmydata apt-get install -qq -y 'ca-certificates=20210119~20.04.2' \
+	lz4 zstd iptables\
+ && eatmydata apt-get install -qq -y 'ca-certificates=20211016~20.04.1' \
  && eatmydata apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN locale-gen
 RUN pip3 install anybadge
@@ -36,7 +36,12 @@ RUN pip3 install anybadge
 RUN echo "dash dash/sh boolean false" | debconf-set-selections \
  && DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
 
-RUN useradd --create-home --uid 1000 --shell /usr/bin/bash builder
+# runqemu command needs sudo permission to create tun device for the
+# communication between host and vm for gcc testing.
+RUN useradd --create-home --uid 1000 --shell /usr/bin/bash builder \
+ && usermod -aG sudo builder\
+ && echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
 COPY --chown=builder:builder .gitconfig /home/builder/.gitconfig
 USER builder
 WORKDIR /home/builder
