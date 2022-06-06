@@ -194,13 +194,6 @@
         # them).
         time devtool finish --remove-work --force "$CI_ONIRO_DEVTOOL_RECIPE_NAME" "$(basename "$CI_ONIRO_DEVTOOL_LAYER_PATH")";
       fi
-  rules:
-    # Run the job when a merge request is created.
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-    # Run the job when a tag is placed.
-    - if: '$CI_COMMIT_TAG'
-    # Run the build for scheduled pipelines.
-    - if: '$CI_PIPELINE_SOURCE == "schedule"'
 
 # This job is documented in docs/ci/hidden-jobs/build-linux.rst
 .build-linux:
