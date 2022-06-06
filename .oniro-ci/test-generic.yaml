@@ -45,8 +45,7 @@
       -e 's/@ci_project_id@/'"$CI_PROJECT_ID"'/'
       -e 's/@ci_pipeline_id@/'"$CI_PIPELINE_ID"'/'
       -e 's,@ci_pipeline_url@,'"$CI_PIPELINE_URL"','
-      -e 's/@build_job_id@/'"$build_job_id"'/'
-      -e 's,@callback_url@,'"$CALLBACK_URL"',' job_def.yaml
+      -e 's/@build_job_id@/'"$build_job_id"'/' job_def.yaml
     # Generate test jobs.
     - |
       set -x
@@ -72,8 +71,10 @@
     # Submit the jobs to SQUAD.
     - |
       for job_def in $(find lava_jobs/ -name "*.yaml"); do
-        echo $CI_SQUAD_INSTANCE/api/submitjob/oniro-core/$CI_PROJECT_NAME/$CI_COMMIT_SHORT_SHA/$MACHINE --header "Auth-Token: $CI_SQUAD_TOKEN"  --form "backend=oniro_lava" --form "definition=@${job_def}"
-        curl $CI_SQUAD_INSTANCE/api/submitjob/oniro-core/$CI_PROJECT_NAME/$CI_COMMIT_SHORT_SHA/$MACHINE --header "Auth-Token: $CI_SQUAD_TOKEN"  --form "backend=oniro_lava" --form "definition=@${job_def}"
+        echo $CI_SQUAD_INSTANCE/api/submitjob/oniro-core/$CI_PROJECT_NAME/$CI_PIPELINE_ID/$MACHINE --header "Auth-Token: $CI_SQUAD_TOKEN"  --form "backend=oniro_lava" --form "definition=@${job_def}"
+        curl $CI_SQUAD_INSTANCE/api/submitjob/oniro-core/$CI_PROJECT_NAME/$CI_PIPELINE_ID/$MACHINE --header "Auth-Token: $CI_SQUAD_TOKEN"  --form "backend=oniro_lava" --form "definition=@${job_def}"
+      # Attach a callback to this build to trigger the lava-report job
+      curl -X POST /api/build/$CI_PIPELINE_ID/callbacks/ -F "callback_url=$CALLBACK_URL"
       done
   artifacts:
     paths:
@@ -137,10 +138,8 @@
   script:
     - |
       set -x
-      curl --silent "$CI_API_V4_URL/projects/$CI_PROJECT_ID/pipelines/$CI_PIPELINE_ID/test_report" > test-report.json
-      total_count="$(jq '.total_count' test-report.json)"
-      success_count="$(jq '.success_count' test-report.json)"
-      success_rate=$(( 100 * success_count / total_count ))
+      pass_percentage="$(curl --silent https://squadp.svc.ostc-eu.dev/api/builds/$build_id/status/ | jq -r '.pass_percentage')"
+      success_rate=`printf "%.2f" $pass_percentage`
       anybadge --label=lava-test --value=${success_rate} --suffix='%' --file=lava-test.svg 50=red 60=orange 80=yellow 100=green
       set +x
   artifacts:
