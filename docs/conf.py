@@ -22,10 +22,10 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Oniro Project Build System'
-copyright = '2021'
+copyright = '2022'
 author = 'Oniro Project'
 
-version = '1.99.99'
+version = '2.0.0-alpha'
 release = version
 
 # -- General configuration ---------------------------------------------------
