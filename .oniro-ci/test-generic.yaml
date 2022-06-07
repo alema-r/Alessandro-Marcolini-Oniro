@@ -73,9 +73,9 @@
       for job_def in $(find lava_jobs/ -name "*.yaml"); do
         echo $CI_SQUAD_INSTANCE/api/submitjob/oniro-core/$CI_PROJECT_NAME/$CI_PIPELINE_ID/$MACHINE --header "Auth-Token: $CI_SQUAD_TOKEN"  --form "backend=oniro_lava" --form "definition=@${job_def}"
         curl $CI_SQUAD_INSTANCE/api/submitjob/oniro-core/$CI_PROJECT_NAME/$CI_PIPELINE_ID/$MACHINE --header "Auth-Token: $CI_SQUAD_TOKEN"  --form "backend=oniro_lava" --form "definition=@${job_def}"
-      # Attach a callback to this build to trigger the lava-report job
-      curl -X POST /api/build/$CI_PIPELINE_ID/callbacks/ -F "callback_url=$CALLBACK_URL"
       done
+      # Attach a callback to this build to trigger the lava-report job
+      curl -X POST $CI_SQUAD_INSTANCE/api/build/$CI_PIPELINE_ID/callbacks/ -F "callback_url=$CALLBACK_URL"
   artifacts:
     paths:
       - lava_jobs/*.yaml
