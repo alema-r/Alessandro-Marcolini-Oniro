@@ -245,6 +245,7 @@
   variables:
     CI_ONIRO_BUILD_FLAVOUR: freertos
     CI_ONIRO_INSTANCE_SIZE: s3.large.2
+    CI_ONIRO_BB_LOCAL_CONF_plus_equals_CVE_CHECK_CREATE_MANIFEST: "0"
   script:
     - !reference [.bitbake-workspace, script]
     - time bitbake freertos-demo
