@@ -102,13 +102,10 @@
     CI_LAVA_INSTANCE: "https://lava.ostc-eu.org/"
   script:
     - |
-      # Get the build id based on commit sha
-      build_id="$(curl --silent "https://squadp.svc.ostc-eu.dev/api/builds/?version=$CI_COMMIT_SHORT_SHA" | jq -r '.results[0].id')"
-
       # Get the test_runs_incomplete value from build status. That will tell
       # us if any of the LAVA jobs failed and we can determine whether the
       # report job is successful or not.
-      incomplete="$(curl --silent https://squadp.svc.ostc-eu.dev/api/builds/$build_id/status/ | jq -r '.test_runs_incomplete')"
+      incomplete="$(curl --silent $CI_SQUAD_INSTANCE/api/builds/$CI_PIPELINE_ID/status/ | jq -r '.test_runs_incomplete')"
       if [ "$incomplete" != "0" ]; then
         echo "ERROR: Incomplete test job reported: exit code 1"
         exit 1
@@ -138,7 +135,7 @@
   script:
     - |
       set -x
-      pass_percentage="$(curl --silent https://squadp.svc.ostc-eu.dev/api/builds/$build_id/status/ | jq -r '.pass_percentage')"
+      pass_percentage="$(curl --silent $CI_SQUAD_INSTANCE/api/builds/$CI_PIPELINE_ID/status/ | jq -r '.pass_percentage')"
       success_rate=`printf "%.2f" $pass_percentage`
       anybadge --label=lava-test --value=${success_rate} --suffix='%' --file=lava-test.svg 50=red 60=orange 80=yellow 100=green
       set +x
