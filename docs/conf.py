@@ -25,7 +25,7 @@ project = 'Oniro Project Build System'
 copyright = '2022'
 author = 'Oniro Project'
 
-version = '2.0.0-alpha'
+version = '2.0.0-alpha2'
 release = version
 
 # -- General configuration ---------------------------------------------------
