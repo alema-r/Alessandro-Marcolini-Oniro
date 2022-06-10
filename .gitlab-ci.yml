@@ -69,13 +69,6 @@ aggregate-docs:
         CI_ONIRO_MANIFEST_URL: "$CI_MERGE_REQUEST_SOURCE_PROJECT_URL"
         CI_ONIRO_MANIFEST_BRANCH: "$CI_COMMIT_REF_NAME"
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-      changes:
-        - assets/**/*
-        - flavours/**/*
-        - manifests/*.xml
-        - meta-*/**/*
-        - .oniro-ci/*
-        - .gitlab-ci.yml
       # When building a merge request substitute the CI_ONIRO_MANIFEST_URL to point
       # to the incoming repository, and CI_ONIRO_MANIFEST_BRANCH, to the right
       # branch name. This allows testing the changes coming into project. This
