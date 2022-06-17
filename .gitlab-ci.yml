@@ -198,20 +198,14 @@ publish-seco-intel-b68:
     # Run the build for scheduled pipelines.
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
 
-# Mimic the updated rules for lava-test from the bitbake-workspace.
-.lava-test:
+.lava-test-scheduled:
+  extends: .lava-test
+  variables:
+    CI_SQUAD_PROJECT_NAME: "oniro"
   rules:
-    - if: '$CI_LAVA_TOKEN == null'
+    - if: '$CI_SQUAD_TOKEN == null'
       when: never
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
-
-# Mimic the updated rules for lava-report from the bitbake-workspace.
-.lava-report:
-  rules:
-    - if: '$CI_LAVA_TOKEN == null'
-      when: never
-    - if: '$CI_PIPELINE_SOURCE == "schedule"'
-      when: manual
 
 ##
 ## Submit jobs to LAVA
@@ -239,7 +233,7 @@ lava-qemu-x86_64:
 lava-raspberrypi4-64:
   needs: [linux-raspberrypi4-64-gcc]
   stage: test
-  extends: .lava-test
+  extends: .lava-test-scheduled
   variables:
     MACHINE: raspberrypi4-64
     CI_BUILD_JOB_NAME: linux-raspberrypi4-64-gcc
@@ -249,7 +243,7 @@ lava-raspberrypi4-64:
 lava-seco-intel-b68:
   needs: [linux-seco-intel-b68-gcc]
   stage: test
-  extends: .lava-test
+  extends: .lava-test-scheduled
   variables:
     MACHINE: seco-intel-b68
     CI_BUILD_JOB_NAME: linux-seco-intel-b68-gcc
@@ -259,7 +253,7 @@ lava-seco-intel-b68:
 lava-seco-c61:
   needs: [linux-seco-imx8mm-c61-4gb-gcc]
   stage: test
-  extends: .lava-test
+  extends: .lava-test-scheduled
   variables:
     MACHINE: seco-imx8mm-c61-4gb
     CI_BUILD_JOB_NAME: linux-seco-imx8mm-c61-4gb-gcc
@@ -269,7 +263,7 @@ lava-seco-c61:
 lava-qemu-x86-ltp:
   needs: [linux-qemu-x86-gcc]
   stage: test
-  extends: .lava-test
+  extends: .lava-test-scheduled
   variables:
     MACHINE: qemux86
     CI_BUILD_JOB_NAME: linux-qemu-x86-gcc
@@ -279,7 +273,7 @@ lava-qemu-x86-ltp:
 lava-qemu-x86_64-ltp:
   needs: [linux-qemu-x86_64-gcc]
   stage: test
-  extends: .lava-test
+  extends: .lava-test-scheduled
   variables:
     MACHINE: qemux86-64
     CI_BUILD_JOB_NAME: linux-qemu-x86_64-gcc
@@ -289,7 +283,7 @@ lava-qemu-x86_64-ltp:
 lava-raspberrypi4-64-ltp:
   needs: [linux-raspberrypi4-64-gcc]
   stage: test
-  extends: .lava-test
+  extends: .lava-test-scheduled
   variables:
     MACHINE: raspberrypi4-64
     CI_BUILD_JOB_NAME: linux-raspberrypi4-64-gcc
@@ -299,7 +293,7 @@ lava-raspberrypi4-64-ltp:
 lava-seco-intel-b68-ltp:
   needs: [linux-seco-intel-b68-gcc]
   stage: test
-  extends: .lava-test
+  extends: .lava-test-scheduled
   variables:
     MACHINE: seco-intel-b68
     CI_BUILD_JOB_NAME: linux-seco-intel-b68-gcc
@@ -309,7 +303,7 @@ lava-seco-intel-b68-ltp:
 lava-seco-c61-ltp:
   needs: [linux-seco-imx8mm-c61-4gb-gcc]
   stage: test
-  extends: .lava-test
+  extends: .lava-test-scheduled
   variables:
     MACHINE: seco-imx8mm-c61-4gb
     CI_BUILD_JOB_NAME: linux-seco-imx8mm-c61-4gb-gcc
@@ -319,7 +313,7 @@ lava-seco-c61-ltp:
 lava-qemu-x86_64-kselftest:
   needs: [linux-qemu-x86_64-gcc]
   stage: test
-  extends: .lava-test
+  extends: .lava-test-scheduled
   variables:
     MACHINE: qemux86-64
     CI_BUILD_JOB_NAME: linux-qemu-x86_64-gcc
@@ -329,7 +323,7 @@ lava-qemu-x86_64-kselftest:
 lava-raspberrypi4-64-kselftest:
   needs: [linux-raspberrypi4-64-gcc]
   stage: test
-  extends: .lava-test
+  extends: .lava-test-scheduled
   variables:
     MACHINE: raspberrypi4-64
     CI_BUILD_JOB_NAME: linux-raspberrypi4-64-gcc
@@ -339,7 +333,7 @@ lava-raspberrypi4-64-kselftest:
 lava-seco-c61-kselftest:
   needs: [linux-seco-imx8mm-c61-4gb-gcc]
   stage: test
-  extends: .lava-test
+  extends: .lava-test-scheduled
   variables:
     MACHINE: seco-imx8mm-c61-4gb
     CI_BUILD_JOB_NAME: linux-seco-imx8mm-c61-4gb-gcc
@@ -349,7 +343,7 @@ lava-seco-c61-kselftest:
 lava-zephyr-96b-nitrogen-twister:
   needs: [zephyr-96b-nitrogen-twister-gcc]
   stage: test
-  extends: .lava-test
+  extends: .lava-test-scheduled
   variables:
     MACHINE: 96b-nitrogen
     CI_BUILD_JOB_NAME: zephyr-96b-nitrogen-twister-gcc
@@ -359,7 +353,7 @@ lava-zephyr-96b-nitrogen-twister:
 lava-qemu-x86-perf:
   needs: [linux-qemu-x86-gcc]
   stage: test
-  extends: .lava-test
+  extends: .lava-test-scheduled
   variables:
     MACHINE: qemux86
     CI_BUILD_JOB_NAME: linux-qemu-x86-gcc
@@ -369,7 +363,7 @@ lava-qemu-x86-perf:
 lava-qemu-x86_64-perf:
   needs: [linux-qemu-x86_64-gcc]
   stage: test
-  extends: .lava-test
+  extends: .lava-test-scheduled
   variables:
     MACHINE: qemux86-64
     CI_BUILD_JOB_NAME: linux-qemu-x86_64-gcc
@@ -379,7 +373,7 @@ lava-qemu-x86_64-perf:
 lava-raspberrypi4-64-perf:
   needs: [linux-raspberrypi4-64-gcc]
   stage: test
-  extends: .lava-test
+  extends: .lava-test-scheduled
   variables:
     MACHINE: raspberrypi4-64
     CI_BUILD_JOB_NAME: linux-raspberrypi4-64-gcc
@@ -389,7 +383,7 @@ lava-raspberrypi4-64-perf:
 lava-seco-intel-b68-perf:
   needs: [linux-seco-intel-b68-gcc]
   stage: test
-  extends: .lava-test
+  extends: .lava-test-scheduled
   variables:
     MACHINE: seco-intel-b68
     CI_BUILD_JOB_NAME: linux-seco-intel-b68-gcc
@@ -399,7 +393,7 @@ lava-seco-intel-b68-perf:
 lava-seco-c61-perf:
   needs: [linux-seco-imx8mm-c61-4gb-gcc]
   stage: test
-  extends: .lava-test
+  extends: .lava-test-scheduled
   variables:
     MACHINE: seco-imx8mm-c61-4gb
     CI_BUILD_JOB_NAME: linux-seco-imx8mm-c61-4gb-gcc
@@ -427,29 +421,12 @@ lava-zephyr-qemu-x86:
     CI_REPORT_JOB_NAME: lava-report
 
 lava-report:
+  extends: .lava-report
   needs:
     - lava-qemu-x86
     - lava-qemu-x86_64
-    - lava-raspberrypi4-64
-    - lava-seco-intel-b68
-    - lava-seco-c61
-    - lava-qemu-x86-ltp
-    - lava-qemu-x86_64-ltp
-    - lava-raspberrypi4-64-ltp
-    - lava-seco-intel-b68-ltp
-    - lava-seco-c61-ltp
-    - lava-qemu-x86-perf
-    - lava-qemu-x86_64-perf
-    - lava-raspberrypi4-64-perf
-    - lava-seco-intel-b68-perf
-    - lava-seco-c61-perf
-    - lava-zephyr-96b-nitrogen-twister
     - lava-zephyr-qemu-cortex-m3
     - lava-zephyr-qemu-x86
-    - lava-qemu-x86_64-kselftest
-    - lava-raspberrypi4-64-kselftest
-    - lava-seco-c61-kselftest
-  extends: .lava-report
 
 lava-badge:
   needs: [lava-report]
