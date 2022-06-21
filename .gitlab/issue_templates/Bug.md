@@ -28,4 +28,4 @@
 
 (link to upstream patch, merge/pull request)
 
-/label ~Issue::Bug ~needs-investigation ~team::maintenance
+/label ~"Issue::Bug" ~needs-investigation ~"team::maintenance"
