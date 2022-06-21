@@ -39,7 +39,7 @@ You can test the image built for the qemux86-64 target by issuing:
 
 .. code-block:: console
 
-    $ runqemu qemux86-64 oniro-image-base wic ovmf
+    $ runqemu qemux86-64 oniro-image-base wic ovmf slirp
 
 After successful bootup, you will be dropped into a login shell:
 
