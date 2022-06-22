@@ -37,6 +37,7 @@ SPDX-FileCopyrightText: Huawei Inc.
 	<project name="rauc/meta-rauc" remote="github" revision="c66cdf995818a4425ad32b0ef76063e762dbf922" path="meta-rauc" />
 	<project name="riscv/meta-riscv" remote="github" revision="70e099d7ceca52a1dde2c978713012f6b20a9891" path="meta-riscv" />
 	<project name="meta-arm" remote="yocto" revision="741509023867aa629f35289bba12485d4b6e3dcf" path="meta-arm" />
+	<project name="jiazhang0/meta-secure-core" remote="github" revision="2ccf4aa4e352a1b990d0f59bf28de8639ca529d9" path="meta-secure-core" />
 
 	<!--
 		All entries above are pinned to a specific revision and updated manually.
