@@ -19,6 +19,7 @@ GO_DYNLINK:x86 = ""
 GO_DYNLINK:x86-64 = ""
 GO_DYNLINK:arm = ""
 GO_DYNLINK:aarch64 = ""
+GO_LINKMODE:toolchain-clang  ?= "-linkmode external"
 
 # This package is built with go-mod as well as with make.
 #
