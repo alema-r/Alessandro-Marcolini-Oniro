@@ -38,7 +38,7 @@ You can test the image built for the qemu-x86 target by issuing:
 
 .. code-block:: console
 
-    $ runqemu qemu-x86
+    $ runqemu qemu-x86 nographic
 
 After successful bootup, the output of the application will be similar to:
 
