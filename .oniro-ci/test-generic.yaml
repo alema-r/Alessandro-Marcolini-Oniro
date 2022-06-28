@@ -77,7 +77,11 @@
       done
       # Attach a callback to this build to trigger the lava-report job
       squad_build_id="$(curl --silent "$CI_SQUAD_INSTANCE/api/builds/?version=$CI_PIPELINE_ID" | jq -r '.results[0].id')"
-      curl -X POST $CI_SQUAD_INSTANCE/api/builds/$squad_build_id/callbacks/ --header "Authorization: Token $CI_SQUAD_TOKEN" -F "callback_url=$CALLBACK_URL"
+      curl --silent \
+        -X POST "$CI_SQUAD_INSTANCE/api/builds/$squad_build_id/callbacks/" \
+        -H "Authorization: Token $CI_SQUAD_TOKEN" \
+        -F "callback_url=$CALLBACK_URL" \
+        -F "callback_record_response=true"
   artifacts:
     paths:
       - lava_jobs/*.yaml
