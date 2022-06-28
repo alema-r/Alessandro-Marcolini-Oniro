@@ -108,17 +108,19 @@
   variables:
     GIT_STRATEGY: none
     CI_LAVA_INSTANCE: "https://lava.ostc-eu.org/"
+    CI_SQUAD_INSTANCE: "https://squadp.svc.ostc-eu.dev"
   script:
     - |
       # Get the test_runs_incomplete value from build status. That will tell
       # us if any of the LAVA jobs failed and we can determine whether the
       # report job is successful or not.
-      incomplete="$(curl --silent $CI_SQUAD_INSTANCE/api/builds/$CI_PIPELINE_ID/status/ | jq -r '.test_runs_incomplete')"
-      if [ "$incomplete" != "0" ]; then
+      squad_build_id="$(curl --silent "$CI_SQUAD_INSTANCE/api/builds/?version=$CI_PIPELINE_ID" | jq -r '.results[0].id')"
+      curl --silent "$CI_SQUAD_INSTANCE/api/builds/$squad_build_id/testjobs/" > test_jobs.json
+      jq -r '.results | .[] | .external_url, .job_status' test_jobs.json | tee job_status.txt
+      if grep -qi "incomplete" job_status.txt; then
         echo "ERROR: Incomplete test job reported: exit code 1"
         exit 1
       fi
-
   rules:
     - if: '$CI_SQUAD_TOKEN == null'
       when: never
