@@ -162,6 +162,8 @@
           | sed -e 's/^CI_ONIRO_BB_LOCAL_CONF_plus_equals_//g' -e 's/"/\\"/g' -e 's/=/ += "/g' -e 's/$/"/g' \
           | sort \
           | tee -a conf/local.conf )
+    # Print local conf for debugging.
+    - grep -E '^[^#]' conf/local.conf
 
     # Sanity check: disallow using public build cache with a specific setting
     # in local.conf. The list of settings may grow over time.
@@ -299,6 +301,11 @@
 .build-wic-image:
   extends: .build-image
   variables:
+    # cve-check is enabled in the .bitbake-workspace job. Append
+    # oniro-debug-linux for all wic image build jobs to enable root login which
+    # is required in LAVA test jobs. The variable can be overwritten in build
+    # job level for builds that require non-root user.
+    CI_ONIRO_BB_LOCAL_CONF_plus_equals_INHERIT: "cve-check oniro-debug-linux"
     CI_ONIRO_JOB_ARTIFACTS: "*.wic.* *.bmap"
   script:
     - !reference [.build-image, script]
