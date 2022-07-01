@@ -13,8 +13,8 @@ IMAGE_INSTALL:append = "\
     kernel-selftest \
 "
 
-# This adds ptest packages to the image
-EXTRA_IMAGE_FEATURES:append = " ptest-pkgs"
+# This adds ptest packages to the image, and enables empty root password
+EXTRA_IMAGE_FEATURES:append = " ptest-pkgs debug-tweaks"
 
 # For testing purposes, we want to have an extra ext4 format for the root
 # filesystem.
