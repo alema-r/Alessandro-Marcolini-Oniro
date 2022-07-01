@@ -19,5 +19,3 @@ EXTRA_IMAGE_FEATURES:append = " ptest-pkgs debug-tweaks"
 # For testing purposes, we want to have an extra ext4 format for the root
 # filesystem.
 IMAGE_FSTYPES:append = " ext4"
-
-ROOT_PARTITION_SIZE = "2500M"
