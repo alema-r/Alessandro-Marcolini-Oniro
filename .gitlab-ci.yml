@@ -533,6 +533,14 @@ build-npm-cspell:
 .oe-selftest-rules:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule" && $OE_SELFTEST == "gcc"
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TITLE =~ /^(wip|draft):.*/i'
+      when: manual
+      variables:
+        CI_ONIRO_MANIFEST_URL: "$CI_MERGE_REQUEST_SOURCE_PROJECT_URL"
+        CI_ONIRO_MANIFEST_BRANCH: "$CI_COMMIT_REF_NAME"
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+        - manifests/*.xml
 
 oe-selftest-gcc-qemu-linux-user:
   extends: [.oe-selftest, .oe-selftest-rules]
@@ -602,6 +610,7 @@ oe-selftest-report:
             python3 $CI_PROJECT_DIR/gcc-result-parser.py $sum_file
           done
           # Upload result to squad.
+          gcc_version="$(cat gcc_version)"
           for result_file in $(ls result_*.json); do
             component="$(basename $result_file .json | cut -d'_' -f2-)"
             job_id="$job-$component"
@@ -609,7 +618,7 @@ oe-selftest-report:
               --header "Auth-Token: $CI_SQUAD_TOKEN" \
               https://squadp.svc.ostc-eu.dev/api/submit/oniro-core/gcc-test/$CI_PIPELINE_ID/$test_env \
               --form tests=@$result_file \
-              --form metadata='{"job_id": "'$job_id'"}'
+              --form "metadata={\"job_id\": \"$job_id\", \"gcc_version\": \"$gcc_version\"}"
           done
         )
       done

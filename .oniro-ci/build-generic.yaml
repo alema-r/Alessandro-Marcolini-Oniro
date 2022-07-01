@@ -483,6 +483,7 @@
     CI_ONIRO_BB_LOCAL_CONF_SANITY_TESTED_DISTROS: ""
     CI_ONIRO_OE_SELFTESTS: ""
     CI_ONIRO_OE_SEFLTEST_SKIPS: ""
+    CI_SQUAD_INSTANCE: "https://squadp.svc.ostc-eu.dev"
     # The USER variable is required by oe-selftest but missing in env.
     USER: "builder"
     ARTIFACTS_DIR: "$CI_PROJECT_DIR/artifacts/$CI_JOB_NAME"
@@ -491,6 +492,19 @@
         echo "nothing to test - CI_ONIRO_OE_SELFTESTS is empty"
         && exit 1 )
     - !reference [.bitbake-workspace, script]
+    # Only run tests when gcc version changed.
+    - gcc_version="$(bitbake -s | grep '^gcc-runtime' | awk -F':' '{print $NF}' | head -1 | awk '{$1=$1;print}')"
+    - echo "Current GCC version $gcc_version"
+    - last_build_id="$(curl --silent $CI_SQUAD_INSTANCE/api/projects/5/builds/ | jq -r '.results | .[] | .id' | head -1)"
+    - last_tested_gcc_version="$(curl --silent $CI_SQUAD_INSTANCE/api/builds/$last_build_id/metadata/ | jq -r '.gcc_version')"
+    - echo "The last tested GCC version $last_tested_gcc_version"
+    - |
+      if [ "$gcc_version" != "$last_tested_gcc_version" ]; then
+        echo "GCC verion changed, about to test the new version ..."
+      else
+        echo "GCC verion not changed, skipping gcc tests ..."
+        exit 0
+      fi
     # oe-selftest inherits the current 'build/conf/local.conf' to create
     # '../build-st/conf/local.conf' for qemu image building. Adding the
     # MACHINE variable to the current local conf allows test job to customize
@@ -502,6 +516,7 @@
     - find ../build-st \( -name "*.sum" -o -name "*.log" \) \( -path "*/gcc-runtime/*testsuite*" \)
         -exec cp --verbose {} "$ARTIFACTS_DIR" \;
     - for file in $(find "$ARTIFACTS_DIR" -type f); do xz $file; done
+    - echo "$gcc_version" > $ARTIFACTS_DIR/gcc_version
     - rm -rf ../build-st
   artifacts:
     paths:
