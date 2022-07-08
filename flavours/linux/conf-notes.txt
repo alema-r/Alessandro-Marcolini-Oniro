@@ -28,3 +28,4 @@ You can also run generated qemu images with a command:
 
     $ runqemu qemux86-64 qemuparams="-nographic" oniro-image-base wic ovmf
 
+Then log in as 'oniro' user with 'oniro' as a password.

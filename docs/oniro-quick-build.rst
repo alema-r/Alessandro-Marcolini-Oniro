@@ -112,3 +112,5 @@ Once the image is built, you can run a Qemu X86-64 instance using the provided s
 
 If the host has a VT-capable CPU, you can pass the ``kvm`` argument for better
 performance. Check ``runqemu``'s help message for all available arguments.
+
+The default user name is **oniro** with **oniro** as a password.

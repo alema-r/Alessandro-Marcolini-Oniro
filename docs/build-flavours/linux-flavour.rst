@@ -47,7 +47,7 @@ After successful bootup, you will be dropped into a login shell:
 
     qemux86-64 login:
     
-Default login is *root* without a password.
+The default login name is **oniro** with **oniro** as a password.
 
 After login you will see the shell prompt:
 
