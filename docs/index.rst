@@ -40,4 +40,5 @@ Build System Guide
    :caption: Troubleshoot
    :maxdepth: 2
 
-   fallback-devices-support 
+   fallback-devices-support
+   debug-mode
