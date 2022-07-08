@@ -17,3 +17,6 @@ EXTRA_IMAGE_FEATURES:append = " ptest-pkgs debug-tweaks"
 # For testing purposes, we want to have an extra ext4 format for the root
 # filesystem.
 IMAGE_FSTYPES:append = " ext4"
+
+# Workaround for https://bugzilla.yoctoproject.org/show_bug.cgi?id=14858
+PACKAGE_EXCLUDE_COMPLEMENTARY:append = " openssh "
