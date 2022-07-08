@@ -4,7 +4,7 @@
 
 .. include:: definitions.rst
 
-Supported images
+Supported Images
 ################
 
 To create a custom Linux distribution to match the product requirements, 
