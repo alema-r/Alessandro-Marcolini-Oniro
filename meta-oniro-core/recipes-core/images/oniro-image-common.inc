@@ -11,6 +11,7 @@ inherit oniro-image
 IMAGE_FEATURES:remove = " nfs-server nfs-client nfs-utils"
 
 IMAGE_INSTALL:append = "\
+			packagegroup-oniro-containers \
 			packagegroup-oniro-core \
 			packagegroup-net-essentials \
 			packagegroup-ble-essentials \
