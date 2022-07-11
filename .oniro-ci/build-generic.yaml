@@ -388,6 +388,10 @@
     CI_ONIRO_JOB_ARTIFACTS: "*.elf *.bin"
   script:
     - !reference [.build-image, script]
+    - echo 'INHERIT += "create-spdx"' >> conf/local.conf
+    - echo 'do_create_spdx[nostamp] = "1"' >> conf/local.conf
+    - echo 'do_create_runtime_spdx[nostamp] = "1"' >> conf/local.conf
+    - bitbake --runall=do_create_runtime_spdx $CI_ONIRO_RECIPE_NAME
 
 # This job is currently used to customize the behavior in oniro and xts-acts.
 # It will be removed when that is safe to do so. It is not documented.
