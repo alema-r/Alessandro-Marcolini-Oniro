@@ -9,5 +9,12 @@
 # Removing -Werror=format-nonliteral here allows us to use
 # -Werror=format-nonliteral globally in OPTIMIZE_FOR=security mode
 # while keeping shadow building.
-
 TARGET_CFLAGS:remove = "-Werror=format-nonliteral"
+
+do_install:append () {
+	# usermod requires the subuid/subgid files to be in place before being
+	# able to use the -v/-V flags otherwise it fails:
+	# usermod: /etc/subuid does not exist, you cannot use the flags -v or -V
+	touch ${D}${sysconfdir}/subuid
+	touch ${D}${sysconfdir}/subgid
+}
