@@ -283,6 +283,7 @@
 .build-wic-image:
   extends: .build-image
   variables:
+    CI_ONIRO_BB_LOCAL_CONF_plus_equals_INHERIT: create-spdx
     CI_ONIRO_JOB_ARTIFACTS: "*.wic.* *.bmap"
   script:
     - !reference [.build-image, script]
