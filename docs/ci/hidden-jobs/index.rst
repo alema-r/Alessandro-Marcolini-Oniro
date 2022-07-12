@@ -18,7 +18,6 @@ implementation details.
    bitbake-workspace
    build-linux
    build-linux-matrix
-   build-zephyr
    build-freertos
    build-recipe
    build-image

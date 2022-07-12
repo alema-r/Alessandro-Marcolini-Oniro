@@ -146,9 +146,6 @@ linux-raspberrypi4-64-clang:
     # See the note on linux-qemu-x86.
     CI_ONIRO_BUILD_CACHE: "pub"
     CI_ONIRO_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
-    CI_ONIRO_RECIPE_NAME: zephyr-philosophers
-    CI_ONIRO_BUILD_FLAVOUR: zephyr
-    CI_ONIRO_INSTANCE_SIZE: s3.large.2
 zephyr-qemu-x86-gcc:
   extends: [.zephyr-qemu-x86, .toolchain-gcc]
 zephyr-qemu-x86-clang:
@@ -161,9 +158,6 @@ zephyr-qemu-x86-clang:
     # See the note on linux-qemu-x86.
     CI_ONIRO_BUILD_CACHE: "pub"
     CI_ONIRO_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
-    CI_ONIRO_RECIPE_NAME: zephyr-philosophers
-    CI_ONIRO_BUILD_FLAVOUR: zephyr
-    CI_ONIRO_INSTANCE_SIZE: s3.large.2
 zephyr-qemu-cortex-m3-gcc:
   extends: [.zephyr-qemu-cortex-m3, .toolchain-gcc]
 zephyr-qemu-cortex-m3-clang:
@@ -173,9 +167,6 @@ zephyr-qemu-cortex-m3-clang:
   extends: .build-zephyr-image
   variables:
     MACHINE: 96b-nitrogen
-    CI_ONIRO_RECIPE_NAME: zephyr-philosophers
-    CI_ONIRO_BUILD_FLAVOUR: zephyr
-    CI_ONIRO_INSTANCE_SIZE: s3.large.2
 zephyr-96b-nitrogen-gcc:
   extends: [.zephyr-96b-nitrogen, .toolchain-gcc]
 zephyr-96b-nitrogen-clang:
@@ -186,20 +177,16 @@ zephyr-96b-nitrogen-clang:
   variables:
     MACHINE: 96b-nitrogen
     CI_ONIRO_RECIPE_NAME: zephyr-kernel-test-all
-    CI_ONIRO_BUILD_FLAVOUR: zephyr
-    CI_ONIRO_INSTANCE_SIZE: s3.large.2
 zephyr-96b-nitrogen-tests-gcc:
   extends: [.zephyr-96b-nitrogen-tests, .toolchain-gcc]
 zephyr-96b-nitrogen-tests-clang:
   extends: [.zephyr-96b-nitrogen-tests, .toolchain-clang, .broken]
 
 .zephyr-96b-nitrogen-twister:
-  extends: .build-image
+  extends: .build-zephyr-image
   variables:
     MACHINE: 96b-nitrogen
     CI_ONIRO_RECIPE_NAME: zephyr-kernel-test-twister
-    CI_ONIRO_BUILD_FLAVOUR: zephyr
-    CI_ONIRO_INSTANCE_SIZE: s3.large.2
     CI_ONIRO_JOB_ARTIFACTS: "twister*.tar.bz2"
 zephyr-96b-nitrogen-twister-gcc:
   extends: [.zephyr-96b-nitrogen-twister, .toolchain-gcc]
@@ -207,7 +194,7 @@ zephyr-96b-nitrogen-twister-clang:
   extends: [.zephyr-96b-nitrogen-twister, .toolchain-clang, .broken]
 
 .zephyr-96b-avenger:
-  extends: .build-zephyr
+  extends: .build-zephyr-image
   variables:
     MACHINE: 96b-avenger96
 zephyr-96b-avenger-gcc:
@@ -216,7 +203,7 @@ zephyr-96b-avenger-clang:
   extends: [.zephyr-96b-avenger, .toolchain-clang, .broken]
 
 .zephyr-nrf52840dk-nrf52840:
-  extends: .build-zephyr
+  extends: .build-zephyr-image
   variables:
     MACHINE: nrf52840dk-nrf52840
 zephyr-nrf52840dk-nrf52840-gcc:
@@ -225,7 +212,7 @@ zephyr-nrf52840dk-nrf52840-clang:
   extends: [.zephyr-nrf52840dk-nrf52840, .toolchain-clang, .broken]
 
 .zephyr-arduino-nano-33-ble:
-  extends: .build-zephyr
+  extends: .build-zephyr-image
   variables:
     MACHINE: arduino-nano-33-ble
 zephyr-arduino-nano-33-ble-gcc:

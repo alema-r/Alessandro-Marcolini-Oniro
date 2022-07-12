@@ -223,23 +223,6 @@
     matrix:
       - CI_ONIRO_BITBAKE_TARGETS: ["oniro-image-base-tests", "oniro-image-extra-tests"]
 
-# This job is documented in docs/ci/hidden-jobs/build-zephyr.rst
-.build-zephyr:
-  extends: .bitbake-workspace
-  variables:
-    CI_ONIRO_BUILD_FLAVOUR: zephyr
-    CI_ONIRO_BITBAKE_TARGETS: "zephyr-philosophers"
-    CI_ONIRO_INSTANCE_SIZE: s3.large.2
-  script:
-    - test -n "$CI_ONIRO_BITBAKE_TARGETS" || (
-        echo "nothing to build - CI_ONIRO_BITBAKE_TARGETS is empty"
-        && exit 1 )
-    - !reference [.bitbake-workspace, script]
-    - |
-      for target in $CI_ONIRO_BITBAKE_TARGETS; do
-        time bitbake "$target"
-      done
-
 # This job is documented in docs/ci/hidden-jobs/build-freertos.rst
 .build-freertos:
   extends: .bitbake-workspace
@@ -399,6 +382,9 @@
 .build-zephyr-image:
   extends: .build-image
   variables:
+    CI_ONIRO_BUILD_FLAVOUR: zephyr
+    CI_ONIRO_RECIPE_NAME: zephyr-philosophers
+    CI_ONIRO_INSTANCE_SIZE: s3.large.2
     CI_ONIRO_JOB_ARTIFACTS: "*.elf *.bin"
   script:
     - !reference [.build-image, script]
