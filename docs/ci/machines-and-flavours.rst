@@ -66,6 +66,19 @@ architecture.
     The cache for this job is not public, as it contains proprietary elements
     that cannot be redistributed without an agreement with Freescale.
 
+linux-seco-px30-d23
+...................
+
+This job extends `.build-wic-image` job from the manifest repository and builds
+``oniro-image-base`` using the Linux flavour of |main_project_name| and
+``MACHINE=seco-px30-d23``. This job checks that |main_project_name| software can
+be built for the SECO D23 development board which features a Rockchip PX30 SoC
+(64bit ARMv8-A) architecture.
+
+.. note::
+    The cache for this job is not public, pending legal review of any firmware
+    that may be included.
+
 linux-raspberrypi4-64
 .....................
 

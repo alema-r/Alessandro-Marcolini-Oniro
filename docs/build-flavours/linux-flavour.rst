@@ -27,6 +27,7 @@ Supported machines (default in **bold**):
 * seco-intel-b68 (SECO SBC-B68)
 * seco-imx8mm-c61-2gb (SECO SBC-C61 2GB DRAM)
 * seco-imx8mm-c61-4gb (SECO SBC-C61 4GB DRAM)
+* seco-px30-d23 (SECO SBC-D23)
 
 Build steps example:
 

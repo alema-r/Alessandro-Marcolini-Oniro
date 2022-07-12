@@ -34,4 +34,5 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-riscv \
   ##OEROOT##/../meta-rauc \
   ##OEROOT##/../meta-java \
+  ##OEROOT##/../meta-seco-rockchip \
   "

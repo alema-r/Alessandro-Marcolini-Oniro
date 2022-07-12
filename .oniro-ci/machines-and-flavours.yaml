@@ -131,6 +131,17 @@ linux-seco-imx8mm-c61-4gb-extra-gcc:
 linux-seco-imx8mm-c61-4gb-extra-clang:
   extends: [.linux-seco-imx8mm-c61-4gb-extra, .toolchain-clang, .broken]
 
+.linux-seco-px30-d23:
+  extends: .build-wic-image
+  variables:
+    CI_ONIRO_BUILD_FLAVOUR: linux
+    CI_ONIRO_RECIPE_NAME: oniro-image-base
+    MACHINE: seco-px30-d23
+linux-seco-px30-d23-gcc:
+  extends: [.linux-seco-px30-d23, .toolchain-gcc]
+linux-seco-px30-d23-clang:
+  extends: [.linux-seco-px30-d23, .toolchain-clang]
+
 .linux-raspberrypi4-64:
   extends: [.build-wic-image, .check-abi]
   variables:

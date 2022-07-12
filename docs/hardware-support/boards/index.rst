@@ -17,6 +17,7 @@ This section details the boards supported as part of |main_project_name|.
    96b-nitrogen
    seco-intel-b68
    seco-imx8mm-c61
+   seco-px30-d23
    raspberrypi4
    arduino-nano-33-ble
    nRF52840-DK
