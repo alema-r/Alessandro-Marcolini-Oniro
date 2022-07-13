@@ -74,6 +74,12 @@ sample application, *blinky*. In order to do so issue the following:
 3. After the build completes, the ``zephyr-philosophers.bin`` and the ``zephyr-blinky.bin``
    file can be found in ``build-oniro-zephyr/tmp-newlib/deploy/images/arduino-nano-33-ble/``.
 
+.. note::
+    By default, both zephyr-blinky and zephyr-philosophers applications will start once the board 
+    is powered on without waiting for a serial console connection.
+    To start an application only when serial console is connected, specify ONIRO_ENABLE_ACM0 = "1".
+    This option may be useful in automated testing environment.
+
 Flashing an Application
 =======================
 
