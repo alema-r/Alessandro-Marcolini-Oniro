@@ -1,0 +1,40 @@
+From fe9fc7d85fd3b0e2d444923851c176c5f80979ac Mon Sep 17 00:00:00 2001
+From: Andrei Gherzan <andrei.gherzan@huawei.com>
+Date: Thu, 14 Jul 2022 14:25:20 +0200
+Subject: [PATCH] Introduce MAXLOAD_NINJA for setting average load
+
+This introduces an environment variable that ninja will take into
+consideration for the maximum load average: MAXLOAD_NINJA. The existing
+command line argument (`l`) overrides the value of MAXLOAD_NINJA.
+
+Signed-off-by: Andrei Gherzan <andrei.gherzan@huawei.com>
+Upstream-Status: Pending
+---
+ src/ninja.cc | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/src/ninja.cc b/src/ninja.cc
+index 471a023c..992c7532 100644
+--- a/src/ninja.cc
++++ b/src/ninja.cc
+@@ -1260,6 +1260,17 @@ int ReadFlags(int* argc, char*** argv,
+               Options* options, BuildConfig* config) {
+   config->parallelism = GuessParallelism();
+ 
++  // Have the ability to set the maximum load average via an environment variable.
++  const char * max_load_average_env = getenv("MAXLOAD_NINJA");
++  if (max_load_average_env != NULL) {
++    char* end;
++    double value = strtod(max_load_average_env, &end);
++    if (*end != 0 || value < 0)
++          Fatal("invalid max load average in MAXLOAD_NINJA environment variable");
++    if (value != 0)
++      config->max_load_average = value;
++  }
++
+   enum { OPT_VERSION = 1 };
+   const option kLongOptions[] = {
+     { "help", no_argument, NULL, 'h' },
+-- 
+2.25.1
+
