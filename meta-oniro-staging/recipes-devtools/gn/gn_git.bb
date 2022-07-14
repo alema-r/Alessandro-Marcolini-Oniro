@@ -1,6 +1,4 @@
 SUMMARY = "GN is a meta-build system that generates build files for Ninja"
-DEPENDS += "ninja-native"
-
 LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=0fca02217a5d49a14dfe2d11837bb34d"
 
@@ -10,6 +8,8 @@ PV = "0+git${SRCPV}"
 
 S = "${WORKDIR}/git"
 B = "${WORKDIR}/build"
+
+inherit ninja
 
 # Currently fails to build with clang, eg:
 # https://errors.yoctoproject.org/Errors/Details/610602/
