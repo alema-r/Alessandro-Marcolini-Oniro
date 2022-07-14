@@ -4,7 +4,9 @@
 
 # This class allows building GN-based projects.
 
-DEPENDS += "gn-native ninja-native"
+DEPENDS += "gn-native"
+
+inherit ninja
 
 # General GN options, like --dotfile
 GN_OPTIONS ??= ""
