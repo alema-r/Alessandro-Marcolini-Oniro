@@ -11,3 +11,6 @@ PACKAGECONFIG:remove:pn-mosquitto = "dlt"
 # We use NetworkManager as the default network manager (included in our
 # reference images).
 PACKAGECONFIG:remove:pn-systemd = "networkd wheel-group"
+
+# Enable podman rootless support
+PACKAGECONFIG:append:pn-podman = " rootless"
