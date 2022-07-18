@@ -35,8 +35,8 @@
         echo "CI_ONIRO_MANIFEST_URL: $CI_ONIRO_MANIFEST_URL"
         echo "CI_ONIRO_MANIFEST_NAME: $CI_ONIRO_MANIFEST_NAME"
         echo "CI_ONIRO_MANIFEST_BRANCH: $CI_ONIRO_MANIFEST_BRANCH"
-        repo init --reference \
-           "$CI_ONIRO_RUNNER_PERSISTENT_STORAGE"/pub/git-repo-mirrors/"$CI_ONIRO_MANIFEST_MIRROR" \
+        repo init \
+           $(test -n "${CI_ONIRO_RUNNER_PERSISTENT_STORAGE:-}" && echo --reference "$CI_ONIRO_RUNNER_PERSISTENT_STORAGE"/pub/git-repo-mirrors/"$CI_ONIRO_MANIFEST_MIRROR") \
            --manifest-url "$CI_ONIRO_MANIFEST_URL" \
            --manifest-name "$CI_ONIRO_MANIFEST_NAME" \
            --manifest-branch "$CI_ONIRO_MANIFEST_BRANCH"
