@@ -1,0 +1,6 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+# The home directory of the oniro user.
+d /run/mount/appdata/user-data/home/oniro 0700 oniro oniro - -

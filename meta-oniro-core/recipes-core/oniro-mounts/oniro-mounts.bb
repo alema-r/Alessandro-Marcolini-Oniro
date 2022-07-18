@@ -12,15 +12,18 @@ LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/Apache-2.0;md5=89aea4e17d99a7cacdbeed46a0096b10"
 
 SRC_URI = " \
+    file://home.mount \
     file://run-mount-boot.mount \
     file://run-mount-devdata.mount \
     file://run-mount-appdata.mount \
     file://run-mount-sysdata.mount \
+    file://oniro-homes.conf.tmpfiles \
     "
 
 inherit allarch systemd
 
 SYSTEMD_SERVICE:${PN} = " \
+    home.mount \
     run-mount-boot.mount \
     run-mount-sysdata.mount \
     run-mount-devdata.mount \
@@ -40,6 +43,10 @@ do_install () {
     for label in ${LABELS}; do
         install -m 0644 "${WORKDIR}/run-mount-${label}.mount" "${D}${systemd_unitdir}/system"
     done
+    install -m 0644 "${WORKDIR}/home.mount" "${D}${systemd_unitdir}/system"
+
+    install -D "${WORKDIR}/oniro-homes.conf.tmpfiles" \
+        "${D}${sysconfdir}/tmpfiles.d/oniro-homes.conf"
 }
 
 FILES:${PN} += "${systemd_unitdir}"

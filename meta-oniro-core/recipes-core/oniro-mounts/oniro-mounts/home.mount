@@ -1,0 +1,17 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+[Unit]
+Description=home mount - appdata
+Before=sysinit.target
+Requires=run-mount-appdata.mount
+After=run-mount-appdata.mount
+
+[Mount]
+What=/run/mount/appdata/user-data/home
+Where=/home
+Options=bind
+
+[Install]
+WantedBy=sysinit.target
