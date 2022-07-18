@@ -55,6 +55,8 @@ Initialize a repo workspace and clone all required repositories:
     $ repo init -u https://gitlab.eclipse.org/eclipse/oniro-core/oniro.git -b kirkstone
     $ repo sync --no-clone-bundle
 
+.. _Building an Oniro image:
+
 Building an Oniro image
 ***********************
 
@@ -76,6 +78,28 @@ Initialize the build directory and run a build:
 
     $ TEMPLATECONF=../oniro/flavours/linux . ./oe-core/oe-init-build-env build-oniro-linux
     $ MACHINE=qemux86-64 bitbake oniro-image-base
+
+.. _Building with OpenHarmony:
+
+Building with OpenHarmony compatibility
+***************************************
+
+To enable OpenHarmony compatibility, before running the last `bitbake` command
+in the section above, you have to add the following to
+`build-oniro-linux/conf/local.conf` file:
+
+.. code-block:: sh
+
+    TOOLCHAIN="clang"
+    RUNTIME="llvm"
+    DISTRO_FEATURES:append = " openharmony"
+    IMAGE_INSTALL:append = " openharmony-standard"
+
+This will enable OpenHarmony features and add OpenHarmony Standard System
+features to the `oniro-image-base` image.
+
+With that in place, the image can be built with the instructions in the
+:ref:`Building an Oniro image <Building an Oniro image>` section above.
 
 Booting a Qemu X86-64 Target with a |main_project_name| image
 *************************************************************
