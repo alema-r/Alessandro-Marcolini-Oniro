@@ -35,6 +35,7 @@ Build System Guide
    :maxdepth: 2
 
    supported-technologies/openthread
+   supported-technologies/containers
 
 .. toctree::
    :caption: Troubleshoot
