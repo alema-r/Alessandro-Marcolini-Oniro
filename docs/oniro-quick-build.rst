@@ -72,21 +72,33 @@ cloned using the repo tool. See above.
    could use around 100GB of disk space for downloads, temporary files, and
    build artifacts combined.
 
-Initialize the build directory and run a build:
+Initialize the build directory:
 
 .. code-block:: console
 
     $ TEMPLATECONF=../oniro/flavours/linux . ./oe-core/oe-init-build-env build-oniro-linux
+
+Now that the build is initialized, you have the choice of building a standard
+Oniro image or an OpenHarmony compatible one.
+
+A. Standard Oniro image
+-----------------------
+
+All that is left is to run the build:
+
+.. code-block:: console
+
     $ MACHINE=qemux86-64 bitbake oniro-image-base
 
 .. _Building with OpenHarmony:
 
-Building with OpenHarmony compatibility
-***************************************
+B. Building with OpenHarmony compatibility
+------------------------------------------
 
-To enable OpenHarmony compatibility, before running the last `bitbake` command
-in the section above, you have to add the following to
-`build-oniro-linux/conf/local.conf` file:
+To enable OpenHarmony compatibility features, you need to tweak the
+`local.conf` file before running the build process. You will find this
+configuration in `build-oniro-linux/conf/local.conf` where you'll need to add
+the following:
 
 .. code-block:: sh
 
@@ -98,8 +110,11 @@ in the section above, you have to add the following to
 This will enable OpenHarmony features and add OpenHarmony Standard System
 features to the `oniro-image-base` image.
 
-With that in place, the image can be built with the instructions in the
-:ref:`Building an Oniro image <Building an Oniro image>` section above.
+All that is left is to run the build:
+
+.. code-block:: console
+
+    $ MACHINE=qemuarm bitbake oniro-image-base
 
 Booting a Qemu X86-64 Target with a |main_project_name| image
 *************************************************************
