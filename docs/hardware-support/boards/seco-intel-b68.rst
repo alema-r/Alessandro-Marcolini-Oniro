@@ -86,7 +86,7 @@ steps:
 .. code-block:: console
 
    $ cd tmp/deploy/images/seco-intel-b68
-   $ bmaptool copy oniro-image-base-seco-intel-b68.wic.bz2 $DEVNODE
+   $ bmaptool copy oniro-image-base-seco-intel-b68.wic.gz $DEVNODE
 
 3. Put the card to the board and turn it on.
 

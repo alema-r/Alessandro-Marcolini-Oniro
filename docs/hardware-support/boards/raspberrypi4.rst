@@ -84,7 +84,7 @@ Linux image
    can be found in
    ``build-oniro-linux-raspberrypi4-64/tmp/deploy/images/$MACHINE/``.
    The key file which is needed to flash into the SD card is
-   ``oniro-image-base-raspberrypi4-64.wic.bz2``.
+   ``oniro-image-base-raspberrypi4-64.wic.gz``.
 
 Flashing |main_project_name| Linux image
 ****************************************
@@ -104,7 +104,7 @@ describes booting the board with an SD card option.
 .. code-block:: console
 
    $ cd tmp/deploy/images/raspberrypi4-64
-   $ bmaptool copy oniro-image-base-raspberrypi4-64.wic.bz2 $DEVNODE
+   $ bmaptool copy oniro-image-base-raspberrypi4-64.wic.gz $DEVNODE
 
 2. Put the card to the board and turn it on.
 
