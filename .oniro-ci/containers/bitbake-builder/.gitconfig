@@ -2,5 +2,5 @@
 # SPDX-License-Identifier: Apache-2.0
 
 [user]
-	name = Oniro Project CI
-	email = oniro-dev@eclipse.org
+	name = Oniro Core Project Bot
+	email = oniro-core-bot@eclipse.org
