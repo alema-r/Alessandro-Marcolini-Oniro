@@ -144,11 +144,19 @@
   stage: report
   variables:
     GIT_STRATEGY: none
+    CI_SQUAD_INSTANCE: "https://squadp.svc.ostc-eu.dev"
   script:
     - |
       set -x
-      pass_percentage="$(curl --silent $CI_SQUAD_INSTANCE/api/builds/$CI_PIPELINE_ID/status/ | jq -r '.pass_percentage')"
-      success_rate=`printf "%.2f" $pass_percentage`
+      squad_build_id="$(curl --silent "$CI_SQUAD_INSTANCE/api/builds/?version=$CI_PIPELINE_ID" | jq -r '.results[0].id')"
+      status_uri="$CI_SQUAD_INSTANCE/api/builds/$squad_build_id/status/"
+      pass_percentage="$(curl --silent $status_uri | jq -r '.pass_percentage')"
+      if [ "pass_percentage" != "null" ]; then
+        success_rate=`printf "%.2f" $pass_percentage`
+      else
+        echo "ERROR: Failed to query pass percentage via $status_uri"
+        exit 1
+      fi
       anybadge --label=lava-test --value=${success_rate} --suffix='%' --file=lava-test.svg 50=red 60=orange 80=yellow 100=green
       set +x
   artifacts:
@@ -158,3 +166,6 @@
   rules:
     # Run the build when it is scheduled.
     - if: $CI_PIPELINE_SOURCE == "schedule"
+    # Do not run pipelines for draft merge requests unless manually triggered.
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TITLE =~ /^(wip|draft):.*/i'
+      when: manual
