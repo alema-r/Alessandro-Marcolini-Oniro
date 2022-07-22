@@ -33,7 +33,7 @@ SPDX-FileCopyrightText: Huawei Inc.
 	<project name="meta-freescale" remote="yocto" revision="2e785f257ad98581b684f0e32f6d4bb96faefb10" path="meta-freescale" />
 	<project name="pub/i.mx/yocto/5.x/meta-seco-imx" remote="seco" revision="b6976d806dad5cff6e071cfdb59ab45c4210604b" path="meta-seco-imx" />
 	<project name="meta-raspberrypi" remote="yocto" revision="0135a02ea577bd39dd552236ead2c5894d89da1d" path="meta-raspberrypi" />
-	<project name="meta-security" remote="yocto" revision="d3d8e62bf1caa3870a504c0addcfd200b33c189f" path="meta-security" />
+	<project name="meta-security" remote="yocto" revision="c79262a30bd385f5dbb009ef8704a1a01644528e" path="meta-security" />
 	<project name="rauc/meta-rauc" remote="github" revision="2c07f828924c6e522925544ec51900935be23703" path="meta-rauc" />
 	<project name="riscv/meta-riscv" remote="github" revision="70e099d7ceca52a1dde2c978713012f6b20a9891" path="meta-riscv" />
 	<project name="meta-arm" remote="yocto" revision="db6e0ed624f6e1eda9c3a0ed5f13057c24037f86" path="meta-arm" />
