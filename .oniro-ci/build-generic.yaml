@@ -268,6 +268,9 @@
     # The name of the build-specific deploy dir may vary. Ask bitbake instead
     # of hard-coding it.
     - eval "$(bitbake -e | grep ^DEPLOY_DIR= | sed -e 's/^DEPLOY_DIR/BITBAKE_DEPLOY_DIR/g')"
+    # Top level of bitbake working directory.
+    # The name is build specific ask bitbake instead of hard-coding.
+    - eval "$(bitbake -e | grep ^TOPDIR= | sed -e 's/^TOPDIR/BITBAKE_TOPDIR/g')"
     # Uncompressed wic image is not needed in CI. We cannot remove it from
     # meta-oniro-core/classes/oniro-image.bbclass as runqemu needs it for local
     # build and boot.
@@ -286,8 +289,8 @@
         )
       fi
       # Compress and copy artifacts of do_abicheck task (if any)
-      if test -n "$CI_ONIRO_ABICHECK_TOPDIR" && test -d "$BITBAKE_TMPDIR"/../"$CI_ONIRO_ABICHECK_TOPDIR"; then
-            tar -cJf "$CI_PROJECT_DIR"/artifacts/abicheck-"$CI_COMMIT_SHA".tar.xz "$BITBAKE_TMPDIR"/../"$CI_ONIRO_ABICHECK_TOPDIR"/*/*/binaryaudit
+      if test -n "$CI_ONIRO_ABICHECK_TOPDIR" && test -d "$BITBAKE_TOPDIR"/"$CI_ONIRO_ABICHECK_TOPDIR"; then
+            tar -cJf "$CI_PROJECT_DIR"/artifacts/abicheck-"$CI_COMMIT_SHA".tar.xz "$BITBAKE_TOPDIR"/"$CI_ONIRO_ABICHECK_TOPDIR"/*/*/binaryaudit
       fi
       set +x
   artifacts:
