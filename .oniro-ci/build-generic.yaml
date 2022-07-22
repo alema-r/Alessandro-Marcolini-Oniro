@@ -290,7 +290,7 @@
       fi
       # Compress and copy artifacts of do_abicheck task (if any)
       if test -n "$CI_ONIRO_ABICHECK_TOPDIR" && test -d "$BITBAKE_TOPDIR"/"$CI_ONIRO_ABICHECK_TOPDIR"; then
-            tar -cJf "$CI_PROJECT_DIR"/artifacts/abicheck-"$CI_COMMIT_SHA".tar.xz "$BITBAKE_TOPDIR"/"$CI_ONIRO_ABICHECK_TOPDIR"/*/*/binaryaudit
+            tar -cJf "$CI_PROJECT_DIR"/artifacts/abicheck-"$CI_COMMIT_SHA"-"$CI_JOB_NAME".tar.xz "$BITBAKE_TOPDIR"/"$CI_ONIRO_ABICHECK_TOPDIR"/*/*/binaryaudit
       fi
       set +x
   artifacts:
