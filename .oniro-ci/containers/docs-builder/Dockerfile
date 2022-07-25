@@ -16,4 +16,7 @@ RUN apt-get update -qq \
  && eatmydata apt-get install -qq -y 'ca-certificates=20211016~20.04.1' \
  && eatmydata apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install sphinx-tabs
+# We need to fix the version here to avoid pulling docutils 0.18 which is
+# incompatible with the sphinx version from Ubuntu focal. See more here:
+# https://github.com/sphinx-doc/sphinx/issues/9841
+RUN pip3 install sphinx-tabs==3.4.0
