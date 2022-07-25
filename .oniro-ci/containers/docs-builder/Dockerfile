@@ -11,7 +11,9 @@ RUN apt-get update -qq \
  && apt-get install -y eatmydata \
  && eatmydata apt-get install -qq -y \
       git-repo git git-lfs \
-      python3-sphinx python3-sphinx-rtd-theme python3-recommonmark python3-sphinx-tabs \
+      python3-pip python3-sphinx python3-sphinx-rtd-theme python3-recommonmark \
       python3-sphinxcontrib.plantuml \
  && eatmydata apt-get install -qq -y 'ca-certificates=20211016~20.04.1' \
  && eatmydata apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install sphinx-tabs
