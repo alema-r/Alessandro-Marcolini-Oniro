@@ -88,12 +88,15 @@ linux-seco-intel-b68-extra-clang:
   extends: [.linux-seco-intel-b68-extra, .toolchain-clang]
 
 .linux-seco-imx8mm-c61-2gb:
-  extends: .build-linux-matrix
+  extends: .build-wic-image
   variables:
+    CI_ONIRO_BUILD_FLAVOUR: linux
+    CI_ONIRO_RECIPE_NAME: oniro-image-base-tests
     MACHINE: seco-imx8mm-c61-2gb
     # This platform requires proprietary resources to boot.
     # See build-generic.yaml for explanation of CI_ONIRO_BB_LOCAL_CONF_ variables.
     CI_ONIRO_BB_LOCAL_CONF_ACCEPT_FSL_EULA: 1
+    CI_ONIRO_JOB_ARTIFACTS: "*.wic.* *.bmap flash.bin-seco-imx8mm-c61-2gb*"
 linux-seco-imx8mm-c61-2gb-gcc:
   extends: [.linux-seco-imx8mm-c61-2gb, .toolchain-gcc]
 linux-seco-imx8mm-c61-2gb-clang:
@@ -108,7 +111,7 @@ linux-seco-imx8mm-c61-2gb-clang:
     # This platform requires proprietary resources to boot.
     # See build-generic.yaml for explanation of CI_ONIRO_BB_LOCAL_CONF_ variables.
     CI_ONIRO_BB_LOCAL_CONF_ACCEPT_FSL_EULA: 1
-    CI_ONIRO_JOB_ARTIFACTS: "*.wic.* *.bmap flash.bin-seco-imx8mm-c61*"
+    CI_ONIRO_JOB_ARTIFACTS: "*.wic.* *.bmap flash.bin-seco-imx8mm-c61-4gb*"
 linux-seco-imx8mm-c61-4gb-gcc:
   extends: [.linux-seco-imx8mm-c61-4gb, .toolchain-gcc]
 linux-seco-imx8mm-c61-4gb-clang:

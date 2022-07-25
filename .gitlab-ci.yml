@@ -250,13 +250,25 @@ lava-seco-intel-b68:
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/seco-intel-b68.yaml"
     CI_REPORT_JOB_NAME: lava-report
 
-lava-seco-c61:
+lava-seco-c61-4gb:
   needs: [linux-seco-imx8mm-c61-4gb-gcc]
   stage: test
   extends: .lava-test-scheduled
   variables:
     MACHINE: seco-imx8mm-c61-4gb
+    BOARD_RAM_SIZE: 4gb
     CI_BUILD_JOB_NAME: linux-seco-imx8mm-c61-4gb-gcc
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/seco-c61.yaml"
+    CI_REPORT_JOB_NAME: lava-report
+
+lava-seco-c61-2gb:
+  needs: [linux-seco-imx8mm-c61-2gb-gcc]
+  stage: test
+  extends: .lava-test-scheduled
+  variables:
+    MACHINE: seco-imx8mm-c61-2gb
+    BOARD_RAM_SIZE: 2gb
+    CI_BUILD_JOB_NAME: linux-seco-imx8mm-c61-2gb-gcc
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/seco-c61.yaml"
     CI_REPORT_JOB_NAME: lava-report
 
@@ -300,13 +312,25 @@ lava-seco-intel-b68-ltp:
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/seco-intel-b68-ltp.yaml"
     CI_REPORT_JOB_NAME: lava-report
 
-lava-seco-c61-ltp:
+lava-seco-c61-4gb-ltp:
   needs: [linux-seco-imx8mm-c61-4gb-gcc]
   stage: test
   extends: .lava-test-scheduled
   variables:
     MACHINE: seco-imx8mm-c61-4gb
+    BOARD_RAM_SIZE: 4gb
     CI_BUILD_JOB_NAME: linux-seco-imx8mm-c61-4gb-gcc
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/seco-c61-ltp.yaml"
+    CI_REPORT_JOB_NAME: lava-report
+
+lava-seco-c61-2gb-ltp:
+  needs: [linux-seco-imx8mm-c61-2gb-gcc]
+  stage: test
+  extends: .lava-test-scheduled
+  variables:
+    MACHINE: seco-imx8mm-c61-2gb
+    BOARD_RAM_SIZE: 2gb
+    CI_BUILD_JOB_NAME: linux-seco-imx8mm-c61-2gb-gcc
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/seco-c61-ltp.yaml"
     CI_REPORT_JOB_NAME: lava-report
 
@@ -330,13 +354,25 @@ lava-raspberrypi4-64-kselftest:
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/raspberrypi4-64-kselftest.yaml"
     CI_REPORT_JOB_NAME: lava-report
 
-lava-seco-c61-kselftest:
+lava-seco-c61-4gb-kselftest:
   needs: [linux-seco-imx8mm-c61-4gb-gcc]
   stage: test
   extends: .lava-test-scheduled
   variables:
     MACHINE: seco-imx8mm-c61-4gb
+    BOARD_RAM_SIZE: 4gb
     CI_BUILD_JOB_NAME: linux-seco-imx8mm-c61-4gb-gcc
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/seco-c61-kselftest.yaml"
+    CI_REPORT_JOB_NAME: lava-report
+
+lava-seco-c61-2gb-kselftest:
+  needs: [linux-seco-imx8mm-c61-2gb-gcc]
+  stage: test
+  extends: .lava-test-scheduled
+  variables:
+    MACHINE: seco-imx8mm-c61-2gb
+    BOARD_RAM_SIZE: 2gb
+    CI_BUILD_JOB_NAME: linux-seco-imx8mm-c61-2gb-gcc
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/seco-c61-kselftest.yaml"
     CI_REPORT_JOB_NAME: lava-report
 
@@ -390,13 +426,25 @@ lava-seco-intel-b68-perf:
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/seco-intel-b68-perf.yaml"
     CI_REPORT_JOB_NAME: lava-report
 
-lava-seco-c61-perf:
+lava-seco-c61-4gb-perf:
   needs: [linux-seco-imx8mm-c61-4gb-gcc]
   stage: test
   extends: .lava-test-scheduled
   variables:
     MACHINE: seco-imx8mm-c61-4gb
+    BOARD_RAM_SIZE: 4gb
     CI_BUILD_JOB_NAME: linux-seco-imx8mm-c61-4gb-gcc
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/seco-c61-perf.yaml"
+    CI_REPORT_JOB_NAME: lava-report
+
+lava-seco-c61-2gb-perf:
+  needs: [linux-seco-imx8mm-c61-2gb-gcc]
+  stage: test
+  extends: .lava-test-scheduled
+  variables:
+    MACHINE: seco-imx8mm-c61-2gb
+    BOARD_RAM_SIZE: 2gb
+    CI_BUILD_JOB_NAME: linux-seco-imx8mm-c61-2gb-gcc
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/seco-c61-perf.yaml"
     CI_REPORT_JOB_NAME: lava-report
 
