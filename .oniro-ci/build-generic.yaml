@@ -15,6 +15,9 @@
     CI_ONIRO_MANIFEST_MIRROR: oniro-develop
     CI_ONIRO_GIT_REPO_PATH: ""
     CI_ONIRO_INSTANCE_SIZE: s3.large.8
+    # For testing with bleeding edge Yocto.
+    CI_ONIRO_OECORE_REPO: ""
+    CI_ONIRO_OECORE_BRANCH: ""
   before_script:
     - test ! -e "$CI_PROJECT_DIR"/.scratch-dir-name || (
         echo "precondition failed - concurrent modification of $CI_PROJECT_DIR"
@@ -53,6 +56,20 @@
           echo "CI: Replacing $CI_ONIRO_GIT_REPO_PATH with $CI_PROJECT_DIR"
           rm -rf "$CI_ONIRO_GIT_REPO_PATH"
           ln -sf "$CI_PROJECT_DIR" "$CI_ONIRO_GIT_REPO_PATH"
+      fi
+      set +x
+
+    - |
+      set -x
+      if [ -n "$CI_ONIRO_OECORE_BRANCH" ]; then
+          if [ -n "$CI_ONIRO_OECORE_REPO" ]; then
+              echo "CI: Using oe-core from '$CI_ONIRO_OECORE_REPO': '$CI_ONIRO_OECORE_BRANCH'"
+              ( cd oe-core && git remote add oecore-nut "$CI_ONIRO_OECORE_REPO" \
+                  && git fetch oecore-nut && git checkout oecore-nut/"$CI_ONIRO_OECORE_BRANCH" )
+          else
+              echo "CI: Using oe-core branch: '$CI_ONIRO_OECORE_BRANCH'"
+              ( cd oe-core && git fetch && git checkout "$CI_ONIRO_OECORE_BRANCH" )
+          fi
       fi
       set +x
 
