@@ -57,8 +57,8 @@ Initialize a repo workspace and clone all required repositories:
 
 .. _Building an Oniro image:
 
-Building an Oniro image
-***********************
+Building and Running an Oniro image
+***********************************
 
 The following steps will build a ``oniro-image-base``. The process will
 build all its components, including the toolchain, from source.
@@ -84,11 +84,22 @@ Oniro image or an OpenHarmony compatible one.
 A. Standard Oniro image
 -----------------------
 
-All that is left is to run the build:
+As the build directory is now initialized, you can proceed to running the build
+process:
 
 .. code-block:: console
 
     $ MACHINE=qemux86-64 bitbake oniro-image-base
+
+Once the image is built, you can run a Qemu instance using the provided
+script wrapper as follows:
+
+.. code-block:: console
+
+      $ MACHINE=qemux86-64 runqemu oniro-image-base wic ovmf slirp
+
+If the host has a VT-capable CPU, you can pass the ``kvm`` argument for better
+performance. Check ``runqemu``'s help message for all available arguments.
 
 .. _Building with OpenHarmony:
 
@@ -110,22 +121,25 @@ the following:
 This will enable OpenHarmony features and add OpenHarmony Standard System
 features to the `oniro-image-base` image.
 
-All that is left is to run the build:
+As the build directory is now initialized, you can proceed to run the build
+process:
 
 .. code-block:: console
 
     $ MACHINE=qemuarm bitbake oniro-image-base
 
-Booting a Qemu X86-64 Target with a |main_project_name| image
-*************************************************************
-
-Once the image is built, you can run a Qemu X86-64 instance using the provided script wrapper as follows:
+Once the image is built, you can run a Qemu instance using the provided
+script wrapper as follows:
 
 .. code-block:: console
 
-      $ MACHINE=qemux86-64 runqemu oniro-image-base wic ovmf slirp
+      $ MACHINE=qemuarm runqemu oniro-image-base serialstdio nographic slirp
 
-If the host has a VT-capable CPU, you can pass the ``kvm`` argument for better
-performance. Check ``runqemu``'s help message for all available arguments.
+Runtime Login
+*************
 
-The default user name is **oniro** with **oniro** as a password.
+Once the target has booted, a login shell will prompt for a user/password
+combination. By default, the OS uses the following:
+
+- user name: **oniro**
+- password: **oniro**
