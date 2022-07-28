@@ -20,7 +20,9 @@ SRC_URI = " \
     file://oniro-homes.conf.tmpfiles \
     "
 
-inherit allarch systemd
+REQUIRED_DISTRO_FEATURES ?= "systemd"
+
+inherit allarch features_check systemd
 
 SYSTEMD_SERVICE:${PN} = " \
     home.mount \
