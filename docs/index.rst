@@ -38,6 +38,12 @@ Build System Guide
    supported-technologies/containers
 
 .. toctree::
+   :caption: Supported Toolchains
+   :maxdepth: 2
+
+   toolchains
+
+.. toctree::
    :caption: Troubleshoot
    :maxdepth: 2
 
