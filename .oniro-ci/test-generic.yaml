@@ -48,7 +48,7 @@
       -e 's,@ci_pipeline_url@,'"$CI_PIPELINE_URL"','
       -e 's/@build_job_id@/'"$build_job_id"'/' job_def.yaml
     # Update the job with device configuration
-    - sed -i -e 's/@BOARD_RAM_SIZE@/'"$BOARD_RAM_SIZE"'/' job_def.yaml
+    - sed -i -e 's/@BOARD_RAM_SIZE@/'"$BOARD_RAM_SIZE"'/g' job_def.yaml
     # Generate test jobs.
     - |
       set -x
