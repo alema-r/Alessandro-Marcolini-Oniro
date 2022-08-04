@@ -9,3 +9,5 @@ INHERIT += "oniro-sanity"
 # Configuration needed for meta-java layer
 PREFERRED_PROVIDER_virtual/java-initial-native ?= "cacao-initial-native"
 PREFERRED_PROVIDER_virtual/java-native ?= "cacao-native"
+
+BB_DANGLINGAPPENDS_WARNONLY:forcevariable = "0"
