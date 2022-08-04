@@ -497,11 +497,13 @@ lava-qemu-x86_64-sysota:
 
 lava-report:
   extends: .lava-report
+  dependencies: []
   needs:
-    - lava-qemu-x86
-    - lava-qemu-x86_64
-    - lava-zephyr-qemu-cortex-m3
-    - lava-zephyr-qemu-x86
+    # Set the needs to the same build job that needed by one of the lava-test
+    # job to turn the job into playable status once lava-test job started.
+    # Without any needs here, lava-report waits for all the build stages to
+    # finish which leads to timing issue when playing the job via api.
+    - linux-qemu-x86-gcc
 
 lava-badge:
   needs: [lava-report]
