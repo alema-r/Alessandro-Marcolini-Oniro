@@ -102,7 +102,7 @@
     - if: '$CI_SQUAD_TOKEN == null'
       when: never
     # Run the build when it is scheduled.
-    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULED_TYPE == "daily"
     # Do not run pipelines for draft merge requests unless manually triggered.
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TITLE =~ /^(wip|draft):.*/i'
       when: manual
@@ -138,7 +138,7 @@
     - if: '$CI_SQUAD_TOKEN == null'
       when: never
     # Run the build when it is scheduled.
-    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULED_TYPE == "daily"
       when: manual
     # Do not run pipelines for draft merge requests unless manually triggered.
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TITLE =~ /^(wip|draft):.*/i'
@@ -178,7 +178,7 @@
       - lava-test.svg
   rules:
     # Run the build when it is scheduled.
-    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULED_TYPE == "daily"
     # Do not run pipelines for draft merge requests unless manually triggered.
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TITLE =~ /^(wip|draft):.*/i'
       when: manual

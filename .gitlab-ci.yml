@@ -210,7 +210,7 @@ publish-seco-intel-b68:
   rules:
     - if: '$CI_SQUAD_TOKEN == null'
       when: never
-    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULED_TYPE == "daily"
 
 ##
 ## Submit jobs to LAVA
@@ -631,7 +631,7 @@ build-npm-cspell:
 
 .oe-selftest-rules:
   rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule" && $OE_SELFTEST == "gcc"
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULED_TYPE == "weekly" && $OE_SELFTEST == "gcc"
 
 oe-selftest-gcc-qemu-linux-user:
   extends: [.oe-selftest, .oe-selftest-rules]
