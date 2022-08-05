@@ -701,6 +701,7 @@ oe-selftest-report:
             python3 $CI_PROJECT_DIR/gcc-result-parser.py $sum_file
           done
           # Upload result to squad.
+          gcc_version="$(cat gcc_version)"
           for result_file in $(ls result_*.json); do
             component="$(basename $result_file .json | cut -d'_' -f2-)"
             job_id="$job-$component"
@@ -708,7 +709,7 @@ oe-selftest-report:
               --header "Auth-Token: $CI_SQUAD_TOKEN" \
               https://squadp.svc.ostc-eu.dev/api/submit/oniro-core/gcc-test/$CI_PIPELINE_ID/$test_env \
               --form tests=@$result_file \
-              --form metadata='{"job_id": "'$job_id'"}'
+              --form "metadata={\"job_id\": \"$job_id\", \"gcc_version\": \"$gcc_version\"}"
           done
         )
       done
