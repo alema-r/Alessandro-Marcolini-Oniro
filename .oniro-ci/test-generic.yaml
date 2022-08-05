@@ -33,11 +33,19 @@
     - test -n "$CI_REPORT_JOB_NAME" || (
         echo "precondition failed - set CI_REPORT_JOB_NAME to the CI job name which will gather results back from LAVA"
         && exit 1 )
+    # If the test job name contains 'sysota', usage of update job name is
+    # required.
+    - |
+      if [[ -z "$CI_UPDATE_JOB_NAME" ]] && [[ "$CI_JOB_NAME" == *"sysota"* ]]; then
+        echo "precondition failed - jobs with 'sysota' in their name must have CI_UPDATE_JOB_NAME variable with the name of the 'update' CI job that contains rauc bundles"
+        exit 1
+      fi
   script:
     # Build callback URL for the "report" job
     - curl --silent "$CI_API_V4_URL/projects/$CI_PROJECT_ID/pipelines/$CI_PIPELINE_ID/jobs?per_page=100" > jobs-manual.json
     - job_id="$(jq -r ".[] | select(.name == \"$CI_REPORT_JOB_NAME\") | .id" jobs-manual.json)"
     - build_job_id="$(jq -r ".[] | select(.name == \"$CI_BUILD_JOB_NAME\") | .id" jobs-manual.json)"
+    - update_job_id="$(jq -r ".[] | select(.name == \"$CI_UPDATE_JOB_NAME\") | .id" jobs-manual.json)"
     - CALLBACK_URL="$CI_API_V4_URL/projects/$CI_PROJECT_ID/jobs/${job_id}/play"
     # Get the job definition from remote source.
     - curl --silent "$CI_LAVA_JOB_DEFINITION" > job_def.yaml
@@ -46,6 +54,7 @@
       -e 's/@ci_project_id@/'"$CI_PROJECT_ID"'/'
       -e 's/@ci_pipeline_id@/'"$CI_PIPELINE_ID"'/'
       -e 's,@ci_pipeline_url@,'"$CI_PIPELINE_URL"','
+      -e 's,@update_job_id@,'"$update_job_id"','
       -e 's/@build_job_id@/'"$build_job_id"'/' job_def.yaml
     # Update the job with device configuration
     - sed -i -e 's/@BOARD_RAM_SIZE@/'"$BOARD_RAM_SIZE"'/g' job_def.yaml

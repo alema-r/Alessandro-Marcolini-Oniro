@@ -45,6 +45,12 @@ The name of the ``report`` job which will be triggered manually when the LAVA
 job(s) are finished with executution. This job will collect the results from
 LAVA and import them to GitLab.
 
+CI_UPDATE_JOB_NAME
+------------------
+
+The name of the ``update`` job which LAVA needs in order to download the
+correct SySOTA bundle from the pipeline.
+
 CI_LAVA_INSTANCE
 ----------------
 
