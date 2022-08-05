@@ -479,7 +479,7 @@ lava-qemu-x86-sysota:
   extends: .lava-test-mr
   variables:
     MACHINE: qemux86
-    CI_BUILD_JOB_NAME: linux-qemu-x86
+    CI_BUILD_JOB_NAME: linux-qemu-x86-gcc
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/qemu-x86-sysota.yaml"
     CI_REPORT_JOB_NAME: lava-report
     CI_UPDATE_JOB_NAME: bundle-qemu-x86
@@ -490,7 +490,7 @@ lava-qemu-x86_64-sysota:
   extends: .lava-test-mr
   variables:
     MACHINE: qemux86-64
-    CI_BUILD_JOB_NAME: linux-qemu-x86_64
+    CI_BUILD_JOB_NAME: linux-qemu-x86_64-gcc
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/qemu-x86_64-sysota.yaml"
     CI_REPORT_JOB_NAME: lava-report
     CI_UPDATE_JOB_NAME: bundle-qemu-x86_64
