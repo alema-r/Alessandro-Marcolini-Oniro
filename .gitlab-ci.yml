@@ -495,6 +495,28 @@ lava-qemu-x86_64-sysota:
     CI_REPORT_JOB_NAME: lava-report
     CI_UPDATE_JOB_NAME: bundle-qemu-x86_64
 
+lava-raspberrypi4-64-sysota:
+  needs: [bundle-raspberrypi4-64]
+  stage: test
+  extends: .lava-test
+  variables:
+    MACHINE: raspberrypi4-64
+    CI_BUILD_JOB_NAME: linux-raspberrypi4-64
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/raspberrypi4-64-sysota.yaml"
+    CI_REPORT_JOB_NAME: lava-report
+    CI_UPDATE_JOB_NAME: bundle-raspberrypi4-64
+
+lava-seco-intel-b68-sysota:
+  needs: [bundle-seco-intel-b68]
+  stage: test
+  extends: .lava-test
+  variables:
+    MACHINE: seco-intel-b68
+    CI_BUILD_JOB_NAME: linux-seco-intel-b68
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/seco-intel-b68-sysota.yaml"
+    CI_REPORT_JOB_NAME: lava-report
+    CI_UPDATE_JOB_NAME: bundle-seco-intel-b68
+
 lava-report:
   extends: .lava-report
   dependencies: []
