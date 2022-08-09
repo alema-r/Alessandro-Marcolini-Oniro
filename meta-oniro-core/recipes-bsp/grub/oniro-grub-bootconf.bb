@@ -16,7 +16,7 @@ SRC_URI = " \
 	file://grubenv \
 "
 
-inherit allarch deploy
+inherit deploy
 
 RPROVIDES:${PN} += "virtual-grub-bootconf"
 
@@ -32,17 +32,18 @@ do_install() {
 	# testing.
 	install -d ${D}${EFI_FILES_PATH}
 	install -m 644 grub.cfg ${D}${EFI_FILES_PATH}/grub.cfg
+	sed -i "s/@KERNEL_IMAGETYPE@/${KERNEL_IMAGETYPE}/g" ${D}${EFI_FILES_PATH}/grub.cfg
 	install -m 644 grubenv ${D}${EFI_FILES_PATH}/grubenv
 }
 
 do_deploy() {
 	# Install the boot assets into DEPLOYDIR. The deploy bbclass
 	# eventually copies those into the boot partition.
-	install -m 644 ${WORKDIR}/grub.cfg ${DEPLOYDIR}
+	install -m 644 ${D}${EFI_FILES_PATH}/grub.cfg ${DEPLOYDIR}
 	# Unlike grub.cfg, nothing installs this file to the boot partition
 	# automatically. It is handled by extending IMAGE_EFI_BOOT_FILES from
 	# conf/distro/oniro-linux.conf.
-	install -m 644 ${WORKDIR}/grubenv ${DEPLOYDIR}
+	install -m 644 ${D}${EFI_FILES_PATH}/grubenv ${DEPLOYDIR}
 }
 
 # Cargo-cult from a similar recipe.
@@ -52,3 +53,5 @@ FILES:${PN} = "\
 	${EFI_FILES_PATH}/grub.cfg \
 	${EFI_FILES_PATH}/grubenv \
 "
+
+PACKAGE_ARCH = "${MACHINE_ARCH}"
