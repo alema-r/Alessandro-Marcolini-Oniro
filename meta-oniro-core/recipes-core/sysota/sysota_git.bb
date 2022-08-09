@@ -109,6 +109,9 @@ SYSOTA_BOOTLOADER_TYPE:qemux86 := "GRUB"
 SYSOTA_MODEL:qemux86-64 := "QEMU Virtual Machine"
 SYSOTA_BOOTLOADER_TYPE:qemux86-64 := "GRUB"
 
+SYSOTA_MODEL:qemuarm-efi := "QEMU Virtual Machine"
+SYSOTA_BOOTLOADER_TYPE:qemuarm-efi := "GRUB"
+
 SYSOTA_MODEL:seco-intel-b68 := "B68 / Alvin"
 SYSOTA_BOOTLOADER_TYPE:seco-intel-b68 := "GRUB"
 
