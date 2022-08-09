@@ -23,3 +23,4 @@ SRC_URI += "file://rauc.cfg"
 export HOSTCXXFLAGS = " -I${RECIPE_SYSROOT_NATIVE}/usr/include"
 
 SRC_URI:append:qemuarm-efi = " file://defconfig"
+SRC_URI:append:qemuarm64-efi = " file://defconfig"
