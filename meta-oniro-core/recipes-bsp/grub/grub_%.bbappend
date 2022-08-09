@@ -16,3 +16,8 @@ TARGET_CFLAGS:remove = "-Werror=array-bounds"
 # echo and halt modules, so that the GRUB boot script can print diagnostic
 # messages or shut down on error.
 GRUB_BUILDIN:append = " squash4 halt echo"
+
+# TODO oe-core avoids armv7ve builds. This is more of a blanket fix because
+# grub supports this arch. It doesn't support hardfp configuration that can't
+# be forced into softfp with a compiler flag. qemuarm-efi defaults to softfp.
+COMPATIBLE_HOST:qemuarm-efi = 'arm.*-(linux.*|freebsd.*)'
