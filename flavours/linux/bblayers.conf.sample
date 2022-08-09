@@ -10,7 +10,7 @@
 # ONIRO_REQUIRED_LAYERS_CONF_VERSION, update the value below to the
 # required one after you have merged in all the changes from the sample file.
 
-ONIRO_LAYERS_CONF_VERSION = "1"
+ONIRO_LAYERS_CONF_VERSION = "2"
 
 BBPATH = "${TOPDIR}"
 BBFILES ?= ""
@@ -37,9 +37,17 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-openembedded/meta-python \
   ##OEROOT##/../meta-raspberrypi \
   ##OEROOT##/../meta-security \
+  ##OEROOT##/../meta-security/meta-tpm \
   ##OEROOT##/../meta-riscv \
   ##OEROOT##/../meta-rauc \
   ##OEROOT##/../meta-java \
   ##OEROOT##/../meta-seco-rockchip \
   ##OEROOT##/../meta-virtualization \
+  ##OEROOT##/../meta-ts/meta-trustedsubstrate \
+  ##OEROOT##/../meta-ledge-secure/meta-ledge-secure \
+  ##OEROOT##/../meta-secure-core/meta \
+  ##OEROOT##/../meta-secure-core/meta-efi-secure-boot \
+  ##OEROOT##/../meta-secure-core/meta-encrypted-storage \
+  ##OEROOT##/../meta-secure-core/meta-signing-key \
+  ##OEROOT##/../meta-secure-core/meta-tpm2 \
   "
