@@ -31,6 +31,44 @@
     - when: manual
       allow_failure: true
 
+.linux-qemuarm-efi:
+  extends: [.build-wic-image, .check-abi]
+  variables:
+    MACHINE: qemuarm-efi
+    CI_ONIRO_BUILD_FLAVOUR: linux
+    CI_ONIRO_RECIPE_NAME: oniro-image-base-tests
+    # Set CI_ONIRO_BUILD_CACHE to "pub", overriding the value defined in the
+    # .build job. This enables sharing of download and sstate-cache created
+    # during this job.
+    #
+    # This is done assuming that there are no non-redistributable or otherwise
+    # tainted build intermediate files, downloads or published artifacts.
+    CI_ONIRO_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
+    CI_ONIRO_JOB_ARTIFACTS: "*.wic.* *.qemuboot.conf uefi.bin"
+linux-qemuarm-efi-gcc:
+ extends: [.linux-qemuarm-efi, .toolchain-gcc]
+linux-qemuarm-efi-clang:
+ extends: [.linux-qemuarm-efi, .toolchain-clang]
+
+.linux-qemuarm64-efi:
+  extends: [.build-wic-image, .check-abi]
+  variables:
+    MACHINE: qemuarm64-efi
+    CI_ONIRO_BUILD_FLAVOUR: linux
+    CI_ONIRO_RECIPE_NAME: oniro-image-base-tests
+    # Set CI_ONIRO_BUILD_CACHE to "pub", overriding the value defined in the
+    # .build job. This enables sharing of download and sstate-cache created
+    # during this job.
+    #
+    # This is done assuming that there are no non-redistributable or otherwise
+    # tainted build intermediate files, downloads or published artifacts.
+    CI_ONIRO_BB_LOCAL_CONF_BB_GENERATE_MIRROR_TARBALLS: 1
+    CI_ONIRO_JOB_ARTIFACTS: "*.wic.* *.qemuboot.conf uefi.bin"
+linux-qemuarm64-efi-gcc:
+ extends: [.linux-qemuarm64-efi, .toolchain-gcc]
+linux-qemuarm64-efi-clang:
+ extends: [.linux-qemuarm64-efi, .toolchain-clang]
+
 .linux-qemu-x86:
   extends: [.build-wic-image, .check-abi]
   variables:
