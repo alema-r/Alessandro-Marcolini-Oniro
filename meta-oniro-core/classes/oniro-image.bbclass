@@ -46,9 +46,6 @@ WKS_FILE:qemux86-64 ?= "x-gpt-efi-disk.wks.in"
 WKS_FILE_DEPENDS:qemux86-64 += "ovmf"
 WKS_FILE_DEPENDS:qemux86 += "ovmf"
 
-WKS_FILE:qemu-generic-arm64 = "x-qemu-efi-disk.wks.in"
-IMAGE_FSTYPES:qemu-generic-arm64 += "wic wic.qcow2"
-
 WKS_FILE:seco-imx8mm-c61-2gb ?= "x-imx-uboot-bootpart.wks.in"
 IMAGE_FSTYPES:seco-imx8mm-c61-2gb ?= "wic.gz wic.bmap"
 
