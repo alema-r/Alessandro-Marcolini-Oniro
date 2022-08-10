@@ -198,6 +198,11 @@ publish-seco-intel-b68:
     # Run the build for scheduled pipelines.
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
 
+.lava-test-mr:
+  extends: .lava-test
+  variables:
+    CI_LAVA_JOB_PRIORITY: "high"
+
 .lava-test-scheduled:
   extends: .lava-test
   variables:
@@ -213,7 +218,7 @@ publish-seco-intel-b68:
 lava-qemu-x86:
   needs: [linux-qemu-x86-gcc]
   stage: test
-  extends: .lava-test
+  extends: .lava-test-mr
   variables:
     MACHINE: qemux86
     CI_BUILD_JOB_NAME: linux-qemu-x86-gcc
@@ -223,7 +228,7 @@ lava-qemu-x86:
 lava-qemu-x86_64:
   needs: [linux-qemu-x86_64-gcc]
   stage: test
-  extends: .lava-test
+  extends: .lava-test-mr
   variables:
     MACHINE: qemux86-64
     CI_BUILD_JOB_NAME: linux-qemu-x86_64-gcc
@@ -451,7 +456,7 @@ lava-seco-c61-2gb-perf:
 lava-zephyr-qemu-cortex-m3:
   needs: [zephyr-qemu-cortex-m3-gcc]
   stage: test
-  extends: .lava-test
+  extends: .lava-test-mr
   variables:
     MACHINE: qemu-cortex-m3
     CI_BUILD_JOB_NAME: zephyr-qemu-cortex-m3-gcc
@@ -461,7 +466,7 @@ lava-zephyr-qemu-cortex-m3:
 lava-zephyr-qemu-x86:
   needs: [zephyr-qemu-x86-gcc]
   stage: test
-  extends: .lava-test
+  extends: .lava-test-mr
   variables:
     MACHINE: qemu-x86
     CI_BUILD_JOB_NAME: zephyr-qemu-x86-gcc
@@ -471,7 +476,7 @@ lava-zephyr-qemu-x86:
 lava-qemu-x86-sysota:
   needs: [bundle-qemu-x86]
   stage: test
-  extends: .lava-test
+  extends: .lava-test-mr
   variables:
     MACHINE: qemux86
     CI_BUILD_JOB_NAME: linux-qemu-x86
@@ -482,7 +487,7 @@ lava-qemu-x86-sysota:
 lava-qemu-x86_64-sysota:
   needs: [bundle-qemu-x86_64]
   stage: test
-  extends: .lava-test
+  extends: .lava-test-mr
   variables:
     MACHINE: qemux86-64
     CI_BUILD_JOB_NAME: linux-qemu-x86_64
