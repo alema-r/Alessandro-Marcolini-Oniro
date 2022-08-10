@@ -122,18 +122,20 @@ This will enable OpenHarmony features and add OpenHarmony Standard System
 features to the `oniro-image-base` image.
 
 As the build directory is now initialized, you can proceed to run the build
-process:
+process (instead of `qemuarm-efi`, you can also build for targets `qemuarm64-efi`
+and `raspberrypi4-64` - just make sure you set `MACHINE` to the same value while
+running `bitbake` and `runqemu`):
 
 .. code-block:: console
 
-    $ MACHINE=qemuarm bitbake oniro-image-base
+    $ MACHINE=qemuarm-efi bitbake oniro-image-base
 
 Once the image is built, you can run a Qemu instance using the provided
 script wrapper as follows:
 
 .. code-block:: console
 
-      $ MACHINE=qemuarm runqemu oniro-image-base serialstdio nographic slirp
+      $ MACHINE=qemuarm-efi runqemu oniro-image-base serialstdio nographic slirp wic
 
 Runtime Login
 *************
