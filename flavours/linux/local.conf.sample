@@ -22,6 +22,8 @@
 #
 #MACHINE ?= "qemux86"
 #MACHINE ?= "qemux86-64"
+#MACHINE ?= "qemuarm-efi"
+#MACHINE ?= "qemuarm64-efi"
 #MACHINE ?= "seco-intel-b68"
 #MACHINE ?= "seco-imx8mm-c61-2gb"
 #MACHINE ?= "seco-imx8mm-c61-4gb"
