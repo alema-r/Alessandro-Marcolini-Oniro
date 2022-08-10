@@ -15,3 +15,4 @@ This section details the support for virtual targets in |main_project_name|.
    qemux86-64
    qemux86
    qemuarm64-efi
+   qemuarm-efi
