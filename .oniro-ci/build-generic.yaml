@@ -436,6 +436,8 @@
     paths:
       - docs/build
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
     # Build the docs when a merge request is created.
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       changes:
