@@ -28,7 +28,7 @@ PROVIDES="linux-oniro virtual/kernel"
 
 KCONF_BSP_AUDIT_LEVEL = "1"
 
-COMPATIBLE_MACHINE = "^(qemux86|qemux86-64|qemuriscv64|qemuriscv32)$"
+COMPATIBLE_MACHINE = "^(qemuarm-efi|qemuarm64-efi|qemux86|qemux86-64|qemuriscv64|qemuriscv32)$"
 
 # Functionality flags
 KERNEL_EXTRA_FEATURES ?= "features/netfilter/netfilter.scc"
