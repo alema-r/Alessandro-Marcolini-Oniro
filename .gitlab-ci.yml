@@ -238,7 +238,7 @@ lava-qemu-x86_64:
 lava-raspberrypi4-64:
   needs: [linux-raspberrypi4-64-gcc]
   stage: test
-  extends: .lava-test-scheduled
+  extends: .lava-test-mr
   variables:
     MACHINE: raspberrypi4-64
     CI_BUILD_JOB_NAME: linux-raspberrypi4-64-gcc
@@ -248,7 +248,7 @@ lava-raspberrypi4-64:
 lava-seco-intel-b68:
   needs: [linux-seco-intel-b68-gcc]
   stage: test
-  extends: .lava-test-scheduled
+  extends: .lava-test-mr
   variables:
     MACHINE: seco-intel-b68
     CI_BUILD_JOB_NAME: linux-seco-intel-b68-gcc
@@ -258,7 +258,7 @@ lava-seco-intel-b68:
 lava-seco-c61-4gb:
   needs: [linux-seco-imx8mm-c61-4gb-gcc]
   stage: test
-  extends: .lava-test-scheduled
+  extends: .lava-test-mr
   variables:
     MACHINE: seco-imx8mm-c61-4gb
     BOARD_RAM_SIZE: 4gb
@@ -269,7 +269,7 @@ lava-seco-c61-4gb:
 lava-seco-c61-2gb:
   needs: [linux-seco-imx8mm-c61-2gb-gcc]
   stage: test
-  extends: .lava-test-scheduled
+  extends: .lava-test-mr
   variables:
     MACHINE: seco-imx8mm-c61-2gb
     BOARD_RAM_SIZE: 2gb
