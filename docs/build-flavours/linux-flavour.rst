@@ -22,7 +22,6 @@ Supported machines (default in **bold**):
 
 * **qemux86-64**
 * qemux86
-* qemuarm
 * qemuarm64
 * seco-intel-b68 (SECO SBC-B68)
 * seco-imx8mm-c61-2gb (SECO SBC-C61 2GB DRAM)
