@@ -2,8 +2,17 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+FILESEXTRAPATHS:prepend := "${THISDIR}/${BPN}:"
+SRC_URI += " \
+	file://0001-Respect-BUILD_CFLAGS-in-GCC_ALL_CC_FLAGS.patch \
+"
+
 export GCC5_ARM_PREFIX = "${TARGET_PREFIX}"
 export CLANG38_ARM_PREFIX = "${TARGET_PREFIX}"
+
+# This is passed in the 0001-Respect-BUILD_CFLAGS-in-GCC_ALL_CC_FLAGS.patch
+# patch so that the build can find the right headers in the sysroot.
+export TARGET_SYSROOT = "${RECIPE_SYSROOT}"
 
 EDK2_BUILD_RELEASE:toolchain-clang = "1"
 
