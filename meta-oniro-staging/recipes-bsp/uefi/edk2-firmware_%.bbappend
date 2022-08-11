@@ -7,6 +7,10 @@ export CLANG38_ARM_PREFIX = "${TARGET_PREFIX}"
 
 EDK2_BUILD_RELEASE:toolchain-clang = "1"
 
+do_configure:prepend() {
+	sed -i -e "s#-target ${HOST_ARCH}-linux-gnu.*#-target ${HOST_SYS}#" ${S}/BaseTools/Conf/tools_def.template
+}
+
 do_install:prepend() {
 	# Some platforms use an ARCH suffix.
 	if [ ! -e "${B}/Build/${EDK2_PLATFORM}" ]; then
