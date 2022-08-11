@@ -5,6 +5,8 @@
 export GCC5_ARM_PREFIX = "${TARGET_PREFIX}"
 export CLANG38_ARM_PREFIX = "${TARGET_PREFIX}"
 
+EDK2_BUILD_RELEASE:toolchain-clang = "1"
+
 do_install:prepend() {
 	# Some platforms use an ARCH suffix.
 	if [ ! -e "${B}/Build/${EDK2_PLATFORM}" ]; then
