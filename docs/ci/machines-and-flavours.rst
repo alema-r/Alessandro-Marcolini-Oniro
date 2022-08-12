@@ -113,18 +113,6 @@ basic 32bit ARM micro-controller virtual machine.
 
 The cache for this job is publicly available.
 
-zephyr-96b-nitrogen
-...................
-
-This job extends `.build-zephyr` job from the manifest repository and builds
-``zephyr-philosophers`` using the Zephyr flavour of |main_project_name| and
-``MACHINE=96b-nitrogen``. This job checks that Zephyr can be built for the
-96Boards Nitrogen development board, which contains an nRF52832 SoC.
-
-.. note::
-    The cache for this job is not public, pending legal review of any firmware
-    that may be included.
-
 zephyr-96b-avenger
 ..................
 

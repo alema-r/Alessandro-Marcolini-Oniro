@@ -6,9 +6,7 @@ You can now run 'bitbake zephyr-philosophers'
 Supported machines (first is the default):
 - qemu-x86
 - qemu-cortex-m3
-- 96b-nitrogen (96Boards Nitrogen)
 - 96b-avenger96 (96Boards Avenger96)
-- nrf52840dk-nrf52840 (Nordic Semiconductor nRF 52840 Development Kit)
 - arduino-nano-33-ble (Arduino Nano 33 BLE and Arduino Nano 33 BLE Sense)
 
 MACHINE variable can be set up in conf/local.conf file under build directory
