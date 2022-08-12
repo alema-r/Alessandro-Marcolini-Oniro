@@ -12,7 +12,8 @@
     GIT_STRATEGY: none
     CI_LAVA_INSTANCE: "https://lava.ostc-eu.org/"
     CI_SQUAD_INSTANCE: "https://squadp.svc.ostc-eu.dev"
-    CI_SQUAD_PROJECT_NAME: "oniro-test-mr"
+    CI_SQUAD_GROUP_NAME: ""
+    CI_SQUAD_PROJECT_NAME: ""
     CI_LAVA_JOB_PRIORITY: "medium"
     # Run the same ltp test suites that using by LKFT project.
     # Reference: https://qa-reports.linaro.org/lkft/linux-stable-rc-linux-5.10.y/build/v5.10.98-75-g9f5cb871ceb9/testjobs/
@@ -32,7 +33,13 @@
         echo "precondition failed - set CI_LAVA_JOB_DEFINITION to the URL of the LAVA test job definition"
         && exit 1 )
     - test -n "$CI_REPORT_JOB_NAME" || (
-        echo "precondition failed - set CI_REPORT_JOB_NAME to the CI job name which will gather results back from LAVA"
+        echo "precondition failed - set CI_REPORT_JOB_NAME to the CI job name which will gather results back from Squad"
+        && exit 1 )
+    - test -n "$CI_SQUAD_GROUP_NAME" || (
+        echo "precondition failed - set CI_SQUAD_GROUP_NAME to the squad group name."
+        && exit 1 )
+    - test -n "$CI_SQUAD_PROJECT_NAME" || (
+        echo "precondition failed - set CI_SQUAD_PROJECT_NAME to the squad project name."
         && exit 1 )
     # If the test job name contains 'sysota', usage of update job name is
     # required.
@@ -85,8 +92,8 @@
     # Submit the jobs to SQUAD.
     - |
       for job_def in $(find lava_jobs/ -name "*.yaml"); do
-        echo $CI_SQUAD_INSTANCE/api/submitjob/oniro-core/$CI_SQUAD_PROJECT_NAME/$CI_PIPELINE_ID/$MACHINE --header "Auth-Token: $CI_SQUAD_TOKEN"  --form "backend=oniro_lava" --form "definition=@${job_def}"
-        curl $CI_SQUAD_INSTANCE/api/submitjob/oniro-core/$CI_SQUAD_PROJECT_NAME/$CI_PIPELINE_ID/$MACHINE --header "Auth-Token: $CI_SQUAD_TOKEN"  --form "backend=oniro_lava" --form "definition=@${job_def}"
+        echo $CI_SQUAD_INSTANCE/api/submitjob/$CI_SQUAD_GROUP_NAME/$CI_SQUAD_PROJECT_NAME/$CI_PIPELINE_ID/$MACHINE --header "Auth-Token: $CI_SQUAD_TOKEN"  --form "backend=oniro_lava" --form "definition=@${job_def}"
+        curl $CI_SQUAD_INSTANCE/api/submitjob/$CI_SQUAD_GROUP_NAME/$CI_SQUAD_PROJECT_NAME/$CI_PIPELINE_ID/$MACHINE --header "Auth-Token: $CI_SQUAD_TOKEN"  --form "backend=oniro_lava" --form "definition=@${job_def}"
       done
       # Attach a callback to this build to trigger the lava-report job
       squad_build_id="$(curl --silent "$CI_SQUAD_INSTANCE/api/builds/?version=$CI_PIPELINE_ID" | jq -r '.results[0].id')"
