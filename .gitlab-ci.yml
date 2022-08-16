@@ -793,7 +793,7 @@ oe-selftest-report:
   script:
     - |
       set -x
-      curl https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-test-definitions/-/raw/gcc-test/automated/utils/gcc-result-parser.py \
+      curl https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-test-definitions/-/raw/oniro/automated/utils/gcc-result-parser.py \
         > gcc-result-parser.py
       for job_path in $(find artifacts/ -type d -name oe-selftest-gcc*); do
         (
@@ -812,7 +812,7 @@ oe-selftest-report:
             job_id="$job-$component"
             time curl \
               --header "Auth-Token: $CI_SQUAD_TOKEN" \
-              https://squadp.svc.ostc-eu.dev/api/submit/oniro-core/gcc-test/$CI_PIPELINE_ID/$test_env \
+              https://squadp.svc.ostc-eu.dev/api/submit/scheduled-weekly/gcc/$CI_PIPELINE_ID/$test_env \
               --form tests=@$result_file \
               --form "metadata={\"job_id\": \"$job_id\", \"gcc_version\": \"$gcc_version\"}"
           done

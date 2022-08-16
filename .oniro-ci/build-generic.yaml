@@ -164,7 +164,7 @@
           | tee -a conf/local.conf )
     # Variables in the form of '^CI_ONIRO_BB_BBLAYERS_CONF_plus_equals_attr' are
     # converted to 'attr += "value"' and appended to bblayers.conf
-    # this is useful if layer has to be added but bitbake add-layer command cannot be used 
+    # this is useful if layer has to be added but bitbake add-layer command cannot be used
     # (for example this layer's class is inherited via local.conf already)
     - |
       ( set +o pipefail;
@@ -499,16 +499,21 @@
     # Only run tests when gcc version changed.
     - gcc_version="$(bitbake -s | grep '^gcc-runtime' | awk -F':' '{print $NF}' | head -1 | awk '{$1=$1;print}')"
     - echo "Current GCC version $gcc_version"
-    - last_build_id="$(curl --silent $CI_SQUAD_INSTANCE/api/projects/5/builds/ | jq -r '.results | .[] | .id' | head -1)"
-    - last_tested_gcc_version="$(curl --silent $CI_SQUAD_INSTANCE/api/builds/$last_build_id/metadata/ | jq -r '.gcc_version')"
-    - echo "The last tested GCC version $last_tested_gcc_version"
+    - last_build_id="$(curl --silent $CI_SQUAD_INSTANCE/api/projects/12/builds/ | jq -r '.results | .[] | .id' | head -1)"
     - |
-      if [ "$gcc_version" != "$last_tested_gcc_version" ]; then
-        echo "GCC verion changed, about to test the new version ..."
+      if [ -n "${last_build_id}" ]; then
+        last_tested_gcc_version="$(curl --silent $CI_SQUAD_INSTANCE/api/builds/$last_build_id/metadata/ | jq -r '.gcc_version')"
+        echo "The last tested GCC version $last_tested_gcc_version"
+        if [ "$gcc_version" != "$last_tested_gcc_version" ]; then
+          echo "GCC verion changed, about to test the new version ..."
+        else
+          echo "GCC verion not changed, skipping gcc tests ..."
+          exit 0
+        fi
       else
-        echo "GCC verion not changed, skipping gcc tests ..."
-        exit 0
+        echo "The last tested GCC version not found, about to run gcc tests ..."
       fi
+    - |
     # oe-selftest inherits the current 'build/conf/local.conf' to create
     # '../build-st/conf/local.conf' for qemu image building. Adding the
     # MACHINE variable to the current local conf allows test job to customize
