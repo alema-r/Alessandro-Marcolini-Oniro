@@ -520,7 +520,7 @@ lava-raspberrypi4-64-sysota:
   extends: .lava-test-mr
   variables:
     MACHINE: raspberrypi4-64
-    CI_BUILD_JOB_NAME: linux-raspberrypi4-64
+    CI_BUILD_JOB_NAME: linux-raspberrypi4-64-gcc
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/raspberrypi4-64-sysota.yaml"
     CI_REPORT_JOB_NAME: lava-report
     CI_UPDATE_JOB_NAME: bundle-raspberrypi4-64
@@ -531,7 +531,7 @@ lava-seco-intel-b68-sysota:
   extends: .lava-test-mr
   variables:
     MACHINE: seco-intel-b68
-    CI_BUILD_JOB_NAME: linux-seco-intel-b68
+    CI_BUILD_JOB_NAME: linux-seco-intel-b68-gcc
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/seco-intel-b68-sysota.yaml"
     CI_REPORT_JOB_NAME: lava-report
     CI_UPDATE_JOB_NAME: bundle-seco-intel-b68
