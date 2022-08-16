@@ -32,7 +32,7 @@
       allow_failure: true
 
 .linux-qemuarm-efi:
-  extends: [.build-wic-image, .check-abi]
+  extends: [.build-wic-image]
   variables:
     MACHINE: qemuarm-efi
     CI_ONIRO_BUILD_FLAVOUR: linux
@@ -51,7 +51,7 @@ linux-qemuarm-efi-clang:
  extends: [.linux-qemuarm-efi, .toolchain-clang]
 
 .linux-qemuarm64-efi:
-  extends: [.build-wic-image, .check-abi]
+  extends: [.build-wic-image]
   variables:
     MACHINE: qemuarm64-efi
     CI_ONIRO_BUILD_FLAVOUR: linux
@@ -70,7 +70,7 @@ linux-qemuarm64-efi-clang:
  extends: [.linux-qemuarm64-efi, .toolchain-clang]
 
 .linux-qemu-x86:
-  extends: [.build-wic-image, .check-abi]
+  extends: [.build-wic-image]
   variables:
     MACHINE: qemux86
     CI_ONIRO_BUILD_FLAVOUR: linux
@@ -89,7 +89,7 @@ linux-qemu-x86-clang:
  extends: [.linux-qemu-x86, .toolchain-clang]
 
 .linux-qemu-x86_64:
-  extends: [.build-wic-image, .check-abi]
+  extends: [.build-wic-image]
   variables:
     MACHINE: qemux86-64
     CI_ONIRO_BUILD_FLAVOUR: linux
@@ -181,7 +181,7 @@ linux-seco-px30-d23-clang:
   extends: [.linux-seco-px30-d23, .toolchain-clang]
 
 .linux-raspberrypi4-64:
-  extends: [.build-wic-image, .check-abi]
+  extends: [.build-wic-image]
   variables:
     MACHINE: raspberrypi4-64
     CI_ONIRO_BUILD_FLAVOUR: linux
