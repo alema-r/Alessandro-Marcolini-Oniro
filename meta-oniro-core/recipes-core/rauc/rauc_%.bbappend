@@ -25,6 +25,10 @@ RAUC_COMPAT:raspberrypi4-64 := "Raspberry Pi 4"
 RAUC_SLOT_A:raspberrypi4-64 := "/dev/mmcblk0p2"
 RAUC_SLOT_B:raspberrypi4-64 := "/dev/mmcblk0p3"
 
+RAUC_COMPAT:seco-intel-b68 := "SECO Alvin"
+RAUC_SLOT_A:seco-intel-b68 := "/dev/sda2"
+RAUC_SLOT_B:seco-intel-b68 := "/dev/sda3"
+
 RAUC_COMPAT:qemux86 := "QEMU x86"
 RAUC_SLOT_A:qemux86 := "/dev/sda2"
 RAUC_SLOT_B:qemux86 := "/dev/sda3"
@@ -33,9 +37,13 @@ RAUC_COMPAT:qemux86-64 := "QEMU x86-64"
 RAUC_SLOT_A:qemux86-64 := "/dev/sda2"
 RAUC_SLOT_B:qemux86-64 := "/dev/sda3"
 
-RAUC_COMPAT:seco-intel-b68 := "SECO Alvin"
-RAUC_SLOT_A:seco-intel-b68 := "/dev/sda2"
-RAUC_SLOT_B:seco-intel-b68 := "/dev/sda3"
+RAUC_COMPAT:qemuarm-efi:= "QEMU ARM (EFI)"
+RAUC_SLOT_A:qemuarm-efi := "/dev/sda2"
+RAUC_SLOT_B:qemuarm-efi := "/dev/sda3"
+
+RAUC_COMPAT:qemuarm64-efi:= "QEMU ARM64 (EFI)"
+RAUC_SLOT_A:qemuarm64-efi := "/dev/sda2"
+RAUC_SLOT_B:qemuarm64-efi := "/dev/sda3"
 
 do_install:prepend() {
     sed \
