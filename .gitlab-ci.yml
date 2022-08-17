@@ -237,6 +237,26 @@ lava-qemu-x86_64:
     CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/qemu-x86_64.yaml"
     CI_REPORT_JOB_NAME: lava-report
 
+lava-qemuarm-efi:
+  needs: [linux-qemuarm-efi-gcc]
+  stage: test
+  extends: .lava-test-mr
+  variables:
+    MACHINE: qemuarm-efi
+    CI_BUILD_JOB_NAME: linux-qemuarm-efi-gcc
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/qemuarm-efi.yaml"
+    CI_REPORT_JOB_NAME: lava-report
+
+lava-qemuarm64-efi:
+  needs: [linux-qemuarm64-efi-gcc]
+  stage: test
+  extends: .lava-test-mr
+  variables:
+    MACHINE: qemuarm64-efi
+    CI_BUILD_JOB_NAME: linux-qemuarm64-efi-gcc
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/qemuarm64-efi.yaml"
+    CI_REPORT_JOB_NAME: lava-report
+
 lava-raspberrypi4-64:
   needs: [linux-raspberrypi4-64-gcc]
   stage: test
