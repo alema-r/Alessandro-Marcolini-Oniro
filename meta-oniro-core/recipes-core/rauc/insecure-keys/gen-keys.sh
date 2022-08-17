@@ -11,5 +11,5 @@ openssl req -x509 -newkey rsa:4096 \
     -out cert.pem \
     -days 365 \
     -nodes \
-    -subj "/CN=oniroproject.org/O=Oniro Project/C=PL/L=Warsaw" </dev/null
+    -subj "/CN=oniroproject.org/O=Eclipse Oniro Project/C=PL/L=World" </dev/null
 
