@@ -485,6 +485,7 @@
     CI_ONIRO_BB_LOCAL_CONF_SANITY_TESTED_DISTROS: ""
     CI_ONIRO_BB_LOCAL_CONF_TOOLCHAIN: "gcc"
     CI_ONIRO_BB_LOCAL_CONF_RUNTIME: "gnu"
+    CI_ONIRO_BB_LOCAL_CONF_plus_equals_INHERIT: "oniro-debug-linux"
     CI_ONIRO_OE_SELFTESTS: ""
     CI_ONIRO_OE_SEFLTEST_SKIPS: ""
     CI_SQUAD_INSTANCE: "https://squadp.svc.ostc-eu.dev"
