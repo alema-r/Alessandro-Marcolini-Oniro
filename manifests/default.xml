@@ -28,7 +28,7 @@ SPDX-FileCopyrightText: Huawei Inc.
 	<project name="openembedded-core" remote="openembedded" revision="2cafa6ed5f0aa9df5a120b6353755d56c7c7800d" path="oe-core" />
 	<project name="meta-openembedded" remote="openembedded" revision="acbe74879807fc6f82b62525d32c823899e19036" path="meta-openembedded" />
 	<project name="aehs29/meta-freertos" remote="github" revision="0d0f168b1bbcdfa8d88d97eefc206a18802a66eb" path="meta-freertos" />
-	<project name="meta-intel" remote="yocto" revision="ef3aa3064b9bbfa19f600eafb1e7d3473f62af74" path="meta-intel" />
+	<project name="meta-intel" remote="yocto" revision="15cdda250fc5aa762ac0139087f96411ca696036" path="meta-intel" />
 	<project name="pub/intel/yocto/meta-seco-intel" remote="seco" revision="65a673560211b11986db5785c70254fad190785f" path="meta-seco-intel" />
 	<project name="meta-freescale" remote="yocto" revision="2e785f257ad98581b684f0e32f6d4bb96faefb10" path="meta-freescale" />
 	<project name="pub/i.mx/yocto/5.x/meta-seco-imx" remote="seco" revision="b6976d806dad5cff6e071cfdb59ab45c4210604b" path="meta-seco-imx" />
