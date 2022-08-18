@@ -72,3 +72,54 @@ python oniro_sanity_handler() {
 
 addhandler oniro_sanity_handler
 oniro_sanity_handler[eventmask] = "bb.event.BuildStarted"
+
+#
+# Build configuration checks and migrations
+#
+
+# Ensure our function runs after the OE-Core's one.
+BBLAYERS_CONF_UPDATE_FUNCS += "conf/bblayers.conf:ONIRO_LAYERS_CONF_VERSION:ONIRO_REQUIRED_LAYERS_CONF_VERSION:oniro_update_bblayersconf"
+
+# All flavours take advanatge of the same bblayers.conf.sample file. The linux
+# one is the actual file while all the others are symlinks to it.
+ONIRO_LAYERS_CONF_SAMPLE = "${ONIRO_COREBASE}/flavours/${ONIRO_FLAVOUR}/bblayers.conf.sample"
+
+python oniro_update_bblayersconf() {
+    version = int(d.getVar('ONIRO_LAYERS_CONF_VERSION', True) or -1)
+    required_version = int(d.getVar('ONIRO_REQUIRED_LAYERS_CONF_VERSION', True) or -1)
+    upgrade_fail_msg = """You need to update the build's bblayers.conf manually for this version transition.
+
+Compare your build\'s bblayers.conf with the Oniro\'s bblayers.conf.sample and merge
+any changes before continuing. You can take advantage of a tool like "${SANITY_DIFF_TOOL}":
+
+"${SANITY_DIFF_TOOL} conf/bblayers.conf ${ONIRO_LAYERS_CONF_SAMPLE}"
+
+Note:
+ Once ONIRO_LAYERS_CONF_VERSION (currently ${ONIRO_LAYERS_CONF_VERSION}) value in conf/bblayers.conf matches the
+ ONIRO_REQUIRED_LAYERS_CONF_VERSION (currently ${ONIRO_REQUIRED_LAYERS_CONF_VERSION}) value in the Oniro build metadata,
+ this error will go away.
+"""
+    upgrade_fail_msg = d.expand(upgrade_fail_msg)
+    downgrade_fail_msg = """Your build's bblayers.conf was generated from a newer build metadata.
+
+Compare your build\'s bblayers.conf with the Oniro\'s bblayers.conf.sample and merge
+any changes before continuing. You can take advantage of a tool like \"${SANITY_DIFF_TOOL}\":
+
+${SANITY_DIFF_TOOL} conf/bblayers.conf ${ONIRO_LAYERS_CONF_SAMPLE}
+
+Note:
+ Once ONIRO_LAYERS_CONF_VERSION (currently ${ONIRO_LAYERS_CONF_VERSION}) value in conf/bblayers.conf matches the
+ ONIRO_REQUIRED_LAYERS_CONF_VERSION (currently ${ONIRO_REQUIRED_LAYERS_CONF_VERSION}) value in the Oniro build metadata,
+ this error will go away.
+"""
+    downgrade_fail_msg = d.expand(downgrade_fail_msg)
+
+    if version == -1 or required_version == -1:
+        bb.fatal(upgrade_fail_msg)
+    elif version < required_version:
+        bb.fatal(upgrade_fail_msg)
+    elif version > required_version:
+        bb.fatal(downgrade_fail_msg)
+
+    bb.fatal("You need to update bblayers.conf manually for this version transition.")
+}
