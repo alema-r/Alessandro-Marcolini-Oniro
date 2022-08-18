@@ -2,6 +2,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+ONIRO_FLAVOUR = "${@'${ONIRO_FLAVOUR_PRETTY}'.lower()}"
+DISTRO = "oniro-${ONIRO_FLAVOUR}"
+DISTRO_NAME = "Oniro Project Base ${ONIRO_FLAVOUR} Distro"
+
 require conf/distro/include/security_flags.inc
 
 INHERIT += "oniro-sanity"
