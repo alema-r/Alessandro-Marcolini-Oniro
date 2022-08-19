@@ -2,9 +2,14 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# Bump this each time bblayers.conf.sample changes incompatibly. For example,
-# when integrating new layers. It needs to be in sync with
-# ONIRO_REQUIRED_LAYERS_CONF_VERSION for associated sanity check to pass.
+# If you are changing bblayers.conf.sample and introduce an incompatible
+# change (like adding new layers), increment the ONIRO_LAYERS_CONF_VERSION value
+# here and ONIRO_REQUIRED_LAYERS_CONF_VERSION in conf/distro/include/oniro.inc
+
+# If you are changing bblayers.conf because of a build time error mismatch on
+# ONIRO_REQUIRED_LAYERS_CONF_VERSION, update the value below to the
+# required one after you have merged in all the changes from the sample file.
+
 ONIRO_LAYERS_CONF_VERSION = "1"
 
 BBPATH = "${TOPDIR}"
