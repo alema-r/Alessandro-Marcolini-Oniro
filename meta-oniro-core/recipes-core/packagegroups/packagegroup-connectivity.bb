@@ -14,6 +14,7 @@ PACKAGES = "\
 
 RDEPENDS:packagegroup-net-essentials = "\
 	dropbear \
+	openssh-sftp-server \
 	${@bb.utils.contains("COMBINED_FEATURES", "wifi", "packagegroup-base-wifi iw", "", d)} \
 	networkmanager \
 	networkmanager-nmcli \
