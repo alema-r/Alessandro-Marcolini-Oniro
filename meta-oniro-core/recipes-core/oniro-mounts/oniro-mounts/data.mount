@@ -1,0 +1,17 @@
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+[Unit]
+Description=data mount - openharmony
+Before=sysinit.target
+Requires=run-mount-appdata.mount
+After=run-mount-appdata.mount
+
+[Mount]
+What=/run/mount/appdata/openharmony
+Where=/data
+Options=bind
+
+[Install]
+WantedBy=sysinit.target
