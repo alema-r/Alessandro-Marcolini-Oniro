@@ -1,0 +1,54 @@
+From b6bb1d590565c188c7c7bfa7a202ede807616823 Mon Sep 17 00:00:00 2001
+From: Andrei Gherzan <andrei.gherzan@huawei.com>
+Date: Mon, 22 Aug 2022 13:45:59 +0200
+Subject: [PATCH] efi.cfg: Drop ACPI dependency
+
+On X86 this will have no impact as CONFIG_ACPI is enabled by default. On
+the other hand, ARM64 would be affected as they don't have the same
+default. The defconfig for arm64 recommends CONFIG_ACPI and this patch
+follows this recommendation in the qemuarm64 bsp configuration to fix
+ACPI-only EFI boots on this arch.
+
+arm (32bit) would also be unaffected as there is no ACPI support there
+at all. And this unconditional drop (CONFIG_ACPI) will actually fix a
+configuration warning when enabling EFI on a arm (32bit) machine:
+
+[INFO]: config 'CONFIG_ACPI' was set, but it wasn't assignable, check
+(parent) dependencies
+
+Upstream-status: Submitted [https://lists.yoctoproject.org/g/linux-yocto/message/11579] 
+Signed-off-by: Andrei Gherzan <andrei.gherzan@huawei.com>
+---
+ bsp/qemuarm64/qemuarm64.cfg | 7 +++++++
+ cfg/efi.cfg                 | 1 -
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/bsp/qemuarm64/qemuarm64.cfg b/bsp/qemuarm64/qemuarm64.cfg
+index ef8d3ed0..03fdc58c 100644
+--- a/bsp/qemuarm64/qemuarm64.cfg
++++ b/bsp/qemuarm64/qemuarm64.cfg
+@@ -32,3 +32,10 @@ CONFIG_RTC_DRV_PL031=y
+ # PCI configs, needed for virtio-rng (and others)
+ CONFIG_PCI=y
+ CONFIG_PCI_HOST_GENERIC=y
++
++# arm64 defconfig suggests CONFIG_ACPI as default because it won't be enabled
++# with CONFIG_EFI - even though ACPI-only ARM64 EFI boots would break
++# otherwise. We also do the same here as a sane default.
++CONFIG_ARCH_SUPPORTS_ACPI=y
++CONFIG_ACPI=y
++
+diff --git a/cfg/efi.cfg b/cfg/efi.cfg
+index d3dfd603..d729cbe9 100644
+--- a/cfg/efi.cfg
++++ b/cfg/efi.cfg
+@@ -3,7 +3,6 @@
+
+ # Dependencies
+ CONFIG_PCI=y
+-CONFIG_ACPI=y
+
+ # Enable basic EFI support
+ CONFIG_EFI=y
+--
+2.25.1

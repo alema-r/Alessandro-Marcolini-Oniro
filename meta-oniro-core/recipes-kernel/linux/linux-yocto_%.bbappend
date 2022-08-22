@@ -3,3 +3,5 @@
 # SPDX-License-Identifier: Apache-2.0
 
 require recipes-kernel/linux/linux-oniro-tweaks-all.inc
+
+SRC_URI += "file://fix-efi.cfg-drop-acpi-dependency.patch;patchdir=${KMETA}"
