@@ -1,4 +1,4 @@
-From 520411cf364ee4b0b5a8f0857498aaabd790afb3 Mon Sep 17 00:00:00 2001
+From 4efc42b99c96b026f560b0918de7e237ac3dc8d1 Mon Sep 17 00:00:00 2001
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
 Date: Tue, 10 Mar 2020 08:26:53 -0700
 Subject: [PATCH] gentypes/genmodes: Do not use __LINE__ for maintaining
@@ -11,7 +11,6 @@ Upstream-Status: Inappropriate [OE Reproducibility specific]
 
 Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
-Signed-off-by: Bernhard Rosenkränzer <bernhard.rosenkraenzer.ext@huawei.com> [ported to gcc 12]
 ---
  gcc/gengtype.cc |  6 +++---
  gcc/genmodes.cc | 32 ++++++++++++++++----------------
