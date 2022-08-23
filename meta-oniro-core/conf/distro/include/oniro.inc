@@ -4,7 +4,7 @@
 
 ONIRO_FLAVOUR = "${@'${ONIRO_FLAVOUR_PRETTY}'.lower()}"
 DISTRO = "oniro-${ONIRO_FLAVOUR}"
-DISTRO_NAME = "Oniro Project Base ${ONIRO_FLAVOUR} Distro"
+DISTRO_NAME = "Oniro Project Base ${ONIRO_FLAVOUR_PRETTY} Distro"
 
 require conf/distro/include/security_flags.inc
 
