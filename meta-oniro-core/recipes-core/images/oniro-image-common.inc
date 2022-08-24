@@ -20,11 +20,13 @@ IMAGE_INSTALL:append = "\
 			kernel-image \
 			"
 
-IMAGE_INSTALL:append = " ${@bb.utils.contains('MACHINE_FEATURES', 'optee', 'optee-client', '', d)} "
-
 # If the machine has a cellular modem it can set MACHINE_FEATURES+=modem to
 # add the needed packages into the image. In the special case of an USB cellular
 # modem adding MACHINE_FEATURES+="modem usbmodem" ensures to have the usb-modeswitch
 # package as well.
 IMAGE_INSTALL:append = " ${@bb.utils.contains('MACHINE_FEATURES', 'modem', 'networkmanager-wwan modemmanager', '', d)} "
 IMAGE_INSTALL:append = " ${@bb.utils.contains('MACHINE_FEATURES', 'usbmodem', 'usb-modeswitch', '', d)} "
+
+# Security-related packages
+IMAGE_INSTALL:append = " ${@bb.utils.contains('MACHINE_FEATURES', 'optee', 'packagegroup-ledge-optee', '', d)} "
+IMAGE_INSTALL:append = " ${@bb.utils.contains('MACHINE_FEATURES', 'tpm2', 'packagegroup-security-tpm2', '', d)} "
