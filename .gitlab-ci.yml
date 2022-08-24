@@ -468,6 +468,28 @@ lava-zephyr-96b-nitrogen-twister:
     CI_REPORT_JOB_NAME: lava-report
     CI_SQUAD_PROJECT_NAME: "zephyr"
 
+lava-zephyr-qemu-x86-twister:
+  needs: [zephyr-qemu-x86-twister-gcc]
+  stage: test
+  extends: .lava-test-scheduled
+  variables:
+    MACHINE: qemu-x86
+    CI_BUILD_JOB_NAME: zephyr-qemu-x86-twister-gcc
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/qemu-x86-zephyr-tests.yaml"
+    CI_REPORT_JOB_NAME: lava-report
+    CI_SQUAD_PROJECT_NAME: "zephyr"
+
+lava-zephyr-qemu-cortex-m3-twister:
+  needs: [zephyr-qemu-cortex-m3-twister-gcc]
+  stage: test
+  extends: .lava-test-scheduled
+  variables:
+    MACHINE: qemu-cortex-m3
+    CI_BUILD_JOB_NAME: zephyr-qemu-cortex-m3-twister-gcc
+    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/qemu-cortex-m3-zephyr-tests.yaml"
+    CI_REPORT_JOB_NAME: lava-report
+    CI_SQUAD_PROJECT_NAME: "zephyr"
+
 lava-qemu-x86-perf:
   needs: [linux-qemu-x86-gcc]
   stage: test

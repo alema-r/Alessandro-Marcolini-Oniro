@@ -245,6 +245,28 @@ zephyr-96b-nitrogen-twister-gcc:
 zephyr-96b-nitrogen-twister-clang:
   extends: [.zephyr-96b-nitrogen-twister, .toolchain-clang, .broken]
 
+.zephyr-qemu-x86-twister:
+  extends: .build-zephyr-image
+  variables:
+    MACHINE: qemu-x86
+    CI_ONIRO_RECIPE_NAME: zephyr-kernel-test-twister
+    CI_ONIRO_JOB_ARTIFACTS: "twister*.tar.bz2"
+zephyr-qemu-x86-twister-gcc:
+  extends: [.zephyr-qemu-x86-twister, .toolchain-gcc]
+zephyr-qemu-x86-twister-clang:
+  extends: [.zephyr-qemu-x86-twister, .toolchain-clang, .broken]
+
+.zephyr-qemu-cortex-m3-twister:
+  extends: .build-zephyr-image
+  variables:
+    MACHINE: qemu-cortex-m3
+    CI_ONIRO_RECIPE_NAME: zephyr-kernel-test-twister
+    CI_ONIRO_JOB_ARTIFACTS: "twister*.tar.bz2"
+zephyr-qemu-cortex-m3-twister-gcc:
+  extends: [.zephyr-qemu-cortex-m3-twister, .toolchain-gcc]
+zephyr-qemu-cortex-m3-twister-clang:
+  extends: [.zephyr-qemu-cortex-m3-twister, .toolchain-clang, .broken]
+
 .zephyr-96b-avenger:
   extends: .build-zephyr-image
   variables:
