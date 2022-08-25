@@ -1,0 +1,52 @@
+From c7718fc5c3676c9a98451b6d2cd5a0d56254e5a7 Mon Sep 17 00:00:00 2001
+From: Philippe Coval <philippe.coval.ext@huawei.com>
+Date: Tue, 27 Sep 2022 10:48:30 +0200
+Subject: [PATCH] weston-init: Hotfix: Ignore weston's WorkingDirectory
+
+Oniro's homedirs are limited to oniro user
+so there is no '/home/weston' directory.
+
+Actually this home dir is created in rootfs
+but oniro's service (oniro-mounts/home.mount)
+is mount binding the home directory and shadows weston dir.
+
+So far oniro is only supporting system's configuration as most of our IoT usecase are using a single user/display configuration
+
+So this change just skip systemd's to run chdir which is causing the failure of service...
+
+I noticed it's working without (like before)
+so let's avoid this feature for now.
+
+For the record this home feature is only used to load optional weston.ini
+instead of system's one (/etc)
+
+So far oniro is only supporting system's configuration as most of our IoT usecase are using a single user/display configuration
+
+This change can be reverted once multi-user feature is implemented in oniro v3+.
+
+Relate-to: https://gitlab.eclipse.org/eclipse/oniro-blueprints/vending-machine/meta-oniro-blueprints-vending-machine/-/issues/3
+Relate-to: https://gitlab.eclipse.org/eclipse/oniro-core/oniro/-/issues/825
+Forwarded: https://gitlab.eclipse.org/eclipse/oniro-core/oniro/-/merge_requests/287
+Upstream-Status: Inappropriate [other]
+Signed-off-by: Philippe Coval <philippe.coval.ext@huawei.com>
+---
+ meta/recipes-graphics/wayland/weston-init/weston.service | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/meta/recipes-graphics/wayland/weston-init/weston.service b/meta/recipes-graphics/wayland/weston-init/weston.service
+index 80745998ed..b17ab9c615 100644
+--- a/meta/recipes-graphics/wayland/weston-init/weston.service
++++ b/meta/recipes-graphics/wayland/weston-init/weston.service
+@@ -44,9 +44,6 @@ ExecStart=/usr/bin/weston --modules=systemd-notify.so
+ User=weston
+ Group=weston
+ 
+-# Make sure the working directory is the users home directory
+-WorkingDirectory=/home/weston
+-
+ # Set up a full user session for the user, required by Weston.
+ PAMName=weston-autologin
+ 
+-- 
+2.34.1
+

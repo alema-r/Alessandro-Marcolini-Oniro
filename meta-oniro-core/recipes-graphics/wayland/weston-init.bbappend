@@ -5,6 +5,9 @@
 FILESEXTRAPATHS:prepend := "${ONIRO_COREBASE}/assets:"
 
 SRC_URI += "${@oe.utils.conditional('WESTON_INI_BACKGROUND_IMAGE', '', '', "file://${WESTON_INI_BACKGROUND_IMAGE_BASENAME}", d)}"
+SRC_URI += "file://0001-weston-init-Hotfix-Ignore-weston-s-WorkingDirectory.patch;striplevel=5"
+
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
 WESTON_DYNAMIC_INI ?= "0"
 WESTON_INI_PATH ?= "etc/xdg/weston/weston.ini"
