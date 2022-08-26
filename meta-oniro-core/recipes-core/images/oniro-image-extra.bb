@@ -12,3 +12,6 @@ software stack"
 # defaulted to read-only so a package manager would make little sense using
 # such a image feature.
 IMAGE_FEATURES:remove = "package-management"
+
+# Needed to start weston
+SYSTEMD_DEFAULT_TARGET = "graphical.target"
