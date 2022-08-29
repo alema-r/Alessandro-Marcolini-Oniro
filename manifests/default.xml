@@ -41,7 +41,7 @@ SPDX-FileCopyrightText: Huawei Inc.
 	<project name="meta-java" remote="yocto" revision="1a8059f6b257ebe6fcae6416e499784d976afd24" path="meta-java" />
 	<project name="jiazhang0/meta-secure-core" remote="github" revision="1a74be5b363ee61256093e0a3efaa78fd370a27c" path="meta-secure-core" />
 	<project name="pub/rockchip/meta-seco-rockchip" remote="seco" revision="e23ef0581b26636351e3194edb8ec65cca830542" path="meta-seco-rockchip" />
-	<project name="meta-virtualization" remote="yocto" revision="33eec78a244174a13fb222982f0051113ef618a4" path="meta-virtualization" />
+	<project name="meta-virtualization" remote="yocto" revision="5be54854139acb4796000478394afd66de0792c1" path="meta-virtualization" />
 
 	<!--
 		All entries above are pinned to a specific revision and updated manually.
