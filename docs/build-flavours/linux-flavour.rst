@@ -42,11 +42,16 @@ You can test the image built for the qemux86-64 target by issuing:
 
     $ runqemu qemux86-64 oniro-image-base wic ovmf slirp
 
+.. _linux-flavour-usage:
+
+Usage
+*****
+
 After successful bootup, you will be dropped into a login shell:
 
 .. code-block:: console
 
-    qemux86-64 login:
+    oniro-linux-qemux86-64 login:
     
 The default login name is **oniro** with **oniro** as a password.
 
@@ -54,12 +59,13 @@ After login you will see the shell prompt:
 
 .. code-block:: console
 
-    root@qemux86-64:~#
+    oniro@oniro-linux-qemux86-64:~$
 
 To exit qemu, you can either shut down the system:
 
 .. code-block:: console
 
-    root@qemux86:~# poweroff -f
+    oniro@oniro-linux-qemux86-64:~$ sudo poweroff    
+    Password: oniro 
 
 or close qemu using a key combination: *Ctrl-a followed by 'x'*.
