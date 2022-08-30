@@ -240,6 +240,9 @@ zephyr-96b-nitrogen-tests-clang:
     MACHINE: 96b-nitrogen
     CI_ONIRO_RECIPE_NAME: zephyr-kernel-test-twister
     CI_ONIRO_JOB_ARTIFACTS: "twister*.tar.bz2"
+  rules:
+    # Twister tests are somewhat heavy. Run them only on scheduled pipelines.
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULED_TYPE == "daily"
 zephyr-96b-nitrogen-twister-gcc:
   extends: [.zephyr-96b-nitrogen-twister, .toolchain-gcc]
 zephyr-96b-nitrogen-twister-clang:
@@ -251,6 +254,9 @@ zephyr-96b-nitrogen-twister-clang:
     MACHINE: qemu-x86
     CI_ONIRO_RECIPE_NAME: zephyr-kernel-test-twister
     CI_ONIRO_JOB_ARTIFACTS: "twister*.tar.bz2"
+  rules:
+    # Twister tests are somewhat heavy. Run them only on scheduled pipelines.
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULED_TYPE == "daily"
 zephyr-qemu-x86-twister-gcc:
   extends: [.zephyr-qemu-x86-twister, .toolchain-gcc]
 zephyr-qemu-x86-twister-clang:
@@ -262,6 +268,9 @@ zephyr-qemu-x86-twister-clang:
     MACHINE: qemu-cortex-m3
     CI_ONIRO_RECIPE_NAME: zephyr-kernel-test-twister
     CI_ONIRO_JOB_ARTIFACTS: "twister*.tar.bz2"
+  rules:
+    # Twister tests are somewhat heavy. Run them only on scheduled pipelines.
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULED_TYPE == "daily"
 zephyr-qemu-cortex-m3-twister-gcc:
   extends: [.zephyr-qemu-cortex-m3-twister, .toolchain-gcc]
 zephyr-qemu-cortex-m3-twister-clang:
