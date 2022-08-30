@@ -25,8 +25,8 @@ SPDX-FileCopyrightText: Huawei Inc.
 	<remote name="openembedded" fetch="git://git.openembedded.org" />
 	<remote name="seco" fetch="https://git.seco.com" />
 
-	<project name="bitbake" remote="openembedded" revision="4ada86cb6b05e6e3aabc8015a6e73aacb14a3388" path="bitbake" />
-	<project name="openembedded-core" remote="openembedded" revision="10891d4d955f347c328cf8c099031f05f5c855a2" path="oe-core" />
+	<project name="bitbake" remote="openembedded" revision="bc85c044ec250001855f2f9f0717ac031feab7c2" path="bitbake" />
+	<project name="openembedded-core" remote="openembedded" revision="54ee67b1a805a07288925d56e9956aabc23b6ab2" path="oe-core" />
 	<project name="meta-openembedded" remote="openembedded" revision="acbe74879807fc6f82b62525d32c823899e19036" path="meta-openembedded" />
 	<project name="aehs29/meta-freertos" remote="github" revision="0d0f168b1bbcdfa8d88d97eefc206a18802a66eb" path="meta-freertos" />
 	<project name="meta-intel" remote="yocto" revision="15cdda250fc5aa762ac0139087f96411ca696036" path="meta-intel" />
@@ -39,9 +39,9 @@ SPDX-FileCopyrightText: Huawei Inc.
 	<project name="riscv/meta-riscv" remote="github" revision="70e099d7ceca52a1dde2c978713012f6b20a9891" path="meta-riscv" />
 	<project name="meta-arm" remote="yocto" revision="78fce73c3803aba82149a3a03fde1b708f5424fa" path="meta-arm" />
 	<project name="meta-java" remote="yocto" revision="1a8059f6b257ebe6fcae6416e499784d976afd24" path="meta-java" />
-	<project name="jiazhang0/meta-secure-core" remote="github" revision="def57bd5e00d7610e7fdaa3f96a50520f790e7a2" path="meta-secure-core" />
+	<project name="jiazhang0/meta-secure-core" remote="github" revision="1a74be5b363ee61256093e0a3efaa78fd370a27c" path="meta-secure-core" />
 	<project name="pub/rockchip/meta-seco-rockchip" remote="seco" revision="e23ef0581b26636351e3194edb8ec65cca830542" path="meta-seco-rockchip" />
-	<project name="meta-virtualization" remote="yocto" revision="33eec78a244174a13fb222982f0051113ef618a4" path="meta-virtualization" />
+	<project name="meta-virtualization" remote="yocto" revision="5be54854139acb4796000478394afd66de0792c1" path="meta-virtualization" />
 
 	<!--
 		All entries above are pinned to a specific revision and updated manually.
