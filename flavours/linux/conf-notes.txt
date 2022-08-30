@@ -29,6 +29,6 @@ or via command line, e.g.:
 
 You can also run generated qemu images with a command:
 
-    $ runqemu qemux86-64 qemuparams="-nographic" oniro-image-base wic ovmf slirp
+    $ runqemu qemux86-64 oniro-image-base wic ovmf slirp nographic
 
 Then log in as 'oniro' user with 'oniro' as a password.
