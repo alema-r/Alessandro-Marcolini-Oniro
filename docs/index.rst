@@ -36,6 +36,7 @@ Build System Guide
 
    supported-technologies/openthread
    supported-technologies/containers
+   supported-technologies/modbus
 
 .. toctree::
    :caption: Supported Toolchains
