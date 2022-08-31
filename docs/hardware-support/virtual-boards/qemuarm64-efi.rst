@@ -51,3 +51,5 @@ Once the image is done, you can run the Qemu using the provided script wrapper:
 .. code-block:: console
 
    $ MACHINE=qemuarm64-efi runqemu oniro-image-base slirp
+
+For additional information refer to the :ref:`usage section <linux-flavour-usage>`.
