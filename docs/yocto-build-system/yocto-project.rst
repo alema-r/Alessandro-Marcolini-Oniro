@@ -61,5 +61,5 @@ Additional Documentation
 documentation on various aspects of the build system. For the general usage of the build system, it's components, architecture and capabilities consult the following resources:
 
 - `Yocto Project Documentation Home <https://docs.yoctoproject.org/>`_
-- `Yocto Project Quick Build <https://www.yoctoproject.org/docs/current/brief-yoctoprojectqs/brief-yoctoprojectqs.html>`_
-- `Yocto Project Reference Manual <https://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html>`_
+- `Yocto Project Quick Build <https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html>`_
+- `Yocto Project Reference Manual <https://docs.yoctoproject.org/ref-manual/index.html>`_
