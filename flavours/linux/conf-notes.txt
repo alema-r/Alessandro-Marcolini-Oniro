@@ -5,6 +5,7 @@ You can now run 'bitbake <target>'
 
 Supported targets:
 - oniro-image-base
+- oniro-bundle-base
 - oniro-image-base-dev
 - oniro-image-base-tests
 - oniro-image-extra
