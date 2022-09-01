@@ -215,39 +215,6 @@ zephyr-qemu-cortex-m3-gcc:
 zephyr-qemu-cortex-m3-clang:
   extends: [.zephyr-qemu-cortex-m3, .toolchain-clang, .broken]
 
-.zephyr-96b-nitrogen:
-  extends: .build-zephyr-image
-  variables:
-    MACHINE: 96b-nitrogen
-zephyr-96b-nitrogen-gcc:
-  extends: [.zephyr-96b-nitrogen, .toolchain-gcc]
-zephyr-96b-nitrogen-clang:
-  extends: [.zephyr-96b-nitrogen, .toolchain-clang, .broken]
-
-.zephyr-96b-nitrogen-tests:
-  extends: .build-zephyr-image
-  variables:
-    MACHINE: 96b-nitrogen
-    CI_ONIRO_RECIPE_NAME: zephyr-kernel-test-all
-zephyr-96b-nitrogen-tests-gcc:
-  extends: [.zephyr-96b-nitrogen-tests, .toolchain-gcc]
-zephyr-96b-nitrogen-tests-clang:
-  extends: [.zephyr-96b-nitrogen-tests, .toolchain-clang, .broken]
-
-.zephyr-96b-nitrogen-twister:
-  extends: .build-zephyr-image
-  variables:
-    MACHINE: 96b-nitrogen
-    CI_ONIRO_RECIPE_NAME: zephyr-kernel-test-twister
-    CI_ONIRO_JOB_ARTIFACTS: "twister*.tar.bz2"
-  rules:
-    # Twister tests are somewhat heavy. Run them only on scheduled pipelines.
-    - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULED_TYPE == "daily"
-zephyr-96b-nitrogen-twister-gcc:
-  extends: [.zephyr-96b-nitrogen-twister, .toolchain-gcc]
-zephyr-96b-nitrogen-twister-clang:
-  extends: [.zephyr-96b-nitrogen-twister, .toolchain-clang, .broken]
-
 .zephyr-qemu-x86-twister:
   extends: .build-zephyr-image
   variables:
