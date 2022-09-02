@@ -457,17 +457,6 @@ lava-seco-c61-2gb-kselftest:
     CI_REPORT_JOB_NAME: lava-report
     CI_SQUAD_PROJECT_NAME: "kselftest"
 
-lava-zephyr-96b-nitrogen-twister:
-  needs: [zephyr-96b-nitrogen-twister-gcc]
-  stage: test
-  extends: .lava-test-scheduled
-  variables:
-    MACHINE: 96b-nitrogen
-    CI_BUILD_JOB_NAME: zephyr-96b-nitrogen-twister-gcc
-    CI_LAVA_JOB_DEFINITION: "https://git.ostc-eu.org/OSTC/infrastructure/lava/lava-config/-/raw/master/lava.ostc-eu.org/job-definitions/ci/nitrogen-twister.yaml"
-    CI_REPORT_JOB_NAME: lava-report
-    CI_SQUAD_PROJECT_NAME: "zephyr"
-
 lava-zephyr-qemu-x86-twister:
   needs: [zephyr-qemu-x86-twister-gcc]
   stage: test
