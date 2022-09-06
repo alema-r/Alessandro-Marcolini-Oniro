@@ -108,6 +108,20 @@ Merge Results`_ for more information.
 
 The default value is the empty string.
 
+
+CI_ONIRO_OECORE_BRANCH
+----------------------
+
+Can be used to specify Openembedded Core branch to be used for testing.
+If not specified, the one defined in ``CI_ONIRO_MANIFEST_NAME`` manifest file will be used
+
+CI_ONIRO_OECORE_REPO
+--------------------
+
+Can be used to specify Openembedded Core repo (remote) to be used for testing.
+If not specified, the one defined in ``CI_ONIRO_MANIFEST_NAME`` manifest file will be used
+NOTE: ``CI_ONIRO_OECORE_BRANCH`` *must* be specified for overriden repos
+
 Local git-repo Mirror
 =====================
 
