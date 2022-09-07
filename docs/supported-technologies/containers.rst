@@ -4,12 +4,12 @@
 
 .. include:: ../definitions.rst
 
-Containers
-##########
+Containers Introduction
+#######################
 
 |main_project_name| maintains support for a container-based architecture
 included as part of the OS when using the reference images (or images derived
-from them).  This OS functionality aims at facilitating the deployment of
+from them). This OS functionality aims at facilitating the deployment of
 container-based applications. This feature plays a part in the wider
 |main_project_name| update software stack for managing deployments and updates
 from the host operating system to the container-based applications.
@@ -19,15 +19,60 @@ from the host operating system to the container-based applications.
     The current support is aiming at the Linux-based |main_project_name| images.
 
 As part of this architecture, |main_project_name| currently provides the
-integration and support for the following container management engines:
+integration and support for the `podman`_ container
+management engine.
+
+Podman-based Container Software Stack
+#####################################
+
+`podman`_ is a daemonless container engine that can run both in root and
+rootless mode. |main_project_name| supports both of these modes while keeping
+the read-only root filesystem assumption valid by taking advantage of the
+application partition for storing persistent data.
+
+The `podman`_ container engine uses various other components and
+|main_project_name| defines the rest of the stack as follows.
+
+`skopeo`_ is used for dealing with a container image registry of choice. It
+handles operations like copying images from one storage mechanism to another,
+inspecting remote images, deleting images from a repository and passing the
+required credential for repository authentication. Podman uses `skopeo`
+to carry out operations concerning an image registry.
+
+On the lower side of the stack, the build infrastructure supports multiple
+options for OCI (Open Container Initiative) runtimes. The responsibility of this
+component is to maintain the container lifecycle abstracting the
+Linux-associated primitives. In its default build configuration,
+|main_project_name| defines this component as `runc`_ due to its maturity and
+wide adoption by various engines.
+
+At the bottom of the container software stack, there is the host's Linux kernel
+that provides functionality for supporting containers.
+
+.. code-block::
+
+      ┌──────────────┐
+      │Image Registry│
+      └──────────────┘
+             ▲
+             │
+          ┌──┴───┐
+          │skopeo│
+          └──────┘                     ┌─────────┐
+             ▲             ┌──────────►│Container│
+             │             │           └─────────┘
+             │             │
+          ┌──┴───┐        ┌┴───┐
+          │podman├───────►│runc│
+          └──┬───┘        └─┬──┘
+             │              │         ┌─────────────┐
+             ▼              └────────►│Host's kernel│
+          ┌──────┐                    │  (Linux)    │
+          │Images│                    └─────────────┘
+          └──────┘
 
 Podman
-********
-
-`Podman <https://podman.io/>`_ is a daemonless container engine that can run
-both in root and rootless mode. |main_project_name| supports both of these
-modes while keeping the read-only root filesystem assumption valid by taking
-advantage of the application partition for storing persistent data.
+******
 
 The OS integration provides seamless integration with `docker` CLI  so that
 `docker` commands are handled transparently by `podman`.
@@ -100,3 +145,7 @@ background mode:
 
 The output above may be slightly different due to variations in your local
 setup. That is expected.
+
+.. _runc: https://github.com/opencontainers/runc
+.. _podman: https://podman.io/
+.. _skopeo: https://github.com/containers/skopeo
