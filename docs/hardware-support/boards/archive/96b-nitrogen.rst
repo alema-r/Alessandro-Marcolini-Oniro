@@ -2,7 +2,7 @@
 ..
 .. SPDX-License-Identifier: CC-BY-4.0
 
-.. include:: ../../definitions.rst
+.. include:: ../../../definitions.rst
 
 .. _SupportedBoardNitrogen:
 
