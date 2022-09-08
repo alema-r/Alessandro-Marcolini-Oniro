@@ -1,0 +1,35 @@
+From 993558aeba06593245d7312a311f184a4c6474fa Mon Sep 17 00:00:00 2001
+From: Zygmunt Krynicki <zygmunt.krynicki@huawei.com>
+Date: Wed, 13 Jul 2022 15:49:13 +0200
+Subject: [PATCH 1/3] Adjust for deprecated jinja2.Markup alias
+
+The alias was removed by upstream jinja2 commit
+824b4d3e5bb789cabd7cef74e57f4d802a7b2bfd "remove deprecated Markup and
+escape aliases". Upstream recommends importing Markup from the
+markupsafe package instead.
+
+Upstream-Status: Submitted [https://code.launchpad.net/~levanquach/checkbox-ng/+git/checkbox-ng/+merge/429157]
+
+Signed-off-by: Zygmunt Krynicki <zygmunt.krynicki@huawei.com>
+---
+ plainbox/impl/exporter/jinja2.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/plainbox/impl/exporter/jinja2.py b/plainbox/impl/exporter/jinja2.py
+index 1f780e4b..f49059ea 100644
+--- a/plainbox/impl/exporter/jinja2.py
++++ b/plainbox/impl/exporter/jinja2.py
+@@ -32,9 +32,9 @@ from datetime import datetime
+ 
+ from jinja2 import Environment
+ from jinja2 import FileSystemLoader
+-from jinja2 import Markup
+ from jinja2 import environmentfilter
+ from jinja2 import escape
++from markupsafe import Markup
+ 
+ from plainbox import get_version_string
+ from plainbox.abc import ISessionStateExporter
+-- 
+2.34.1
+

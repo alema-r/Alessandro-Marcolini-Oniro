@@ -1,0 +1,54 @@
+From f9505cb839ef8d01b85e72dbc55d119ca223e985 Mon Sep 17 00:00:00 2001
+From: Le Van Quach <levan.quach@kalpa.it>
+Date: Fri, 29 Jul 2022 16:38:06 +0200
+Subject: [PATCH] Modify restart logic in order to run checkbox service at
+ startup for Oniro
+
+Upstream-Status: Submitted [https://code.launchpad.net/~levanquach/checkbox-ng/+git/checkbox-ng/+merge/429157]
+
+Signed-off-by: Le Van Quach <levan.quach@kalpa.it>
+---
+ plainbox/impl/session/restart.py | 20 ++++++++++++++------
+ 1 file changed, 14 insertions(+), 6 deletions(-)
+
+diff --git a/plainbox/impl/session/restart.py b/plainbox/impl/session/restart.py
+index 0aa67b4..d7f95b4 100644
+--- a/plainbox/impl/session/restart.py
++++ b/plainbox/impl/session/restart.py
+@@ -276,13 +276,8 @@ def detect_restart_strategy(session=None, session_type=None) -> IRestartStrategy
+     # with the next release or when we do inclusive naming refactor
+     # or roughly after April of 2022
+     if session_type in ('remote', 'checkbox-slave'):
+-        try:
+-            subprocess.run(
+-                ['systemctl', 'is-active', '--quiet', 'checkbox-ng.service'],
+-                check=True)
++        if check_service_is_active():
+             return RemoteDebRestartStrategy()
+-        except subprocess.CalledProcessError:
+-                pass
+ 
+     # XXX: RemoteSnappyRestartStrategy debug
+     remote_restart_stragegy_debug = os.getenv('REMOTE_RESTART_DEBUG')
+@@ -337,8 +332,21 @@ def detect_restart_strategy(session=None, session_type=None) -> IRestartStrategy
+         # NOTE: Assume this is a terminal application
+         return XDGRestartStrategy(app_terminal=True)
+ 
++    # Systemctl
++    if session_type == None:
++        if check_service_is_active():
++            return RemoteDebRestartStrategy()
++
+     raise LookupError("Unable to find appropriate strategy.""")
+ 
++def check_service_is_active() -> bool:
++    try:
++        subprocess.run(
++            ['systemctl', 'is-active', '--quiet', 'checkbox-ng.service'],
++            check=True)
++        return True
++    except subprocess.CalledProcessError:
++        return False
+ 
+ def get_strategy_by_name(name: str) -> type:
+     """
