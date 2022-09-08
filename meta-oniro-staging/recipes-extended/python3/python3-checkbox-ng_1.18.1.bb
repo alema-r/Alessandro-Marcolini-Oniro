@@ -16,6 +16,7 @@ SRC_URI += "file://0001-Adjust-for-deprecated-jinja2.Markup-alias.patch \
            file://checkbox-ng.service \
            file://0001-Modify-restart-logic-in-order-to-run-checkbox-servic.patch \
            file://0001-Adjust-autoescape-for-Jinja2.patch \
+           file://oniro-tests \
            "
 
 inherit pypi setuptools3
@@ -42,6 +43,7 @@ SYSTEMD_SERVICE:${PN}-service = "checkbox-ng.service"
 
 do_install:append() {
     install -D -m 0644 ${WORKDIR}/checkbox-ng.service -t ${D}${systemd_unitdir}/system/
+    install -D -m 0755 ${WORKDIR}/oniro-tests -t ${D}${bindir}
 }
 
 RDEPENDS:${PN}-service += " \

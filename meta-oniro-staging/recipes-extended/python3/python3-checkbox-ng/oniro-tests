@@ -1,0 +1,45 @@
+#!/usr/bin/env checkbox-cli
+#
+# SPDX-FileCopyrightText: Le Van Quach <levan.quach@kalpa.it>
+#
+# SPDX-License-Identifier: MIT
+
+[launcher]
+launcher_version = 1
+stock_reports = text, certification
+
+[exporter:html]
+unit = com.canonical.plainbox::html
+
+[exporter:tar]
+unit = com.canonical.plainbox::tar
+
+[exporter:junit]
+unit = com.canonical.plainbox::junit
+
+[transport:html_transport]
+type = file
+path = /run/mount/appdata/oniro-tests-report.html
+
+[transport:tar_transport]
+type = file
+path = /run/mount/appdata/oniro-tests-report.tar.xz
+
+[transport:junit_transport]
+type = file
+path = /run/mount/appdata/oniro-tests-report.junit
+
+[report:html_report]
+transport = html_transport
+exporter = html
+forced = yes
+
+[report:tar_report]
+transport = tar_transport
+exporter = tar
+forced = yes
+
+[report:junit_report]
+transport = junit_transport
+exporter = junit
+forced = yes
