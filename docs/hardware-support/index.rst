@@ -16,6 +16,7 @@ This section details the hardware (including virtualized) supported as part of
    :maxdepth: 2
    
    boards/index
+   boards/archive/index
    virtual-boards/index
    adding-hardware-support
    peripherals/index
