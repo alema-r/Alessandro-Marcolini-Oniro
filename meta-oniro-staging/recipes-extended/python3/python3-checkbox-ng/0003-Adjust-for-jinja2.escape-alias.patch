@@ -1,0 +1,31 @@
+From c9c09d577dde44816ca92ff595aeb043930eafdb Mon Sep 17 00:00:00 2001
+From: Zygmunt Krynicki <zygmunt.krynicki@huawei.com>
+Date: Wed, 13 Jul 2022 17:09:13 +0200
+Subject: [PATCH 3/3] Adjust for jinja2.escape alias
+
+This is now called markupsafe.escape
+
+Upstream-Status: Submitted [https://code.launchpad.net/~levanquach/checkbox-ng/+git/checkbox-ng/+merge/429157]
+
+Signed-off-by: Zygmunt Krynicki <zygmunt.krynicki@huawei.com>
+---
+ plainbox/impl/exporter/jinja2.py | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/plainbox/impl/exporter/jinja2.py b/plainbox/impl/exporter/jinja2.py
+index 5980bafa..a787b576 100644
+--- a/plainbox/impl/exporter/jinja2.py
++++ b/plainbox/impl/exporter/jinja2.py
+@@ -33,8 +33,7 @@ from datetime import datetime
+ from jinja2 import Environment
+ from jinja2 import FileSystemLoader
+ from jinja2 import pass_environment
+-from jinja2 import escape
+-from markupsafe import Markup
++from markupsafe import escape, Markup
+ 
+ from plainbox import get_version_string
+ from plainbox.abc import ISessionStateExporter
+-- 
+2.34.1
+

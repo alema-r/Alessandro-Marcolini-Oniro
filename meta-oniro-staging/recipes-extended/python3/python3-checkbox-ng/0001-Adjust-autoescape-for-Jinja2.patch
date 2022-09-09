@@ -1,0 +1,45 @@
+From 916a9f6d3bae6bea1639a83bce67e17393b11d85 Mon Sep 17 00:00:00 2001
+From: Le Van Quach <levan.quach@kalpa.it>
+Date: Fri, 5 Aug 2022 16:56:18 +0200
+Subject: [PATCH] Adjust autoescape for Jinja2
+
+Autoescape extension is called only if jinja2 version is < 2.9
+
+Upstream-Status: Submitted [https://code.launchpad.net/~levanquach/checkbox-ng/+git/checkbox-ng/+merge/429157]
+
+Signed-off-by: Le Van Quach <levan.quach@kalpa.it>
+
+---
+ plainbox/impl/exporter/jinja2.py | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/plainbox/impl/exporter/jinja2.py b/plainbox/impl/exporter/jinja2.py
+index a787b57..abdba4c 100644
+--- a/plainbox/impl/exporter/jinja2.py
++++ b/plainbox/impl/exporter/jinja2.py
+@@ -27,8 +27,10 @@
+ 
+ import json
+ import re
++import jinja2
+ from collections import OrderedDict
+ from datetime import datetime
++from packaging import version
+ 
+ from jinja2 import Environment
+ from jinja2 import FileSystemLoader
+@@ -110,7 +112,13 @@ class Jinja2SessionStateExporter(SessionStateExporterBase):
+         self.option_list = tuple(exporter_unit.option_list or ()) + tuple(
+                 option_list or ())
+         loader = FileSystemLoader(paths)
+-        env = Environment(loader=loader, extensions=['jinja2.ext.autoescape'])
++        # For jinja2 version > 2.9.0 autoescape functionality is built-in,
++        # no need to add extensions
++        if version.parse(jinja2.__version__) >= version.parse('2.9.0'):
++            env = Environment(loader=loader)
++        else:
++            env = Environment(loader=loader, extensions=['jinja2.ext.autoescape'])
++
+         self.customize_environment(env)
+ 
+         def include_file(name):

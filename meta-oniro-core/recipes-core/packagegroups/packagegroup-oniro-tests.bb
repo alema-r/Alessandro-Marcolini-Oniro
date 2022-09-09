@@ -12,4 +12,5 @@ PACKAGES = "\
 
 RDEPENDS:packagegroup-oniro-tests = "\
 	ptest-runner \
+	python3-checkbox-ng-service \
         "

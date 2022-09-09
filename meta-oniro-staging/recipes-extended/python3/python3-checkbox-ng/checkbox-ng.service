@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: Le Van Quach <levan.quach@kalpa.it>
+#
+# SPDX-License-Identifier: MIT
+
+[Unit]
+Description=Checkbox Remote Service
+Wants=network.target
+Requires=run-mount-appdata.mount
+
+[Service]
+ExecStart=/usr/bin/checkbox-cli service
+SyslogIdentifier=checkbox-ng.service
+Environment="XDG_CACHE_HOME=/run/mount/appdata/checkbox-ng/
+Restart=on-failure
+TimeoutStopSec=30
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
