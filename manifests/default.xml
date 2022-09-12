@@ -20,7 +20,8 @@ SPDX-FileCopyrightText: Huawei Inc.
 
 	<remote name="eclipse" fetch="https://gitlab.eclipse.org/eclipse" />
 	<remote name="github" fetch="https://github.com" />
-	<remote name="oniro-booting" fetch="https://booting.oniroproject.org" />
+	<remote name="ostc" fetch="https://git.ostc-eu.org/" />
+
 	<remote name="yocto" fetch="git://git.yoctoproject.org" />
 	<remote name="openembedded" fetch="git://git.openembedded.org" />
 	<remote name="seco" fetch="https://git.seco.com" />
@@ -63,5 +64,5 @@ SPDX-FileCopyrightText: Huawei Inc.
 	<project name="oniro-core/third-party/forks/meta-ledge-secure.git" remote="eclipse" revision="oniro/kirkstone" path="meta-ledge-secure" />
 	<project name="oniro-core/third-party/forks/meta-ts.git" remote="eclipse" revision="oniro/kirkstone" path="meta-ts" />
 	<project name="oniro-core/docs.git" remote="eclipse" revision="main" path="docs" />
-	<project name="distro/governance/ip-policy" remote="oniro-booting" revision="main" path="ip-policy" />
+	<project name="distro/governance/ip-policy" remote="ostc" revision="main" path="ip-policy" />
 </manifest>
