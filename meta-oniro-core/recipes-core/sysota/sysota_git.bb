@@ -103,6 +103,9 @@ SYSOTA_QUIRK_REBOOT_DELAY ?= "180"
 SYSOTA_MODEL:raspberrypi4-64 := "Raspberry Pi 4B"
 SYSOTA_BOOTLOADER_TYPE:raspberrypi4-64 := "pi-boot"
 
+SYSOTA_MODEL:raspberrypi-armv7 := "Raspberry Pi ARMv7"
+SYSOTA_BOOTLOADER_TYPE:raspberrypi-armv7 := "pi-boot"
+
 SYSOTA_MODEL:qemux86 := "QEMU Virtual Machine"
 SYSOTA_BOOTLOADER_TYPE:qemux86 := "GRUB"
 
