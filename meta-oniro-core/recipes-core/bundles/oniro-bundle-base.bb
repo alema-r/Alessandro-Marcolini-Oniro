@@ -6,6 +6,7 @@ inherit bundle
 
 SUMMARY = "SysOTA/RAUC Update Bundle for Oniro Base Image"
 
+RAUC_BUNDLE_COMPATIBLE:raspberrypi-armv7 = "Raspberry Pi ARMv7"
 RAUC_BUNDLE_COMPATIBLE:raspberrypi4-64 = "Raspberry Pi 4"
 RAUC_BUNDLE_COMPATIBLE:seco-intel-b68 := "SECO Alvin"
 RAUC_BUNDLE_COMPATIBLE:qemux86 = "QEMU x86"

@@ -33,6 +33,9 @@ IMAGE_FSTYPES:append = " squashfs"
 WKS_FILE:raspberrypi4-64 ?= "x-raspberrypi.wks.in"
 IMAGE_FSTYPES:raspberrypi4-64 ?= "wic.gz wic.bmap"
 
+WKS_FILE:raspberrypi-armv7 ?= "x-raspberrypi.wks.in"
+IMAGE_FSTYPES:raspberrypi-armv7 ?= "wic.gz wic.bmap"
+
 WKS_FILE:seco-intel-b68 ?= "x-gpt-efi-disk.wks.in"
 IMAGE_FSTYPES:seco-intel-b68 ?= "wic.gz wic.bmap"
 
