@@ -129,7 +129,7 @@ Make sure all of your submitted new files have a licensing statement in the head
 
 ### Substantial Contributions
 
-Therefore, if your contribution is only a patch directly applied to an existing file, then you are not required to do anything. If your contribution is an entire new project, or a substantial, copyrighted contribution, you **MUST** make sure that you do that following the [IP Policy](https://booting.oniroproject.org/distro/governance/ip-policy) and that you comply with REUSE standard to include the licensing information where they are required.
+Therefore, if your contribution is only a patch directly applied to an existing file, then you are not required to do anything. If your contribution is an entire new project, or a substantial, copyrighted contribution, you **MUST** make sure that you do that following the [IP Policy](https://git.ostc-eu.org/oss-compliance/ip-policy/) and that you comply with REUSE standard to include the licensing information where they are required.
 
 # DCO sign-off
 
