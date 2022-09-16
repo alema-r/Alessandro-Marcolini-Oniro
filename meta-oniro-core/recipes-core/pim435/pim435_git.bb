@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-HOMEPAGE = "https://booting.oniroproject.org/distro/components/pim435"
+HOMEPAGE = "https://gitlab.eclipse.org/eclipse/oniro-blueprints/core/pim435"
 SUMMARY = "A userspace driver application for PIM435 written in C"
 DESCRIPTION = "A userspace driver application for PIM435 (Pimoroni LED matrix) \
 written in C"
