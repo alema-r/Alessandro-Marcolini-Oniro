@@ -30,8 +30,8 @@ RTU and TCP operation modes are supported.
     purpose with existing systems. For new products without this requirement we
     do not recommend using Modbus.
 
-Enabling Modbus in Oniro:
-*************************
+Enabling Modbus in Oniro
+************************
 
 Modbus functionality is not enabled by default in the |main_project_name| and
 there is currently no Blueprint demonstrating its use cases. The basic integration
@@ -48,8 +48,8 @@ operations. The Zephyr upstream project does offer `samples for RTU as well as
 TCP operations modes in different roles
 <https://github.com/zephyrproject-rtos/zephyr/tree/main/samples/subsys/modbus>`
 
-Modbus-testing:
-***************
+Modbus-testing
+**************
 
 The `libmodbus` library does not come with any examples on how to use it by
 default. To fill this gap and allow integrators and developers to have a
