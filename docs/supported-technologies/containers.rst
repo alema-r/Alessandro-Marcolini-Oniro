@@ -4,8 +4,8 @@
 
 .. include:: ../definitions.rst
 
-Containers Introduction
-#######################
+Containers
+##########
 
 |main_project_name| maintains support for a container-based architecture
 included as part of the OS when using the reference images (or images derived
@@ -23,7 +23,7 @@ integration and support for the `podman`_ container
 management engine.
 
 Podman-based Container Software Stack
-#####################################
+*************************************
 
 `podman`_ is a daemonless container engine that can run both in root and
 rootless mode. |main_project_name| supports both of these modes while keeping
@@ -72,7 +72,7 @@ that provides functionality for supporting containers.
           └──────┘
 
 Podman
-******
+------
 
 The OS integration provides seamless integration with `docker` CLI  so that
 `docker` commands are handled transparently by `podman`.
