@@ -128,14 +128,14 @@ targets - just make sure you set `MACHINE` to the same value while running
 
 .. code-block:: console
 
-    $ MACHINE=qemuarm-efi bitbake oniro-image-base
+    $ MACHINE=qemuarm bitbake oniro-image-base
 
 Once the image is built, you can run a Qemu instance using the provided
 script wrapper as follows:
 
 .. code-block:: console
 
-      $ MACHINE=qemuarm-efi runqemu oniro-image-base serialstdio nographic slirp wic
+      $ MACHINE=qemuarm runqemu oniro-image-base serialstdio nographic slirp
 
 Runtime Login
 *************
