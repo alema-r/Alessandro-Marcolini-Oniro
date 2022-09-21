@@ -7,7 +7,7 @@
 ModBus
 ######
 
-`Modbus <https://modbus.org/>` is a communication protocol from the 1970s
+`Modbus <https://modbus.org/>`__ is a communication protocol from the 1970s
 designed to support industrial use cases. Its main modes of operation are Modbus
 RTU (Remote Terminal Unit) and Modbus TCP. The RTU variant is mostly used over
 RS-485 serial ports, while the newer Modbus TCP variant allows for a communication
@@ -19,8 +19,9 @@ into homes e.g. in home heating systems and PV systems.
 
 |main_project_name| maintains support for Modbus in its Linux and Zephyr
 flavours. On the Linux side the user-space Modbus implementation `libmodbus
-<https://libmodbus.org/>` is used while on Zephyr the native `Modbus subsystem
-<https://docs.zephyrproject.org/latest/services/modbus/index.html>` is used.
+<https://libmodbus.org/>`__ is used while on Zephyr the native `Modbus 
+subsystem <https://docs.zephyrproject.org/latest/services/modbus/index.html>`__
+is used.
 
 RTU and TCP operation modes are supported.
 
@@ -46,7 +47,7 @@ following line to your `conf/local.conf` file:
 On Zephyr you would need to enable the `CONFIG_MODBUS` options for your modes of
 operations. The Zephyr upstream project does offer `samples for RTU as well as
 TCP operations modes in different roles
-<https://github.com/zephyrproject-rtos/zephyr/tree/main/samples/subsys/modbus>`
+<https://github.com/zephyrproject-rtos/zephyr/tree/main/samples/subsys/modbus>`__
 
 Modbus-testing
 **************
@@ -55,7 +56,7 @@ The `libmodbus` library does not come with any examples on how to use it by
 default. To fill this gap and allow integrators and developers to have a
 head-start when developing an application using `libmodbus` we developed a small
 set of examples to demonstrate the usage. These examples can be found at our
-`modbus-testing repo <https://gitlab.eclipse.org/stefanschmidt/modbus-testing>`
+`modbus-testing repo <https://gitlab.eclipse.org/stefanschmidt/modbus-testing>`__
 and included in the image by the following addition to your `conf/local.conf` file:
 
 .. code-block::
