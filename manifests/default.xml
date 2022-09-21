@@ -60,7 +60,6 @@ SPDX-FileCopyrightText: Huawei Inc.
 	</project>
 	<project name="oniro-core/meta-clang.git" remote="eclipse" revision="oniro/kirkstone" path="meta-clang" />
 	<project name="oniro-core/meta-zephyr.git" remote="eclipse" revision="oniro/kirkstone" path="meta-zephyr" />
-	<project name="oniro-core/meta-openharmony.git" remote="eclipse" revision="kirkstone" path="meta-openharmony" />
 	<project name="oniro-core/third-party/forks/meta-ledge-secure.git" remote="eclipse" revision="oniro/kirkstone" path="meta-ledge-secure" />
 	<project name="oniro-core/third-party/forks/meta-ts.git" remote="eclipse" revision="oniro/kirkstone" path="meta-ts" />
 	<project name="oniro-core/docs.git" remote="eclipse" revision="main" path="docs" />
