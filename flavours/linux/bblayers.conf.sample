@@ -39,7 +39,6 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-security/meta-tpm \
   ##OEROOT##/../meta-riscv \
   ##OEROOT##/../meta-rauc \
-  ##OEROOT##/../meta-java \
   ##OEROOT##/../meta-seco-rockchip \
   ##OEROOT##/../meta-virtualization \
   ##OEROOT##/../meta-ts/meta-trustedsubstrate \
