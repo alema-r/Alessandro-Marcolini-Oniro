@@ -10,10 +10,6 @@ require conf/distro/include/security_flags.inc
 
 INHERIT += "oniro-sanity"
 
-# Configuration needed for meta-java layer
-PREFERRED_PROVIDER_virtual/java-initial-native ?= "cacao-initial-native"
-PREFERRED_PROVIDER_virtual/java-native ?= "cacao-native"
-
 BB_DANGLINGAPPENDS_WARNONLY:forcevariable = "0"
 
 # Bump this each time bblayers.conf.sample changes incompatibly. For example,
