@@ -6,3 +6,5 @@ inherit writables
 
 WRITABLES = "data"
 WRITABLE_PATH[data] = "/var/lib/thread/"
+
+RDEPENDS:${PN} += "ipset"
