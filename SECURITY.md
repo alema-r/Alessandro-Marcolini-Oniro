@@ -8,7 +8,7 @@ SPDX-License-Identifier: CC-BY-4.0
 
 If you think you have found a security issue in our distribution, please
 contact us immediatelly by posting a confidential issue in our bug
-tracker in a [dedicated security project](https://booting.oniroproject.org/security/bugtracker/-/issues).
+tracker in a [dedicated security project](https://gitlab.eclipse.org/security/oniro-core).
 
 To do so, login into our issue tracker or create a new account if you do not
 have one yet. Click on `New issue`, then make sure to check the checkbox at
