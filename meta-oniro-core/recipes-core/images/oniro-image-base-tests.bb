@@ -6,11 +6,14 @@ require recipes-core/images/oniro-image-base.bb
 
 SUMMARY = "Oniro Project image including the base OS software stack and tests"
 
+DISTRO_FEATURES:append = " ptest"
+
 IMAGE_INSTALL:append = "\
     packagegroup-oniro-tests \
     ltp \
     perf \
     kernel-selftest \
+    podman-ptest \
 "
 
 # This adds ptest packages to the image, and enables empty root password
