@@ -24,7 +24,6 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-zephyr/meta-zephyr-bsp \
   ##OEROOT##/../meta-zephyr/meta-zephyr-core \
   ##OEROOT##/../oniro/meta-oniro-core \
-  ##OEROOT##/../meta-openharmony \
   ##OEROOT##/../meta-freertos \
   ##OEROOT##/../meta-intel \
   ##OEROOT##/../meta-seco-intel \
@@ -40,7 +39,6 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-security/meta-tpm \
   ##OEROOT##/../meta-riscv \
   ##OEROOT##/../meta-rauc \
-  ##OEROOT##/../meta-java \
   ##OEROOT##/../meta-seco-rockchip \
   ##OEROOT##/../meta-virtualization \
   ##OEROOT##/../meta-ts/meta-trustedsubstrate \

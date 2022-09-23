@@ -19,9 +19,6 @@ SRC_URI = " \
     file://run-mount-sysdata.mount \
     file://oniro-homes.conf.tmpfiles \
     "
-SRC_URI:df-openharmony += " \
-    file://data.mount \
-    "
 
 REQUIRED_DISTRO_FEATURES ?= "systemd"
 
@@ -33,9 +30,6 @@ SYSTEMD_SERVICE:${PN} = " \
     run-mount-sysdata.mount \
     run-mount-devdata.mount \
     run-mount-appdata.mount \
-    "
-SYSTEMD_SERVICE:${PN}:df-openharmony += " \
-    data.mount \
     "
 SYSTEMD_AUTO_ENABLE = "enable"
 
@@ -55,9 +49,6 @@ do_install () {
 
     install -D "${WORKDIR}/oniro-homes.conf.tmpfiles" \
         "${D}${sysconfdir}/tmpfiles.d/oniro-homes.conf"
-}
-do_install:append:df-openharmony () {
-    install -m 0644 "${WORKDIR}/data.mount" "${D}${systemd_unitdir}/system"
 }
 
 FILES:${PN} += "${systemd_unitdir}"

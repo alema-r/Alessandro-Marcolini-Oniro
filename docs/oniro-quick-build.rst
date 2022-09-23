@@ -101,42 +101,6 @@ script wrapper as follows:
 If the host has a VT-capable CPU, you can pass the ``kvm`` argument for better
 performance. Check ``runqemu``'s help message for all available arguments.
 
-.. _Building with OpenHarmony:
-
-B. Building with OpenHarmony compatibility
-------------------------------------------
-
-To enable OpenHarmony compatibility features, you need to tweak the
-`local.conf` file before running the build process. You will find this
-configuration in `build-oniro-linux/conf/local.conf` where you'll need to add
-the following:
-
-.. code-block:: sh
-
-    TOOLCHAIN="clang"
-    RUNTIME="llvm"
-    DISTRO_FEATURES:append = " openharmony"
-    IMAGE_INSTALL:append = " openharmony-standard"
-
-This will enable OpenHarmony features and add OpenHarmony Standard System
-features to the `oniro-image-base` image.
-
-As the build directory is now initialized, you can proceed to run the build
-process (instead of `qemuarm-efi`, you can also build for any of the supported
-targets - just make sure you set `MACHINE` to the same value while running
-`bitbake` and `runqemu`):
-
-.. code-block:: console
-
-    $ MACHINE=qemuarm-efi bitbake oniro-image-base
-
-Once the image is built, you can run a Qemu instance using the provided
-script wrapper as follows:
-
-.. code-block:: console
-
-      $ MACHINE=qemuarm-efi runqemu oniro-image-base serialstdio nographic slirp wic
-
 Runtime Login
 *************
 
