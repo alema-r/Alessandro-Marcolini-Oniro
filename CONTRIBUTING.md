@@ -196,7 +196,7 @@ By making a contribution to this project, I certify that:
 # `oniro`-specific contributions process and guidelines
 
 The project handles contributions as merge request in the project's
-[GitLab instance](https://git.ostc-eu.org/distro/oniro). See above for
+[GitLab instance](https://gitlab.eclipse.org/eclipse/oniro-core/oniro). See above for
 more details.
 
 Each contributions must adhere to the [OpenEmbedded Commit Patch Message Guidelines](http://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines).
