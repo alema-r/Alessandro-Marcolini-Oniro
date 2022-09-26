@@ -62,5 +62,4 @@ SPDX-FileCopyrightText: Huawei Inc.
 	<project name="oniro-core/third-party/forks/meta-ledge-secure.git" remote="eclipse" revision="oniro/kirkstone" path="meta-ledge-secure" />
 	<project name="oniro-core/third-party/forks/meta-ts.git" remote="eclipse" revision="oniro/kirkstone" path="meta-ts" />
 	<project name="oniro-core/docs.git" remote="eclipse" revision="main" path="docs" />
-	<project name="distro/governance/ip-policy" remote="ostc" revision="main" path="ip-policy" />
 </manifest>
