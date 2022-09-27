@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# SPDX-FileCopyrightText: Huawei Inc.
+#
+# SPDX-License-Identifier: MIT
+
+#
+# libc test
+#
+
+make cleanall
+make run | tee libc-test.log
+
+echo ""
+echo "--- ptest result ---"
+if grep -q '^FAIL src.*\.exe.*' libc-test.log; then
+    grep '^FAIL src.*\.exe.*' libc-test.log \
+        | sed 's|^FAIL src/|FAIL: |;s|/|_|;s|\.exe.*\]||'
+    exit 1
+else
+    echo "PASS: libc-test"
+    exit 0
+fi

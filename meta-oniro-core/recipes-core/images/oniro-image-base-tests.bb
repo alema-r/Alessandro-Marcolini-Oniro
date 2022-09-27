@@ -14,6 +14,7 @@ IMAGE_INSTALL:append = "\
     perf \
     kernel-selftest \
     podman-ptest \
+    libc-test-ptest \
 "
 
 # This adds ptest packages to the image, and enables empty root password
