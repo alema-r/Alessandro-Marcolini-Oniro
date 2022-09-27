@@ -27,7 +27,7 @@ index 09b8f2956..1334a45c8 100644
 +        "${chip_root}/examples/tv-casting-app/linux:chip-tv-casting-app",
 +        "${chip_root}/examples/bridge-app/linux:chip-bridge-app",
 +        "${chip_root}/examples/lighting-app/linux:chip-lighting-app",
-+        "${chip_root}/examples/door-lock-app/linux:chip-door-lock-app",
++        "${chip_root}/examples/lock-app/linux:chip-lock-app",
          "${chip_root}/src/app/tests/integration:chip-im-initiator",
          "${chip_root}/src/app/tests/integration:chip-im-responder",
          "${chip_root}/src/lib/address_resolve:address-resolve-tool",
