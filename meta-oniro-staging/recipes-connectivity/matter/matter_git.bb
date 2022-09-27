@@ -6,7 +6,7 @@ DESCRIPTION = "Matter (formerly Project CHIP) is creating more connections \
 
 HOMEPAGE = "https://github.com/project-chip/connectedhomeip"
 
-LICENSE = "Apache-2.0 & MIT & BSD-3-Clause & BSD-1-Clause"
+LICENSE = "Apache-2.0 & MIT & BSD-3-Clause & BSD-1-Clause & Spencer-94"
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=86d3f3a95c324c9479bd8986968f4327 \
                     file://third_party/pigweed/repo/LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57 \
@@ -23,6 +23,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=86d3f3a95c324c9479bd8986968f4327 \
                     file://third_party/lwip/repo/lwip/COPYING;md5=59a383b05013356e0c9899b06dc5da3f \
                     file://third_party/jlink/segger_rtt/License.txt;md5=24baa8b9507d8bdedb09af1bd52ab12e \
                     file://third_party/inipp/repo/inipp/LICENSE.txt;md5=2958b7575a79b95a26f7e4b4b86830b6 \
+                    file://third_party/editline/repo/LICENSE;md5=f2a8150e04f36fb9d499fbb6495244ea \
 "
 
 inherit gn pkgconfig
@@ -32,26 +33,28 @@ DEPENDS += "avahi glib-2.0-native glib-2.0"
 # Matter has over 45 submodules listed, many of them for embedded bare metal
 # SDK's we do  not use for our Linux build. Instead using the gitsm fetcher and
 # fetch them recursively, we hand update them here.
-SRC_URI = "git://github.com/project-chip/connectedhomeip.git;protocol=https;name=matter;branch=master \
+SRC_URI = "git://github.com/project-chip/connectedhomeip.git;protocol=https;name=matter;branch=v1.0 \
            git://github.com/google/pigweed.git;protocol=https;destsuffix=git/third_party/pigweed/repo;name=pigweed;branch=main \
            git://github.com/open-source-parsers/jsoncpp.git;protocol=https;destsuffix=git/third_party/jsoncpp/repo;name=jsoncpp;branch=master \
            git://github.com/nestlabs/nlfaultinjection.git;protocol=https;destsuffix=git/third_party/nlfaultinjection/repo;name=nlfaultinjection;branch=master \
            git://github.com/nestlabs/nlunit-test.git;protocol=https;destsuffix=git/third_party/nlunit-test/repo;name=nlunit-test;branch=master \
            git://github.com/nestlabs/nlassert.git;protocol=https;destsuffix=git/third_party/nlassert/repo;name=nlassert;branch=master \
            git://github.com/nestlabs/nlio.git;protocol=https;destsuffix=git/third_party/nlio/repo;name=nlio;branch=master \
+           git://github.com/troglobit/editline.git;protocol=https;destsuffix=git/third_party/editline/repo;name=editline;branch=master \
            file://0001-projectmatter-use-Yocto-toolchain-and-flags.patch \
            file://0002-mbedtls-disable-building-integrated-library-in-Yocto.patch \
            file://0001-BUILD.gn-enbale-all-Linux-examples-in-the-default-bu.patch \
            "
 
 PV = "0.0+git${SRCPV}"
-SRCREV_matter = "fae3888d4baadd8d3b598e13e6c01b06c0180e97"
-SRCREV_pigweed = "c4dac15049d9742f0263f09ae9ec452fc57dfeb6"
+SRCREV_matter = "4f7669b052b16bd054227376e1bbadac85419793"
+SRCREV_pigweed = "9235aeb653e684a6f0b7b563965d85c747281a0f"
 SRCREV_jsoncpp = "42e892d96e47b1f6e29844cc705e148ec4856448"
 SRCREV_nlfaultinjection = "e0de0ab4f52c1d1cc7f3948557a1abd0fceeb5ef"
 SRCREV_nlunit-test = "0c8c9073af9c07aa089861295b7d7ced56ad174d"
 SRCREV_nlassert = "c5892c5ae43830f939ed660ff8ac5f1b91d336d3"
 SRCREV_nlio = "0e725502c2b17bb0a0c22ddd4bcaee9090c8fb5c"
+SRCREV_editline = "9fa05ba3841f3a7776b0b3645a3a92f32259d988"
 SRCREV_FORMAT = "matter"
 
 S = "${WORKDIR}/git"
@@ -62,6 +65,11 @@ GN_ARGS += "chip_enable_python_modules=false"
 # GCC v11 reports multiple problems that span across project's source code and
 # submodules. Temporarily disabling those warnings for the whole project
 TARGET_CFLAGS:append = " -Wno-format-truncation -Wno-stringop-truncation -Wno-format-security -Wno-unused-result"
+
+do_configure:prepend() {
+    # https://github.com/project-chip/connectedhomeip/issues/16844
+    touch ${S}/build_overrides/pigweed_environment.gni
+}
 
 do_install() {
     install -d ${D}${bindir}
@@ -76,7 +84,7 @@ do_install() {
     install ${B}/spake2p ${D}${bindir}
     install ${B}/chip-all-clusters-app ${D}${bindir}
     install ${B}/chip-bridge-app ${D}${bindir}
-    install ${B}/chip-door-lock-app ${D}${bindir}
+    install ${B}/chip-lock-app ${D}${bindir}
     install ${B}/chip-lighting-app ${D}${bindir}
     install ${B}/chip-tv-app ${D}${bindir}
     install ${B}/chip-tv-casting-app ${D}${bindir}
