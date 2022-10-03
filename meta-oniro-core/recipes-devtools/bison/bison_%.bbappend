@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: Huawei Inc.
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 # bison uses non-literal format strings in a few places.
 # This has been verified to be harmless in 3.5.4.

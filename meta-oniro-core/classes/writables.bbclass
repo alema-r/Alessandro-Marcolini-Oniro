@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: Huawei Inc.
 #
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 # This class provides support for defining, at the level of the recipe, the
 # required writable paths. It provides support for maintaining persistent or

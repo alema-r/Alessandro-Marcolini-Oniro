@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: Huawei Inc.
 #
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 HOMEPAGE = "https://gitlab.eclipse.org/eclipse/oniro-blueprints/core/pim435"
 SUMMARY = "A userspace driver application for PIM435 written in C"

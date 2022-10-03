@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: Huawei Inc.
 #
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 FILESEXTRAPATHS:prepend := "${ONIRO_COREBASE}/assets:"
 SPLASH_IMAGES:append = " file://psplash-oniro-img.png;outsuffix=oniro"

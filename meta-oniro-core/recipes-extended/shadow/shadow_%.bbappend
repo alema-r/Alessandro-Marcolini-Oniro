@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: Huawei Inc.
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 # shadow uses non-literal format strings to integrate system information
 # into the login prompt. This is harmless because harmful format strings

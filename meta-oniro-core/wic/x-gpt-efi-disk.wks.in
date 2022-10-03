@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: Huawei Inc.
 #
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 #
 # short-description: Creates a GPT-partitioned disk with EFI bootloader
 # long-description: The created disk is universal, and applies to physical and

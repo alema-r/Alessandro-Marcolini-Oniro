@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: Huawei Inc.
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 # libgcrypt uses zero-length array tricks causing array-bounds warnings.
 # The warnings have been verified to be harmless in 1.8.5; for extra

@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: Huawei Inc.
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 # ltp uses zero-length array tricks causing array-bounds warnings.
 # The warnings have been verifited to be harmless in 20200120; for extra

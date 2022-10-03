@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: Huawei Inc.
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 # gpgme uses zero-length array tricks causing array-bounds warnings.
 # The warnings have been verifited to be harmless in 1.13.1; for extra

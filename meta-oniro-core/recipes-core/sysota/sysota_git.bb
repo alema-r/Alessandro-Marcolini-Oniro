@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: Huawei Inc.
 #
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 DESCRIPTION = "Robust, unattended update system for Linux gateways"
 LICENSE = "Apache-2.0"

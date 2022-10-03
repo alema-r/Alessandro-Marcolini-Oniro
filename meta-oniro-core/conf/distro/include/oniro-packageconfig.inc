@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: Huawei Inc.
 #
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 # Define the configuration set as per our distro policy
 PACKAGECONFIG:pn-networkmanager = "nss systemd bluez5 wifi nmcli"

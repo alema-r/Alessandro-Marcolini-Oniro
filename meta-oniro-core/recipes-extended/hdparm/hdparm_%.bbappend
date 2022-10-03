@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: Huawei Inc.
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 # hdparm's sysfs I/O functions trigger warnings with
 # -Wformat-nonliteral, but the format strings are checked
