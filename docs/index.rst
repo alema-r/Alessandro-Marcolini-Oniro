@@ -37,6 +37,7 @@ Build System Guide
    supported-technologies/openthread
    supported-technologies/containers
    supported-technologies/modbus
+   supported-technologies/lvgl
 
 .. toctree::
    :caption: Supported Toolchains
