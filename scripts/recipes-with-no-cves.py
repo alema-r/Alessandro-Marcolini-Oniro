@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: Huawei Inc.
 #
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 # CVE-check example script
 # Produce a list of recipes without CVEs from the JSON cve-check output

@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: Huawei Inc.
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 # cairo uses zero-length array tricks that trigger warnings with
 # -Warray-bounds.

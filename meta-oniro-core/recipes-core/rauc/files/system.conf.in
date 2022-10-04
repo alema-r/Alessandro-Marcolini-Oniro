@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: Huawei Inc.
 #
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 [system]
 compatible=@RAUC_COMPAT@

@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: Huawei Inc.
 #
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 SUMMARY = "GRUB configuration file specialized for Oniro reference images"
 DESCRIPTION = "This GRUB configuration file has the following features: \

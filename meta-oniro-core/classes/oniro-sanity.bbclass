@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: Huawei Inc.
 #
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 # Deprecated collections can be either completely removed or replaced by
 # another layer. The format of ONIRO_DEPRECATED_COLLECTIONS is a list of

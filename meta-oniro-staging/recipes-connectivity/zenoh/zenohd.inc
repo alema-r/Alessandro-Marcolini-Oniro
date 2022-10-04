@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: Huawei Inc.
 #
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 SRC_URI += "file://Cargo.toml-do-not-abort-on-panic.patch"
 

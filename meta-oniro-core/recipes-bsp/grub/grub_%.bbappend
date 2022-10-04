@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: Huawei Inc.
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 # grub's MD-RAID1 implementation uses zero-length array tricks causing
 # array-bounds warnings.

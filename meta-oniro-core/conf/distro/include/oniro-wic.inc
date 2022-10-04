@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: Huawei Inc.
 #
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 # WIC configuration definitions that are meant to be common across the
 # supported devices. This configuration is taking into consideration OTA design

@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: Huawei Inc.
 #
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 COMPATIBLE_HOST:libc-musl = "(i.86|x86_64|arm|aarch64).*-linux"
 

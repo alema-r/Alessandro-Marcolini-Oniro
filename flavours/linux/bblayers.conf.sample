@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: Huawei Inc.
 #
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 # If you are changing bblayers.conf.sample and introduce an incompatible
 # change (like adding new layers), increment the ONIRO_LAYERS_CONF_VERSION value

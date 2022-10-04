@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: Huawei Inc.
 #
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 do_configure:prepend () {
     if ! echo ${@d.getVar("TARGET_OS")} | grep -qi linux; then

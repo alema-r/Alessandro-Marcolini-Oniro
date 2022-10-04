@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: Huawei Inc.
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 # db converter uses non-literal format strings
 # in a few places.

@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: Huawei Inc.
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 # liburcu uses zero-length array tricks causing array-bounds warnings.
 # The warnings have been verifited to be harmless in 0.11.1; for extra

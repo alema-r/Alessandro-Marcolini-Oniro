@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: Huawei Inc.
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 # gnupg uses zero-length array tricks causing array-bounds warnings.
 # The warnings have been verifited to be harmless in 2.2.20; for extra

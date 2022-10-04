@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: Huawei Inc.
 #
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 # short-description: Create SD card image with a boot partition for i.MX boards
 # long-description: Create an image that can be written onto a SD card for use

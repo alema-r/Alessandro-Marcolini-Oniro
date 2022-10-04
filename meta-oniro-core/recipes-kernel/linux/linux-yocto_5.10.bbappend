@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: Huawei Inc.
 #
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 KBRANCH:qemuarm-efi ?= "v5.10/standard/arm-versatile-926ejs"
 SRCREV_machine:qemuarm-efi ?= "23ab0f8300e7b90fdf1e0be923933d5cfd03b618"

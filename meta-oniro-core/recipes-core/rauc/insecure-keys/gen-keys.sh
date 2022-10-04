@@ -1,7 +1,7 @@
 #!/bin/sh
 # SPDX-FileCopyrightText: Huawei Inc.
 #
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 # The insecure pair of keys that are present in this layer were generated with
 # the following command. The keys will expire after a year. This is

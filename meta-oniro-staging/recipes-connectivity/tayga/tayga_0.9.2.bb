@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: Huawei Inc.
 #
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 SUMMARY = "TAYGA Simple, no-fuss NAT64 for Linux"
 DESCRIPTION = "TAYGA is an out-of-kernel stateless NAT64 implementation for \
