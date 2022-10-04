@@ -33,7 +33,7 @@ DEPENDS += "avahi glib-2.0-native glib-2.0"
 # Matter has over 45 submodules listed, many of them for embedded bare metal
 # SDK's we do  not use for our Linux build. Instead using the gitsm fetcher and
 # fetch them recursively, we hand update them here.
-SRC_URI = "git://github.com/project-chip/connectedhomeip.git;protocol=https;name=matter;branch=v1.0 \
+SRC_URI = "git://github.com/project-chip/connectedhomeip.git;protocol=https;name=matter;branch=v1.0-branch \
            git://github.com/google/pigweed.git;protocol=https;destsuffix=git/third_party/pigweed/repo;name=pigweed;branch=main \
            git://github.com/open-source-parsers/jsoncpp.git;protocol=https;destsuffix=git/third_party/jsoncpp/repo;name=jsoncpp;branch=master \
            git://github.com/nestlabs/nlfaultinjection.git;protocol=https;destsuffix=git/third_party/nlfaultinjection/repo;name=nlfaultinjection;branch=master \
@@ -46,8 +46,9 @@ SRC_URI = "git://github.com/project-chip/connectedhomeip.git;protocol=https;name
            file://0001-BUILD.gn-enbale-all-Linux-examples-in-the-default-bu.patch \
            "
 
-PV = "0.0+git${SRCPV}"
-SRCREV_matter = "4f7669b052b16bd054227376e1bbadac85419793"
+PV = "1.0+git${SRCPV}"
+# The matter SRCREV matches the 1.0 release tag
+SRCREV_matter = "561d23d0db215a99705ff0696e73853c8edf11b2"
 SRCREV_pigweed = "9235aeb653e684a6f0b7b563965d85c747281a0f"
 SRCREV_jsoncpp = "42e892d96e47b1f6e29844cc705e148ec4856448"
 SRCREV_nlfaultinjection = "e0de0ab4f52c1d1cc7f3948557a1abd0fceeb5ef"
