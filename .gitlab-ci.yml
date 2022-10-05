@@ -31,6 +31,14 @@ include:
  - local: '/.oniro-ci/dco.yaml'
  - template: 'Workflows/MergeRequest-Pipelines.gitlab-ci.yml'
 
+default:
+  tags:
+    - origin:eclipse
+    - tool:bitbake
+  retry:
+    max: 2
+    when: scheduler_failure
+
 dco:
   extends: .dco
 

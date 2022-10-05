@@ -6,7 +6,6 @@
   interruptible: true
   image:
     name: registry.ostc-eu.org/ostc/oniro/bitbake-builder:latest
-  tags: [large-disk, $CI_ONIRO_RUNNER_TAG, $CI_ONIRO_INSTANCE_SIZE]
   variables:
     CI_ONIRO_RUNNER_TAG : ""
     CI_ONIRO_MANIFEST_URL: https://gitlab.eclipse.org/eclipse/oniro-core/oniro
@@ -28,7 +27,7 @@
     # Create scratch space, being careful not to pollute the working directory.
     # This is done so that we are not attached to the contents of
     # $CI_PROJECT_DIR which contains something that GitLab CI prepared for us.
-    - SCRATCH_DIR="$(mktemp -p /tmp -d workspace.XXXXXXXXXX)"
+    - SCRATCH_DIR="$(mktemp -p $TMPDIR -d workspace.XXXXXXXXXX)"
     - echo "$SCRATCH_DIR" > "$CI_PROJECT_DIR"/.scratch-dir-name
     - cd "$SCRATCH_DIR"
 
@@ -104,6 +103,7 @@
     CI_ONIRO_BB_LOCAL_CONF_CVE_CHECK_DB_DIR: "$${TMPDIR}/CVE_CHECK/"
     CI_ONIRO_BB_LOCAL_CONF_plus_equals_INHERIT: cve-check
     CI_ONIRO_BB_LOCAL_CONF_plus_equals_USER_CLASSES: "buildstats buildstats-summary"
+    CI_ONIRO_BB_LOCAL_CONF_FETCHCMD_wget: "/usr/bin/env wget -L -t 6 -T 5 --passive-ftp"
     CI_ONIRO_DEVTOOL_RECIPE_NAME: ""
     CI_ONIRO_DEVTOOL_LAYER_PATH: ""
 
@@ -131,9 +131,11 @@
     - test -n "$CI_ONIRO_RUNNER_PERSISTENT_STORAGE" || (
         echo "precondition failed - CI_ONIRO_RUNNER_PERSISTENT_STORAGE is not set"
         && exit 1 )
-    - test -w "$CI_ONIRO_RUNNER_PERSISTENT_STORAGE/$CI_ONIRO_BUILD_CACHE/bitbake" || (
-        echo "precondition failed - expected $CI_ONIRO_RUNNER_PERSISTENT_STORAGE/$CI_ONIRO_BUILD_CACHE/bitbake to be writable"
-        && exit 1 )
+    - |
+      mkdir -p $CI_ONIRO_RUNNER_PERSISTENT_STORAGE/pub/bitbake
+      mkdir -p $CI_ONIRO_RUNNER_PERSISTENT_STORAGE/private/bitbake
+      chmod 775 $CI_ONIRO_RUNNER_PERSISTENT_STORAGE/{private,pub}
+      chmod 775 $CI_ONIRO_RUNNER_PERSISTENT_STORAGE/{private,pub}/bitbake
     # Log available disk space on the persistent shared disk.
     - df -h "$CI_ONIRO_RUNNER_PERSISTENT_STORAGE/$CI_ONIRO_BUILD_CACHE/bitbake"
     - !reference [.workspace, before_script]
@@ -490,7 +492,6 @@
 .oe-selftest:
   image:
     name: registry.ostc-eu.org/ostc/oniro/bitbake-builder:latest
-  tags: [qemu-friendly, large-disk, $CI_ONIRO_RUNNER_TAG, $CI_ONIRO_INSTANCE_SIZE]
   stage: test
   dependencies: []
   extends: .bitbake-workspace
