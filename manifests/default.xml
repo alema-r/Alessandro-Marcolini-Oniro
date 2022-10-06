@@ -54,12 +54,12 @@ SPDX-FileCopyrightText: Huawei Inc.
 		likely to a git tag in the repository.
 	-->
 
-	<project name="oniro-core/oniro.git" remote="eclipse" revision="refs/tags/v2.0.0-beta" path="oniro">
+	<project name="oniro-core/oniro.git" remote="eclipse" revision="kirkstone" path="oniro">
 		<linkfile src="README.md" dest="README.md"/>
 	</project>
-	<project name="oniro-core/meta-clang.git" remote="eclipse" revision="refs/tags/v2.0.0-beta" path="meta-clang" />
-	<project name="oniro-core/meta-zephyr.git" remote="eclipse" revision="refs/tags/v2.0.0-beta" path="meta-zephyr" />
-	<project name="oniro-core/third-party/forks/meta-ledge-secure.git" remote="eclipse" revision="refs/tags/v2.0.0-beta" path="meta-ledge-secure" />
-	<project name="oniro-core/third-party/forks/meta-ts.git" remote="eclipse" revision="refs/tags/v2.0.0-beta" path="meta-ts" />
-	<project name="oniro-core/docs.git" remote="eclipse" revision="refs/tags/v2.0.0-beta" path="docs" />
+	<project name="oniro-core/meta-clang.git" remote="eclipse" revision="oniro/kirkstone" path="meta-clang" />
+	<project name="oniro-core/meta-zephyr.git" remote="eclipse" revision="oniro/kirkstone" path="meta-zephyr" />
+	<project name="oniro-core/third-party/forks/meta-ledge-secure.git" remote="eclipse" revision="oniro/kirkstone" path="meta-ledge-secure" />
+	<project name="oniro-core/third-party/forks/meta-ts.git" remote="eclipse" revision="oniro/kirkstone" path="meta-ts" />
+	<project name="oniro-core/docs.git" remote="eclipse" revision="main" path="docs" />
 </manifest>
