@@ -109,7 +109,7 @@ PACKAGE_CLASSES ?= "package_rpm"
 # This enables a list of config to aid development.
 # Do not enable it in production systems.
 #
-#INHERIT += "oniro-debug-linux"
+INHERIT += "oniro-debug-linux"
 
 # This class creates the "oniro" user to be used when debug mode is not enabled
 # More info in meta-oniro-core/classes/oniro-user.bbclass
