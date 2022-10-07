@@ -4,6 +4,8 @@
 
 # Oniro Project functionality for images
 
+WARN_QA:remove = "host-user-contaminated"
+
 # List of tty to mask getty for
 SYSTEMD_MASK_GETTY ?= ""
 

@@ -2,6 +2,8 @@
 #
 # SPDX-License-Identifier: MIT
 
+WARN_QA:remove = "host-user-contaminated"
+
 # Deprecated collections can be either completely removed or replaced by
 # another layer. The format of ONIRO_DEPRECATED_COLLECTIONS is a list of
 # <DEPRECATED_COLLECTION>:<REPLACEMENT_COLLECTION>. When

@@ -30,6 +30,8 @@
 
 inherit systemd
 
+WARN_QA:remove = "host-user-contaminated"
+
 # The read-write area needs to be provided by the OS in the form of a rw
 # mountpoint handled with systemd mount unit. In this way the state/writable
 # systemd mount units this class generates, will have the correct dependency on

@@ -5,6 +5,8 @@
 # Add a new user named oniro with default password oniro
 inherit extrausers
 
+WARN_QA:remove = "host-user-contaminated"
+
 # This is a sha512 hash of the word "oniro"
 # To generate a new password run the following command:
 # $ mkpasswd -m sha512crypt

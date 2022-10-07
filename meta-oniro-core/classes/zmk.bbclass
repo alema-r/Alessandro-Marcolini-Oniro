@@ -4,6 +4,8 @@
 
 inherit autotools
 
+WARN_QA:remove = "host-user-contaminated"
+
 DEPENDS += "zmk-native"
 EXTRA_OEMAKE += "-I${RECIPE_SYSROOT_NATIVE}/usr/include" 
 
