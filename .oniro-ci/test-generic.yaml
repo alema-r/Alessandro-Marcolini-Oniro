@@ -7,7 +7,7 @@
 .lava-test:
   interruptible: true
   image:
-    name: registry.ostc-eu.org/ostc/oniro/bitbake-builder:latest
+    name: docker.io/oniro/bitbake-builder:latest
   variables:
     GIT_STRATEGY: none
     CI_LAVA_INSTANCE: "https://lava.ostc-eu.org/"
@@ -123,7 +123,7 @@
   # Let the pipeline continue running 'lava-badge' job.
   allow_failure: true
   image:
-    name: registry.ostc-eu.org/ostc/oniro/bitbake-builder:latest
+    name: docker.io/oniro/bitbake-builder:latest
   stage: report
   variables:
     GIT_STRATEGY: none
@@ -162,7 +162,7 @@
 .lava-badge:
   interruptible: true
   image:
-    name: registry.ostc-eu.org/ostc/oniro/bitbake-builder:latest
+    name: docker.io/oniro/bitbake-builder:latest
   stage: report
   variables:
     GIT_STRATEGY: none

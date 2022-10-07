@@ -5,7 +5,7 @@
 .workspace:
   interruptible: true
   image:
-    name: registry.ostc-eu.org/ostc/oniro/bitbake-builder:latest
+    name: docker.io/oniro/bitbake-builder:latest
   tags: [large-disk, $CI_ONIRO_RUNNER_TAG, $CI_ONIRO_INSTANCE_SIZE]
   variables:
     CI_ONIRO_RUNNER_TAG : ""
@@ -443,7 +443,7 @@
 .build-docs:
   interruptible: true
   image:
-    name: registry.ostc-eu.org/ostc/oniro/docs-builder:latest
+    name: docker.io/oniro/docs-builder:latest
   stage: build
   script:
     - make -C docs
@@ -489,7 +489,7 @@
 # This job is documented in docs/ci/hidden-jobs/oe-selftest.rst
 .oe-selftest:
   image:
-    name: registry.ostc-eu.org/ostc/oniro/bitbake-builder:latest
+    name: docker.io/oniro/bitbake-builder:latest
   tags: [qemu-friendly, large-disk, $CI_ONIRO_RUNNER_TAG, $CI_ONIRO_INSTANCE_SIZE]
   stage: test
   dependencies: []

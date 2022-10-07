@@ -889,7 +889,7 @@ oe-selftest-report:
   timeout: 6h
   extends: .oe-selftest-rules
   image:
-    name: registry.ostc-eu.org/ostc/oniro/bitbake-builder:latest
+    name: docker.io/oniro/bitbake-builder:latest
   stage: report
   dependencies:
     - oe-selftest-gcc-qemu-linux-user
