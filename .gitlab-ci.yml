@@ -38,6 +38,8 @@ dco:
 
 build-docs:
   extends: .build-docs
+  needs: 
+    - build-docs-builder
 
 aggregate-docs:
   extends: .aggregate-docs
