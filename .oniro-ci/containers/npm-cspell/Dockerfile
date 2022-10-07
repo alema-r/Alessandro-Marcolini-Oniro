@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: Huawei Inc.
 # SPDX-License-Identifier: Apache-2.0
 
-FROM ubuntu:21.04
+FROM ubuntu:22.04
 
 ARG DEBIAN_FRONTEND="noninteractive"
 RUN apt-get update -qq \
