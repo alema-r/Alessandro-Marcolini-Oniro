@@ -33,6 +33,8 @@ include:
 
 dco:
   extends: .dco
+  needs:
+    - build-dco-check
 
 build-docs:
   extends: .build-docs
@@ -830,6 +832,7 @@ build-docs-builder:
 
 build-dco-check:
   extends: .build-with-buildkit
+  stage: compliance # fix for the current gitlab version 
   variables:
     CONTAINER_PATH: dco-check
 
