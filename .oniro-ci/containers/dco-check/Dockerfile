@@ -23,5 +23,5 @@ ARG DEBIAN_FRONTEND="noninteractive"
 RUN apt-get update -qq \
  && apt-get install -y eatmydata \
  && eatmydata apt-get install -qq -y 'dco-check=0.1.1-1+ostc2' \
- && eatmydata apt-get install -qq -y 'ca-certificates=20210119~20.04.2' \
+ && eatmydata apt-get install -qq -y ca-certificates \
  && eatmydata apt-get clean && rm -rf /var/lib/apt/lists/*

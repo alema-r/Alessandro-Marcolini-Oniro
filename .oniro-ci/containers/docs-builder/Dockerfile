@@ -13,7 +13,7 @@ RUN apt-get update -qq \
       git-repo git git-lfs \
       python3-pip python3-sphinx python3-sphinx-rtd-theme python3-recommonmark \
       python3-sphinxcontrib.plantuml \
- && eatmydata apt-get install -qq -y 'ca-certificates=20211016~20.04.1' \
+      ca-certificates \
  && eatmydata apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # We need to fix the version here to avoid pulling docutils 0.18 which is
