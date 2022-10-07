@@ -748,6 +748,9 @@ lava-badge:
 
 .build-with-buildkit:
   stage: build
+  tags:
+    - origin:eclipse
+    - ctx:oniro-group 
   image:
     name: eclipsefdn/containertools
     entrypoint: [""]
