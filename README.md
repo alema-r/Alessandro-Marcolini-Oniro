@@ -6,7 +6,9 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # Oniro Project
 
-Welcome to the Oniro\* Project main git reposiotory! Oniro is an Eclipse
+*This is an Oniro fork for the TechArena event only.*
+
+Welcome to the Oniro\* Project main git repository! Oniro is an Eclipse
 Foundation project focused on the development of a distributed open source
 operating system for consumer devices.
 
