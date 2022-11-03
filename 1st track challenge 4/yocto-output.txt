@@ -1,0 +1,91 @@
+pokyuser@14d9ec298226:/workdir$ yocto-check-layer meta-mylayer/
+INFO: Detected layers:
+INFO: meta-mylayer: LayerType.SOFTWARE, /workdir/meta-mylayer
+INFO: 
+INFO: Setting up for meta-mylayer(LayerType.SOFTWARE), /workdir/meta-mylayer
+INFO: Getting initial bitbake variables ...
+INFO: Getting initial signatures ...
+INFO: Generating signatures failed. This might be due to some parse error and/or general layer incompatibilities.
+Command: BB_ENV_PASSTHROUGH_ADDITIONS="$BB_ENV_PASSTHROUGH_ADDITIONS BB_SIGNATURE_HANDLER" BB_SIGNATURE_HANDLER="OEBasicHash" bitbake -S none world
+Output:
+Loading cache...done.
+Loaded 4900 entries from dependency cache.
+Parsing recipes...done.
+Parsing of 3222 .bb files complete (3221 cached, 1 parsed). 4901 targets, 590 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+ERROR: Nothing RPROVIDES 'efibootmgr' (but /workdir/techarena-oniro/oe-core/../meta-secure-core/meta-efi-secure-boot/recipes-base/packagegroups/packagegroup-efi-secure-boot.bb RDEPENDS on or otherwise requires it)
+efibootmgr was skipped: incompatible with host x86_64-oniro-linux-musl (not in COMPATIBLE_HOST)
+NOTE: Runtime target 'efibootmgr' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ['efibootmgr']
+ERROR: Required build target 'meta-world-pkgdata' has no buildable providers.
+Missing or unbuildable dependency chain was: ['meta-world-pkgdata', 'packagegroup-efi-secure-boot', 'efibootmgr']
+
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+
+INFO: 
+INFO: Summary of results:
+INFO: 
+INFO: meta-mylayer ... FAIL (Generating world signatures)
+
+
+
+pokyuser@14d9ec298226:/workdir$ yocto-check-layer --without-software-layer-signature-check meta-mylayer/
+INFO: Detected layers:
+INFO: meta-mylayer: LayerType.SOFTWARE, /workdir/meta-mylayer
+INFO: 
+INFO: Setting up for meta-mylayer(LayerType.SOFTWARE), /workdir/meta-mylayer
+INFO: Getting initial bitbake variables ...
+INFO: Getting initial signatures ...
+INFO: Generating signatures failed. This might be due to some parse error and/or general layer incompatibilities.
+Command: BB_ENV_PASSTHROUGH_ADDITIONS="$BB_ENV_PASSTHROUGH_ADDITIONS BB_SIGNATURE_HANDLER" BB_SIGNATURE_HANDLER="OEBasicHash" bitbake -S none world
+Output:
+Loading cache...done.
+Loaded 4900 entries from dependency cache.
+Parsing recipes...done.
+Parsing of 3222 .bb files complete (3221 cached, 1 parsed). 4901 targets, 590 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+NOTE: Multiple providers are available for runtime ssh (dropbear, openssh)
+Consider defining a PREFERRED_RPROVIDER entry to match ssh
+ERROR: Nothing RPROVIDES 'virtual/runc' (but /workdir/techarena-oniro/oe-core/../meta-ledge-secure/meta-ledge-secure/recipes-samples/packagegroups/packagegroup-ledge-containers.bb RDEPENDS on or otherwise requires it)
+NOTE: Runtime target 'virtual/runc' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ['virtual/runc']
+ERROR: Required build target 'meta-world-pkgdata' has no buildable providers.
+Missing or unbuildable dependency chain was: ['meta-world-pkgdata', 'packagegroup-ledge-containers', 'virtual/runc']
+
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+
+INFO: 
+INFO: Summary of results:
+INFO: 
+INFO: meta-mylayer ... FAIL (Generating world signatures)
+
+
+pokyuser@14d9ec298226:/workdir$ yocto-check-layer --without-software-layer-signature-check meta-mylayer/
+INFO: Detected layers:
+INFO: meta-mylayer: LayerType.SOFTWARE, /workdir/meta-mylayer
+INFO: 
+INFO: Setting up for meta-mylayer(LayerType.SOFTWARE), /workdir/meta-mylayer
+INFO: Getting initial bitbake variables ...
+INFO: Getting initial signatures ...
+INFO: Generating signatures failed. This might be due to some parse error and/or general layer incompatibilities.
+Command: BB_ENV_PASSTHROUGH_ADDITIONS="$BB_ENV_PASSTHROUGH_ADDITIONS BB_SIGNATURE_HANDLER" BB_SIGNATURE_HANDLER="OEBasicHash" bitbake -S none world
+Output:
+Loading cache...done.
+Loaded 4900 entries from dependency cache.
+Parsing recipes...done.
+Parsing of 3222 .bb files complete (3221 cached, 1 parsed). 4901 targets, 590 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+ERROR: Nothing RPROVIDES 'efibootmgr' (but /workdir/techarena-oniro/oe-core/../meta-secure-core/meta-efi-secure-boot/recipes-base/packagegroups/packagegroup-efi-secure-boot.bb RDEPENDS on or otherwise requires it)
+efibootmgr was skipped: incompatible with host x86_64-oniro-linux-musl (not in COMPATIBLE_HOST)
+NOTE: Runtime target 'efibootmgr' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ['efibootmgr']
+ERROR: Required build target 'meta-world-pkgdata' has no buildable providers.
+Missing or unbuildable dependency chain was: ['meta-world-pkgdata', 'packagegroup-efi-secure-boot', 'efibootmgr']
+
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+
+INFO: 
+INFO: Summary of results:
+INFO: 
+INFO: meta-mylayer ... FAIL (Generating world signatures)
+
