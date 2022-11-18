@@ -27,6 +27,7 @@ To enforce security of passwords it is advisable to add rounds of hash encryptio
 Adding password expiration, instead, ensures that the user periodically changes his password, which can be useful if he uses the same password for multiple accounts (really bad security practice) and the password is found due to some password breaches.
 
 Personally, I would add, at least, password rounds. This can be achieved by modifying the `/etc/pam.d/passwd` file.
+
 3. Configure minimum encryption algorithm rounds in /etc/login.defs [AUTH-9230]
 4. Configure maximum encryption algorithm rounds in /etc/login.defs [AUTH-9230] 
 
@@ -37,14 +38,17 @@ Same as 2.
 Installing such a module can be useful because it prevents the user to set an easy password with low strength.
 It could be useful to make users aware about password security.
 
-6. When possible set expire dates for all password protected accounts [AUTH-9282] 
+6. When possible set expire dates for all password protected accounts [AUTH-9282]
+
 Same as 2.
 
 7. Configure minimum password age in /etc/login.defs [AUTH-9286] 
 8. Configure maximum password age in /etc/login.defs [AUTH-9286] 
+
 Same as 2.
 
 9. To decrease the impact of a full /var file system, place /var on a separate partition [FILE-6310] 
+
 The /var partition, if not in a separate partition, could fill the entire filesystem, thus causing a system malfunction.
 In particular the /var/log directoy is used by system services to store log data. Since this directory may contain world-writable files there is a risk of resource exhaustion. Furthermore, mounting the /var on a different partition allows to add additional mount options such as noexec/nosuid/nodev. 
 From the `mount(8)` manpage:
